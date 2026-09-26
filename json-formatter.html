@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON Formatter & Validator - Free Online Tool</title>
+
+  <meta name="description" content="Format, beautify and validate JSON online for free. Fix JSON formatting and check syntax directly in your browser.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 10px;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 300px;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 11px 17px;
+      margin: 5px 5px 5px 0;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #222;
+    }
+
+    .success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .status {
+      display: none;
+      margin: 15px 0;
+      padding: 12px;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .valid {
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .invalid {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .privacy {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f0fdf4;
+      color: #166534;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+        padding: 15px 0;
+      }
+
+      .tool {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="tool">
+
+      <h1>JSON Formatter & Validator</h1>
+
+      <p class="description">
+        Format, beautify and validate JSON instantly in your browser.
+        Your data stays on your device.
+      </p>
+
+      <label for="jsonInput">Enter JSON</label>
+
+      <textarea id="jsonInput" placeholder='Paste your JSON here...'>{
+  "name": "John",
+  "age": 30,
+  "city": "London"
+}</textarea>
+
+      <div class="buttons">
+        <button class="primary" onclick="formatJSON()">Format JSON</button>
+        <button class="success" onclick="copyJSON()">Copy JSON</button>
+        <button class="secondary" onclick="validateJSON()">Validate JSON</button>
+        <button class="secondary" onclick="clearJSON()">Clear</button>
+      </div>
+
+      <div id="status" class="status"></div>
+
+      <label for="jsonOutput">Formatted JSON</label>
+
+      <textarea id="jsonOutput" readonly placeholder="Formatted JSON will appear here..."></textarea>
+
+      <div class="buttons">
+        <button class="primary" onclick="downloadJSON()">Download JSON</button>
+      </div>
+
+      <div class="privacy">
+        <strong>Privacy First</strong><br>
+        This JSON formatter and validator processes your data directly
+        in your browser. Your JSON is not uploaded to our server.
+      </div>
+
+      <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function showStatus(message, type) {
+      const status = document.getElementById("status");
+
+      status.textContent = message;
+      status.className = "status " + type;
+      status.style.display = "block";
+    }
+
+    function formatJSON() {
+
+      const input = document.getElementById("jsonInput").value.trim();
+
+      if (!input) {
+        showStatus("Please enter JSON data.", "invalid");
+        return;
+      }
+
+      try {
+
+        const parsed = JSON.parse(input);
+
+        const formatted = JSON.stringify(parsed, null, 2);
+
+        document.getElementById("jsonOutput").value = formatted;
+
+        showStatus("Valid JSON. Formatting completed successfully.", "valid");
+
+      } catch (error) {
+
+        document.getElementById("jsonOutput").value = "";
+
+        showStatus(
+          "Invalid JSON: " + error.message,
+          "invalid"
+        );
+
+      }
+    }
+
+    function validateJSON() {
+
+      const input = document.getElementById("jsonInput").value.trim();
+
+      if (!input) {
+        showStatus("Please enter JSON data.", "invalid");
+        return;
+      }
+
+      try {
+
+        JSON.parse(input);
+
+        showStatus("✓ Valid JSON. No syntax errors found.", "valid");
+
+      } catch (error) {
+
+        showStatus(
+          "✗ Invalid JSON: " + error.message,
+          "invalid"
+        );
+
+      }
+    }
+
+    function copyJSON() {
+
+      const output = document.getElementById("jsonOutput").value;
+
+      if (!output) {
+        showStatus("Please format the JSON first.", "invalid");
+        return;
+      }
+
+      navigator.clipboard.writeText(output)
+        .then(() => {
+          showStatus("Formatted JSON copied to clipboard.", "valid");
+        })
+        .catch(() => {
+          showStatus("Unable to copy JSON.", "invalid");
+        });
+    }
+
+    function downloadJSON() {
+
+      const output = document.getElementById("jsonOutput").value;
+
+      if (!output) {
+        showStatus("Please format the JSON first.", "invalid");
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "application/json;charset=utf-8;" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "formatted.json";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+
+      showStatus("JSON file downloaded.", "valid");
+    }
+
+    function clearJSON() {
+
+      document.getElementById("jsonInput").value = "";
+      document.getElementById("jsonOutput").value = "";
+
+      const status = document.getElementById("status");
+
+      status.style.display = "none";
+      status.textContent = "";
+    }
+
+  </script>
+
+</body>
+</html>
