@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CSV & JSON Developer Tools - Free Online Tools</title>
+
+  <meta name="description" content="Free online CSV and JSON developer tools. Convert, format, validate and transform data directly in your browser. Fast, private and easy to use.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    header {
+      padding: 50px 0 35px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: auto;
+      color: #6b7280;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .section-title {
+      margin: 25px 0 15px;
+      font-size: 22px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      padding-bottom: 30px;
+    }
+
+    .tool-card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    .tool-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .tool-card p {
+      color: #6b7280;
+      line-height: 1.5;
+      min-height: 48px;
+      margin-bottom: 18px;
+    }
+
+    .open-tool {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+
+    .open-tool:hover {
+      background: #1d4ed8;
+    }
+
+    .privacy {
+      background: #f0fdf4;
+      color: #166534;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 10px 0 30px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      padding: 25px 0 35px;
+    }
+
+    @media (max-width: 650px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding-top: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>CSV & JSON Developer Tools</h1>
+
+      <p class="intro">
+        Free online tools for converting, formatting, validating and transforming
+        CSV and JSON data. Fast, simple and privacy-focused.
+      </p>
+    </header>
+
+    <main id="toolsContainer"></main>
+
+    <div class="privacy">
+      <strong>Privacy First</strong><br>
+      These tools are designed to process your data directly in your browser.
+      Your files and data are not uploaded to our server.
+    </div>
+
+    <footer>
+      © 2026 CSV & JSON Developer Tools
+    </footer>
+
+  </div>
+
+  <script>
+
+    /*
+      Add future tools here.
+      You only need to add one new object for each tool.
+    */
+
+    const tools = [
+      {
+        category: "Data Conversion",
+        name: "CSV to JSON Converter",
+        description: "Convert CSV files or data into JSON instantly in your browser.",
+        url: "csv-to-json.html"
+      },
+
+      {
+        category: "Data Conversion",
+        name: "JSON to CSV Converter",
+        description: "Convert JSON data into CSV format quickly and easily.",
+        url: "json-to-csv.html"
+      }
+    ];
+
+    const container = document.getElementById("toolsContainer");
+
+    const categories = [...new Set(tools.map(tool => tool.category))];
+
+    categories.forEach(category => {
+
+      const title = document.createElement("h2");
+      title.className = "section-title";
+      title.textContent = category;
+
+      const grid = document.createElement("div");
+      grid.className = "tools-grid";
+
+      tools
+        .filter(tool => tool.category === category)
+        .forEach(tool => {
+
+          const card = document.createElement("div");
+          card.className = "tool-card";
+
+          card.innerHTML = `
+            <h3>${tool.name}</h3>
+            <p>${tool.description}</p>
+            <a class="open-tool" href="${tool.url}">Open Tool</a>
+          `;
+
+          grid.appendChild(card);
+        });
+
+      container.appendChild(title);
+      container.appendChild(grid);
+
+    });
+
+  </script>
+
+</body>
+</html>
