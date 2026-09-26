@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free CSV to JSON converter. Convert CSV files or text to JSON instantly in your browser without uploading data to a server.">
+  <title>CSV to JSON Converter - Free Online Tool</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      padding: 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button,
+    .file-label {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      background: #2563eb;
+      color: white;
+      display: inline-block;
+    }
+
+    button:hover,
+    .file-label:hover {
+      opacity: 0.9;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .secondary {
+      background: #4b5563;
+    }
+
+    .success {
+      background: #059669;
+    }
+
+    .output {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #111827;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 10px;
+      min-height: 180px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .info {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 25px;
+      }
+
+      .card {
+        padding: 17px;
+      }
+
+      button,
+      .file-label {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>CSV to JSON Converter</h1>
+      <p class="subtitle">
+        Convert CSV data to JSON instantly in your browser.
+        Your data stays on your device.
+      </p>
+    </header>
+
+    <div class="card">
+
+      <h2>Enter CSV Data</h2>
+
+      <textarea id="csvInput" placeholder="name,age,city
+John,25,London
+Sarah,30,New York"></textarea>
+
+      <div class="buttons">
+
+        <label class="file-label">
+          Upload CSV File
+          <input type="file" id="fileInput" accept=".csv,text/csv">
+        </label>
+
+        <button onclick="convertCSV()">Convert to JSON</button>
+
+        <button class="secondary" onclick="clearAll()">Clear</button>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>JSON Output</h2>
+
+      <div id="jsonOutput" class="output">
+        Your converted JSON will appear here.
+      </div>
+
+      <div class="buttons">
+
+        <button class="success" onclick="copyJSON()">
+          Copy JSON
+        </button>
+
+        <button class="secondary" onclick="downloadJSON()">
+          Download JSON
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Privacy</h2>
+
+      <p class="info">
+        This CSV to JSON converter processes your data directly
+        in your browser. Your CSV file is not uploaded to our server.
+      </p>
+
+    </div>
+
+    <footer>
+      Free CSV to JSON Converter
+    </footer>
+
+  </div>
+
+<script>
+
+let convertedJSON = "";
+
+function parseCSV(text) {
+
+  const rows = [];
+  let row = [];
+  let value = "";
+  let insideQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+
+    const char = text[i];
+    const next = text[i + 1];
+
+    if (char === '"' && insideQuotes && next === '"') {
+      value += '"';
+      i++;
+    }
+
+    else if (char === '"') {
+      insideQuotes = !insideQuotes;
+    }
+
+    else if (char === "," && !insideQuotes) {
+      row.push(value);
+      value = "";
+    }
+
+    else if ((char === "\n" || char === "\r") && !insideQuotes) {
+
+      if (char === "\r" && next === "\n") {
+        i++;
+      }
+
+      row.push(value);
+      rows.push(row);
+
+      row = [];
+      value = "";
+    }
+
+    else {
+      value += char;
+    }
+  }
+
+  if (value !== "" || row.length > 0) {
+    row.push(value);
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+
+function convertCSV() {
+
+  const csv = document.getElementById("csvInput").value.trim();
+
+  if (!csv) {
+    alert("Please enter CSV data first.");
+    return;
+  }
+
+  const rows = parseCSV(csv);
+
+  if (rows.length < 2) {
+    alert("CSV must contain a header row and at least one data row.");
+    return;
+  }
+
+  const headers = rows[0];
+
+  const data = rows.slice(1).map(row => {
+
+    const obj = {};
+
+    headers.forEach((header, index) => {
+      obj[header.trim()] = row[index] !== undefined
+        ? row[index].trim()
+        : "";
+    });
+
+    return obj;
+
+  });
+
+  convertedJSON = JSON.stringify(data, null, 2);
+
+  document.getElementById("jsonOutput").textContent = convertedJSON;
+}
+
+
+document.getElementById("fileInput").addEventListener("change", function(event) {
+
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    document.getElementById("csvInput").value = e.target.result;
+
+  };
+
+  reader.readAsText(file);
+
+});
+
+
+function copyJSON() {
+
+  if (!convertedJSON) {
+    alert("Convert CSV to JSON first.");
+    return;
+  }
+
+  navigator.clipboard.writeText(convertedJSON);
+
+  alert("JSON copied to clipboard!");
+}
+
+
+function downloadJSON() {
+
+  if (!convertedJSON) {
+    alert("Convert CSV to JSON first.");
+    return;
+  }
+
+  const blob = new Blob(
+    [convertedJSON],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = "converted.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+
+function clearAll() {
+
+  document.getElementById("csvInput").value = "";
+
+  document.getElementById("jsonOutput").textContent =
+    "Your converted JSON will appear here.";
+
+  convertedJSON = "";
+
+}
+
+</script>
+
+</body>
+</html>
