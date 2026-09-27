@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON to YAML Converter - Free Online Tool</title>
+
+  <meta name="description" content="Convert JSON data to YAML online for free. Generate clean YAML from JSON instantly in your browser. Fast, simple and privacy-focused.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 10px;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 8px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+      min-height: 280px;
+      resize: vertical;
+      font-family: monospace;
+      line-height: 1.5;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 11px 17px;
+      margin: 5px 5px 5px 0;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #222;
+    }
+
+    .success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .status {
+      display: none;
+      margin: 15px 0;
+      padding: 12px;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .valid {
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .invalid {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .privacy {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f0fdf4;
+      color: #166534;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+        padding: 15px 0;
+      }
+
+      .tool {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="tool">
+
+      <h1>JSON to YAML Converter</h1>
+
+      <p class="description">
+        Convert JSON data into clean YAML instantly in your browser.
+        Your data stays on your device.
+      </p>
+
+      <label for="jsonInput">Enter JSON</label>
+
+      <textarea id="jsonInput">{
+  "name": "Ali",
+  "age": 28,
+  "city": "Karachi",
+  "skills": [
+    "JavaScript",
+    "Python",
+    "HTML"
+  ],
+  "active": true
+}</textarea>
+
+      <div class="buttons">
+        <button class="primary" onclick="convertToYAML()">Convert to YAML</button>
+        <button class="secondary" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div id="status" class="status"></div>
+
+      <label for="yamlOutput">YAML Output</label>
+
+      <textarea
+        id="yamlOutput"
+        readonly
+        placeholder="YAML output will appear here..."
+      ></textarea>
+
+      <div class="buttons">
+        <button class="success" onclick="copyYAML()">Copy YAML</button>
+        <button class="primary" onclick="downloadYAML()">Download YAML</button>
+      </div>
+
+      <div class="privacy">
+        <strong>Privacy First</strong><br>
+        This JSON to YAML converter processes your data directly in your browser.
+        Your JSON is not uploaded to our server.
+      </div>
+
+      <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function showStatus(message, type) {
+      const status = document.getElementById("status");
+
+      status.textContent = message;
+      status.className = "status " + type;
+      status.style.display = "block";
+    }
+
+    function isSafeKey(key) {
+      return /^[A-Za-z_][A-Za-z0-9_-]*$/.test(key);
+    }
+
+    function quoteYAMLString(value) {
+
+      const text = String(value);
+
+      if (
+        text === "" ||
+        /[:#,\[\]\{\}&*!|>'"%@`]/.test(text) ||
+        /^\s|\s$/.test(text) ||
+        /^(true|false|null|yes|no|on|off|~)$/i.test(text) ||
+        /^[-?:]\s/.test(text) ||
+        /^[-+]?\d+(\.\d+)?$/.test(text)
+      ) {
+        return JSON.stringify(text);
+      }
+
+      return text;
+    }
+
+    function formatKey(key) {
+      return isSafeKey(key)
+        ? key
+        : JSON.stringify(key);
+    }
+
+    function jsonToYAML(value, indent) {
+
+      const spaces = " ".repeat(indent);
+
+      if (value === null) {
+        return "null";
+      }
+
+      if (typeof value === "string") {
+        return quoteYAMLString(value);
+      }
+
+      if (typeof value === "number") {
+        return Number.isFinite(value)
+          ? String(value)
+          : "null";
+      }
+
+      if (typeof value === "boolean") {
+        return value ? "true" : "false";
+      }
+
+      if (Array.isArray(value)) {
+
+        if (value.length === 0) {
+          return "[]";
+        }
+
+        return value.map(item => {
+
+          if (
+            item !== null &&
+            typeof item === "object"
+          ) {
+
+            const nested = jsonToYAML(
+              item,
+              indent + 2
+            );
+
+            const lines = nested.split("\n");
+
+            return (
+              spaces +
+              "- " +
+              lines[0] +
+              (lines.length > 1
+                ? "\n" + lines.slice(1)
+                    .map(line => "  " + line)
+                    .join("\n")
+                : "")
+            );
+
+          }
+
+          return (
+            spaces +
+            "- " +
+            jsonToYAML(item, indent + 2)
+          );
+
+        }).join("\n");
+      }
+
+      if (typeof value === "object") {
+
+        const keys = Object.keys(value);
+
+        if (keys.length === 0) {
+          return "{}";
+        }
+
+        return keys.map(key => {
+
+          const formattedKey = formatKey(key);
+          const item = value[key];
+
+          if (
+            item !== null &&
+            typeof item === "object"
+          ) {
+
+            const nested = jsonToYAML(
+              item,
+              indent + 2
+            );
+
+            return (
+              spaces +
+              formattedKey +
+              ":\n" +
+              nested
+            );
+
+          }
+
+          return (
+            spaces +
+            formattedKey +
+            ": " +
+            jsonToYAML(item, indent + 2)
+          );
+
+        }).join("\n");
+      }
+
+      return quoteYAMLString(value);
+    }
+
+    function convertToYAML() {
+
+      const input =
+        document.getElementById("jsonInput").value.trim();
+
+      if (!input) {
+        showStatus(
+          "Please enter JSON data.",
+          "invalid"
+        );
+        return;
+      }
+
+      try {
+
+        const data = JSON.parse(input);
+
+        const yaml =
+          jsonToYAML(data, 0);
+
+        document.getElementById("yamlOutput").value =
+          yaml;
+
+        showStatus(
+          "Valid JSON. YAML generated successfully.",
+          "valid"
+        );
+
+      } catch (error) {
+
+        document.getElementById("yamlOutput").value = "";
+
+        showStatus(
+          "Invalid JSON: " + error.message,
+          "invalid"
+        );
+      }
+    }
+
+    function copyYAML() {
+
+      const output =
+        document.getElementById("yamlOutput").value;
+
+      if (!output) {
+        showStatus(
+          "Please convert JSON to YAML first.",
+          "invalid"
+        );
+        return;
+      }
+
+      navigator.clipboard.writeText(output)
+        .then(() => {
+
+          showStatus(
+            "YAML copied to clipboard.",
+            "valid"
+          );
+
+        })
+        .catch(() => {
+
+          showStatus(
+            "Unable to copy YAML.",
+            "invalid"
+          );
+
+        });
+    }
+
+    function downloadYAML() {
+
+      const output =
+        document.getElementById("yamlOutput").value;
+
+      if (!output) {
+        showStatus(
+          "Please convert JSON to YAML first.",
+          "invalid"
+        );
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "text/yaml;charset=utf-8;" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "converted.yaml";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+
+      showStatus(
+        "YAML file downloaded.",
+        "valid"
+      );
+    }
+
+    function clearAll() {
+
+      document.getElementById("jsonInput").value = "";
+      document.getElementById("yamlOutput").value = "";
+
+      const status =
+        document.getElementById("status");
+
+      status.style.display = "none";
+      status.textContent = "";
+    }
+
+  </script>
+
+</body>
+</html>
