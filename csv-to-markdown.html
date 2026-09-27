@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CSV to Markdown Table Converter</title>
-  <meta name="description" content="Convert CSV data or files into clean Markdown tables instantly in your browser. Free, fast and privacy-focused.">
+  <title>CSV to Markdown Table Converter - Free Online Tool</title>
+  <meta name="description" content="Convert CSV data or files into clean Markdown tables instantly in your browser. Free, fast and privacy-focused CSV to Markdown converter.">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-markdown.html">
+
+  <meta property="og:title" content="CSV to Markdown Table Converter - Free Online Tool">
+  <meta property="og:description" content="Convert CSV data or files into clean Markdown tables instantly in your browser. Free and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-markdown.html">
 
   <style>
     * {
@@ -30,6 +37,7 @@
       border-radius: 14px;
       padding: 24px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
     }
 
     h1 {
@@ -113,6 +121,37 @@
       font-size: 14px;
     }
 
+    .info-card h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .info-card p,
+    .info-card li {
+      line-height: 1.7;
+    }
+
+    .info-card ul,
+    .info-card ol {
+      padding-left: 22px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #2563eb;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      opacity: 0.85;
+    }
+
     .privacy {
       margin-top: 20px;
       padding: 12px;
@@ -154,6 +193,7 @@
 <body>
 
 <div class="container">
+
   <div class="card">
 
     <h1>CSV to Markdown Table Converter</h1>
@@ -183,7 +223,11 @@ John,31,New York"></textarea>
 
     <label for="markdownOutput">Markdown Output</label>
 
-    <textarea id="markdownOutput" readonly placeholder="Markdown table will appear here..."></textarea>
+    <textarea
+      id="markdownOutput"
+      readonly
+      placeholder="Markdown table will appear here..."
+    ></textarea>
 
     <div class="privacy">
       🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
@@ -193,7 +237,70 @@ John,31,New York"></textarea>
     <a class="back" href="index.html">← Back to All Tools</a>
 
   </div>
+
+
+  <div class="card info-card">
+
+    <h2>How to Use</h2>
+
+    <ol>
+      <li>Paste your CSV data into the input box or upload a CSV file.</li>
+      <li>Make sure the first row contains the column headers.</li>
+      <li>Click <strong>Convert to Markdown</strong>.</li>
+      <li>Copy the generated Markdown table or download it as a Markdown file.</li>
+    </ol>
+
+    <p>
+      The converter creates a standard Markdown table that can be used in
+      GitHub, documentation, README files, notes and other Markdown-supported platforms.
+    </p>
+
+  </div>
+
+
+  <div class="card info-card">
+
+    <h2>FAQ</h2>
+
+    <p>
+      <strong>What is a Markdown table?</strong><br>
+      A Markdown table is a simple text-based table format commonly used in
+      documentation, README files and Markdown-supported websites.
+    </p>
+
+    <p>
+      <strong>Can I upload a CSV file?</strong><br>
+      Yes. You can upload a CSV file or paste CSV data directly into the input box.
+    </p>
+
+    <p>
+      <strong>Does the converter support commas inside quoted CSV fields?</strong><br>
+      Yes. Quoted CSV fields containing commas are handled by the converter.
+    </p>
+
+    <p>
+      <strong>Is my CSV data uploaded to a server?</strong><br>
+      No. Your data is processed directly in your browser.
+    </p>
+
+  </div>
+
+
+  <div class="card info-card related-tools">
+
+    <h2>Related Tools</h2>
+
+    <a href="csv-to-json.html">CSV to JSON</a>
+    <a href="csv-to-html.html">CSV to HTML</a>
+    <a href="csv-to-jsonl.html">CSV to JSONL</a>
+    <a href="csv-to-sql.html">CSV to SQL</a>
+    <a href="csv-to-tsv.html">CSV to TSV</a>
+    <a href="json-to-markdown.html">JSON to Markdown</a>
+
+  </div>
+
 </div>
+
 
 <script>
 function showStatus(message, type = "success") {
