@@ -7,6 +7,13 @@
   <title>CSV to JSONL Converter - Free Online Tool</title>
   <meta name="description" content="Convert CSV data to JSONL or NDJSON instantly in your browser. Free, fast and privacy-focused CSV to JSONL converter.">
 
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-jsonl.html">
+
+  <meta property="og:title" content="CSV to JSONL Converter - Free Online Tool">
+  <meta property="og:description" content="Convert CSV data to JSONL or NDJSON instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-jsonl.html">
+
   <style>
     * {
       box-sizing: border-box;
@@ -130,6 +137,36 @@
       line-height: 1.6;
     }
 
+    .info-card h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .info-card p,
+    .info-card li {
+      line-height: 1.7;
+    }
+
+    .info-card ul {
+      padding-left: 22px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #2563eb;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      opacity: 0.85;
+    }
+
     .back {
       text-align: center;
       margin-top: 20px;
@@ -223,6 +260,61 @@ Emma,34,London"
       <button onclick="downloadJsonl()">Download JSONL</button>
     </div>
 
+  </div>
+
+
+  <div class="card info-card">
+    <h2>How to Use</h2>
+
+    <ol>
+      <li>Paste your CSV data into the input box or upload a CSV file.</li>
+      <li>Make sure the first row contains the column headers.</li>
+      <li>Click <strong>Convert to JSONL</strong>.</li>
+      <li>Copy the generated JSONL/NDJSON or download it as a file.</li>
+    </ol>
+
+    <p>
+      JSONL (JSON Lines), also known as NDJSON, stores one JSON object per line.
+      It is useful for data processing, APIs, logs, datasets and developer workflows.
+    </p>
+  </div>
+
+
+  <div class="card info-card">
+    <h2>FAQ</h2>
+
+    <p>
+      <strong>What is JSONL?</strong><br>
+      JSONL is a text format where each line contains a separate valid JSON object.
+    </p>
+
+    <p>
+      <strong>Is JSONL the same as NDJSON?</strong><br>
+      JSONL and NDJSON are commonly used names for the same newline-delimited JSON format.
+    </p>
+
+    <p>
+      <strong>Is my CSV data uploaded to a server?</strong><br>
+      No. This converter processes your CSV data directly in your browser.
+    </p>
+
+    <p>
+      <strong>Can I upload a CSV file?</strong><br>
+      Yes. You can upload a CSV file or paste CSV data directly into the input box.
+    </p>
+  </div>
+
+
+  <div class="card info-card related-tools">
+    <h2>Related Tools</h2>
+
+    <a href="csv-to-json.html">CSV to JSON</a>
+    <a href="csv-to-html.html">CSV to HTML</a>
+    <a href="csv-to-markdown.html">CSV to Markdown</a>
+    <a href="csv-to-sql.html">CSV to SQL</a>
+    <a href="csv-to-tsv.html">CSV to TSV</a>
+    <a href="json-to-jsonl.html">JSON to JSONL</a>
+    <a href="jsonl-to-json.html">JSONL to JSON</a>
   </div>
 
 
@@ -574,6 +666,11 @@ function downloadJsonl() {
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
+
+  showMessage(
+    "JSONL file downloaded successfully.",
+    true
+  );
 }
 
 
