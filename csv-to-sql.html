@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CSV to SQL Converter - Free Online Tool</title>
+
+  <meta name="description" content="Convert CSV data to SQL INSERT statements online for free. Generate SQL from CSV instantly in your browser. Fast, simple and privacy-focused.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 10px;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 8px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    input {
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      min-height: 280px;
+      resize: vertical;
+      font-family: monospace;
+      line-height: 1.5;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 11px 17px;
+      margin: 5px 5px 5px 0;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #222;
+    }
+
+    .success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .status {
+      display: none;
+      margin: 15px 0;
+      padding: 12px;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .valid {
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .invalid {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .privacy {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f0fdf4;
+      color: #166534;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+        padding: 15px 0;
+      }
+
+      .tool {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="tool">
+
+      <h1>CSV to SQL Converter</h1>
+
+      <p class="description">
+        Convert CSV data into SQL INSERT statements instantly in your browser.
+        Your data stays on your device.
+      </p>
+
+      <label for="tableName">SQL Table Name</label>
+
+      <input
+        type="text"
+        id="tableName"
+        value="users"
+        placeholder="Enter table name, e.g. users"
+      >
+
+      <label for="csvInput">Enter CSV</label>
+
+      <textarea id="csvInput">name,age,city
+Ali,28,Karachi
+Emma,34,London</textarea>
+
+      <div class="buttons">
+        <button class="primary" onclick="convertToSQL()">Convert to SQL</button>
+        <button class="secondary" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div id="status" class="status"></div>
+
+      <label for="sqlOutput">SQL Output</label>
+
+      <textarea
+        id="sqlOutput"
+        readonly
+        placeholder="SQL INSERT statements will appear here..."
+      ></textarea>
+
+      <div class="buttons">
+        <button class="success" onclick="copySQL()">Copy SQL</button>
+        <button class="primary" onclick="downloadSQL()">Download SQL</button>
+      </div>
+
+      <div class="privacy">
+        <strong>Privacy First</strong><br>
+        This CSV to SQL converter processes your data directly in your browser.
+        Your CSV is not uploaded to our server.
+      </div>
+
+      <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function showStatus(message, type) {
+      const status = document.getElementById("status");
+
+      status.textContent = message;
+      status.className = "status " + type;
+      status.style.display = "block";
+    }
+
+    function escapeSQL(value) {
+
+      if (value === null || value === undefined || value === "") {
+        return "NULL";
+      }
+
+      const trimmed = String(value).trim();
+
+      if (trimmed === "") {
+        return "NULL";
+      }
+
+      if (/^-?\d+(\.\d+)?$/.test(trimmed)) {
+        return trimmed;
+      }
+
+      if (trimmed.toLowerCase() === "true") {
+        return "TRUE";
+      }
+
+      if (trimmed.toLowerCase() === "false") {
+        return "FALSE";
+      }
+
+      return "'" + trimmed.replace(/'/g, "''") + "'";
+    }
+
+    function quoteIdentifier(identifier) {
+      return "`" + identifier.replace(/`/g, "``") + "`";
+    }
+
+    function parseCSVLine(line) {
+
+      const result = [];
+      let current = "";
+      let insideQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+
+        const char = line[i];
+
+        if (char === '"') {
+
+          if (insideQuotes && line[i + 1] === '"') {
+            current += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+
+        } else if (char === "," && !insideQuotes) {
+
+          result.push(current);
+          current = "";
+
+        } else {
+
+          current += char;
+        }
+      }
+
+      if (insideQuotes) {
+        throw new Error("Unclosed quotation mark in CSV data.");
+      }
+
+      result.push(current);
+
+      return result;
+    }
+
+    function convertToSQL() {
+
+      const input = document.getElementById("csvInput").value.trim();
+      const tableName = document.getElementById("tableName").value.trim();
+
+      if (!input) {
+        showStatus("Please enter CSV data.", "invalid");
+        return;
+      }
+
+      if (!tableName) {
+        showStatus("Please enter a table name.", "invalid");
+        return;
+      }
+
+      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(tableName)) {
+        showStatus(
+          "Invalid table name. Use letters, numbers and underscores only, and do not start with a number.",
+          "invalid"
+        );
+        return;
+      }
+
+      try {
+
+        const lines = input
+          .split(/\r?\n/)
+          .filter(line => line.trim() !== "");
+
+        if (lines.length < 2) {
+          showStatus(
+            "CSV must contain a header row and at least one data row.",
+            "invalid"
+          );
+          return;
+        }
+
+        const headers = parseCSVLine(lines[0]).map(header => header.trim());
+
+        if (headers.length === 0 || headers.some(header => !header)) {
+          showStatus(
+            "CSV contains an empty column name.",
+            "invalid"
+          );
+          return;
+        }
+
+        const duplicateHeaders = headers.filter(
+          (header, index) => headers.indexOf(header) !== index
+        );
+
+        if (duplicateHeaders.length > 0) {
+          showStatus(
+            "CSV contains duplicate column names.",
+            "invalid"
+          );
+          return;
+        }
+
+        const columnSQL = headers
+          .map(quoteIdentifier)
+          .join(", ");
+
+        const statements = [];
+
+        for (let i = 1; i < lines.length; i++) {
+
+          const values = parseCSVLine(lines[i]);
+
+          if (values.length !== headers.length) {
+            showStatus(
+              "Row " + (i + 1) +
+              " has " + values.length +
+              " values, but the header contains " +
+              headers.length + " columns.",
+              "invalid"
+            );
+            return;
+          }
+
+          const valueSQL = values
+            .map(value => escapeSQL(value))
+            .join(", ");
+
+          statements.push(
+            `INSERT INTO ${quoteIdentifier(tableName)} (${columnSQL}) VALUES (${valueSQL});`
+          );
+        }
+
+        document.getElementById("sqlOutput").value =
+          statements.join("\n");
+
+        showStatus(
+          "CSV converted successfully. SQL INSERT statements generated.",
+          "valid"
+        );
+
+      } catch (error) {
+
+        document.getElementById("sqlOutput").value = "";
+
+        showStatus(
+          "Invalid CSV: " + error.message,
+          "invalid"
+        );
+      }
+    }
+
+    function copySQL() {
+
+      const output = document.getElementById("sqlOutput").value;
+
+      if (!output) {
+        showStatus(
+          "Please convert CSV to SQL first.",
+          "invalid"
+        );
+        return;
+      }
+
+      navigator.clipboard.writeText(output)
+        .then(() => {
+          showStatus(
+            "SQL copied to clipboard.",
+            "valid"
+          );
+        })
+        .catch(() => {
+          showStatus(
+            "Unable to copy SQL.",
+            "invalid"
+          );
+        });
+    }
+
+    function downloadSQL() {
+
+      const output = document.getElementById("sqlOutput").value;
+
+      if (!output) {
+        showStatus(
+          "Please convert CSV to SQL first.",
+          "invalid"
+        );
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "text/sql;charset=utf-8;" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "converted.sql";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+
+      showStatus(
+        "SQL file downloaded.",
+        "valid"
+      );
+    }
+
+    function clearAll() {
+
+      document.getElementById("csvInput").value = "";
+      document.getElementById("sqlOutput").value = "";
+      document.getElementById("tableName").value = "users";
+
+      const status = document.getElementById("status");
+
+      status.style.display = "none";
+      status.textContent = "";
+    }
+
+  </script>
+
+</body>
+</html>
