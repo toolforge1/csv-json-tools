@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON to URL Encoder - Encode JSON for URLs</title>
+  <meta name="description" content="Encode JSON data into URL-safe encoded text instantly in your browser. Free, fast, and privacy-friendly.">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: #fff;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 240px;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .output {
+      min-height: 180px;
+      background: #f8f9fa;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      border: none;
+      padding: 11px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #222;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .message {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .info {
+      background: #eff6ff;
+      color: #1e40af;
+    }
+
+    .privacy {
+      background: #ecfdf5;
+      border-left: 4px solid #10b981;
+      padding: 15px;
+      border-radius: 6px;
+      line-height: 1.6;
+    }
+
+    .how-to {
+      line-height: 1.7;
+    }
+
+    .how-to ol {
+      padding-left: 22px;
+    }
+
+    .back {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>JSON to URL Encoder</h1>
+
+  <p class="description">
+    Encode JSON data into URL-safe encoded text instantly in your browser.
+    No data is uploaded to a server.
+  </p>
+
+  <div class="card">
+
+    <label for="jsonInput">JSON Input</label>
+
+    <textarea id="jsonInput" placeholder='Example:
+{
+  "name": "Ali",
+  "city": "Karachi",
+  "message": "السلام علیکم"
+}'></textarea>
+
+    <div class="buttons">
+      <button class="primary" onclick="encodeJSON()">Encode JSON</button>
+      <button class="secondary" onclick="copyOutput()">Copy Encoded URL</button>
+      <button class="secondary" onclick="downloadOutput()">Download TXT</button>
+      <button class="secondary" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+  </div>
+
+  <div class="card">
+
+    <label for="output">Encoded URL Text</label>
+
+    <textarea id="output"
+      class="output"
+      readonly
+      placeholder="Encoded JSON will appear here..."></textarea>
+
+  </div>
+
+  <div class="card how-to">
+
+    <h2>How to Use</h2>
+
+    <ol>
+      <li>Paste your valid JSON into the input box.</li>
+      <li>Click <strong>Encode JSON</strong>.</li>
+      <li>The JSON will be converted into URL-encoded text.</li>
+      <li>Copy the encoded result or download it as a TXT file.</li>
+    </ol>
+
+    <h2>What is URL Encoding?</h2>
+
+    <p>
+      URL encoding converts special characters, spaces, Unicode characters,
+      and other characters into a format that can safely be used inside URLs.
+      This tool uses your browser's built-in URL encoding functionality.
+    </p>
+
+  </div>
+
+  <div class="card privacy">
+
+    <strong>Privacy:</strong>
+    Your JSON is processed entirely in your browser.
+    Nothing is uploaded to our server.
+
+  </div>
+
+  <div class="back">
+    <a href="index.html">← Back to All Tools</a>
+  </div>
+
+</div>
+
+<script>
+
+function showMessage(text, type) {
+  const message = document.getElementById("message");
+
+  message.textContent = text;
+  message.className = "message " + type;
+  message.style.display = "block";
+}
+
+function encodeJSON() {
+
+  const input = document.getElementById("jsonInput").value.trim();
+  const output = document.getElementById("output");
+
+  if (!input) {
+    output.value = "";
+    showMessage("Please enter JSON data first.", "error");
+    return;
+  }
+
+  try {
+
+    const parsed = JSON.parse(input);
+
+    /*
+      Re-stringify valid JSON so the encoded result
+      represents normalized JSON rather than accidental
+      formatting differences.
+    */
+    const normalizedJSON = JSON.stringify(parsed);
+
+    /*
+      encodeURIComponent safely handles Unicode characters,
+      including Urdu and other non-Latin text.
+    */
+    output.value = encodeURIComponent(normalizedJSON);
+
+    showMessage("JSON encoded successfully.", "success");
+
+  } catch (error) {
+
+    output.value = "";
+
+    showMessage(
+      "Invalid JSON: " + error.message,
+      "error"
+    );
+  }
+}
+
+async function copyOutput() {
+
+  const output = document.getElementById("output").value;
+
+  if (!output) {
+    showMessage("Please encode JSON first.", "error");
+    return;
+  }
+
+  try {
+
+    await navigator.clipboard.writeText(output);
+
+    showMessage("Encoded URL copied to clipboard.", "success");
+
+  } catch (error) {
+
+    showMessage(
+      "Copy failed. Please copy the text manually.",
+      "error"
+    );
+  }
+}
+
+function downloadOutput() {
+
+  const output = document.getElementById("output").value;
+
+  if (!output) {
+    showMessage("Please encode JSON first.", "error");
+    return;
+  }
+
+  const blob = new Blob(
+    [output],
+    { type: "text/plain;charset=utf-8" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "encoded-json.txt";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+  showMessage("Encoded JSON downloaded successfully.", "success");
+}
+
+function clearAll() {
+
+  document.getElementById("jsonInput").value = "";
+  document.getElementById("output").value = "";
+
+  const message = document.getElementById("message");
+
+  message.style.display = "none";
+  message.textContent = "";
+}
+
+</script>
+
+</body>
+</html>
