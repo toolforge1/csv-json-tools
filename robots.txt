@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toolforge1.github.io/csv-json-tools/sitemap.xml
