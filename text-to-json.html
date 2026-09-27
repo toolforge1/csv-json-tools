@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Convert plain text to JSON instantly in your browser. Free, fast and privacy-friendly Text to JSON converter.">
+
+<title>Text to JSON Converter - Free Online Tool</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        color: #222;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 28px;
+    }
+
+    p {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 230px;
+        padding: 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 14px;
+        resize: vertical;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    button {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        background: #222;
+        color: white;
+        font-size: 14px;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+
+    .status {
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .privacy {
+        margin-top: 20px;
+        padding: 12px;
+        background: #f0f7f0;
+        border-radius: 7px;
+        font-size: 14px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>Text to JSON Converter</h1>
+
+        <p>
+            Convert simple structured text into JSON instantly in your browser.
+            Your data stays on your device.
+        </p>
+
+        <textarea id="input" placeholder="Paste text here...
+
+Example:
+name: Ali
+age: 28
+city: Karachi
+skills:
+  - JavaScript
+  - Python
+active: true"></textarea>
+
+        <div class="buttons">
+            <button onclick="convertText()">Convert to JSON</button>
+            <button onclick="copyJSON()">Copy JSON</button>
+            <button onclick="downloadJSON()">Download JSON</button>
+            <button onclick="clearAll()">Clear</button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <textarea id="output" placeholder="JSON output will appear here..." readonly></textarea>
+
+        <div class="privacy">
+            🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
+        </div>
+
+        <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+</div>
+
+<script>
+
+let jsonResult = "";
+
+function parseValue(value) {
+
+    value = value.trim();
+
+    if (value === "") {
+        return "";
+    }
+
+    if (value === "true") {
+        return true;
+    }
+
+    if (value === "false") {
+        return false;
+    }
+
+    if (value === "null") {
+        return null;
+    }
+
+    if (
+        /^-?\d+(\.\d+)?$/.test(value)
+    ) {
+        return Number(value);
+    }
+
+    if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+    ) {
+        return value.slice(1, -1);
+    }
+
+    return value;
+}
+
+function parseText(text) {
+
+    const lines = text
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n")
+        .split("\n")
+        .filter(line => line.trim() !== "");
+
+    if (lines.length === 0) {
+        throw new Error("Please enter text data.");
+    }
+
+    const root = {};
+    const stack = [
+        {
+            indent: -1,
+            container: root
+        }
+    ];
+
+    for (let i = 0; i < lines.length; i++) {
+
+        const line = lines[i];
+
+        const indent = line.match(/^\s*/)[0].length;
+        const content = line.trim();
+
+        while (
+            stack.length > 1 &&
+            indent <= stack[stack.length - 1].indent
+        ) {
+            stack.pop();
+        }
+
+        const parent =
+            stack[stack.length - 1].container;
+
+        if (content.startsWith("- ")) {
+
+            if (!Array.isArray(parent)) {
+                throw new Error(
+                    `Invalid list structure near line ${i + 1}.`
+                );
+            }
+
+            const itemText = content.slice(2).trim();
+
+            if (itemText === "") {
+
+                const nextLine = lines[i + 1];
+
+                if (!nextLine) {
+                    parent.push(null);
+                    continue;
+                }
+
+                const nextIndent =
+                    nextLine.match(/^\s*/)[0].length;
+
+                if (nextIndent <= indent) {
+                    parent.push(null);
+                    continue;
+                }
+
+                const nextContent = nextLine.trim();
+
+                const newItem =
+                    nextContent.includes(":")
+                        ? {}
+                        : [];
+
+                parent.push(newItem);
+
+                stack.push({
+                    indent: indent,
+                    container: newItem
+                });
+
+            } else if (itemText.includes(":")) {
+
+                const newItem = {};
+                parent.push(newItem);
+
+                const colonIndex =
+                    itemText.indexOf(":");
+
+                const key =
+                    itemText
+                        .slice(0, colonIndex)
+                        .trim();
+
+                const value =
+                    itemText
+                        .slice(colonIndex + 1)
+                        .trim();
+
+                if (value !== "") {
+                    newItem[key] =
+                        parseValue(value);
+                } else {
+
+                    const nextLine = lines[i + 1];
+
+                    if (
+                        nextLine &&
+                        nextLine.match(/^\s*/)[0].length > indent
+                    ) {
+
+                        const nextContent =
+                            nextLine.trim();
+
+                        const child =
+                            nextContent.startsWith("- ")
+                                ? []
+                                : {};
+
+                        newItem[key] = child;
+
+                        stack.push({
+                            indent: indent,
+                            container: child
+                        });
+
+                    } else {
+                        newItem[key] = {};
+                    }
+                }
+
+                stack.push({
+                    indent: indent,
+                    container: newItem
+                });
+
+            } else {
+                parent.push(parseValue(itemText));
+            }
+
+            continue;
+        }
+
+        const colonIndex = content.indexOf(":");
+
+        if (colonIndex === -1) {
+            throw new Error(
+                `Invalid format on line ${i + 1}. Use key: value format.`
+            );
+        }
+
+        const key =
+            content
+                .slice(0, colonIndex)
+                .trim();
+
+        if (!key) {
+            throw new Error(
+                `Missing key on line ${i + 1}.`
+            );
+        }
+
+        const value =
+            content
+                .slice(colonIndex + 1)
+                .trim();
+
+        if (value !== "") {
+
+            parent[key] = parseValue(value);
+
+        } else {
+
+            const nextLine = lines[i + 1];
+
+            if (
+                nextLine &&
+                nextLine.match(/^\s*/)[0].length > indent
+            ) {
+
+                const nextContent =
+                    nextLine.trim();
+
+                const child =
+                    nextContent.startsWith("- ")
+                        ? []
+                        : {};
+
+                parent[key] = child;
+
+                stack.push({
+                    indent: indent,
+                    container: child
+                });
+
+            } else {
+                parent[key] = {};
+            }
+        }
+    }
+
+    return root;
+}
+
+function convertText() {
+
+    const input =
+        document.getElementById("input").value.trim();
+
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
+
+    try {
+
+        if (!input) {
+            throw new Error("Please enter text data.");
+        }
+
+        const data = parseText(input);
+
+        jsonResult =
+            JSON.stringify(data, null, 2);
+
+        output.value = jsonResult;
+
+        status.textContent =
+            "Text converted to JSON successfully.";
+
+        status.style.color = "green";
+
+    } catch (error) {
+
+        jsonResult = "";
+        output.value = "";
+
+        status.textContent =
+            "Conversion error: " + error.message;
+
+        status.style.color = "red";
+    }
+}
+
+function copyJSON() {
+
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
+
+    if (!output.value) {
+
+        status.textContent =
+            "Please convert text first.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+    navigator.clipboard.writeText(output.value)
+        .then(() => {
+
+            status.textContent =
+                "JSON copied to clipboard.";
+
+            status.style.color = "green";
+
+        })
+        .catch(() => {
+
+            status.textContent =
+                "Unable to copy JSON.";
+
+            status.style.color = "red";
+        });
+}
+
+function downloadJSON() {
+
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
+
+    if (!output.value) {
+
+        status.textContent =
+            "Please convert text first.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+    const blob =
+        new Blob(
+            [output.value],
+            {
+                type: "application/json;charset=utf-8;"
+            }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const link =
+        document.createElement("a");
+
+    link.href = url;
+    link.download = "converted.json";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    status.textContent =
+        "JSON file downloaded.";
+
+    status.style.color = "green";
+}
+
+function clearAll() {
+
+    document.getElementById("input").value = "";
+    document.getElementById("output").value = "";
+    document.getElementById("status").textContent = "";
+
+    jsonResult = "";
+}
+
+</script>
+
+</body>
+</html>
