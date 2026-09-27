@@ -8,6 +8,13 @@
 
   <meta name="description" content="Convert CSV data to SQL INSERT statements online for free. Generate SQL from CSV instantly in your browser. Fast, simple and privacy-focused.">
 
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-sql.html">
+
+  <meta property="og:title" content="CSV to SQL Converter - Free Online Tool">
+  <meta property="og:description" content="Convert CSV data to SQL INSERT statements instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-sql.html">
+
   <style>
     * {
       box-sizing: border-box;
@@ -129,6 +136,44 @@
       color: #991b1b;
     }
 
+    .info-card {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .info-card h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .info-card p,
+    .info-card li {
+      line-height: 1.7;
+    }
+
+    .info-card ol {
+      padding-left: 22px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #2563eb;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      opacity: 0.85;
+    }
+
     .privacy {
       margin-top: 25px;
       padding: 15px;
@@ -159,6 +204,11 @@
 
       h1 {
         font-size: 27px;
+      }
+
+      button {
+        width: 100%;
+        margin-right: 0;
       }
     }
   </style>
@@ -222,7 +272,78 @@ Emma,34,London</textarea>
 
     </div>
 
+
+    <div class="info-card">
+
+      <h2>How to Use</h2>
+
+      <ol>
+        <li>Enter the name of your SQL table.</li>
+        <li>Paste your CSV data into the input box.</li>
+        <li>Make sure the first row contains the column names.</li>
+        <li>Click <strong>Convert to SQL</strong>.</li>
+        <li>Copy the generated SQL or download it as a `.sql` file.</li>
+      </ol>
+
+      <p>
+        The converter generates SQL <code>INSERT</code> statements from your CSV
+        data. Numeric values, boolean values and empty values are handled
+        automatically.
+      </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <h2>FAQ</h2>
+
+      <p>
+        <strong>What does this CSV to SQL converter generate?</strong><br>
+        It generates SQL <code>INSERT INTO</code> statements using the first CSV
+        row as column names.
+      </p>
+
+      <p>
+        <strong>Can I choose the SQL table name?</strong><br>
+        Yes. Enter your desired table name in the SQL Table Name field before
+        converting the CSV.
+      </p>
+
+      <p>
+        <strong>Are my CSV data uploaded to a server?</strong><br>
+        No. The conversion is performed directly in your browser.
+      </p>
+
+      <p>
+        <strong>What happens to empty CSV values?</strong><br>
+        Empty values are converted to SQL <code>NULL</code>.
+      </p>
+
+      <p>
+        <strong>Can I download the generated SQL?</strong><br>
+        Yes. Use the Download SQL button to save the generated statements as a
+        `.sql` file.
+      </p>
+
+    </div>
+
+
+    <div class="info-card related-tools">
+
+      <h2>Related Tools</h2>
+
+      <a href="csv-to-json.html">CSV to JSON</a>
+      <a href="csv-to-html.html">CSV to HTML</a>
+      <a href="csv-to-jsonl.html">CSV to JSONL</a>
+      <a href="csv-to-markdown.html">CSV to Markdown</a>
+      <a href="csv-to-tsv.html">CSV to TSV</a>
+      <a href="json-to-sql.html">JSON to SQL</a>
+
+    </div>
+
   </div>
+
 
   <script>
 
