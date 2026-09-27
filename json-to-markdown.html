@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON to Markdown Table Converter</title>
+  <meta name="description" content="Convert JSON arrays into clean Markdown tables instantly in your browser. Free, fast and privacy-focused.">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: none;
+      padding: 11px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .secondary {
+      background: #4b5563;
+    }
+
+    .success {
+      background: #16a34a;
+    }
+
+    .danger {
+      background: #dc2626;
+    }
+
+    .status {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .privacy {
+      margin-top: 20px;
+      padding: 12px;
+      background: #eef6ff;
+      border-radius: 8px;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>JSON to Markdown Table Converter</h1>
+
+    <p class="description">
+      Convert JSON arrays into clean Markdown tables instantly in your browser.
+    </p>
+
+    <label for="jsonInput">JSON Input</label>
+
+    <textarea id="jsonInput" placeholder='[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
+  }
+]'></textarea>
+
+    <div class="buttons">
+      <button onclick="convertToMarkdown()">Convert to Markdown</button>
+      <button class="success" onclick="copyMarkdown()">Copy Markdown</button>
+      <button onclick="downloadMarkdown()">Download Markdown</button>
+      <button class="danger" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <label for="markdownOutput">Markdown Output</label>
+
+    <textarea id="markdownOutput" readonly placeholder="Markdown table will appear here..."></textarea>
+
+    <div class="privacy">
+      🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
+      Nothing is uploaded to our server.
+    </div>
+
+    <a class="back" href="index.html">← Back to All Tools</a>
+
+  </div>
+</div>
+
+<script>
+function showStatus(message, type = "success") {
+  const status = document.getElementById("status");
+
+  status.textContent = message;
+  status.style.display = "block";
+
+  if (type === "error") {
+    status.style.background = "#fee2e2";
+    status.style.color = "#991b1b";
+  } else {
+    status.style.background = "#dcfce7";
+    status.style.color = "#166534";
+  }
+}
+
+function escapeMarkdown(value) {
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  if (typeof value === "object") {
+    value = JSON.stringify(value);
+  }
+
+  return String(value)
+    .replace(/\|/g, "\\|")
+    .replace(/\r?\n/g, " ");
+}
+
+function convertToMarkdown() {
+  const input = document.getElementById("jsonInput").value.trim();
+  const output = document.getElementById("markdownOutput");
+
+  if (!input) {
+    showStatus("Please enter JSON data.", "error");
+    return;
+  }
+
+  try {
+    const data = JSON.parse(input);
+
+    if (!Array.isArray(data)) {
+      throw new Error("JSON must be an array of objects.");
+    }
+
+    if (data.length === 0) {
+      throw new Error("JSON array is empty.");
+    }
+
+    if (!data.every(item =>
+      item !== null &&
+      typeof item === "object" &&
+      !Array.isArray(item)
+    )) {
+      throw new Error("Each item must be a JSON object.");
+    }
+
+    const headers = [];
+
+    data.forEach(item => {
+      Object.keys(item).forEach(key => {
+        if (!headers.includes(key)) {
+          headers.push(key);
+        }
+      });
+    });
+
+    if (headers.length === 0) {
+      throw new Error("No columns found in JSON objects.");
+    }
+
+    const headerRow = "| " +
+      headers.map(escapeMarkdown).join(" | ") +
+      " |";
+
+    const separatorRow = "| " +
+      headers.map(() => "---").join(" | ") +
+      " |";
+
+    const dataRows = data.map(item => {
+      return "| " +
+        headers.map(header => {
+          return escapeMarkdown(
+            Object.prototype.hasOwnProperty.call(item, header)
+              ? item[header]
+              : ""
+          );
+        }).join(" | ") +
+        " |";
+    });
+
+    const markdown = [
+      headerRow,
+      separatorRow,
+      ...dataRows
+    ].join("\n");
+
+    output.value = markdown;
+
+    showStatus("Markdown table generated successfully.");
+
+  } catch (error) {
+    output.value = "";
+    showStatus("Invalid JSON: " + error.message, "error");
+  }
+}
+
+async function copyMarkdown() {
+  const output = document.getElementById("markdownOutput").value;
+
+  if (!output) {
+    showStatus("Please convert JSON first.", "error");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(output);
+    showStatus("Markdown copied to clipboard.");
+  } catch (error) {
+    showStatus("Unable to copy. Please copy it manually.", "error");
+  }
+}
+
+function downloadMarkdown() {
+  const output = document.getElementById("markdownOutput").value;
+
+  if (!output) {
+    showStatus("Please convert JSON first.", "error");
+    return;
+  }
+
+  const blob = new Blob([output], {
+    type: "text/markdown;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "converted-table.md";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+  showStatus("Markdown file downloaded.");
+}
+
+function clearAll() {
+  document.getElementById("jsonInput").value = "";
+  document.getElementById("markdownOutput").value = "";
+
+  const status = document.getElementById("status");
+  status.style.display = "none";
+}
+</script>
+
+</body>
+</html>
