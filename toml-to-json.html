@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TOML to JSON Converter</title>
+  <meta name="description" content="Convert TOML to JSON instantly in your browser. Free, fast and privacy-focused.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    button {
+      border: none;
+      padding: 11px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .success {
+      background: #16a34a;
+    }
+
+    .danger {
+      background: #dc2626;
+    }
+
+    .status {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .privacy {
+      margin-top: 20px;
+      padding: 12px;
+      background: #eef6ff;
+      border-radius: 8px;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>TOML to JSON Converter</h1>
+
+    <p class="description">
+      Convert TOML data to readable JSON instantly in your browser.
+    </p>
+
+    <label for="tomlInput">TOML Input</label>
+
+    <textarea
+      id="tomlInput"
+      placeholder='Paste TOML here, for example:
+name = "Ali"
+age = 28
+active = true'
+    ></textarea>
+
+    <div class="buttons">
+      <button onclick="convertToJSON()">Convert to JSON</button>
+      <button class="success" onclick="copyJSON()">Copy JSON</button>
+      <button onclick="downloadJSON()">Download JSON</button>
+      <button class="danger" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <label for="jsonOutput">JSON Output</label>
+
+    <textarea
+      id="jsonOutput"
+      readonly
+      placeholder="Converted JSON will appear here..."
+    ></textarea>
+
+    <div class="privacy">
+      🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
+      Nothing is uploaded to our server.
+    </div>
+
+    <a class="back" href="index.html">← Back to All Tools</a>
+
+  </div>
+</div>
+
+<script>
+function showStatus(message, type = "success") {
+  const status = document.getElementById("status");
+
+  status.textContent = message;
+  status.style.display = "block";
+
+  if (type === "error") {
+    status.style.background = "#fee2e2";
+    status.style.color = "#991b1b";
+  } else {
+    status.style.background = "#dcfce7";
+    status.style.color = "#166534";
+  }
+}
+
+function parseValue(value) {
+  value = value.trim();
+
+  if (value === "true") return true;
+  if (value === "false") return false;
+
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.slice(1, -1)
+      .replace(/\\"/g, '"')
+      .replace(/\\n/g, "\n")
+      .replace(/\\t/g, "\t")
+      .replace(/\\r/g, "\r")
+      .replace(/\\\\/g, "\\");
+  }
+
+  if (/^-?\d+(\.\d+)?$/.test(value)) {
+    return Number(value);
+  }
+
+  if (value.startsWith("[") && value.endsWith("]")) {
+    const content = value.slice(1, -1).trim();
+
+    if (!content) return [];
+
+    return content
+      .split(",")
+      .map(item => parseValue(item));
+  }
+
+  throw new Error("Unsupported TOML value: " + value);
+}
+
+function convertToJSON() {
+  const input = document.getElementById("tomlInput").value.trim();
+  const output = document.getElementById("jsonOutput");
+
+  if (!input) {
+    showStatus("Please enter TOML data.", "error");
+    return;
+  }
+
+  try {
+    const result = {};
+    let currentObject = result;
+
+    const lines = input.split(/\r?\n/);
+
+    for (let rawLine of lines) {
+      let line = rawLine.trim();
+
+      if (!line || line.startsWith("#")) {
+        continue;
+      }
+
+      const sectionMatch = line.match(/^\[([^\]]+)\]$/);
+
+      if (sectionMatch) {
+        const path = sectionMatch[1].trim().split(".");
+        currentObject = result;
+
+        for (const key of path) {
+          if (!currentObject[key]) {
+            currentObject[key] = {};
+          }
+
+          if (
+            typeof currentObject[key] !== "object" ||
+            Array.isArray(currentObject[key])
+          ) {
+            throw new Error("Invalid TOML section: " + sectionMatch[1]);
+          }
+
+          currentObject = currentObject[key];
+        }
+
+        continue;
+      }
+
+      const equalsIndex = line.indexOf("=");
+
+      if (equalsIndex === -1) {
+        throw new Error("Invalid TOML line: " + line);
+      }
+
+      const key = line
+        .slice(0, equalsIndex)
+        .trim();
+
+      const value = line
+        .slice(equalsIndex + 1)
+        .trim();
+
+      if (!key) {
+        throw new Error("Invalid TOML key.");
+      }
+
+      currentObject[key] = parseValue(value);
+    }
+
+    output.value = JSON.stringify(result, null, 2);
+
+    showStatus("TOML converted to JSON successfully.");
+
+  } catch (error) {
+    output.value = "";
+
+    showStatus(
+      "Unable to convert TOML to JSON: " + error.message,
+      "error"
+    );
+  }
+}
+
+async function copyJSON() {
+  const output = document.getElementById("jsonOutput").value;
+
+  if (!output) {
+    showStatus("Please convert TOML first.", "error");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(output);
+    showStatus("JSON copied to clipboard.");
+  } catch (error) {
+    showStatus(
+      "Unable to copy. Please copy it manually.",
+      "error"
+    );
+  }
+}
+
+function downloadJSON() {
+  const output = document.getElementById("jsonOutput").value;
+
+  if (!output) {
+    showStatus("Please convert TOML first.", "error");
+    return;
+  }
+
+  const blob = new Blob([output], {
+    type: "application/json;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "converted.json";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+  showStatus("JSON file downloaded.");
+}
+
+function clearAll() {
+  document.getElementById("tomlInput").value = "";
+  document.getElementById("jsonOutput").value = "";
+  document.getElementById("status").style.display = "none";
+}
+</script>
+
+</body>
+</html>
