@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON Diff & Compare</title>
+  <meta name="description" content="Compare two JSON objects and find differences instantly in your browser. Free, fast and privacy-focused.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    .inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      border: none;
+      padding: 11px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      background: #2563eb;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .success {
+      background: #16a34a;
+    }
+
+    .danger {
+      background: #dc2626;
+    }
+
+    .status {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .result {
+      margin-top: 20px;
+    }
+
+    .result-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 15px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 100px;
+    }
+
+    .added {
+      color: #15803d;
+    }
+
+    .removed {
+      color: #b91c1c;
+    }
+
+    .changed {
+      color: #b45309;
+    }
+
+    .same {
+      color: #166534;
+      font-weight: bold;
+    }
+
+    .privacy {
+      margin-top: 20px;
+      padding: 12px;
+      background: #eef6ff;
+      border-radius: 8px;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .inputs {
+        grid-template-columns: 1fr;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>JSON Diff & Compare</h1>
+
+    <p class="description">
+      Compare two JSON objects and find added, removed and changed values instantly.
+    </p>
+
+    <div class="inputs">
+
+      <div>
+        <label for="jsonA">JSON A</label>
+
+        <textarea
+          id="jsonA"
+          placeholder='Paste first JSON here...'
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="jsonB">JSON B</label>
+
+        <textarea
+          id="jsonB"
+          placeholder='Paste second JSON here...'
+        ></textarea>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <button onclick="compareJSON()">Compare JSON</button>
+      <button class="success" onclick="copyResult()">Copy Result</button>
+      <button class="danger" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <div class="result">
+
+      <label>Comparison Result</label>
+
+      <div id="result" class="result-box">
+        Comparison result will appear here...
+      </div>
+
+    </div>
+
+    <div class="privacy">
+      🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
+      Nothing is uploaded to our server.
+    </div>
+
+    <a class="back" href="index.html">← Back to All Tools</a>
+
+  </div>
+</div>
+
+<script>
+
+function showStatus(message, type = "success") {
+
+  const status = document.getElementById("status");
+
+  status.textContent = message;
+  status.style.display = "block";
+
+  if (type === "error") {
+
+    status.style.background = "#fee2e2";
+    status.style.color = "#991b1b";
+
+  } else {
+
+    status.style.background = "#dcfce7";
+    status.style.color = "#166534";
+
+  }
+}
+
+
+function compareObjects(a, b, path = "") {
+
+  const differences = [];
+
+  const keys = new Set([
+    ...Object.keys(a || {}),
+    ...Object.keys(b || {})
+  ]);
+
+  for (const key of keys) {
+
+    const currentPath = path
+      ? path + "." + key
+      : key;
+
+    const existsA =
+      Object.prototype.hasOwnProperty.call(a || {}, key);
+
+    const existsB =
+      Object.prototype.hasOwnProperty.call(b || {}, key);
+
+
+    if (!existsA) {
+
+      differences.push({
+        type: "added",
+        path: currentPath,
+        value: b[key]
+      });
+
+      continue;
+    }
+
+
+    if (!existsB) {
+
+      differences.push({
+        type: "removed",
+        path: currentPath,
+        value: a[key]
+      });
+
+      continue;
+    }
+
+
+    const valueA = a[key];
+    const valueB = b[key];
+
+
+    if (
+      valueA &&
+      valueB &&
+      typeof valueA === "object" &&
+      typeof valueB === "object" &&
+      !Array.isArray(valueA) &&
+      !Array.isArray(valueB)
+    ) {
+
+      differences.push(
+        ...compareObjects(
+          valueA,
+          valueB,
+          currentPath
+        )
+      );
+
+    } else {
+
+      if (
+        JSON.stringify(valueA) !==
+        JSON.stringify(valueB)
+      ) {
+
+        differences.push({
+          type: "changed",
+          path: currentPath,
+          oldValue: valueA,
+          newValue: valueB
+        });
+
+      }
+
+    }
+
+  }
+
+  return differences;
+}
+
+
+function formatValue(value) {
+
+  return JSON.stringify(
+    value,
+    null,
+    2
+  );
+
+}
+
+
+function compareJSON() {
+
+  const inputA =
+    document.getElementById("jsonA").value.trim();
+
+  const inputB =
+    document.getElementById("jsonB").value.trim();
+
+  const result =
+    document.getElementById("result");
+
+
+  if (!inputA || !inputB) {
+
+    showStatus(
+      "Please enter both JSON values.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    const jsonA = JSON.parse(inputA);
+    const jsonB = JSON.parse(inputB);
+
+
+    if (
+      typeof jsonA !== "object" ||
+      jsonA === null ||
+      Array.isArray(jsonA) ||
+
+      typeof jsonB !== "object" ||
+      jsonB === null ||
+      Array.isArray(jsonB)
+    ) {
+
+      throw new Error(
+        "Both inputs must be JSON objects."
+      );
+
+    }
+
+
+    const differences =
+      compareObjects(jsonA, jsonB);
+
+
+    if (differences.length === 0) {
+
+      result.innerHTML =
+        '<span class="same">✓ JSON objects are identical.</span>';
+
+      showStatus(
+        "No differences found."
+      );
+
+      return;
+
+    }
+
+
+    let html = "";
+
+    for (const diff of differences) {
+
+      if (diff.type === "added") {
+
+        html +=
+          '<div class="added">' +
+          '+ Added: ' +
+          diff.path +
+          " = " +
+          escapeHTML(formatValue(diff.value)) +
+          "</div>";
+
+      }
+
+
+      if (diff.type === "removed") {
+
+        html +=
+          '<div class="removed">' +
+          '- Removed: ' +
+          diff.path +
+          " = " +
+          escapeHTML(formatValue(diff.value)) +
+          "</div>";
+
+      }
+
+
+      if (diff.type === "changed") {
+
+        html +=
+          '<div class="changed">' +
+          '~ Changed: ' +
+          diff.path +
+          "<br>" +
+          "  Old: " +
+          escapeHTML(formatValue(diff.oldValue)) +
+          "<br>" +
+          "  New: " +
+          escapeHTML(formatValue(diff.newValue)) +
+          "</div>";
+
+      }
+
+
+      html += "<br>";
+
+    }
+
+
+    result.innerHTML = html;
+
+    showStatus(
+      differences.length +
+      " difference(s) found."
+    );
+
+
+  } catch (error) {
+
+    result.textContent = "";
+
+    showStatus(
+      "Unable to compare JSON: " +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+function escapeHTML(value) {
+
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+async function copyResult() {
+
+  const result =
+    document.getElementById("result").innerText;
+
+  if (
+    !result ||
+    result === "Comparison result will appear here..."
+  ) {
+
+    showStatus(
+      "Please compare JSON first.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    await navigator.clipboard.writeText(result);
+
+    showStatus(
+      "Comparison result copied."
+    );
+
+  } catch (error) {
+
+    showStatus(
+      "Unable to copy. Please copy manually.",
+      "error"
+    );
+
+  }
+
+}
+
+
+function clearAll() {
+
+  document.getElementById("jsonA").value = "";
+  document.getElementById("jsonB").value = "";
+
+  document.getElementById("result").textContent =
+    "Comparison result will appear here...";
+
+  document.getElementById("status").style.display =
+    "none";
+
+}
+
+</script>
+
+</body>
+</html>
