@@ -93,7 +93,8 @@
         font-size: 14px;
     }
 
-    th, td {
+    th,
+    td {
         border: 1px solid #ccc;
         padding: 10px;
         text-align: left;
@@ -108,13 +109,6 @@
     td {
         white-space: pre-wrap;
         word-break: break-word;
-    }
-
-    .empty {
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        color: #666;
     }
 
     .privacy {
@@ -200,7 +194,6 @@ Example:
 let htmlResult = "";
 
 function escapeHTML(value) {
-
     return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -228,20 +221,13 @@ function getColumns(data) {
 
     data.forEach(item => {
 
-        if (
-            item &&
-            typeof item === "object" &&
-            !Array.isArray(item)
-        ) {
+        Object.keys(item).forEach(key => {
 
-            Object.keys(item).forEach(key => {
+            if (!columns.includes(key)) {
+                columns.push(key);
+            }
 
-                if (!columns.includes(key)) {
-                    columns.push(key);
-                }
-
-            });
-        }
+        });
 
     });
 
@@ -253,52 +239,50 @@ function buildTable(data) {
     const columns = getColumns(data);
 
     if (columns.length === 0) {
-        throw new Error("No object properties found to create a table.");
+        throw new Error(
+            "No object properties found to create a table."
+        );
     }
 
-    let table = "<table>\\n";
+    let table = "<table>\n";
 
-    table += "  <thead>\\n";
-    table += "    <tr>\\n";
+    table += "  <thead>\n";
+    table += "    <tr>\n";
 
     columns.forEach(column => {
 
         table +=
             "      <th>" +
             escapeHTML(column) +
-            "</th>\\n";
+            "</th>\n";
 
     });
 
-    table += "    </tr>\\n";
-    table += "  </thead>\\n";
+    table += "    </tr>\n";
+    table += "  </thead>\n";
 
-    table += "  <tbody>\\n";
+    table += "  <tbody>\n";
 
     data.forEach(item => {
 
-        table += "    <tr>\\n";
+        table += "    <tr>\n";
 
         columns.forEach(column => {
 
-            const value =
-                item &&
-                typeof item === "object"
-                    ? item[column]
-                    : "";
+            const value = item[column];
 
             table +=
                 "      <td>" +
                 escapeHTML(displayValue(value)) +
-                "</td>\\n";
+                "</td>\n";
 
         });
 
-        table += "    </tr>\\n";
+        table += "    </tr>\n";
 
     });
 
-    table += "  </tbody>\\n";
+    table += "  </tbody>\n";
     table += "</table>";
 
     return table;
@@ -329,13 +313,18 @@ function convertJSON() {
         let data;
 
         if (Array.isArray(parsed)) {
+
             data = parsed;
+
         } else if (
             parsed &&
             typeof parsed === "object"
         ) {
+
             data = [parsed];
+
         } else {
+
             throw new Error(
                 "JSON must contain an object or an array of objects."
             );
@@ -352,9 +341,11 @@ function convertJSON() {
                 typeof item !== "object" ||
                 Array.isArray(item)
             ) {
+
                 throw new Error(
                     `Item ${index + 1} must be a JSON object.`
                 );
+
             }
 
         });
@@ -453,7 +444,8 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
-th, td {
+th,
+td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
