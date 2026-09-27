@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JSON Diff & Compare</title>
-  <meta name="description" content="Compare two JSON objects and find differences instantly in your browser. Free, fast and privacy-focused.">
+  <title>JSON Diff & Compare - Free Online JSON Comparison Tool</title>
+  <meta name="description" content="Compare two JSON objects and find added, removed and changed values instantly in your browser. Free, fast and privacy-focused.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-diff-compare.html">
+
+  <meta property="og:title" content="JSON Diff & Compare - Free Online JSON Comparison Tool">
+  <meta property="og:description" content="Compare two JSON objects and find added, removed and changed values instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-diff-compare.html">
 
   <style>
     * {
@@ -38,10 +45,21 @@
       text-align: center;
     }
 
+    h2 {
+      margin-top: 32px;
+      font-size: 21px;
+    }
+
+    h3 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
     .description {
       text-align: center;
       color: #6b7280;
       margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     .inputs {
@@ -149,6 +167,45 @@
       border-radius: 8px;
       color: #374151;
       font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info-section {
+      margin-top: 30px;
+    }
+
+    .info-section p,
+    .info-section li {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .related-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      padding: 9px 12px;
+      background: #f1f3f5;
+      border-radius: 7px;
+      color: #222;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      background: #e2e6ea;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item p {
+      margin-top: 4px;
     }
 
     .back {
@@ -240,6 +297,68 @@
       Nothing is uploaded to our server.
     </div>
 
+    <section class="info-section">
+      <h2>How to Use JSON Diff & Compare</h2>
+
+      <ol>
+        <li>Paste the first JSON object into <strong>JSON A</strong>.</li>
+        <li>Paste the second JSON object into <strong>JSON B</strong>.</li>
+        <li>Click <strong>Compare JSON</strong>.</li>
+        <li>Review the added, removed, and changed values.</li>
+        <li>Use <strong>Copy Result</strong> to copy the comparison.</li>
+      </ol>
+    </section>
+
+    <section class="info-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>What does this JSON comparison tool do?</h3>
+        <p>
+          It compares two JSON objects and identifies values that were added,
+          removed, or changed between them.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does this tool upload my JSON data?</h3>
+        <p>
+          No. The comparison is performed locally in your browser and the
+          JSON data is not uploaded to a server by this tool.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I compare nested JSON objects?</h3>
+        <p>
+          Yes. The tool can compare nested JSON objects and reports differences
+          using their property paths.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can this tool compare JSON arrays?</h3>
+        <p>
+          The current version is designed to compare JSON objects rather than
+          top-level JSON arrays.
+        </p>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <h2>Related Tools</h2>
+
+      <div class="related-tools">
+        <a href="json-formatter.html">JSON Formatter</a>
+        <a href="json-to-csv.html">JSON to CSV</a>
+        <a href="json-to-html.html">JSON to HTML</a>
+        <a href="json-to-jsonl.html">JSON to JSONL</a>
+        <a href="json-to-markdown.html">JSON to Markdown</a>
+        <a href="json-to-sql.html">JSON to SQL</a>
+        <a href="text-to-json.html">Text to JSON</a>
+      </div>
+    </section>
+
     <a class="back" href="index.html">← Back to All Tools</a>
 
   </div>
@@ -299,6 +418,7 @@ function compareObjects(a, b, path = "") {
       });
 
       continue;
+
     }
 
 
@@ -311,6 +431,7 @@ function compareObjects(a, b, path = "") {
       });
 
       continue;
+
     }
 
 
