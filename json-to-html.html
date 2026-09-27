@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Convert JSON data to an HTML table instantly in your browser. Free, fast and privacy-friendly JSON to HTML converter.">
+
+<title>JSON to HTML Table Converter - Free Online Tool</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        color: #222;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 28px;
+    }
+
+    p {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 230px;
+        padding: 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 14px;
+        resize: vertical;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    button {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        background: #222;
+        color: white;
+        font-size: 14px;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+
+    .status {
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 15px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 500px;
+        font-size: 14px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        font-weight: bold;
+        background: #f1f1f1;
+    }
+
+    td {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .empty {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        color: #666;
+    }
+
+    .privacy {
+        margin-top: 20px;
+        padding: 12px;
+        background: #f0f7f0;
+        border-radius: 7px;
+        font-size: 14px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .html-output {
+        margin-top: 20px;
+    }
+
+    .html-output textarea {
+        min-height: 200px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>JSON to HTML Table Converter</h1>
+
+        <p>
+            Convert JSON data into a clean HTML table instantly in your browser.
+            Your data stays on your device.
+        </p>
+
+        <textarea id="input" placeholder='Paste JSON data here...
+
+Example:
+[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
+  }
+]'></textarea>
+
+        <div class="buttons">
+            <button onclick="convertJSON()">Convert to HTML Table</button>
+            <button onclick="copyHTML()">Copy HTML</button>
+            <button onclick="downloadHTML()">Download HTML</button>
+            <button onclick="clearAll()">Clear</button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div id="tableContainer" class="table-wrapper"></div>
+
+        <div class="html-output">
+            <textarea id="output" placeholder="Generated HTML will appear here..." readonly></textarea>
+        </div>
+
+        <div class="privacy">
+            🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
+        </div>
+
+        <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+</div>
+
+<script>
+
+let htmlResult = "";
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function displayValue(value) {
+
+    if (value === null) {
+        return "null";
+    }
+
+    if (typeof value === "object") {
+        return JSON.stringify(value, null, 2);
+    }
+
+    return String(value);
+}
+
+function getColumns(data) {
+
+    const columns = [];
+
+    data.forEach(item => {
+
+        if (
+            item &&
+            typeof item === "object" &&
+            !Array.isArray(item)
+        ) {
+
+            Object.keys(item).forEach(key => {
+
+                if (!columns.includes(key)) {
+                    columns.push(key);
+                }
+
+            });
+        }
+
+    });
+
+    return columns;
+}
+
+function buildTable(data) {
+
+    const columns = getColumns(data);
+
+    if (columns.length === 0) {
+        throw new Error("No object properties found to create a table.");
+    }
+
+    let table = "<table>\\n";
+
+    table += "  <thead>\\n";
+    table += "    <tr>\\n";
+
+    columns.forEach(column => {
+
+        table +=
+            "      <th>" +
+            escapeHTML(column) +
+            "</th>\\n";
+
+    });
+
+    table += "    </tr>\\n";
+    table += "  </thead>\\n";
+
+    table += "  <tbody>\\n";
+
+    data.forEach(item => {
+
+        table += "    <tr>\\n";
+
+        columns.forEach(column => {
+
+            const value =
+                item &&
+                typeof item === "object"
+                    ? item[column]
+                    : "";
+
+            table +=
+                "      <td>" +
+                escapeHTML(displayValue(value)) +
+                "</td>\\n";
+
+        });
+
+        table += "    </tr>\\n";
+
+    });
+
+    table += "  </tbody>\\n";
+    table += "</table>";
+
+    return table;
+}
+
+function convertJSON() {
+
+    const input =
+        document.getElementById("input").value.trim();
+
+    const output =
+        document.getElementById("output");
+
+    const container =
+        document.getElementById("tableContainer");
+
+    const status =
+        document.getElementById("status");
+
+    try {
+
+        if (!input) {
+            throw new Error("Please enter JSON data.");
+        }
+
+        const parsed = JSON.parse(input);
+
+        let data;
+
+        if (Array.isArray(parsed)) {
+            data = parsed;
+        } else if (
+            parsed &&
+            typeof parsed === "object"
+        ) {
+            data = [parsed];
+        } else {
+            throw new Error(
+                "JSON must contain an object or an array of objects."
+            );
+        }
+
+        if (data.length === 0) {
+            throw new Error("The JSON array is empty.");
+        }
+
+        data.forEach((item, index) => {
+
+            if (
+                !item ||
+                typeof item !== "object" ||
+                Array.isArray(item)
+            ) {
+                throw new Error(
+                    `Item ${index + 1} must be a JSON object.`
+                );
+            }
+
+        });
+
+        htmlResult = buildTable(data);
+
+        output.value = htmlResult;
+
+        container.innerHTML = htmlResult;
+
+        status.textContent =
+            "JSON converted to HTML table successfully.";
+
+        status.style.color = "green";
+
+    } catch (error) {
+
+        htmlResult = "";
+        output.value = "";
+        container.innerHTML = "";
+
+        status.textContent =
+            "Conversion error: " + error.message;
+
+        status.style.color = "red";
+    }
+}
+
+function copyHTML() {
+
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
+
+    if (!output.value) {
+
+        status.textContent =
+            "Please convert JSON data first.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+    navigator.clipboard.writeText(output.value)
+        .then(() => {
+
+            status.textContent =
+                "HTML copied to clipboard.";
+
+            status.style.color = "green";
+
+        })
+        .catch(() => {
+
+            status.textContent =
+                "Unable to copy HTML.";
+
+            status.style.color = "red";
+        });
+}
+
+function downloadHTML() {
+
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
+
+    if (!output.value) {
+
+        status.textContent =
+            "Please convert JSON data first.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+    const fullHTML =
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generated HTML Table</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+th {
+    font-weight: bold;
+    background: #f1f1f1;
+}
+td {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+</style>
+</head>
+<body>
+${output.value}
+</body>
+</html>`;
+
+    const blob =
+        new Blob(
+            [fullHTML],
+            { type: "text/html;charset=utf-8;" }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const link =
+        document.createElement("a");
+
+    link.href = url;
+    link.download = "converted-table.html";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    status.textContent =
+        "HTML file downloaded.";
+
+    status.style.color = "green";
+}
+
+function clearAll() {
+
+    document.getElementById("input").value = "";
+    document.getElementById("output").value = "";
+    document.getElementById("tableContainer").innerHTML = "";
+    document.getElementById("status").textContent = "";
+
+    htmlResult = "";
+}
+
+</script>
+
+</body>
+</html>
