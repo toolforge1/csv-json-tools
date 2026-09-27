@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>XML to JSON Converter - Free Online Tool</title>
+
+  <meta name="description" content="Convert XML data to JSON online for free. Transform XML into clean JSON instantly in your browser. Fast, simple and privacy-focused.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 10px;
+    }
+
+    .description {
+      text-align: center;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 8px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+      min-height: 280px;
+      resize: vertical;
+      font-family: monospace;
+      line-height: 1.5;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    .buttons {
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 11px 17px;
+      margin: 5px 5px 5px 0;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #222;
+    }
+
+    .success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .status {
+      display: none;
+      margin: 15px 0;
+      padding: 12px;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .valid {
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .invalid {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .privacy {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f0fdf4;
+      color: #166534;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+        padding: 15px 0;
+      }
+
+      .tool {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="tool">
+
+      <h1>XML to JSON Converter</h1>
+
+      <p class="description">
+        Convert XML data into clean JSON instantly in your browser.
+        Your data stays on your device.
+      </p>
+
+      <label for="xmlInput">Enter XML</label>
+
+      <textarea id="xmlInput"><?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <item>
+    <name>Ali</name>
+    <age>28</age>
+    <city>Karachi</city>
+  </item>
+  <item>
+    <name>Emma</name>
+    <age>34</age>
+    <city>London</city>
+  </item>
+</root></textarea>
+
+      <div class="buttons">
+        <button class="primary" onclick="convertToJSON()">Convert to JSON</button>
+        <button class="secondary" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div id="status" class="status"></div>
+
+      <label for="jsonOutput">JSON Output</label>
+
+      <textarea
+        id="jsonOutput"
+        readonly
+        placeholder="JSON output will appear here..."
+      ></textarea>
+
+      <div class="buttons">
+        <button class="success" onclick="copyJSON()">Copy JSON</button>
+        <button class="primary" onclick="downloadJSON()">Download JSON</button>
+      </div>
+
+      <div class="privacy">
+        <strong>Privacy First</strong><br>
+        This XML to JSON converter processes your data directly in your browser.
+        Your XML is not uploaded to our server.
+      </div>
+
+      <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function showStatus(message, type) {
+      const status = document.getElementById("status");
+
+      status.textContent = message;
+      status.className = "status " + type;
+      status.style.display = "block";
+    }
+
+    function xmlNodeToObject(node) {
+
+      const children = Array.from(node.children);
+
+      if (children.length === 0) {
+        return node.textContent.trim();
+      }
+
+      const object = {};
+
+      children.forEach(child => {
+
+        const key = child.tagName;
+        const value = xmlNodeToObject(child);
+
+        if (Object.prototype.hasOwnProperty.call(object, key)) {
+
+          if (!Array.isArray(object[key])) {
+            object[key] = [object[key]];
+          }
+
+          object[key].push(value);
+
+        } else {
+
+          object[key] = value;
+        }
+
+      });
+
+      return object;
+    }
+
+    function convertToJSON() {
+
+      const input =
+        document.getElementById("xmlInput").value.trim();
+
+      if (!input) {
+        showStatus(
+          "Please enter XML data.",
+          "invalid"
+        );
+        return;
+      }
+
+      try {
+
+        const parser = new DOMParser();
+
+        const xmlDoc = parser.parseFromString(
+          input,
+          "application/xml"
+        );
+
+        const parserError =
+          xmlDoc.getElementsByTagName("parsererror");
+
+        if (parserError.length > 0) {
+          throw new Error("Invalid XML syntax.");
+        }
+
+        const root = xmlDoc.documentElement;
+
+        if (!root) {
+          throw new Error("No XML root element found.");
+        }
+
+        const result = {};
+
+        result[root.tagName] = xmlNodeToObject(root);
+
+        document.getElementById("jsonOutput").value =
+          JSON.stringify(result, null, 2);
+
+        showStatus(
+          "Valid XML. JSON generated successfully.",
+          "valid"
+        );
+
+      } catch (error) {
+
+        document.getElementById("jsonOutput").value = "";
+
+        showStatus(
+          "Invalid XML: " + error.message,
+          "invalid"
+        );
+      }
+    }
+
+    function copyJSON() {
+
+      const output =
+        document.getElementById("jsonOutput").value;
+
+      if (!output) {
+        showStatus(
+          "Please convert XML to JSON first.",
+          "invalid"
+        );
+        return;
+      }
+
+      navigator.clipboard.writeText(output)
+        .then(() => {
+
+          showStatus(
+            "JSON copied to clipboard.",
+            "valid"
+          );
+
+        })
+        .catch(() => {
+
+          showStatus(
+            "Unable to copy JSON.",
+            "invalid"
+          );
+
+        });
+    }
+
+    function downloadJSON() {
+
+      const output =
+        document.getElementById("jsonOutput").value;
+
+      if (!output) {
+        showStatus(
+          "Please convert XML to JSON first.",
+          "invalid"
+        );
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "application/json;charset=utf-8;" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "converted.json";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+
+      showStatus(
+        "JSON file downloaded.",
+        "valid"
+      );
+    }
+
+    function clearAll() {
+
+      document.getElementById("xmlInput").value = "";
+      document.getElementById("jsonOutput").value = "";
+
+      const status =
+        document.getElementById("status");
+
+      status.style.display = "none";
+      status.textContent = "";
+    }
+
+  </script>
+
+</body>
+</html>
