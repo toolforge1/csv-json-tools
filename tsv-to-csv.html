@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Convert TSV data to CSV format instantly in your browser. Free, fast and privacy-friendly.">
+<title>TSV to CSV Converter - Free Online Tool</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        color: #222;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 28px;
+    }
+
+    p {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 230px;
+        padding: 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 14px;
+        resize: vertical;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    button {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        background: #222;
+        color: white;
+        font-size: 14px;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+
+    .status {
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .privacy {
+        margin-top: 20px;
+        padding: 12px;
+        background: #f0f7f0;
+        border-radius: 7px;
+        font-size: 14px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>TSV to CSV Converter</h1>
+
+        <p>
+            Convert tab-separated values (TSV) into CSV format instantly in your browser.
+            Your data stays on your device.
+        </p>
+
+        <textarea id="input" placeholder="Paste TSV data here..."></textarea>
+
+        <div class="buttons">
+            <button onclick="convertTSV()">Convert to CSV</button>
+            <button onclick="copyCSV()">Copy CSV</button>
+            <button onclick="downloadCSV()">Download CSV</button>
+            <button onclick="clearAll()">Clear</button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <textarea id="output" placeholder="CSV output will appear here..." readonly></textarea>
+
+        <div class="privacy">
+            🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
+        </div>
+
+        <a class="back" href="index.html">← Back to All Tools</a>
+
+    </div>
+</div>
+
+<script>
+let csvResult = "";
+
+function parseTSV(text) {
+    const lines = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
+
+    while (lines.length && lines[lines.length - 1].trim() === "") {
+        lines.pop();
+    }
+
+    if (lines.length === 0) {
+        throw new Error("Please enter TSV data.");
+    }
+
+    return lines.map(line => line.split("\t"));
+}
+
+function csvEscape(value) {
+    value = String(value ?? "");
+
+    if (
+        value.includes(",") ||
+        value.includes('"') ||
+        value.includes("\n") ||
+        value.includes("\r")
+    ) {
+        return '"' + value.replace(/"/g, '""') + '"';
+    }
+
+    return value;
+}
+
+function convertTSV() {
+    const input = document.getElementById("input").value.trim();
+    const output = document.getElementById("output");
+    const status = document.getElementById("status");
+
+    try {
+        if (!input) {
+            throw new Error("Please enter TSV data.");
+        }
+
+        const rows = parseTSV(input);
+
+        const columnCount = rows[0].length;
+
+        if (columnCount === 0) {
+            throw new Error("Invalid TSV data.");
+        }
+
+        for (let i = 0; i < rows.length; i++) {
+            if (rows[i].length !== columnCount) {
+                throw new Error(
+                    `Row ${i + 1} has ${rows[i].length} columns, but expected ${columnCount}.`
+                );
+            }
+        }
+
+        csvResult = rows
+            .map(row => row.map(csvEscape).join(","))
+            .join("\n");
+
+        output.value = csvResult;
+        status.textContent = "TSV converted to CSV successfully.";
+        status.style.color = "green";
+
+    } catch (error) {
+        csvResult = "";
+        output.value = "";
+        status.textContent = error.message;
+        status.style.color = "red";
+    }
+}
+
+function copyCSV() {
+    const output = document.getElementById("output");
+    const status = document.getElementById("status");
+
+    if (!output.value) {
+        status.textContent = "Please convert TSV data first.";
+        status.style.color = "red";
+        return;
+    }
+
+    navigator.clipboard.writeText(output.value)
+        .then(() => {
+            status.textContent = "CSV copied to clipboard.";
+            status.style.color = "green";
+        })
+        .catch(() => {
+            status.textContent = "Unable to copy CSV.";
+            status.style.color = "red";
+        });
+}
+
+function downloadCSV() {
+    const output = document.getElementById("output");
+    const status = document.getElementById("status");
+
+    if (!output.value) {
+        status.textContent = "Please convert TSV data first.";
+        status.style.color = "red";
+        return;
+    }
+
+    const blob = new Blob([output.value], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "converted.csv";
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+    status.textContent = "CSV file downloaded.";
+    status.style.color = "green";
+}
+
+function clearAll() {
+    document.getElementById("input").value = "";
+    document.getElementById("output").value = "";
+    document.getElementById("status").textContent = "";
+    csvResult = "";
+}
+</script>
+
+</body>
+</html>
