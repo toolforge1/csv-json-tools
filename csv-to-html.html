@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CSV to HTML Table Converter</title>
+  <title>CSV to HTML Table Converter - Free Online Tool</title>
+
   <meta name="description" content="Convert CSV data or files into clean HTML tables instantly in your browser. Free, fast and privacy-focused.">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-html.html">
+
+  <meta property="og:title" content="CSV to HTML Table Converter - Free Online Tool">
+  <meta property="og:description" content="Convert CSV data or files into clean HTML tables instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-html.html">
 
   <style>
     * {
@@ -30,6 +38,7 @@
       border-radius: 14px;
       padding: 24px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
     }
 
     h1 {
@@ -38,10 +47,20 @@
       text-align: center;
     }
 
+    h2 {
+      margin-top: 0;
+    }
+
+    h3 {
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+
     .description {
       text-align: center;
       color: #6b7280;
       margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     label {
@@ -138,12 +157,31 @@
     }
 
     .privacy {
-      margin-top: 20px;
       padding: 12px;
       background: #eef6ff;
       border-radius: 8px;
       color: #374151;
       font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .related-tools {
+      line-height: 2;
+    }
+
+    .related-tools a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .related-tools a:hover {
+      text-decoration: underline;
     }
 
     .back {
@@ -178,6 +216,7 @@
 <body>
 
 <div class="container">
+
   <div class="card">
 
     <h1>CSV to HTML Table Converter</h1>
@@ -187,6 +226,7 @@
     </p>
 
     <label for="fileInput">Upload CSV File</label>
+
     <input type="file" id="fileInput" accept=".csv,text/csv">
 
     <label for="csvInput">CSV Input</label>
@@ -197,10 +237,23 @@ Emma,34,London
 John,31,New York"></textarea>
 
     <div class="buttons">
-      <button onclick="convertToHTML()">Convert to HTML</button>
-      <button class="success" onclick="copyHTML()">Copy HTML</button>
-      <button onclick="downloadHTML()">Download HTML</button>
-      <button class="danger" onclick="clearAll()">Clear</button>
+
+      <button onclick="convertToHTML()">
+        Convert to HTML
+      </button>
+
+      <button class="success" onclick="copyHTML()">
+        Copy HTML
+      </button>
+
+      <button onclick="downloadHTML()">
+        Download HTML
+      </button>
+
+      <button class="danger" onclick="clearAll()">
+        Clear
+      </button>
+
     </div>
 
     <div id="status" class="status"></div>
@@ -218,13 +271,107 @@ John,31,New York"></textarea>
       Nothing is uploaded to our server.
     </div>
 
-    <a class="back" href="index.html">← Back to All Tools</a>
+  </div>
+
+
+  <div class="card">
+
+    <h2>How to Use CSV to HTML Converter</h2>
+
+    <p class="info">
+      Paste your CSV data into the input box or upload a CSV file.
+      Click "Convert to HTML" to generate an HTML table.
+      You can preview the table, copy the generated HTML code,
+      or download it as an HTML file.
+    </p>
 
   </div>
+
+
+  <div class="card">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What is a CSV to HTML converter?</h3>
+
+    <p class="info">
+      A CSV to HTML converter changes comma-separated data into
+      an HTML table that can be used on websites and web pages.
+    </p>
+
+    <h3>Can I upload a CSV file?</h3>
+
+    <p class="info">
+      Yes. You can upload a CSV file or paste CSV data directly
+      into the input box.
+    </p>
+
+    <h3>Is my CSV data uploaded to a server?</h3>
+
+    <p class="info">
+      No. The conversion is performed directly in your browser,
+      so your CSV data is not uploaded to our server.
+    </p>
+
+    <h3>Can I download the generated HTML?</h3>
+
+    <p class="info">
+      Yes. After converting the CSV, you can download the generated
+      HTML table as an HTML file.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>Related Tools</h2>
+
+    <p class="info related-tools">
+
+      <a href="csv-to-json.html">CSV to JSON</a><br>
+
+      <a href="csv-to-jsonl.html">CSV to JSONL</a><br>
+
+      <a href="csv-to-markdown.html">CSV to Markdown</a><br>
+
+      <a href="csv-to-sql.html">CSV to SQL</a><br>
+
+      <a href="csv-to-tsv.html">CSV to TSV</a><br>
+
+      <a href="json-to-html.html">JSON to HTML</a>
+
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>Privacy</h2>
+
+    <p class="info">
+      Your CSV data is processed entirely in your browser.
+      Nothing is uploaded to our server.
+    </p>
+
+  </div>
+
+
+  <div style="text-align:center;">
+
+    <a class="back" href="index.html">
+      ← Back to All Tools
+    </a>
+
+  </div>
+
 </div>
 
 <script>
+
 function showStatus(message, type = "success") {
+
   const status = document.getElementById("status");
 
   status.textContent = message;
@@ -237,37 +384,53 @@ function showStatus(message, type = "success") {
     status.style.background = "#dcfce7";
     status.style.color = "#166534";
   }
+
 }
 
+
 function escapeHTML(value) {
+
   return String(value)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+
 }
 
+
 function parseCSV(text) {
+
   const rows = [];
   let row = [];
   let value = "";
   let inQuotes = false;
 
   for (let i = 0; i < text.length; i++) {
+
     const char = text[i];
 
     if (char === '"') {
+
       if (inQuotes && text[i + 1] === '"') {
+
         value += '"';
         i++;
+
       } else {
+
         inQuotes = !inQuotes;
+
       }
+
     } else if (char === "," && !inQuotes) {
+
       row.push(value);
       value = "";
+
     } else if ((char === "\n" || char === "\r") && !inQuotes) {
+
       if (char === "\r" && text[i + 1] === "\n") {
         i++;
       }
@@ -280,9 +443,13 @@ function parseCSV(text) {
       }
 
       row = [];
+
     } else {
+
       value += char;
+
     }
+
   }
 
   if (inQuotes) {
@@ -296,29 +463,44 @@ function parseCSV(text) {
   }
 
   return rows;
+
 }
 
+
 function convertToHTML() {
+
   const input = document.getElementById("csvInput").value.trim();
+
   const output = document.getElementById("htmlOutput");
+
   const preview = document.getElementById("preview");
 
   if (!input) {
+
     showStatus("Please enter CSV data.", "error");
+
     return;
+
   }
 
   try {
+
     const rows = parseCSV(input);
 
     if (rows.length < 2) {
-      throw new Error("CSV must contain a header row and at least one data row.");
+
+      throw new Error(
+        "CSV must contain a header row and at least one data row."
+      );
+
     }
 
     const headers = rows[0].map(header => header.trim());
 
     if (headers.some(header => header === "")) {
+
       throw new Error("CSV contains an empty header.");
+
     }
 
     const duplicateHeaders = headers.filter(
@@ -326,18 +508,24 @@ function convertToHTML() {
     );
 
     if (duplicateHeaders.length > 0) {
+
       throw new Error("CSV contains duplicate headers.");
+
     }
 
     for (let i = 1; i < rows.length; i++) {
+
       if (rows[i].length !== headers.length) {
+
         throw new Error(
           "Row " + (i + 1) +
           " has " + rows[i].length +
           " columns, but the header has " +
           headers.length + "."
         );
+
       }
+
     }
 
     const lines = [];
@@ -347,7 +535,13 @@ function convertToHTML() {
     lines.push("    <tr>");
 
     headers.forEach(header => {
-      lines.push("      <th>" + escapeHTML(header) + "</th>");
+
+      lines.push(
+        "      <th>" +
+        escapeHTML(header) +
+        "</th>"
+      );
+
     });
 
     lines.push("    </tr>");
@@ -355,13 +549,21 @@ function convertToHTML() {
     lines.push("  <tbody>");
 
     for (let i = 1; i < rows.length; i++) {
+
       lines.push("    <tr>");
 
       rows[i].forEach(cell => {
-        lines.push("      <td>" + escapeHTML(cell) + "</td>");
+
+        lines.push(
+          "      <td>" +
+          escapeHTML(cell) +
+          "</td>"
+        );
+
       });
 
       lines.push("    </tr>");
+
     }
 
     lines.push("  </tbody>");
@@ -376,55 +578,109 @@ function convertToHTML() {
     showStatus("HTML table generated successfully.");
 
   } catch (error) {
+
     output.value = "";
+
     preview.innerHTML = "";
-    showStatus("Invalid CSV: " + error.message, "error");
+
+    showStatus(
+      "Invalid CSV: " + error.message,
+      "error"
+    );
+
   }
+
 }
 
-document.getElementById("fileInput").addEventListener("change", function(event) {
-  const file = event.target.files[0];
 
-  if (!file) {
-    return;
+document.getElementById("fileInput").addEventListener(
+  "change",
+  function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+      document.getElementById("csvInput").value =
+        e.target.result;
+
+      showStatus(
+        "CSV file loaded successfully."
+      );
+
+    };
+
+    reader.onerror = function() {
+
+      showStatus(
+        "Unable to read the CSV file.",
+        "error"
+      );
+
+    };
+
+    reader.readAsText(file);
+
   }
+);
 
-  const reader = new FileReader();
-
-  reader.onload = function(e) {
-    document.getElementById("csvInput").value = e.target.result;
-    showStatus("CSV file loaded successfully.");
-  };
-
-  reader.onerror = function() {
-    showStatus("Unable to read the CSV file.", "error");
-  };
-
-  reader.readAsText(file);
-});
 
 async function copyHTML() {
-  const output = document.getElementById("htmlOutput").value;
+
+  const output =
+    document.getElementById("htmlOutput").value;
 
   if (!output) {
-    showStatus("Please convert CSV first.", "error");
+
+    showStatus(
+      "Please convert CSV first.",
+      "error"
+    );
+
     return;
+
   }
 
   try {
+
     await navigator.clipboard.writeText(output);
-    showStatus("HTML copied to clipboard.");
+
+    showStatus(
+      "HTML copied to clipboard."
+    );
+
   } catch (error) {
-    showStatus("Unable to copy. Please copy it manually.", "error");
+
+    showStatus(
+      "Unable to copy. Please copy it manually.",
+      "error"
+    );
+
   }
+
 }
 
+
 function downloadHTML() {
-  const output = document.getElementById("htmlOutput").value;
+
+  const output =
+    document.getElementById("htmlOutput").value;
 
   if (!output) {
-    showStatus("Please convert CSV first.", "error");
+
+    showStatus(
+      "Please convert CSV first.",
+      "error"
+    );
+
     return;
+
   }
 
   const fullHTML =
@@ -451,33 +707,53 @@ ${output}
 </body>
 </html>`;
 
-  const blob = new Blob([fullHTML], {
-    type: "text/html;charset=utf-8"
-  });
+  const blob = new Blob(
+    [fullHTML],
+    {
+      type: "text/html;charset=utf-8"
+    }
+  );
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
 
   link.href = url;
-  link.download = "converted-table.html";
+
+  link.download =
+    "converted-table.html";
 
   document.body.appendChild(link);
+
   link.click();
+
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
 
-  showStatus("HTML file downloaded.");
+  showStatus(
+    "HTML file downloaded."
+  );
+
 }
 
+
 function clearAll() {
+
   document.getElementById("csvInput").value = "";
+
   document.getElementById("htmlOutput").value = "";
+
   document.getElementById("preview").innerHTML = "";
+
   document.getElementById("fileInput").value = "";
 
   document.getElementById("status").style.display = "none";
+
 }
+
 </script>
 
 </body>
