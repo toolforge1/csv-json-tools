@@ -9,131 +9,131 @@
 <title>JSON to HTML Table Converter - Free Online Tool</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        color: #222;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
 
-    .container {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 20px;
-    }
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
 
-    .card {
-        background: #fff;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+.card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
 
-    h1 {
-        margin-top: 0;
-        font-size: 28px;
-    }
+h1 {
+    margin-top: 0;
+    font-size: 28px;
+}
 
-    p {
-        color: #555;
-        line-height: 1.6;
-    }
+p {
+    color: #555;
+    line-height: 1.6;
+}
 
-    textarea {
-        width: 100%;
-        min-height: 230px;
-        padding: 14px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-family: monospace;
-        font-size: 14px;
-        resize: vertical;
-    }
+textarea {
+    width: 100%;
+    min-height: 230px;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    resize: vertical;
+}
 
-    .buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 15px 0;
-    }
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
 
-    button {
-        padding: 11px 18px;
-        border: none;
-        border-radius: 7px;
-        cursor: pointer;
-        background: #222;
-        color: white;
-        font-size: 14px;
-    }
+button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    font-size: 14px;
+}
 
-    button:hover {
-        opacity: 0.85;
-    }
+button:hover {
+    opacity: 0.85;
+}
 
-    .status {
-        margin: 10px 0;
-        font-weight: bold;
-    }
+.status {
+    margin: 10px 0;
+    font-weight: bold;
+}
 
-    .table-wrapper {
-        width: 100%;
-        overflow-x: auto;
-        margin-top: 15px;
-    }
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        min-width: 500px;
-        font-size: 14px;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+    font-size: 14px;
+}
 
-    th,
-    td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-        vertical-align: top;
-    }
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
 
-    th {
-        font-weight: bold;
-        background: #f1f1f1;
-    }
+th {
+    font-weight: bold;
+    background: #f1f1f1;
+}
 
-    td {
-        white-space: pre-wrap;
-        word-break: break-word;
-    }
+td {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
 
-    .privacy {
-        margin-top: 20px;
-        padding: 12px;
-        background: #f0f7f0;
-        border-radius: 7px;
-        font-size: 14px;
-    }
+.privacy {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f0f7f0;
+    border-radius: 7px;
+    font-size: 14px;
+}
 
-    .back {
-        display: inline-block;
-        margin-top: 20px;
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-    }
+.back {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
 
-    .html-output {
-        margin-top: 20px;
-    }
+.html-output {
+    margin-top: 20px;
+}
 
-    .html-output textarea {
-        min-height: 200px;
-    }
+.html-output textarea {
+    min-height: 220px;
+}
 </style>
 </head>
 
@@ -177,7 +177,9 @@ Example:
         <div id="tableContainer" class="table-wrapper"></div>
 
         <div class="html-output">
-            <textarea id="output" placeholder="Generated HTML will appear here..." readonly></textarea>
+            <textarea id="output"
+                placeholder="Generated HTML will appear here..."
+                readonly></textarea>
         </div>
 
         <div class="privacy">
@@ -244,48 +246,50 @@ function buildTable(data) {
         );
     }
 
-    let table = "<table>\n";
+    const lines = [];
 
-    table += "  <thead>\n";
-    table += "    <tr>\n";
+    lines.push("<table>");
+    lines.push("  <thead>");
+    lines.push("    <tr>");
 
     columns.forEach(column => {
 
-        table +=
+        lines.push(
             "      <th>" +
             escapeHTML(column) +
-            "</th>\n";
+            "</th>"
+        );
 
     });
 
-    table += "    </tr>\n";
-    table += "  </thead>\n";
-
-    table += "  <tbody>\n";
+    lines.push("    </tr>");
+    lines.push("  </thead>");
+    lines.push("  <tbody>");
 
     data.forEach(item => {
 
-        table += "    <tr>\n";
+        lines.push("    <tr>");
 
         columns.forEach(column => {
 
             const value = item[column];
 
-            table +=
+            lines.push(
                 "      <td>" +
                 escapeHTML(displayValue(value)) +
-                "</td>\n";
+                "</td>"
+            );
 
         });
 
-        table += "    </tr>\n";
+        lines.push("    </tr>");
 
     });
 
-    table += "  </tbody>\n";
-    table += "</table>";
+    lines.push("  </tbody>");
+    lines.push("</table>");
 
-    return table;
+    return lines.join("\n");
 }
 
 function convertJSON() {
@@ -343,7 +347,8 @@ function convertJSON() {
             ) {
 
                 throw new Error(
-                    `Item ${index + 1} must be a JSON object.`
+                    "Item " + (index + 1) +
+                    " must be a JSON object."
                 );
 
             }
@@ -428,43 +433,45 @@ function downloadHTML() {
         return;
     }
 
-    const fullHTML =
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generated HTML Table</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-th,
-td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-    vertical-align: top;
-}
-th {
-    font-weight: bold;
-    background: #f1f1f1;
-}
-td {
-    white-space: pre-wrap;
-    word-break: break-word;
-}
-</style>
-</head>
-<body>
-${output.value}
-</body>
-</html>`;
+    const fullLines = [
+        "<!DOCTYPE html>",
+        '<html lang="en">',
+        "<head>",
+        '<meta charset="UTF-8">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+        "<title>Generated HTML Table</title>",
+        "<style>",
+        "body {",
+        "    font-family: Arial, sans-serif;",
+        "    margin: 30px;",
+        "}",
+        "table {",
+        "    width: 100%;",
+        "    border-collapse: collapse;",
+        "}",
+        "th, td {",
+        "    border: 1px solid #ccc;",
+        "    padding: 10px;",
+        "    text-align: left;",
+        "    vertical-align: top;",
+        "}",
+        "th {",
+        "    font-weight: bold;",
+        "    background: #f1f1f1;",
+        "}",
+        "td {",
+        "    white-space: pre-wrap;",
+        "    word-break: break-word;",
+        "}",
+        "</style>",
+        "</head>",
+        "<body>",
+        output.value,
+        "</body>",
+        "</html>"
+    ];
+
+    const fullHTML = fullLines.join("\n");
 
     const blob =
         new Blob(
@@ -506,4 +513,4 @@ function clearAll() {
 </script>
 
 </body>
-</html>
+</html>;
