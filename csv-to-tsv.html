@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="description" content="Convert CSV data to TSV format instantly in your browser. Free, fast and privacy-friendly.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-tsv.html">
+
+<meta property="og:title" content="CSV to TSV Converter - Free Online Tool">
+<meta property="og:description" content="Convert CSV data to TSV format instantly in your browser. Free, fast and privacy-friendly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-tsv.html">
+
 <title>CSV to TSV Converter - Free Online Tool</title>
 
 <style>
@@ -34,6 +43,16 @@
     h1 {
         margin-top: 0;
         font-size: 28px;
+    }
+
+    h2 {
+        margin-top: 30px;
+        font-size: 21px;
+    }
+
+    h3 {
+        font-size: 17px;
+        margin-bottom: 6px;
     }
 
     p {
@@ -86,12 +105,49 @@
         font-size: 14px;
     }
 
+    .info-section {
+        margin-top: 30px;
+    }
+
+    .related-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .related-tools a {
+        display: inline-block;
+        padding: 9px 12px;
+        background: #f1f3f5;
+        border-radius: 7px;
+        color: #222;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .related-tools a:hover {
+        background: #e2e6ea;
+    }
+
     .back {
         display: inline-block;
         margin-top: 20px;
         text-decoration: none;
         color: #333;
         font-weight: bold;
+    }
+
+    .faq-item {
+        margin-bottom: 18px;
+    }
+
+    .faq-item p {
+        margin-top: 4px;
+    }
+
+    ul {
+        color: #555;
+        line-height: 1.8;
     }
 </style>
 </head>
@@ -124,6 +180,65 @@
         <div class="privacy">
             🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
         </div>
+
+        <section class="info-section">
+            <h2>How to Use CSV to TSV Converter</h2>
+            <ol>
+                <li>Paste your CSV data into the input box.</li>
+                <li>Click <strong>Convert to TSV</strong>.</li>
+                <li>Copy the TSV result or download it as a <strong>.tsv</strong> file.</li>
+            </ol>
+        </section>
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <h3>What is TSV?</h3>
+                <p>
+                    TSV stands for Tab-Separated Values. It is a text format where
+                    columns are separated by tab characters instead of commas.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Does this tool upload my CSV data?</h3>
+                <p>
+                    No. The conversion is performed locally in your browser,
+                    so your CSV data is not sent to a server by this tool.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I download the converted TSV file?</h3>
+                <p>
+                    Yes. After converting the CSV, click the
+                    <strong>Download TSV</strong> button to save the result as
+                    a .tsv file.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can CSV values contain commas?</h3>
+                <p>
+                    Yes. Properly quoted CSV fields containing commas are supported.
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>Related Tools</h2>
+
+            <div class="related-tools">
+                <a href="csv-to-json.html">CSV to JSON</a>
+                <a href="csv-to-html.html">CSV to HTML</a>
+                <a href="csv-to-jsonl.html">CSV to JSONL</a>
+                <a href="csv-to-markdown.html">CSV to Markdown</a>
+                <a href="csv-to-sql.html">CSV to SQL</a>
+                <a href="tsv-to-csv.html">TSV to CSV</a>
+                <a href="tsv-to-json.html">TSV to JSON</a>
+            </div>
+        </section>
 
         <a class="back" href="index.html">← Back to All Tools</a>
 
