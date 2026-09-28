@@ -7,6 +7,13 @@
   <title>JSON Formatter & Validator - Free Online Tool</title>
 
   <meta name="description" content="Format, beautify and validate JSON online for free. Fix JSON formatting and check syntax directly in your browser.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-formatter.html">
+
+  <meta property="og:title" content="JSON Formatter & Validator - Free Online Tool">
+  <meta property="og:description" content="Format, beautify and validate JSON online for free. Check JSON syntax and beautify JSON directly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-formatter.html">
 
   <style>
     * {
@@ -37,6 +44,16 @@
     h1 {
       text-align: center;
       margin: 0 0 10px;
+    }
+
+    h2 {
+      margin-top: 32px;
+      font-size: 21px;
+    }
+
+    h3 {
+      font-size: 17px;
+      margin-bottom: 6px;
     }
 
     .description {
@@ -130,12 +147,51 @@
       line-height: 1.5;
     }
 
+    .info-section {
+      margin-top: 30px;
+    }
+
+    .info-section p,
+    .info-section li {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .related-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      padding: 9px 12px;
+      background: #f1f3f5;
+      border-radius: 7px;
+      color: #222;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      background: #e2e6ea;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item p {
+      margin-top: 4px;
+    }
+
     .back {
       display: inline-block;
       margin-top: 20px;
       color: #2563eb;
       text-decoration: none;
       font-size: 14px;
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
@@ -198,6 +254,69 @@
         This JSON formatter and validator processes your data directly
         in your browser. Your JSON is not uploaded to our server.
       </div>
+
+      <section class="info-section">
+        <h2>How to Use JSON Formatter & Validator</h2>
+
+        <ol>
+          <li>Paste your JSON into the input box.</li>
+          <li>Click <strong>Format JSON</strong> to beautify and format the JSON.</li>
+          <li>Use <strong>Validate JSON</strong> to check whether the JSON syntax is valid.</li>
+          <li>Click <strong>Copy JSON</strong> to copy the formatted result.</li>
+          <li>Use <strong>Download JSON</strong> to save the formatted JSON as a file.</li>
+        </ol>
+      </section>
+
+      <section class="info-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>What is a JSON formatter?</h3>
+          <p>
+            A JSON formatter takes JSON data and adds proper indentation and
+            line breaks, making the structure easier to read.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can this tool validate JSON?</h3>
+          <p>
+            Yes. The Validate JSON button checks the syntax and reports whether
+            the provided data is valid JSON.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is my JSON uploaded to a server?</h3>
+          <p>
+            No. JSON processing is performed directly in your browser,
+            so the data is not uploaded to a server by this tool.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I download formatted JSON?</h3>
+          <p>
+            Yes. After formatting your JSON, click Download JSON to save it
+            as a .json file.
+          </p>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2>Related Tools</h2>
+
+        <div class="related-tools">
+          <a href="json-diff-compare.html">JSON Diff & Compare</a>
+          <a href="json-to-csv.html">JSON to CSV</a>
+          <a href="json-to-html.html">JSON to HTML</a>
+          <a href="json-to-jsonl.html">JSON to JSONL</a>
+          <a href="json-to-markdown.html">JSON to Markdown</a>
+          <a href="json-to-sql.html">JSON to SQL</a>
+          <a href="json-to-yaml.html">JSON to YAML</a>
+          <a href="json-to-xml.html">JSON to XML</a>
+        </div>
+      </section>
 
       <a class="back" href="index.html">← Back to All Tools</a>
 
