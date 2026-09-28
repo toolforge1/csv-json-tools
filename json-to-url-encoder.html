@@ -5,8 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>JSON to URL Encoder - Encode JSON for URLs</title>
-  <meta name="description" content="Encode JSON data into URL-safe encoded text instantly in your browser. Free, fast, and privacy-friendly.">
+  <meta name="description" content="Encode JSON data into URL-safe encoded text instantly in your browser. Free, fast, and privacy-friendly JSON to URL encoder.">
   <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-url-encoder.html">
+
+  <meta property="og:title" content="JSON to URL Encoder - Free Online Tool">
+  <meta property="og:description" content="Encode JSON data into URL-safe text instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-url-encoder.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON to URL Encoder",
+    "url": "https://toolforge1.github.io/csv-json-tools/json-to-url-encoder.html",
+    "description": "Free online tool to encode JSON data into URL-encoded text.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <style>
     * {
@@ -117,11 +142,6 @@
       color: #991b1b;
     }
 
-    .info {
-      background: #eff6ff;
-      color: #1e40af;
-    }
-
     .privacy {
       background: #ecfdf5;
       border-left: 4px solid #10b981;
@@ -130,12 +150,32 @@
       line-height: 1.6;
     }
 
-    .how-to {
+    .info {
       line-height: 1.7;
     }
 
-    .how-to ol {
+    .info h2 {
+      margin-top: 0;
+    }
+
+    .info h3 {
+      margin-bottom: 6px;
+    }
+
+    .info ol {
       padding-left: 22px;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 6px 8px 6px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     .back {
@@ -199,23 +239,27 @@
 
   </div>
 
+
   <div class="card">
 
     <label for="output">Encoded URL Text</label>
 
-    <textarea id="output"
+    <textarea
+      id="output"
       class="output"
       readonly
-      placeholder="Encoded JSON will appear here..."></textarea>
+      placeholder="Encoded JSON will appear here..."
+    ></textarea>
 
   </div>
 
-  <div class="card how-to">
+
+  <div class="card info">
 
     <h2>How to Use</h2>
 
     <ol>
-      <li>Paste your valid JSON into the input box.</li>
+      <li>Paste valid JSON into the input box.</li>
       <li>Click <strong>Encode JSON</strong>.</li>
       <li>The JSON will be converted into URL-encoded text.</li>
       <li>Copy the encoded result or download it as a TXT file.</li>
@@ -224,12 +268,42 @@
     <h2>What is URL Encoding?</h2>
 
     <p>
-      URL encoding converts special characters, spaces, Unicode characters,
-      and other characters into a format that can safely be used inside URLs.
-      This tool uses your browser's built-in URL encoding functionality.
+      URL encoding converts characters such as spaces, special characters,
+      and Unicode characters into a percent-encoded format that can be safely
+      used as part of a URL.
+    </p>
+
+    <p>
+      This tool uses the browser's built-in
+      <strong>encodeURIComponent()</strong> function to encode the normalized
+      JSON string.
+    </p>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Does this tool validate JSON?</h3>
+
+    <p>
+      Yes. The tool parses the input as JSON before encoding it. Invalid JSON
+      produces an error message instead of an encoded result.
+    </p>
+
+    <h3>Does it support Urdu and other Unicode characters?</h3>
+
+    <p>
+      Yes. Unicode characters, including Urdu and other non-Latin scripts,
+      are handled by the browser's URL encoding functionality.
+    </p>
+
+    <h3>Is my JSON uploaded to a server?</h3>
+
+    <p>
+      No. JSON processing and URL encoding take place directly in your
+      browser. Your input is not uploaded to our server.
     </p>
 
   </div>
+
 
   <div class="card privacy">
 
@@ -239,30 +313,58 @@
 
   </div>
 
+
+  <div class="card info related">
+
+    <h2>Related Tools</h2>
+
+    <a href="json-url-decoder.html">JSON URL Decoder</a>
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-to-base64.html">JSON to Base64</a>
+    <a href="base64-to-json.html">Base64 to JSON</a>
+    <a href="json-to-text.html">JSON to Text</a>
+    <a href="text-to-json.html">Text to JSON</a>
+
+  </div>
+
+
   <div class="back">
     <a href="index.html">← Back to All Tools</a>
   </div>
 
 </div>
 
+
 <script>
 
 function showMessage(text, type) {
-  const message = document.getElementById("message");
+
+  const message =
+    document.getElementById("message");
 
   message.textContent = text;
   message.className = "message " + type;
   message.style.display = "block";
 }
 
+
 function encodeJSON() {
 
-  const input = document.getElementById("jsonInput").value.trim();
-  const output = document.getElementById("output");
+  const input =
+    document.getElementById("jsonInput").value.trim();
+
+  const output =
+    document.getElementById("output");
 
   if (!input) {
+
     output.value = "";
-    showMessage("Please enter JSON data first.", "error");
+
+    showMessage(
+      "Please enter JSON data first.",
+      "error"
+    );
+
     return;
   }
 
@@ -270,20 +372,16 @@ function encodeJSON() {
 
     const parsed = JSON.parse(input);
 
-    /*
-      Re-stringify valid JSON so the encoded result
-      represents normalized JSON rather than accidental
-      formatting differences.
-    */
-    const normalizedJSON = JSON.stringify(parsed);
+    const normalizedJSON =
+      JSON.stringify(parsed);
 
-    /*
-      encodeURIComponent safely handles Unicode characters,
-      including Urdu and other non-Latin text.
-    */
-    output.value = encodeURIComponent(normalizedJSON);
+    output.value =
+      encodeURIComponent(normalizedJSON);
 
-    showMessage("JSON encoded successfully.", "success");
+    showMessage(
+      "JSON encoded successfully.",
+      "success"
+    );
 
   } catch (error) {
 
@@ -296,12 +394,19 @@ function encodeJSON() {
   }
 }
 
+
 async function copyOutput() {
 
-  const output = document.getElementById("output").value;
+  const output =
+    document.getElementById("output").value;
 
   if (!output) {
-    showMessage("Please encode JSON first.", "error");
+
+    showMessage(
+      "Please encode JSON first.",
+      "error"
+    );
+
     return;
   }
 
@@ -309,7 +414,10 @@ async function copyOutput() {
 
     await navigator.clipboard.writeText(output);
 
-    showMessage("Encoded URL copied to clipboard.", "success");
+    showMessage(
+      "Encoded URL copied to clipboard.",
+      "success"
+    );
 
   } catch (error) {
 
@@ -320,42 +428,59 @@ async function copyOutput() {
   }
 }
 
+
 function downloadOutput() {
 
-  const output = document.getElementById("output").value;
+  const output =
+    document.getElementById("output").value;
 
   if (!output) {
-    showMessage("Please encode JSON first.", "error");
+
+    showMessage(
+      "Please encode JSON first.",
+      "error"
+    );
+
     return;
   }
 
-  const blob = new Blob(
-    [output],
-    { type: "text/plain;charset=utf-8" }
-  );
+  const blob =
+    new Blob(
+      [output],
+      { type: "text/plain;charset=utf-8" }
+    );
 
-  const url = URL.createObjectURL(blob);
+  const url =
+    URL.createObjectURL(blob);
 
-  const link = document.createElement("a");
+  const link =
+    document.createElement("a");
 
   link.href = url;
   link.download = "encoded-json.txt";
 
   document.body.appendChild(link);
+
   link.click();
+
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
 
-  showMessage("Encoded JSON downloaded successfully.", "success");
+  showMessage(
+    "Encoded JSON downloaded successfully.",
+    "success"
+  );
 }
+
 
 function clearAll() {
 
   document.getElementById("jsonInput").value = "";
   document.getElementById("output").value = "";
 
-  const message = document.getElementById("message");
+  const message =
+    document.getElementById("message");
 
   message.style.display = "none";
   message.textContent = "";
