@@ -6,7 +6,33 @@
 
   <title>JSON to SQL Converter - Free Online Tool</title>
 
-  <meta name="description" content="Convert JSON data to SQL INSERT statements online for free. Generate SQL from JSON instantly in your browser. Fast and privacy-focused.">
+  <meta name="description" content="Convert JSON data to SQL INSERT statements online for free. Generate SQL from JSON instantly in your browser. Fast, simple and privacy-focused.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
+
+  <meta property="og:title" content="JSON to SQL Converter - Free Online Tool">
+  <meta property="og:description" content="Convert JSON data into SQL INSERT statements instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON to SQL Converter",
+    "url": "https://toolforge1.github.io/csv-json-tools/json-to-sql.html",
+    "description": "Convert JSON arrays into SQL INSERT statements directly in your browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <style>
     * {
@@ -129,6 +155,29 @@
       color: #991b1b;
     }
 
+    .info-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+    }
+
+    .info-section h2 {
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    .info-section h3 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .info-section p,
+    .info-section li {
+      line-height: 1.6;
+      color: #4b5563;
+    }
+
     .privacy {
       margin-top: 25px;
       padding: 15px;
@@ -139,12 +188,37 @@
       line-height: 1.5;
     }
 
+    .related-tools {
+      margin-top: 25px;
+      padding: 20px;
+      background: #eef6ff;
+      border-radius: 10px;
+    }
+
+    .related-tools h2 {
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .related-tools a:hover {
+      text-decoration: underline;
+    }
+
     .back {
       display: inline-block;
       margin-top: 20px;
       color: #2563eb;
       text-decoration: none;
       font-size: 14px;
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
@@ -159,6 +233,11 @@
 
       h1 {
         font-size: 27px;
+      }
+
+      button {
+        width: 100%;
+        margin-right: 0;
       }
     }
   </style>
@@ -225,6 +304,55 @@
         <strong>Privacy First</strong><br>
         This JSON to SQL converter processes your data directly in your browser.
         Your JSON is not uploaded to our server.
+      </div>
+
+      <div class="info-section">
+        <h2>How to Use</h2>
+
+        <ol>
+          <li>Enter a valid SQL table name, such as <strong>users</strong>.</li>
+          <li>Paste a JSON array containing objects into the input box.</li>
+          <li>Click <strong>Convert to SQL</strong>.</li>
+          <li>Copy the generated SQL statements or download them as a .sql file.</li>
+        </ol>
+
+        <h2>FAQ</h2>
+
+        <h3>What JSON format does this tool support?</h3>
+        <p>
+          The converter accepts a JSON array containing objects. Each object
+          represents one row of data.
+        </p>
+
+        <h3>Does this tool upload my JSON data?</h3>
+        <p>
+          No. The conversion is performed locally in your browser, so the JSON
+          input is not uploaded to our server.
+        </p>
+
+        <h3>What SQL does this tool generate?</h3>
+        <p>
+          The tool generates SQL INSERT statements using the table name and
+          columns found in your JSON objects.
+        </p>
+
+        <h3>Can I download the generated SQL?</h3>
+        <p>
+          Yes. After conversion, use the Download SQL button to save the
+          generated statements as a .sql file.
+        </p>
+      </div>
+
+      <div class="related-tools">
+        <h2>Related Tools</h2>
+
+        <a href="json-to-csv.html">JSON to CSV</a>
+        <a href="json-to-tsv.html">JSON to TSV</a>
+        <a href="json-to-jsonl.html">JSON to JSONL</a>
+        <a href="json-to-markdown.html">JSON to Markdown</a>
+        <a href="json-to-html.html">JSON to HTML</a>
+        <a href="csv-to-sql.html">CSV to SQL</a>
+        <a href="json-formatter.html">JSON Formatter</a>
       </div>
 
       <a class="back" href="index.html">← Back to All Tools</a>
