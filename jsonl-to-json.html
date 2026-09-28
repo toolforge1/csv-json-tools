@@ -6,6 +6,32 @@
 
   <title>JSONL to JSON Converter - Free Online Tool</title>
   <meta name="description" content="Convert JSONL or NDJSON data to JSON instantly in your browser. Free, fast and privacy-focused JSONL to JSON converter.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/jsonl-to-json.html">
+
+  <meta property="og:title" content="JSONL to JSON Converter - Free Online Tool">
+  <meta property="og:description" content="Convert JSONL or NDJSON data to a formatted JSON array instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/jsonl-to-json.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSONL to JSON Converter",
+    "url": "https://toolforge1.github.io/csv-json-tools/jsonl-to-json.html",
+    "description": "Free online tool to convert JSONL or NDJSON data into a formatted JSON array.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <style>
     * {
@@ -103,6 +129,7 @@
       padding: 12px;
       border-radius: 7px;
       display: none;
+      line-height: 1.5;
     }
 
     .success-message {
@@ -120,6 +147,34 @@
       color: #555;
       font-size: 14px;
       line-height: 1.6;
+    }
+
+    .info {
+      line-height: 1.7;
+    }
+
+    .info h2 {
+      margin-top: 0;
+    }
+
+    .info h3 {
+      margin-bottom: 6px;
+    }
+
+    .info ol {
+      padding-left: 22px;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 6px 8px 6px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     .back {
@@ -166,6 +221,7 @@
 <main>
 
   <div class="card">
+
     <label for="jsonlInput">JSONL / NDJSON Input</label>
 
     <textarea
@@ -183,9 +239,12 @@ Example:
     </div>
 
     <div id="message" class="message"></div>
+
   </div>
 
+
   <div class="card">
+
     <label for="jsonOutput">JSON Output</label>
 
     <textarea
@@ -198,19 +257,98 @@ Example:
       <button class="success" onclick="copyJson()">Copy JSON</button>
       <button onclick="downloadJson()">Download JSON</button>
     </div>
+
   </div>
 
+
   <div class="card privacy">
+
     <strong>Privacy:</strong>
     Your JSONL data is processed entirely in your browser.
     No data is uploaded to our server.
+
   </div>
+
+
+  <div class="card info">
+
+    <h2>How to Use JSONL to JSON Converter</h2>
+
+    <ol>
+      <li>Paste JSONL or NDJSON data into the input box.</li>
+      <li>Make sure each JSON object is on its own line.</li>
+      <li>Click <strong>Convert to JSON</strong>.</li>
+      <li>Copy the formatted JSON or download it as a JSON file.</li>
+    </ol>
+
+
+    <h2>What is JSONL?</h2>
+
+    <p>
+      JSONL, also known as JSON Lines, is a text format where each line
+      contains one valid JSON value. It is commonly used for logs,
+      data processing and large datasets.
+    </p>
+
+    <p>
+      NDJSON (Newline Delimited JSON) is another commonly used name for
+      newline-separated JSON records.
+    </p>
+
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What input format does this tool accept?</h3>
+
+    <p>
+      The tool accepts JSONL or NDJSON data with one valid JSON record
+      per line. Empty lines are ignored.
+    </p>
+
+    <h3>What happens if one line contains invalid JSON?</h3>
+
+    <p>
+      The conversion stops and the tool identifies the line containing
+      the invalid JSON so you can correct it.
+    </p>
+
+    <h3>Does the tool upload my JSONL data?</h3>
+
+    <p>
+      No. The conversion is performed entirely in your browser.
+      Your data is not uploaded to our server.
+    </p>
+
+    <h3>Can I download the converted JSON?</h3>
+
+    <p>
+      Yes. After conversion, click <strong>Download JSON</strong> to save
+      the formatted result as a JSON file.
+    </p>
+
+  </div>
+
+
+  <div class="card info related">
+
+    <h2>Related Tools</h2>
+
+    <a href="json-to-jsonl.html">JSON to JSONL</a>
+    <a href="csv-to-jsonl.html">CSV to JSONL</a>
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-to-csv.html">JSON to CSV</a>
+    <a href="json-to-tsv.html">JSON to TSV</a>
+    <a href="json-to-markdown.html">JSON to Markdown</a>
+
+  </div>
+
 
   <div class="back">
     <a href="index.html">← Back to All Tools</a>
   </div>
 
 </main>
+
 
 <footer>
   © 2026 CSV & JSON Developer Tools
@@ -221,21 +359,33 @@ Example:
 
 function convertJsonl() {
 
-  const input = document.getElementById("jsonlInput").value;
-  const output = document.getElementById("jsonOutput");
+  const input =
+    document.getElementById("jsonlInput").value;
+
+  const output =
+    document.getElementById("jsonOutput");
 
   if (!input.trim()) {
+
     output.value = "";
-    showMessage("Please enter JSONL data first.", false);
+
+    showMessage(
+      "Please enter JSONL data first.",
+      false
+    );
+
     return;
   }
 
-  const lines = input.split(/\r?\n/);
+  const lines =
+    input.split(/\r?\n/);
+
   const results = [];
 
   for (let i = 0; i < lines.length; i++) {
 
-    const line = lines[i].trim();
+    const line =
+      lines[i].trim();
 
     // Ignore empty lines
     if (!line) {
@@ -244,7 +394,8 @@ function convertJsonl() {
 
     try {
 
-      const parsed = JSON.parse(line);
+      const parsed =
+        JSON.parse(line);
 
       results.push(parsed);
 
@@ -253,7 +404,10 @@ function convertJsonl() {
       output.value = "";
 
       showMessage(
-        "Invalid JSON on line " + (i + 1) + ": " + error.message,
+        "Invalid JSON on line " +
+        (i + 1) +
+        ": " +
+        error.message,
         false
       );
 
@@ -262,15 +416,23 @@ function convertJsonl() {
   }
 
   if (results.length === 0) {
+
     output.value = "";
-    showMessage("No valid JSON records were found.", false);
+
+    showMessage(
+      "No valid JSON records were found.",
+      false
+    );
+
     return;
   }
 
-  output.value = JSON.stringify(results, null, 2);
+  output.value =
+    JSON.stringify(results, null, 2);
 
   showMessage(
-    results.length + " JSON record(s) converted successfully.",
+    results.length +
+    " JSON record(s) converted successfully.",
     true
   );
 }
@@ -278,40 +440,65 @@ function convertJsonl() {
 
 function copyJson() {
 
-  const output = document.getElementById("jsonOutput");
+  const output =
+    document.getElementById("jsonOutput");
 
   if (!output.value) {
-    showMessage("Nothing to copy.", false);
+
+    showMessage(
+      "Nothing to copy.",
+      false
+    );
+
     return;
   }
 
   navigator.clipboard.writeText(output.value)
     .then(() => {
-      showMessage("JSON copied to clipboard.", true);
+
+      showMessage(
+        "JSON copied to clipboard.",
+        true
+      );
+
     })
     .catch(() => {
-      showMessage("Unable to copy JSON.", false);
+
+      showMessage(
+        "Unable to copy JSON.",
+        false
+      );
+
     });
 }
 
 
 function downloadJson() {
 
-  const output = document.getElementById("jsonOutput").value;
+  const output =
+    document.getElementById("jsonOutput").value;
 
   if (!output) {
-    showMessage("Nothing to download.", false);
+
+    showMessage(
+      "Nothing to download.",
+      false
+    );
+
     return;
   }
 
-  const blob = new Blob(
-    [output],
-    { type: "application/json" }
-  );
+  const blob =
+    new Blob(
+      [output],
+      { type: "application/json" }
+    );
 
-  const url = URL.createObjectURL(blob);
+  const url =
+    URL.createObjectURL(blob);
 
-  const link = document.createElement("a");
+  const link =
+    document.createElement("a");
 
   link.href = url;
   link.download = "converted.json";
@@ -331,22 +518,27 @@ function clearAll() {
   document.getElementById("jsonlInput").value = "";
   document.getElementById("jsonOutput").value = "";
 
-  const message = document.getElementById("message");
+  const message =
+    document.getElementById("message");
 
   message.style.display = "none";
+  message.textContent = "";
 }
 
 
 function showMessage(text, success) {
 
-  const message = document.getElementById("message");
+  const message =
+    document.getElementById("message");
 
   message.textContent = text;
   message.style.display = "block";
 
   message.className =
     "message " +
-    (success ? "success-message" : "error-message");
+    (success
+      ? "success-message"
+      : "error-message");
 }
 
 </script>
