@@ -4,8 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Base64 to JSON Decoder</title>
-  <meta name="description" content="Decode Base64 encoded JSON back into readable JSON instantly in your browser. Free, fast and privacy-focused.">
+  <title>Base64 to JSON Decoder - Free Online Tool</title>
+
+  <meta name="description" content="Decode Base64 encoded JSON into readable JSON online for free. Fast, simple and privacy-focused Base64 to JSON decoder that works directly in your browser.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/base64-to-json.html">
+
+  <meta property="og:title" content="Base64 to JSON Decoder - Free Online Tool">
+  <meta property="og:description" content="Decode Base64 encoded JSON into readable JSON directly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/base64-to-json.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Base64 to JSON Decoder",
+    "url": "https://toolforge1.github.io/csv-json-tools/base64-to-json.html",
+    "description": "Free online tool to decode Base64 encoded JSON into readable JSON directly in the browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any"
+  }
+  </script>
 
   <style>
     * {
@@ -30,6 +52,7 @@
       border-radius: 14px;
       padding: 24px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
     }
 
     h1 {
@@ -38,10 +61,16 @@
       text-align: center;
     }
 
+    h2 {
+      margin-top: 30px;
+      font-size: 21px;
+    }
+
     .description {
       text-align: center;
       color: #6b7280;
       margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     label {
@@ -60,6 +89,7 @@
       font-size: 14px;
       resize: vertical;
       outline: none;
+      line-height: 1.5;
     }
 
     textarea:focus {
@@ -102,6 +132,46 @@
       border-radius: 8px;
       display: none;
       font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section {
+      line-height: 1.7;
+    }
+
+    .info-section ul,
+    .info-section ol {
+      padding-left: 22px;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .related-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      padding: 9px 12px;
+      background: #eff6ff;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      background: #dbeafe;
     }
 
     .privacy {
@@ -111,6 +181,7 @@
       border-radius: 8px;
       color: #374151;
       font-size: 14px;
+      line-height: 1.6;
     }
 
     .back {
@@ -145,6 +216,7 @@
 <body>
 
 <div class="container">
+
   <div class="card">
 
     <h1>Base64 to JSON Decoder</h1>
@@ -155,7 +227,10 @@
 
     <label for="base64Input">Base64 Input</label>
 
-    <textarea id="base64Input" placeholder="Paste Base64 encoded JSON here..."></textarea>
+    <textarea
+      id="base64Input"
+      placeholder="Paste Base64 encoded JSON here..."
+    ></textarea>
 
     <div class="buttons">
       <button onclick="decodeBase64()">Decode to JSON</button>
@@ -168,16 +243,85 @@
 
     <label for="jsonOutput">JSON Output</label>
 
-    <textarea id="jsonOutput" readonly placeholder="Decoded JSON will appear here..."></textarea>
+    <textarea
+      id="jsonOutput"
+      readonly
+      placeholder="Decoded JSON will appear here..."
+    ></textarea>
 
     <div class="privacy">
-      🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
+      🔒 <strong>Privacy First:</strong>
+      Your data is processed entirely in your browser.
       Nothing is uploaded to our server.
     </div>
 
-    <a class="back" href="index.html">← Back to All Tools</a>
+  </div>
+
+  <div class="card info-section">
+
+    <h2>How to Use Base64 to JSON Decoder</h2>
+
+    <ol>
+      <li>Paste your Base64 encoded JSON into the input box.</li>
+      <li>Click <strong>Decode to JSON</strong>.</li>
+      <li>Review the decoded and formatted JSON output.</li>
+      <li>Use <strong>Copy JSON</strong> to copy the result.</li>
+      <li>Use <strong>Download JSON</strong> to save the decoded JSON file.</li>
+    </ol>
+
+    <h2>About Base64 to JSON Conversion</h2>
+
+    <p>
+      Base64 is an encoding method commonly used to represent binary or text
+      data using a limited set of characters. When JSON data has been encoded
+      as Base64, this tool decodes the Base64 data and parses the result as
+      JSON so it can be viewed in a readable format.
+    </p>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <strong>Is this Base64 to JSON decoder free?</strong>
+      Yes. The tool is free to use directly in your browser.
+    </div>
+
+    <div class="faq-item">
+      <strong>Is my Base64 data uploaded to a server?</strong>
+      No. Decoding and JSON parsing are performed locally in your browser.
+    </div>
+
+    <div class="faq-item">
+      <strong>What happens if the Base64 data is invalid?</strong>
+      The tool checks the Base64 input and displays an error when invalid
+      characters or an invalid Base64 length is detected.
+    </div>
+
+    <div class="faq-item">
+      <strong>What happens if the decoded content is not valid JSON?</strong>
+      The tool displays an error instead of generating JSON output.
+    </div>
+
+    <div class="faq-item">
+      <strong>Does the decoder support Unicode JSON?</strong>
+      Yes. The decoder uses UTF-8 text decoding so encoded JSON containing
+      Unicode characters can be decoded correctly.
+    </div>
+
+    <h2>Related Tools</h2>
+
+    <div class="related-tools">
+      <a href="json-to-base64.html">JSON to Base64</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="json-to-url-encoder.html">JSON to URL Encoder</a>
+      <a href="json-url-decoder.html">JSON URL Decoder</a>
+      <a href="json-to-text.html">JSON to Text</a>
+      <a href="text-to-json.html">Text to JSON</a>
+    </div>
 
   </div>
+
+  <a class="back" href="index.html">← Back to All Tools</a>
+
 </div>
 
 <script>
@@ -244,6 +388,7 @@ function decodeBase64() {
 
   } catch (error) {
     output.value = "";
+
     showStatus(
       "Unable to decode Base64 JSON: " + error.message,
       "error"
@@ -261,9 +406,15 @@ async function copyJSON() {
 
   try {
     await navigator.clipboard.writeText(output);
+
     showStatus("JSON copied to clipboard.");
+
   } catch (error) {
-    showStatus("Unable to copy. Please copy it manually.", "error");
+
+    showStatus(
+      "Unable to copy. Please copy it manually.",
+      "error"
+    );
   }
 }
 
@@ -275,9 +426,12 @@ function downloadJSON() {
     return;
   }
 
-  const blob = new Blob([output], {
-    type: "application/json;charset=utf-8"
-  });
+  const blob = new Blob(
+    [output],
+    {
+      type: "application/json;charset=utf-8"
+    }
+  );
 
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
