@@ -5,7 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>YAML to JSON Converter - Free Online Tool</title>
-  <meta name="description" content="Convert YAML data to JSON instantly in your browser. Free, fast and privacy-focused YAML to JSON converter.">
+
+  <meta name="description" content="Convert YAML data to JSON instantly in your browser. Free, fast and privacy-focused YAML to JSON converter for developers.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/yaml-to-json.html">
+
+  <meta property="og:title" content="YAML to JSON Converter - Free Online Tool">
+  <meta property="og:description" content="Convert YAML data to clean JSON instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/yaml-to-json.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YAML to JSON Converter",
+    "url": "https://toolforge1.github.io/csv-json-tools/yaml-to-json.html",
+    "description": "Free online tool to convert YAML data into JSON directly in the browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any"
+  }
+  </script>
 
   <style>
     * {
@@ -115,6 +137,50 @@
       color: #991b1b;
     }
 
+    .info-section {
+      line-height: 1.7;
+    }
+
+    .info-section h2 {
+      margin-top: 30px;
+      font-size: 21px;
+    }
+
+    .info-section ul,
+    .info-section ol {
+      padding-left: 22px;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .related-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      padding: 9px 12px;
+      background: #eff6ff;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+
+    .related-tools a:hover {
+      background: #dbeafe;
+    }
+
     .privacy {
       text-align: center;
       color: #555;
@@ -190,9 +256,73 @@
   </div>
 
   <div class="card privacy">
-    <strong>Privacy:</strong>
+    <strong>Privacy First:</strong><br>
     Your YAML data is processed entirely in your browser.
     No data is uploaded to our server.
+  </div>
+
+  <div class="card info-section">
+
+    <h2>How to Use YAML to JSON Converter</h2>
+
+    <ol>
+      <li>Paste your YAML data into the input box.</li>
+      <li>Click <strong>Convert to JSON</strong>.</li>
+      <li>Review the generated JSON output.</li>
+      <li>Click <strong>Copy JSON</strong> to copy the result.</li>
+      <li>Click <strong>Download JSON</strong> to save the result as a JSON file.</li>
+    </ol>
+
+    <h2>About YAML to JSON Conversion</h2>
+
+    <p>
+      YAML and JSON are commonly used formats for representing structured
+      data. This tool converts supported YAML structures into readable JSON
+      directly in your browser, making the resulting data easier to use in
+      applications, APIs and development workflows.
+    </p>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <strong>Is this YAML to JSON converter free?</strong>
+      Yes. This tool is free to use directly in your browser.
+    </div>
+
+    <div class="faq-item">
+      <strong>Is my YAML data uploaded to a server?</strong>
+      No. The conversion takes place locally in your browser and the YAML
+      data is not uploaded to our server.
+    </div>
+
+    <div class="faq-item">
+      <strong>Can this tool convert YAML arrays?</strong>
+      Yes. Supported YAML array structures are converted into JSON arrays.
+    </div>
+
+    <div class="faq-item">
+      <strong>Does the converter support numbers, booleans and null values?</strong>
+      Yes. Supported numeric values, true/false values and null values are
+      converted to their corresponding JSON types.
+    </div>
+
+    <div class="faq-item">
+      <strong>What happens if the YAML is invalid?</strong>
+      The converter displays an error message when it detects unsupported or
+      invalid YAML structure.
+    </div>
+
+    <h2>Related Tools</h2>
+
+    <div class="related-tools">
+      <a href="json-to-yaml.html">JSON to YAML</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="xml-to-json.html">XML to JSON</a>
+      <a href="toml-to-json.html">TOML to JSON</a>
+      <a href="json-to-xml.html">JSON to XML</a>
+      <a href="json-to-csv.html">JSON to CSV</a>
+    </div>
+
   </div>
 
   <div class="back">
@@ -491,7 +621,6 @@ function convertYaml() {
 
   const input = document.getElementById("yamlInput").value;
   const output = document.getElementById("jsonOutput");
-  const message = document.getElementById("message");
 
   if (!input.trim()) {
     showMessage("Please enter YAML data first.", false);
@@ -581,6 +710,11 @@ function downloadJson() {
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
+
+  showMessage(
+    "JSON file downloaded.",
+    true
+  );
 }
 
 
@@ -592,6 +726,7 @@ function clearAll() {
   const message = document.getElementById("message");
 
   message.style.display = "none";
+  message.textContent = "";
 }
 
 </script>
