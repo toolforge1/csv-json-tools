@@ -7,6 +7,26 @@
   <title>JSON to JSONL Converter - Free Online Tool</title>
   <meta name="description" content="Convert JSON arrays to JSONL or NDJSON instantly in your browser. Free, fast and privacy-focused JSON to JSONL converter.">
 
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html">
+
+  <meta property="og:title" content="JSON to JSONL Converter - Free Online Tool">
+  <meta property="og:description" content="Convert JSON arrays to JSONL or NDJSON instantly in your browser. Free and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON to JSONL Converter",
+    "url": "https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html",
+    "description": "Free online tool to convert JSON arrays to JSONL or NDJSON directly in the browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any"
+  }
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -133,6 +153,51 @@
       font-weight: bold;
     }
 
+    .info-section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .info-section h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .info-section h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .info-section p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .related-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      padding: 9px 12px;
+      background: #e8f0fe;
+      color: #1d4ed8;
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .related-tools a:hover {
+      background: #dbeafe;
+    }
+
     footer {
       text-align: center;
       padding: 25px 15px;
@@ -141,6 +206,7 @@
     }
 
     @media (max-width: 600px) {
+
       header h1 {
         font-size: 24px;
       }
@@ -151,6 +217,14 @@
 
       button {
         width: 100%;
+      }
+
+      .related-tools {
+        flex-direction: column;
+      }
+
+      .related-tools a {
+        text-align: center;
       }
     }
   </style>
@@ -189,7 +263,6 @@ Example:
 
   </div>
 
-
   <div class="card">
 
     <label for="jsonlOutput">JSONL / NDJSON Output</label>
@@ -207,7 +280,6 @@ Example:
 
   </div>
 
-
   <div class="card privacy">
 
     <strong>Privacy:</strong>
@@ -216,6 +288,99 @@ Example:
 
   </div>
 
+  <div class="info-section">
+
+    <h2>How to Use</h2>
+
+    <h3>1. Enter JSON Data</h3>
+    <p>
+      Paste a JSON array containing objects into the input box.
+    </p>
+
+    <h3>2. Convert to JSONL</h3>
+    <p>
+      Click <strong>Convert to JSONL</strong> to convert each JSON object
+      into a separate line.
+    </p>
+
+    <h3>3. Copy the Result</h3>
+    <p>
+      Click <strong>Copy JSONL</strong> to copy the converted JSONL data
+      to your clipboard.
+    </p>
+
+    <h3>4. Download the JSONL File</h3>
+    <p>
+      Click <strong>Download JSONL</strong> to save the result as a
+      <code>.jsonl</code> file.
+    </p>
+
+  </div>
+
+  <div class="info-section">
+
+    <h2>FAQ</h2>
+
+    <h3>What is JSONL?</h3>
+    <p>
+      JSONL, also called JSON Lines, stores one valid JSON object per line.
+      It is useful for processing records individually.
+    </p>
+
+    <h3>What is NDJSON?</h3>
+    <p>
+      NDJSON means Newline Delimited JSON. It is a line-based format in which
+      each line contains a separate JSON value, commonly a JSON object.
+    </p>
+
+    <h3>What JSON format does this tool accept?</h3>
+    <p>
+      This converter expects a JSON array containing JSON objects.
+    </p>
+
+    <h3>Can I convert an empty JSON array?</h3>
+    <p>
+      No. An empty array does not contain any records, so the tool displays
+      an error message instead.
+    </p>
+
+    <h3>Is my JSON data uploaded?</h3>
+    <p>
+      No. The conversion is performed directly in your browser and your
+      JSON data is not uploaded to our server.
+    </p>
+
+  </div>
+
+  <div class="info-section">
+
+    <h2>Related Tools</h2>
+
+    <div class="related-tools">
+      <a href="jsonl-to-json.html">JSONL to JSON</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="json-to-csv.html">JSON to CSV</a>
+      <a href="json-to-html.html">JSON to HTML</a>
+      <a href="json-to-markdown.html">JSON to Markdown</a>
+      <a href="json-to-sql.html">JSON to SQL</a>
+      <a href="json-to-tsv.html">JSON to TSV</a>
+      <a href="csv-to-jsonl.html">CSV to JSONL</a>
+      <a href="csv-to-json.html">CSV to JSON</a>
+    </div>
+
+  </div>
+
+  <div class="info-section">
+
+    <h2>Privacy</h2>
+
+    <p>
+      This JSON to JSONL converter runs entirely in your browser.
+      Your JSON data is processed locally and is not sent to or stored
+      on our server.
+    </p>
+
+  </div>
 
   <div class="back">
     <a href="index.html">← Back to All Tools</a>
@@ -223,11 +388,9 @@ Example:
 
 </main>
 
-
 <footer>
-  © 2026 CSV & JSON Developer Tools
+  © 2026 CSV &amp; JSON Developer Tools
 </footer>
-
 
 <script>
 
@@ -308,7 +471,6 @@ function convertJson() {
   }
 }
 
-
 function copyJsonl() {
 
   const output = document.getElementById("jsonlOutput");
@@ -326,7 +488,6 @@ function copyJsonl() {
       showMessage("Unable to copy JSONL.", false);
     });
 }
-
 
 function downloadJsonl() {
 
@@ -356,8 +517,9 @@ function downloadJsonl() {
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
-}
 
+  showMessage("JSONL file downloaded.", true);
+}
 
 function clearAll() {
 
@@ -366,7 +528,6 @@ function clearAll() {
 
   document.getElementById("message").style.display = "none";
 }
-
 
 function showMessage(text, success) {
 
