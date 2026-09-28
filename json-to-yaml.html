@@ -417,33 +417,91 @@
 
           if (
             item !== null &&
-            typeof item === "object"
+            typeof item === "object" &&
+            !Array.isArray(item)
           ) {
 
-            const nested = jsonToYAML(
-              item,
-              indent + 2
-            );
+            const keys = Object.keys(item);
 
-            const lines = nested.split("\n");
+            if (keys.length === 0) {
+              return spaces + "- {}";
+            }
 
-            return (
+            const firstKey = keys[0];
+            const firstValue = item[firstKey];
+
+            let result =
               spaces +
               "- " +
-              lines[0] +
-              (lines.length > 1
-                ? "\n" + lines.slice(1)
-                    .map(line => "  " + line)
-                    .join("\n")
-                : "")
-            );
+              formatKey(firstKey) +
+              ":";
 
+            if (
+              firstValue !== null &&
+              typeof firstValue === "object"
+            ) {
+
+              result +=
+                "\n" +
+                jsonToYAML(
+                  firstValue,
+                  indent + 4
+                );
+
+            } else {
+
+              result +=
+                " " +
+                jsonToYAML(
+                  firstValue,
+                  indent + 4
+                );
+            }
+
+            for (let i = 1; i < keys.length; i++) {
+
+              const key = keys[i];
+              const itemValue = item[key];
+
+              if (
+                itemValue !== null &&
+                typeof itemValue === "object"
+              ) {
+
+                result +=
+                  "\n" +
+                  " ".repeat(indent + 2) +
+                  formatKey(key) +
+                  ":\n" +
+                  jsonToYAML(
+                    itemValue,
+                    indent + 4
+                  );
+
+              } else {
+
+                result +=
+                  "\n" +
+                  " ".repeat(indent + 2) +
+                  formatKey(key) +
+                  ": " +
+                  jsonToYAML(
+                    itemValue,
+                    indent + 4
+                  );
+              }
+            }
+
+            return result;
           }
 
           return (
             spaces +
             "- " +
-            jsonToYAML(item, indent + 2)
+            jsonToYAML(
+              item,
+              indent + 2
+            )
           );
 
         }).join("\n");
@@ -467,16 +525,14 @@
             typeof item === "object"
           ) {
 
-            const nested = jsonToYAML(
-              item,
-              indent + 2
-            );
-
             return (
               spaces +
               formattedKey +
               ":\n" +
-              nested
+              jsonToYAML(
+                item,
+                indent + 2
+              )
             );
 
           }
@@ -485,7 +541,10 @@
             spaces +
             formattedKey +
             ": " +
-            jsonToYAML(item, indent + 2)
+            jsonToYAML(
+              item,
+              indent + 2
+            )
           );
 
         }).join("\n");
