@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JSON to Base64 Encoder</title>
-  <meta name="description" content="Encode JSON data to Base64 instantly in your browser. Free, fast and privacy-focused.">
+  <title>JSON to Base64 Encoder - Free Online Tool</title>
+  <meta name="description" content="Encode JSON data to Base64 instantly in your browser. Free, fast, secure and privacy-focused JSON to Base64 encoder.">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-base64.html">
+
+  <meta property="og:title" content="JSON to Base64 Encoder - Free Online Tool">
+  <meta property="og:description" content="Encode JSON data to Base64 instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-base64.html">
 
   <style>
     * {
@@ -113,6 +121,50 @@
       font-size: 14px;
     }
 
+    .info-section {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+    }
+
+    .info-section h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .info-section h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .info-section p {
+      line-height: 1.6;
+      color: #4b5563;
+    }
+
+    .related-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      padding: 9px 12px;
+      background: #e8f0fe;
+      color: #1d4ed8;
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .related-tools a:hover {
+      background: #dbeafe;
+    }
+
     .back {
       display: inline-block;
       margin-top: 20px;
@@ -137,6 +189,14 @@
 
       button {
         width: 100%;
+      }
+
+      .related-tools {
+        flex-direction: column;
+      }
+
+      .related-tools a {
+        text-align: center;
       }
     }
   </style>
@@ -177,6 +237,74 @@
     <div class="privacy">
       🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
       Nothing is uploaded to our server.
+    </div>
+
+    <div class="info-section">
+      <h2>How to Use</h2>
+
+      <h3>1. Enter JSON</h3>
+      <p>
+        Paste valid JSON data into the input box.
+      </p>
+
+      <h3>2. Encode to Base64</h3>
+      <p>
+        Click the <strong>Encode to Base64</strong> button to convert your JSON data into Base64 format.
+      </p>
+
+      <h3>3. Copy or Download</h3>
+      <p>
+        Use <strong>Copy Base64</strong> to copy the encoded result or
+        <strong>Download Base64</strong> to save it as a text file.
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2>FAQ</h2>
+
+      <h3>What is JSON to Base64 encoding?</h3>
+      <p>
+        JSON to Base64 encoding converts JSON text into a Base64-encoded string
+        that can be useful when JSON data needs to be represented in a compact
+        text-based format.
+      </p>
+
+      <h3>Is my JSON data uploaded to a server?</h3>
+      <p>
+        No. The conversion is performed directly in your browser, so the JSON
+        data is not uploaded to our server.
+      </p>
+
+      <h3>Can I encode invalid JSON?</h3>
+      <p>
+        No. The tool validates the JSON before encoding it and shows an error
+        if the input is not valid JSON.
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2>Related Tools</h2>
+
+      <div class="related-tools">
+        <a href="base64-to-json.html">Base64 to JSON</a>
+        <a href="json-formatter.html">JSON Formatter</a>
+        <a href="json-to-csv.html">JSON to CSV</a>
+        <a href="json-to-html.html">JSON to HTML</a>
+        <a href="json-to-jsonl.html">JSON to JSONL</a>
+        <a href="json-to-markdown.html">JSON to Markdown</a>
+        <a href="json-to-sql.html">JSON to SQL</a>
+        <a href="json-to-xml.html">JSON to XML</a>
+        <a href="json-to-yaml.html">JSON to YAML</a>
+        <a href="json-to-url-encoder.html">JSON to URL Encoder</a>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>Privacy</h2>
+      <p>
+        This tool runs entirely in your browser. Your JSON data and Base64
+        output are not sent to or stored on our server.
+      </p>
     </div>
 
     <a class="back" href="index.html">← Back to All Tools</a>
