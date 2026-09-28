@@ -6,7 +6,33 @@
 
 <meta name="description" content="Convert plain text to JSON instantly in your browser. Free, fast and privacy-friendly Text to JSON converter.">
 
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/text-to-json.html">
+
+<meta property="og:title" content="Text to JSON Converter - Free Online Tool">
+<meta property="og:description" content="Convert structured plain text to JSON instantly in your browser. Free, fast and privacy-friendly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/text-to-json.html">
+
 <title>Text to JSON Converter - Free Online Tool</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Text to JSON Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/text-to-json.html",
+  "description": "Convert structured plain text to JSON instantly in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
     * {
@@ -36,6 +62,11 @@
     h1 {
         margin-top: 0;
         font-size: 28px;
+    }
+
+    h2 {
+        margin-top: 30px;
+        font-size: 21px;
     }
 
     p {
@@ -88,6 +119,34 @@
         font-size: 14px;
     }
 
+    .info-section {
+        margin-top: 30px;
+    }
+
+    .info-section ul {
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .faq {
+        margin-top: 15px;
+    }
+
+    .faq h3 {
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .related {
+        margin-top: 25px;
+        line-height: 2;
+    }
+
+    .related a {
+        color: #222;
+        font-weight: bold;
+    }
+
     .back {
         display: inline-block;
         margin-top: 20px;
@@ -136,6 +195,100 @@ active: true"></textarea>
             🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
         </div>
 
+        <section class="info-section">
+            <h2>How to Use Text to JSON Converter</h2>
+
+            <p>
+                Enter structured text using a simple <strong>key: value</strong> format.
+                You can also create nested objects and lists using indentation.
+            </p>
+
+            <ul>
+                <li>Paste or type your structured text into the input box.</li>
+                <li>Use <strong>key: value</strong> pairs for basic data.</li>
+                <li>Use indentation and <strong>-</strong> for lists.</li>
+                <li>Click <strong>Convert to JSON</strong>.</li>
+                <li>Copy the JSON or download it as a JSON file.</li>
+            </ul>
+
+            <p>
+                Example:
+            </p>
+
+            <p>
+                <strong>Input:</strong><br>
+                name: Ali<br>
+                age: 28<br>
+                city: Karachi<br>
+                skills:<br>
+                &nbsp;&nbsp;- JavaScript<br>
+                &nbsp;&nbsp;- Python
+            </p>
+
+            <p>
+                The converter automatically recognizes basic values such as numbers,
+                true, false and null.
+            </p>
+        </section>
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <h3>What is a Text to JSON converter?</h3>
+                <p>
+                    It converts structured plain text written in a simple key-value
+                    format into properly formatted JSON.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3>Does this tool upload my data?</h3>
+                <p>
+                    No. The conversion is performed locally in your browser, so the
+                    entered data is not sent to a server by this tool.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3>Can I create lists in the input?</h3>
+                <p>
+                    Yes. Use a dash before each list item and indent the items beneath
+                    the relevant key.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3>Can I download the converted JSON?</h3>
+                <p>
+                    Yes. After conversion, use the Download JSON button to save the
+                    result as a JSON file.
+                </p>
+            </div>
+        </section>
+
+        <section class="related">
+            <h2>Related Tools</h2>
+
+            <p>
+                <a href="json-formatter.html">JSON Formatter</a><br>
+                <a href="json-to-text.html">JSON to Text Converter</a><br>
+                <a href="json-to-csv.html">JSON to CSV Converter</a><br>
+                <a href="json-to-yaml.html">JSON to YAML Converter</a><br>
+                <a href="yaml-to-json.html">YAML to JSON Converter</a><br>
+                <a href="toml-to-json.html">TOML to JSON Converter</a>
+            </p>
+        </section>
+
+        <section class="info-section">
+            <h2>Privacy</h2>
+
+            <p>
+                This Text to JSON Converter processes your data locally in your
+                browser. Your input is not uploaded to a server by this tool.
+            </p>
+        </section>
+
         <a class="back" href="index.html">← Back to All Tools</a>
 
     </div>
@@ -165,9 +318,7 @@ function parseValue(value) {
         return null;
     }
 
-    if (
-        /^-?\d+(\.\d+)?$/.test(value)
-    ) {
+    if (/^-?\d+(\.\d+)?$/.test(value)) {
         return Number(value);
     }
 
