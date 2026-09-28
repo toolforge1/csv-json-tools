@@ -1,8 +1,39 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>JSON URL Decoder</title>
-  <meta name="description" content="Decode URL encoded JSON back into readable JSON instantly in your browser. Free, fast and privacy-focused.">  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JSON URL Decoder - Decode URL Encoded JSON</title>
+  <meta name="description" content="Decode URL encoded JSON back into readable JSON instantly in your browser. Free, fast and privacy-focused JSON URL decoder.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-url-decoder.html">
+
+  <meta property="og:title" content="JSON URL Decoder - Free Online Tool">
+  <meta property="og:description" content="Decode URL encoded JSON back into readable JSON instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-url-decoder.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON URL Decoder",
+    "url": "https://toolforge1.github.io/csv-json-tools/json-url-decoder.html",
+    "description": "Free online tool to decode URL encoded JSON into readable JSON.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <style>
     * {
       box-sizing: border-box;
     }
@@ -37,6 +68,7 @@
       text-align: center;
       color: #6b7280;
       margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     label {
@@ -55,10 +87,15 @@
       font-size: 14px;
       resize: vertical;
       outline: none;
+      line-height: 1.5;
     }
 
     textarea:focus {
       border-color: #2563eb;
+    }
+
+    .output {
+      background: #f8fafc;
     }
 
     .buttons {
@@ -97,6 +134,7 @@
       border-radius: 8px;
       display: none;
       font-size: 14px;
+      line-height: 1.5;
     }
 
     .privacy {
@@ -105,6 +143,40 @@
       background: #eef6ff;
       border-radius: 8px;
       color: #374151;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info {
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    .info h2 {
+      margin-top: 0;
+    }
+
+    .info h3 {
+      margin-bottom: 6px;
+    }
+
+    .info ol {
+      padding-left: 22px;
+    }
+
+    .related {
+      margin-top: 20px;
+    }
+
+    .related a {
+      display: inline-block;
+      margin: 6px 8px 6px 0;
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
       font-size: 14px;
     }
 
@@ -134,80 +206,217 @@
         width: 100%;
       }
     }
-  </style></head><body><div class="container">
-  <div class="card"><h1>JSON URL Decoder</h1>
+  </style>
+</head>
 
-<p class="description">
-  Decode URL encoded JSON back into readable JSON instantly in your browser.
-</p>
+<body>
 
-<label for="urlInput">URL Encoded JSON</label>
+<div class="container">
 
-<textarea
-  id="urlInput"
-  placeholder="Paste URL encoded JSON here..."
-></textarea>
+  <div class="card">
 
-<div class="buttons">
-  <button onclick="decodeJSON()">Decode JSON</button>
-  <button class="success" onclick="copyJSON()">Copy JSON</button>
-  <button onclick="downloadJSON()">Download JSON</button>
-  <button class="danger" onclick="clearAll()">Clear</button>
-</div>
+    <h1>JSON URL Decoder</h1>
 
-<div id="status" class="status"></div>
+    <p class="description">
+      Decode URL encoded JSON back into readable JSON instantly in your browser.
+      No data is uploaded to a server.
+    </p>
 
-<label for="jsonOutput">JSON Output</label>
 
-<textarea
-  id="jsonOutput"
-  readonly
-  placeholder="Decoded JSON will appear here..."
-></textarea>
+    <label for="urlInput">URL Encoded JSON</label>
 
-<div class="privacy">
-  🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
-  Nothing is uploaded to our server.
-</div>
+    <textarea
+      id="urlInput"
+      placeholder="Paste URL encoded JSON here..."
+    ></textarea>
 
-<a class="back" href="index.html">← Back to All Tools</a>
+
+    <div class="buttons">
+
+      <button onclick="decodeJSON()">
+        Decode JSON
+      </button>
+
+      <button class="success" onclick="copyJSON()">
+        Copy JSON
+      </button>
+
+      <button onclick="downloadJSON()">
+        Download JSON
+      </button>
+
+      <button class="danger" onclick="clearAll()">
+        Clear
+      </button>
+
+    </div>
+
+
+    <div id="status" class="status"></div>
+
+
+    <label for="jsonOutput">JSON Output</label>
+
+    <textarea
+      id="jsonOutput"
+      class="output"
+      readonly
+      placeholder="Decoded JSON will appear here..."
+    ></textarea>
+
+
+    <div class="privacy">
+      🔒 <strong>Privacy:</strong>
+      Your data is processed entirely in your browser.
+      Nothing is uploaded to our server.
+    </div>
 
   </div>
-</div><script>
+
+
+  <div class="card info">
+
+    <h2>How to Use JSON URL Decoder</h2>
+
+    <ol>
+      <li>Paste URL encoded JSON into the input box.</li>
+      <li>Click <strong>Decode JSON</strong>.</li>
+      <li>The encoded text will be decoded and formatted as readable JSON.</li>
+      <li>Copy the decoded JSON or download it as a JSON file.</li>
+    </ol>
+
+
+    <h2>What is URL Decoding?</h2>
+
+    <p>
+      URL decoding converts percent-encoded characters back into their
+      original form. For example, encoded spaces, punctuation and Unicode
+      characters can be restored to readable text.
+    </p>
+
+    <p>
+      This tool uses the browser's built-in
+      <strong>decodeURIComponent()</strong> function and then parses the
+      decoded text as JSON.
+    </p>
+
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Does this tool validate the decoded JSON?</h3>
+
+    <p>
+      Yes. After URL decoding, the result is parsed as JSON. If the decoded
+      text is not valid JSON, an error message is displayed.
+    </p>
+
+    <h3>Does it support Urdu and other Unicode characters?</h3>
+
+    <p>
+      Yes. URL-encoded Unicode characters are decoded by the browser and
+      can be displayed as readable text, including Urdu and other
+      non-Latin scripts.
+    </p>
+
+    <h3>Is my data uploaded to a server?</h3>
+
+    <p>
+      No. The decoding and JSON processing happen directly in your browser.
+      Your data is not uploaded to our server.
+    </p>
+
+    <h3>Can I download the decoded JSON?</h3>
+
+    <p>
+      Yes. After decoding, click <strong>Download JSON</strong> to save the
+      formatted result as a JSON file.
+    </p>
+
+  </div>
+
+
+  <div class="card related">
+
+    <h2>Related Tools</h2>
+
+    <a href="json-to-url-encoder.html">JSON to URL Encoder</a>
+    <a href="json-formatter.html">JSON Formatter</a>
+    <a href="json-to-base64.html">JSON to Base64</a>
+    <a href="base64-to-json.html">Base64 to JSON</a>
+    <a href="text-to-json.html">Text to JSON</a>
+    <a href="json-to-text.html">JSON to Text</a>
+
+  </div>
+
+
+  <a class="back" href="index.html">
+    ← Back to All Tools
+  </a>
+
+</div>
+
+
+<script>
+
 function showStatus(message, type = "success") {
-  const status = document.getElementById("status");
+
+  const status =
+    document.getElementById("status");
 
   status.textContent = message;
   status.style.display = "block";
 
   if (type === "error") {
+
     status.style.background = "#fee2e2";
     status.style.color = "#991b1b";
+
   } else {
+
     status.style.background = "#dcfce7";
     status.style.color = "#166534";
+
   }
 }
 
+
 function decodeJSON() {
-  const input = document.getElementById("urlInput").value.trim();
-  const output = document.getElementById("jsonOutput");
+
+  const input =
+    document.getElementById("urlInput").value.trim();
+
+  const output =
+    document.getElementById("jsonOutput");
 
   if (!input) {
-    showStatus("Please enter URL encoded JSON.", "error");
+
+    output.value = "";
+
+    showStatus(
+      "Please enter URL encoded JSON.",
+      "error"
+    );
+
     return;
   }
 
   try {
-    const decoded = decodeURIComponent(input);
 
-    const json = JSON.parse(decoded);
+    const decoded =
+      decodeURIComponent(input);
 
-    output.value = JSON.stringify(json, null, 2);
+    const json =
+      JSON.parse(decoded);
 
-    showStatus("URL encoded JSON decoded successfully.");
+    output.value =
+      JSON.stringify(json, null, 2);
+
+    showStatus(
+      "URL encoded JSON decoded successfully."
+    );
 
   } catch (error) {
+
     output.value = "";
 
     showStatus(
@@ -217,18 +426,32 @@ function decodeJSON() {
   }
 }
 
+
 async function copyJSON() {
-  const output = document.getElementById("jsonOutput").value;
+
+  const output =
+    document.getElementById("jsonOutput").value;
 
   if (!output) {
-    showStatus("Please decode JSON first.", "error");
+
+    showStatus(
+      "Please decode JSON first.",
+      "error"
+    );
+
     return;
   }
 
   try {
+
     await navigator.clipboard.writeText(output);
-    showStatus("JSON copied to clipboard.");
+
+    showStatus(
+      "JSON copied to clipboard."
+    );
+
   } catch (error) {
+
     showStatus(
       "Unable to copy. Please copy it manually.",
       "error"
@@ -236,37 +459,66 @@ async function copyJSON() {
   }
 }
 
+
 function downloadJSON() {
-  const output = document.getElementById("jsonOutput").value;
+
+  const output =
+    document.getElementById("jsonOutput").value;
 
   if (!output) {
-    showStatus("Please decode JSON first.", "error");
+
+    showStatus(
+      "Please decode JSON first.",
+      "error"
+    );
+
     return;
   }
 
-  const blob = new Blob([output], {
-    type: "application/json;charset=utf-8"
-  });
+  const blob =
+    new Blob(
+      [output],
+      {
+        type: "application/json;charset=utf-8"
+      }
+    );
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
 
   link.href = url;
   link.download = "decoded.json";
 
   document.body.appendChild(link);
+
   link.click();
+
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
 
-  showStatus("JSON file downloaded.");
+  showStatus(
+    "JSON file downloaded."
+  );
 }
 
+
 function clearAll() {
+
   document.getElementById("urlInput").value = "";
   document.getElementById("jsonOutput").value = "";
-  document.getElementById("status").style.display = "none";
+
+  const status =
+    document.getElementById("status");
+
+  status.style.display = "none";
+  status.textContent = "";
 }
-</script></body>
+
+</script>
+
+</body>
 </html>
