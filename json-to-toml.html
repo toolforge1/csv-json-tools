@@ -4,8 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JSON to TOML Converter</title>
-  <meta name="description" content="Convert JSON to TOML instantly in your browser. Free, fast and privacy-focused.">
+  <title>JSON to TOML Converter - Free Online Tool</title>
+
+  <meta name="description" content="Convert JSON data to readable TOML instantly in your browser. Free, fast and privacy-focused JSON to TOML converter.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
+
+  <meta property="og:title" content="JSON to TOML Converter - Free Online Tool">
+  <meta property="og:description" content="Convert JSON data to readable TOML instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON to TOML Converter",
+    "url": "https://toolforge1.github.io/csv-json-tools/json-to-toml.html",
+    "description": "Convert JSON data to readable TOML directly in your browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <style>
     * {
@@ -42,6 +69,7 @@
       text-align: center;
       color: #6b7280;
       margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     label {
@@ -104,6 +132,29 @@
       font-size: 14px;
     }
 
+    .info-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+    }
+
+    .info-section h2 {
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    .info-section h3 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .info-section p,
+    .info-section li {
+      line-height: 1.6;
+      color: #4b5563;
+    }
+
     .privacy {
       margin-top: 20px;
       padding: 12px;
@@ -111,6 +162,31 @@
       border-radius: 8px;
       color: #374151;
       font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .related-tools {
+      margin-top: 25px;
+      padding: 20px;
+      background: #eef6ff;
+      border-radius: 10px;
+    }
+
+    .related-tools h2 {
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    .related-tools a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .related-tools a:hover {
+      text-decoration: underline;
     }
 
     .back {
@@ -151,6 +227,7 @@
 
     <p class="description">
       Convert JSON data to readable TOML instantly in your browser.
+      Your data stays on your device.
     </p>
 
     <label for="jsonInput">JSON Input</label>
@@ -180,6 +257,65 @@
     <div class="privacy">
       🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
       Nothing is uploaded to our server.
+    </div>
+
+    <div class="info-section">
+
+      <h2>How to Use</h2>
+
+      <ol>
+        <li>Paste a valid JSON object into the input box.</li>
+        <li>Click <strong>Convert to TOML</strong>.</li>
+        <li>Review the generated TOML output.</li>
+        <li>Copy the TOML or download it as a .toml file.</li>
+      </ol>
+
+      <h2>FAQ</h2>
+
+      <h3>What JSON does this converter support?</h3>
+      <p>
+        The converter accepts a JSON object as the root value and converts
+        supported strings, numbers, booleans, arrays and nested objects into TOML.
+      </p>
+
+      <h3>Does the converter support nested objects?</h3>
+      <p>
+        Yes. Nested JSON objects are converted into TOML sections using
+        dotted section names where appropriate.
+      </p>
+
+      <h3>Does this tool support null values?</h3>
+      <p>
+        TOML does not have a native null value, so JSON null values are rejected
+        by this converter with an explanatory error message.
+      </p>
+
+      <h3>Is my JSON uploaded to a server?</h3>
+      <p>
+        No. The conversion is performed directly in your browser and your JSON
+        data is not uploaded to our server.
+      </p>
+
+      <h3>Can I download the TOML result?</h3>
+      <p>
+        Yes. Use the <strong>Download TOML</strong> button to save the converted
+        output as a TOML file.
+      </p>
+
+    </div>
+
+    <div class="related-tools">
+
+      <h2>Related Tools</h2>
+
+      <a href="toml-to-json.html">TOML to JSON</a>
+      <a href="json-to-yaml.html">JSON to YAML</a>
+      <a href="json-to-xml.html">JSON to XML</a>
+      <a href="json-to-csv.html">JSON to CSV</a>
+      <a href="json-to-tsv.html">JSON to TSV</a>
+      <a href="json-to-markdown.html">JSON to Markdown</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+
     </div>
 
     <a class="back" href="index.html">← Back to All Tools</a>
