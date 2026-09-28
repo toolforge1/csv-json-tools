@@ -4,9 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Convert JSON data to clean readable text instantly in your browser. Free and privacy-friendly JSON to Text converter.">
+<meta name="description" content="Convert JSON data to clean readable text instantly in your browser. Free, simple and privacy-friendly JSON to Text converter.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-text.html">
+
+<meta property="og:title" content="JSON to Text Converter - Free Online Tool">
+<meta property="og:description" content="Convert JSON data into clean, readable plain text instantly in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-text.html">
 
 <title>JSON to Text Converter - Free Online Tool</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to Text Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-text.html",
+  "description": "Convert JSON data into clean, readable plain text directly in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
     * {
@@ -88,12 +114,78 @@
         font-size: 14px;
     }
 
+    .info-section {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8fafc;
+        border-radius: 10px;
+    }
+
+    .info-section h2 {
+        margin-top: 0;
+        font-size: 21px;
+    }
+
+    .info-section h3 {
+        font-size: 17px;
+        margin-bottom: 6px;
+    }
+
+    .info-section p,
+    .info-section li {
+        line-height: 1.6;
+        color: #4b5563;
+    }
+
+    .related-tools {
+        margin-top: 25px;
+        padding: 20px;
+        background: #eef6ff;
+        border-radius: 10px;
+    }
+
+    .related-tools h2 {
+        margin-top: 0;
+        font-size: 21px;
+    }
+
+    .related-tools a {
+        display: inline-block;
+        margin: 5px 8px 5px 0;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .related-tools a:hover {
+        text-decoration: underline;
+    }
+
     .back {
         display: inline-block;
         margin-top: 20px;
         text-decoration: none;
         color: #333;
         font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 15px auto;
+            padding: 12px;
+        }
+
+        .card {
+            padding: 18px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        button {
+            width: 100%;
+        }
     }
 </style>
 </head>
@@ -124,7 +216,56 @@
         <textarea id="output" placeholder="Text output will appear here..." readonly></textarea>
 
         <div class="privacy">
-            🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
+            🔒 <strong>Privacy-friendly:</strong> Your data is processed locally in your browser and is not uploaded to a server.
+        </div>
+
+        <div class="info-section">
+            <h2>How to Use</h2>
+
+            <ol>
+                <li>Paste valid JSON data into the input box.</li>
+                <li>Click <strong>Convert to Text</strong>.</li>
+                <li>Review the readable plain-text output.</li>
+                <li>Copy the result or download it as a TXT file.</li>
+            </ol>
+
+            <h2>FAQ</h2>
+
+            <h3>What does this JSON to Text converter do?</h3>
+            <p>
+                It converts structured JSON data into clean, readable plain text
+                while preserving the main keys, values and nested structure.
+            </p>
+
+            <h3>Does the converter support nested JSON?</h3>
+            <p>
+                Yes. Nested objects and arrays are formatted with indentation and
+                list markers to make the resulting text easier to read.
+            </p>
+
+            <h3>Is my JSON uploaded to a server?</h3>
+            <p>
+                No. The conversion is performed directly in your browser, so your
+                JSON data is not uploaded to our server.
+            </p>
+
+            <h3>Can I download the converted text?</h3>
+            <p>
+                Yes. Use the <strong>Download TXT</strong> button to save the
+                converted plain text as a .txt file.
+            </p>
+        </div>
+
+        <div class="related-tools">
+            <h2>Related Tools</h2>
+
+            <a href="json-formatter.html">JSON Formatter</a>
+            <a href="json-to-markdown.html">JSON to Markdown</a>
+            <a href="json-to-html.html">JSON to HTML</a>
+            <a href="json-to-csv.html">JSON to CSV</a>
+            <a href="json-to-jsonl.html">JSON to JSONL</a>
+            <a href="json-to-yaml.html">JSON to YAML</a>
+            <a href="json-to-xml.html">JSON to XML</a>
         </div>
 
         <a class="back" href="index.html">← Back to All Tools</a>
