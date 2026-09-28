@@ -3,8 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Convert TSV data to CSV format instantly in your browser. Free, fast and privacy-friendly.">
+
+<meta name="description" content="Convert TSV data to CSV format instantly in your browser. Free, fast and privacy-friendly TSV to CSV converter.">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/tsv-to-csv.html">
+
+<meta property="og:title" content="TSV to CSV Converter - Free Online Tool">
+<meta property="og:description" content="Convert tab-separated values (TSV) into CSV format instantly in your browser. Free, fast and privacy-friendly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/tsv-to-csv.html">
+
 <title>TSV to CSV Converter - Free Online Tool</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TSV to CSV Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/tsv-to-csv.html",
+  "description": "Convert TSV data to CSV format instantly in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
     * {
@@ -34,6 +61,16 @@
     h1 {
         margin-top: 0;
         font-size: 28px;
+    }
+
+    h2 {
+        margin-top: 30px;
+        font-size: 21px;
+    }
+
+    h3 {
+        font-size: 17px;
+        margin-bottom: 5px;
     }
 
     p {
@@ -86,12 +123,54 @@
         font-size: 14px;
     }
 
+    .info-section {
+        margin-top: 30px;
+    }
+
+    .info-section ul {
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .faq {
+        margin-top: 18px;
+    }
+
+    .related {
+        margin-top: 25px;
+        line-height: 2;
+    }
+
+    .related a {
+        color: #222;
+        font-weight: bold;
+    }
+
     .back {
         display: inline-block;
         margin-top: 20px;
         text-decoration: none;
         color: #333;
         font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 15px auto;
+            padding: 12px;
+        }
+
+        .card {
+            padding: 18px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        button {
+            width: 100%;
+        }
     }
 </style>
 </head>
@@ -108,7 +187,12 @@
             Your data stays on your device.
         </p>
 
-        <textarea id="input" placeholder="Paste TSV data here..."></textarea>
+        <textarea id="input" placeholder="Paste TSV data here...
+
+Example:
+name	age	city
+Ali	28	Karachi
+Emma	34	London"></textarea>
 
         <div class="buttons">
             <button onclick="convertTSV()">Convert to CSV</button>
@@ -125,6 +209,96 @@
             🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
         </div>
 
+        <section class="info-section">
+            <h2>How to Use TSV to CSV Converter</h2>
+
+            <p>
+                TSV files use tab characters to separate columns, while CSV files
+                normally use commas. This tool converts TSV rows into properly
+                formatted CSV data.
+            </p>
+
+            <ul>
+                <li>Paste your TSV data into the input box.</li>
+                <li>Make sure columns are separated by tab characters.</li>
+                <li>Click <strong>Convert to CSV</strong>.</li>
+                <li>Copy the CSV result or download it as a CSV file.</li>
+            </ul>
+
+            <p>
+                Example TSV:
+            </p>
+
+            <p>
+                name&nbsp;&nbsp;&nbsp;age&nbsp;&nbsp;&nbsp;city<br>
+                Ali&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;Karachi<br>
+                Emma&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;London
+            </p>
+
+            <p>
+                The converter also handles CSV escaping when a value contains
+                commas, quotation marks or line breaks.
+            </p>
+        </section>
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <h3>What is TSV?</h3>
+                <p>
+                    TSV stands for Tab-Separated Values. It is a text format in
+                    which columns are separated by tab characters.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3>What is CSV?</h3>
+                <p>
+                    CSV stands for Comma-Separated Values. It is a common format
+                    for storing tabular data using commas between fields.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3>Does this tool upload my data?</h3>
+                <p>
+                    No. The conversion is performed locally in your browser and
+                    your TSV data is not uploaded to a server by this tool.
+                </p>
+            </div>
+
+            <div class="faq">
+                <h3>Can I download the converted CSV?</h3>
+                <p>
+                    Yes. After conversion, click the Download CSV button to save
+                    the result as a CSV file.
+                </p>
+            </div>
+        </section>
+
+        <section class="related">
+            <h2>Related Tools</h2>
+
+            <p>
+                <a href="tsv-to-json.html">TSV to JSON Converter</a><br>
+                <a href="csv-to-tsv.html">CSV to TSV Converter</a><br>
+                <a href="csv-to-json.html">CSV to JSON Converter</a><br>
+                <a href="json-to-csv.html">JSON to CSV Converter</a><br>
+                <a href="csv-to-html.html">CSV to HTML Converter</a><br>
+                <a href="csv-to-markdown.html">CSV to Markdown Converter</a>
+            </p>
+        </section>
+
+        <section class="info-section">
+            <h2>Privacy</h2>
+
+            <p>
+                This TSV to CSV Converter processes your data locally in your
+                browser. Your input is not uploaded to a server by this tool.
+            </p>
+        </section>
+
         <a class="back" href="index.html">← Back to All Tools</a>
 
     </div>
@@ -134,7 +308,10 @@
 let csvResult = "";
 
 function parseTSV(text) {
-    const lines = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
+    const lines = text
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n")
+        .split("\n");
 
     while (lines.length && lines[lines.length - 1].trim() === "") {
         lines.pop();
@@ -244,7 +421,10 @@ function downloadCSV() {
 
     link.href = url;
     link.download = "converted.csv";
+
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
 
