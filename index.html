@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="google-site-verification" content="TceL4f4jlXE3dUB2_ktnZEPng8o0MgdfGnTJ3oaZuDg" />
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta name="google-site-verification" content="TceL4f4jlXE3dUB2_ktnZEPng8o0MgdfGnTJ3oaZuDg">
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,6 +30,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/">
 
+  <!-- WebSite Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,6 +41,7 @@
   }
   </script>
 
+  <!-- Tool List Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,119 +82,626 @@
   </script>
 
   <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f8faff;
+      --text: #101828;
+      --muted: #667085;
+      --border: #e4e7ec;
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --header: #0b1020;
+      --header-soft: #151c33;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(16, 24, 40, 0.08);
+      --shadow-hover: 0 20px 45px rgba(79, 70, 229, 0.16);
+    }
+
+    body.dark {
+      --bg: #090d18;
+      --surface: #111827;
+      --surface-soft: #151e30;
+      --text: #f8fafc;
+      --muted: #a8b1c2;
+      --border: #263149;
+      --header: #050914;
+      --header-soft: #0d1426;
+      --shadow: 0 15px 40px rgba(0,0,0,0.25);
+      --shadow-hover: 0 20px 45px rgba(79,70,229,0.2);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
     }
 
-    header {
-      background: #111827;
+    a {
+      color: inherit;
+    }
+
+    /* TOP NAV */
+
+    .topbar {
+      background: rgba(11,16,32,0.96);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       color: white;
-      text-align: center;
-      padding: 45px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
     }
 
-    header h1 {
-      margin: 0 0 12px;
-      font-size: 34px;
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 68px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    header p {
-      margin: 0 auto;
-      max-width: 750px;
+    .brand {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      box-shadow: 0 8px 25px rgba(99,102,241,0.35);
+      font-size: 18px;
+    }
+
+    .brand-name {
       font-size: 17px;
-      color: #d1d5db;
     }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(99,102,241,0.34), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(139,92,246,0.28), transparent 28%),
+        linear-gradient(135deg, #080d1c 0%, #111936 55%, #17133a 100%);
+      color: white;
+      padding: 85px 20px 92px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 50%;
+      top: -270px;
+      right: -160px;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.13);
+      color: #dbe4ff;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 10px rgba(52,211,153,0.8);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #a5b4fc, #c4b5fd, #f0abfc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 25px auto 0;
+      font-size: 19px;
+      line-height: 1.7;
+      color: #c5cee0;
+    }
+
+    .hero-stats {
+      margin: 35px auto 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-stat {
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      font-size: 13px;
+      color: #dce3f3;
+      font-weight: 700;
+    }
+
+    /* MAIN */
 
     main {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: auto;
-      padding: 30px 20px;
+      padding: 55px 22px 70px;
     }
+
+    /* SEARCH */
+
+    .search-wrap {
+      max-width: 760px;
+      margin: -85px auto 55px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 7px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .search-icon {
+      padding: 0 12px;
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    #toolSearch {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 16px 8px;
+      font-size: 16px;
+    }
+
+    #toolSearch::placeholder {
+      color: var(--muted);
+    }
+
+    .search-count {
+      white-space: nowrap;
+      padding: 9px 13px;
+      background: var(--surface-soft);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    /* SECTION */
 
     section {
-      margin-bottom: 35px;
+      margin-bottom: 58px;
     }
 
-    h2 {
-      margin-bottom: 15px;
-      color: #111827;
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
     }
+
+    .section-title {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.8px;
+      font-weight: 850;
+    }
+
+    .section-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-count {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      background: rgba(79,70,229,0.08);
+      padding: 7px 11px;
+      border-radius: 999px;
+    }
+
+    /* TOOLS */
 
     .tools {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
     }
 
     .tool {
+      position: relative;
       display: block;
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 18px;
+      min-height: 150px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 23px;
       text-decoration: none;
-      color: #111827;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      color: var(--text);
+      overflow: hidden;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+    }
+
+    .tool::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #6366f1, #8b5cf6);
+      opacity: 0;
+      transition: opacity 0.22s ease;
     }
 
     .tool:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(99,102,241,0.35);
+    }
+
+    .tool:hover::before {
+      opacity: 1;
+    }
+
+    .tool-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 13px;
+    }
+
+    .format {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 7px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      color: var(--muted);
+      font-size: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .tool:hover .arrow {
+      transform: translateX(4px);
+      color: var(--primary);
     }
 
     .tool strong {
       display: block;
-      margin-bottom: 5px;
-      font-size: 16px;
+      margin-bottom: 7px;
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: -0.4px;
+      font-weight: 850;
     }
 
     .tool span {
+      display: block;
       font-size: 14px;
-      color: #6b7280;
+      color: var(--muted);
+      line-height: 1.55;
     }
 
-    .info {
-      background: white;
-      border-radius: 10px;
-      padding: 22px;
-      border: 1px solid #e5e7eb;
+    /* FEATURED */
+
+    .featured {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(99,102,241,0.18), transparent 35%),
+        linear-gradient(135deg, var(--surface), var(--surface-soft));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 30px;
+      margin-bottom: 58px;
+      box-shadow: var(--shadow);
     }
 
-    .info h3 {
+    .featured h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .featured p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .featured-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 20px;
     }
 
-    footer {
+    .featured-links a {
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-weight: 750;
+      font-size: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .featured-links a:hover {
+      transform: translateY(-2px);
+    }
+
+    /* INFO */
+
+    .info {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .info h3 {
+      margin: 28px 0 8px;
+      font-size: 19px;
+    }
+
+    .info h3:first-child {
+      margin-top: 0;
+    }
+
+    .info p {
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .info a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .info a:hover {
+      text-decoration: underline;
+    }
+
+    /* NO RESULTS */
+
+    #noResults {
+      display: none;
       text-align: center;
-      padding: 30px 20px;
-      background: #111827;
-      color: #d1d5db;
-      font-size: 14px;
+      padding: 45px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      color: var(--muted);
+    }
+
+    #noResults strong {
+      display: block;
+      color: var(--text);
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--header);
+      color: #aeb8cb;
+      padding: 45px 20px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      color: white;
+      font-size: 18px;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      margin: 6px 0;
+      font-size: 13px;
     }
 
     footer a {
+      color: #dbe3f2;
+      text-decoration: none;
+    }
+
+    footer a:hover {
       color: white;
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        padding: 70px 20px 85px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
     }
 
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
+      .nav {
+        min-height: 62px;
+        padding: 0 15px;
       }
 
-      header p {
-        font-size: 15px;
+      .brand-name {
+        font-size: 14px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .hero {
+        padding: 58px 18px 80px;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-stat {
+        font-size: 11px;
       }
 
       main {
-        padding: 20px 15px;
+        padding: 35px 15px 55px;
+      }
+
+      .search-wrap {
+        margin-top: -60px;
+        margin-bottom: 42px;
+      }
+
+      .search-count {
+        display: none;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .tool {
+        min-height: 135px;
+        padding: 20px;
+      }
+
+      .tool strong {
+        font-size: 19px;
+      }
+
+      .section-heading {
+        align-items: start;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .section-count {
+        font-size: 11px;
+      }
+
+      .featured,
+      .info {
+        padding: 23px;
       }
     }
   </style>
@@ -199,240 +709,105 @@
 
 <body>
 
-<header>
-  <h1>CSV & JSON Developer Tools</h1>
-  <p>
-    Free online tools for converting, formatting and working with CSV, JSON,
-    JSONL, XML, YAML, TOML, TSV, Base64 and text data.
-  </p>
-</header>
-
-<main>
-
-  <section>
-    <h2>CSV & Data Conversion Tools</h2>
-
-    <div class="tools">
-      <a class="tool" href="csv-to-html.html">
-        <strong>CSV to HTML</strong>
-        <span>Convert CSV data into an HTML table.</span>
+  <!-- NAVIGATION -->
+  <div class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">{ }</span>
+        <span class="brand-name">CSV & JSON Developer Tools</span>
       </a>
 
-      <a class="tool" href="csv-to-json.html">
-        <strong>CSV to JSON</strong>
-        <span>Convert CSV data into JSON format.</span>
-      </a>
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+          ☾
+        </button>
+      </div>
+    </nav>
+  </div>
 
-      <a class="tool" href="csv-to-jsonl.html">
-        <strong>CSV to JSONL</strong>
-        <span>Convert CSV rows into JSON Lines.</span>
-      </a>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
 
-      <a class="tool" href="csv-to-markdown.html">
-        <strong>CSV to Markdown</strong>
-        <span>Convert CSV data into a Markdown table.</span>
-      </a>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Free Browser-Based Developer Tools
+      </div>
 
-      <a class="tool" href="csv-to-sql.html">
-        <strong>CSV to SQL</strong>
-        <span>Generate SQL INSERT statements from CSV.</span>
-      </a>
-
-      <a class="tool" href="csv-to-tsv.html">
-        <strong>CSV to TSV</strong>
-        <span>Convert comma-separated data to TSV.</span>
-      </a>
-
-      <a class="tool" href="tsv-to-csv.html">
-        <strong>TSV to CSV</strong>
-        <span>Convert tab-separated data to CSV.</span>
-      </a>
-
-      <a class="tool" href="tsv-to-json.html">
-        <strong>TSV to JSON</strong>
-        <span>Convert TSV data into JSON.</span>
-      </a>
-
-      <a class="tool" href="json-to-csv.html">
-        <strong>JSON to CSV</strong>
-        <span>Convert JSON arrays into CSV.</span>
-      </a>
-
-      <a class="tool" href="json-to-tsv.html">
-        <strong>JSON to TSV</strong>
-        <span>Convert JSON data into TSV.</span>
-      </a>
-
-      <a class="tool" href="json-to-html.html">
-        <strong>JSON to HTML</strong>
-        <span>Convert JSON data into an HTML table.</span>
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <h2>JSON Tools</h2>
-
-    <div class="tools">
-      <a class="tool" href="json-formatter.html">
-        <strong>JSON Formatter</strong>
-        <span>Format and validate JSON data.</span>
-      </a>
-
-      <a class="tool" href="json-diff-compare.html">
-        <strong>JSON Diff & Compare</strong>
-        <span>Compare two JSON documents and find changes.</span>
-      </a>
-
-      <a class="tool" href="json-to-jsonl.html">
-        <strong>JSON to JSONL</strong>
-        <span>Convert JSON arrays into JSON Lines.</span>
-      </a>
-
-      <a class="tool" href="jsonl-to-json.html">
-        <strong>JSONL to JSON</strong>
-        <span>Convert JSON Lines into a JSON array.</span>
-      </a>
-
-      <a class="tool" href="json-to-markdown.html">
-        <strong>JSON to Markdown</strong>
-        <span>Convert JSON data into Markdown.</span>
-      </a>
-
-      <a class="tool" href="json-to-sql.html">
-        <strong>JSON to SQL</strong>
-        <span>Generate SQL INSERT statements from JSON.</span>
-      </a>
-
-      <a class="tool" href="json-to-text.html">
-        <strong>JSON to Text</strong>
-        <span>Convert JSON data into readable text.</span>
-      </a>
-
-      <a class="tool" href="json-to-toml.html">
-        <strong>JSON to TOML</strong>
-        <span>Convert JSON data into TOML format.</span>
-      </a>
-
-      <a class="tool" href="toml-to-json.html">
-        <strong>TOML to JSON</strong>
-        <span>Convert TOML data into JSON.</span>
-      </a>
-
-      <a class="tool" href="json-to-xml.html">
-        <strong>JSON to XML</strong>
-        <span>Convert JSON data into XML.</span>
-      </a>
-
-      <a class="tool" href="xml-to-json.html">
-        <strong>XML to JSON</strong>
-        <span>Convert XML data into JSON.</span>
-      </a>
-
-      <a class="tool" href="json-to-yaml.html">
-        <strong>JSON to YAML</strong>
-        <span>Convert JSON data into YAML.</span>
-      </a>
-
-      <a class="tool" href="yaml-to-json.html">
-        <strong>YAML to JSON</strong>
-        <span>Convert YAML data into JSON.</span>
-      </a>
-
-      <a class="tool" href="json-to-base64.html">
-        <strong>JSON to Base64</strong>
-        <span>Encode JSON data as Base64.</span>
-      </a>
-
-      <a class="tool" href="base64-to-json.html">
-        <strong>Base64 to JSON</strong>
-        <span>Decode Base64 data into JSON.</span>
-      </a>
-
-      <a class="tool" href="json-to-url-encoder.html">
-        <strong>JSON URL Encoder</strong>
-        <span>Encode JSON data for use in URLs.</span>
-      </a>
-
-      <a class="tool" href="json-url-decoder.html">
-        <strong>JSON URL Decoder</strong>
-        <span>Decode URL-encoded JSON data.</span>
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <h2>Text Tools</h2>
-
-    <div class="tools">
-      <a class="tool" href="text-to-json.html">
-        <strong>Text to JSON</strong>
-        <span>Convert structured text into JSON.</span>
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <h2>How to Use These Tools</h2>
-
-    <div class="info">
-      <p>
-        Choose a tool from the list above, enter or paste your data into the
-        input field, and use the conversion or formatting button to generate
-        the result.
-      </p>
+      <h1>
+        Powerful Tools for<br>
+        <span>CSV, JSON & Data</span>
+      </h1>
 
       <p>
-        These tools run directly in your browser and are designed for quick
-        developer and data-conversion tasks.
+        Convert, format, transform and work with developer data
+        quickly and privately — directly in your browser.
       </p>
 
-      <h3>Popular Related Tools</h3>
+      <div class="hero-stats">
+        <div class="hero-stat">29 Free Tools</div>
+        <div class="hero-stat">No Installation</div>
+        <div class="hero-stat">Browser-Based</div>
+        <div class="hero-stat">No Account Required</div>
+      </div>
 
-      <p>
-        For JSON work, you can use
-        <a href="json-formatter.html">JSON Formatter</a>,
-        <a href="json-to-csv.html">JSON to CSV</a>,
-        <a href="json-to-yaml.html">JSON to YAML</a>,
-        <a href="json-to-xml.html">JSON to XML</a>,
-        and
-        <a href="json-to-base64.html">JSON to Base64</a>.
-      </p>
-
-      <h3>FAQ</h3>
-
-      <p><strong>Are these tools free?</strong><br>
-        Yes. The tools are provided as free online developer utilities.
-      </p>
-
-      <p><strong>Do I need to install software?</strong><br>
-        No. The tools work directly in a modern web browser.
-      </p>
-
-      <p><strong>Is my data uploaded to a server?</strong><br>
-        The conversion tools are designed to process data in your browser.
-        Avoid entering sensitive information into any online tool unless you
-        have verified its privacy behavior.
-      </p>
-
-      <h3>Privacy</h3>
-
-      <p>
-        These tools are designed for browser-based data conversion.
-        No account is required to use the tools.
-      </p>
     </div>
-  </section>
+  </header>
 
-</main>
+  <main>
 
-<footer>
-  <p>© 2026 CSV & JSON Developer Tools</p>
-  <p>
-    <a href="index.html">Home</a> ·
-    <a href="sitemap.xml">Sitemap</a>
-  </p>
-</footer>
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
 
-</body>
-</html>
+        <input
+          type="search"
+          id="toolSearch"
+          placeholder="Search tools... e.g. CSV to JSON"
+          aria-label="Search developer tools"
+        >
+
+        <span class="search-count" id="searchCount">
+          29 tools
+        </span>
+      </div>
+    </div>
+
+    <div id="noResults">
+      <strong>No tools found</strong>
+      Try searching for another tool or format.
+    </div>
+
+    <!-- CSV TOOLS -->
+    <section class="tool-section">
+
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">CSV & Data Conversion</h2>
+          <p class="section-subtitle">
+            Convert CSV, TSV and structured data into popular formats.
+          </p>
+        </div>
+
+        <div class="section-count">11 tools</div>
+      </div>
+
+      <div class="tools">
+
+        <a class="tool" href="csv-to-html.html" data-search="csv to html html table csv">
+          <div class="tool-top">
+            <span class="format">CSV → HTML</span>
+            <span class="arrow">→</span>
+          </div>
+          <strong>CSV to HTML</strong>
+          <span>Convert CSV data into a clean HTML table.</span>
+        </a>
+
+        <a class="tool" href="csv-to-json.html" data-search="csv to json csv json converter">
+          <div class="tool-top">
+            <span class="format">CSV → JSON</span>
+            <span class="arrow">→</span>
+          </div>
+          <strong>CSV to JSON</strong>
+          <span>Convert CSV data into structured JSON format.</spa
