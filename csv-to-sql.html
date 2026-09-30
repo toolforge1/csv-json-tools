@@ -3,221 +3,738 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <title>CSV to SQL Converter - Free Online CSV to SQL Tool</title>
 
-  <title>CSV to SQL Converter - Free Online Tool</title>
+  <meta name="description" content="Convert CSV data to SQL INSERT statements online for free. Generate SQL from CSV directly in your browser with a custom table name. Fast, simple and privacy-focused.">
 
-  <meta name="description" content="Convert CSV data to SQL INSERT statements online for free. Generate SQL from CSV instantly in your browser. Fast, simple and privacy-focused.">
+  <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-sql.html">
 
-  <meta property="og:title" content="CSV to SQL Converter - Free Online Tool">
-  <meta property="og:description" content="Convert CSV data to SQL INSERT statements instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:title" content="CSV to SQL Converter - Free Online CSV to SQL Tool">
+  <meta property="og:description" content="Convert CSV data into SQL INSERT statements directly in your browser. Free, fast and privacy-focused.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-sql.html">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CSV to SQL Converter",
+    "url": "https://toolforge1.github.io/csv-json-tools/csv-to-sql.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "A free browser-based tool for converting CSV data into SQL INSERT statements."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does this CSV to SQL converter generate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It generates SQL INSERT INTO statements using the first CSV row as column names."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I choose the SQL table name?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enter your desired table name before converting the CSV data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my CSV data uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion is performed directly in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to empty CSV values?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Empty CSV values are converted to SQL NULL."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --bg: #06111f;
+      --bg-soft: #0a1728;
+      --card: rgba(13, 29, 49, 0.88);
+      --card-border: rgba(56, 189, 248, 0.14);
+      --blue: #38bdf8;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --red: #fb7185;
+      --text: #e5f2ff;
+      --muted: #91a4b8;
+      --input: #071522;
+      --white: #ffffff;
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      min-height: 100vh;
+      color: var(--text);
+      line-height: 1.7;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(14, 116, 144, 0.18),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at top right,
+          rgba(37, 99, 235, 0.16),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #06111f 0%,
+          #071523 48%,
+          #040c16 100%
+        );
     }
 
-    .container {
-      width: 92%;
-      max-width: 1000px;
-      margin: auto;
-      padding: 30px 0;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          rgba(255,255,255,0.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.018) 1px,
+          transparent 1px
+        );
+      background-size: 42px 42px;
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 75%
+      );
+      z-index: -1;
     }
 
-    .tool {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    a {
+      color: inherit;
     }
 
-    h1 {
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: rgba(4, 13, 24, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--cyan)
+      );
+      color: #03111c;
+      font-weight: 900;
+      box-shadow:
+        0 8px 28px rgba(34, 211, 238, 0.2);
+    }
+
+    .brand-text {
+      font-size: 15px;
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .header-link:hover {
+      color: var(--blue);
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 72px 22px 60px;
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 0 auto 42px;
       text-align: center;
-      margin: 0 0 10px;
     }
 
-    .description {
-      text-align: center;
-      color: #6b7280;
-      line-height: 1.6;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 999px;
+      background: rgba(14, 116, 144, 0.10);
+      color: #8bdcff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(38px, 6vw, 66px);
+      line-height: 1.05;
+      letter-spacing: -2.8px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      background:
+        linear-gradient(
+          90deg,
+          var(--blue),
+          var(--cyan)
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 730px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .trust-pill {
+      padding: 8px 13px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.035);
+      color: #b8c8d8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(13, 29, 49, 0.96),
+          rgba(7, 20, 34, 0.94)
+        );
+      box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255,255,255,0.035);
+    }
+
+    .tool-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      top: -170px;
+      right: -100px;
+      border-radius: 50%;
+      background: rgba(34, 211, 238, 0.10);
+      filter: blur(55px);
+      pointer-events: none;
+    }
+
+    .tool-heading {
+      position: relative;
       margin-bottom: 25px;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 15px 0 8px;
+    .tool-heading h2 {
+      margin: 0 0 7px;
+      font-size: 25px;
+      letter-spacing: -0.6px;
     }
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
+    .tool-heading p {
+      margin: 0;
+      color: var(--muted);
       font-size: 14px;
     }
 
-    input {
-      font-family: Arial, sans-serif;
+    .field-label {
+      display: block;
+      margin: 18px 0 9px;
+      color: #d8e7f5;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      outline: none;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 14px;
+      background: var(--input);
+      color: #dceeff;
+      transition: 0.2s ease;
+    }
+
+    input[type="text"] {
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input[type="text"]::placeholder,
+    textarea::placeholder {
+      color: #53677d;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow:
+        0 0 0 4px rgba(56, 189, 248, 0.07);
     }
 
     textarea {
-      min-height: 280px;
+      min-height: 250px;
+      padding: 16px;
       resize: vertical;
-      font-family: monospace;
-      line-height: 1.5;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.7;
     }
 
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #2563eb;
+    #sqlOutput {
+      min-height: 300px;
     }
 
     .buttons {
-      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0 20px;
     }
 
     button {
-      padding: 11px 17px;
-      margin: 5px 5px 5px 0;
-      border: none;
-      border-radius: 7px;
+      border: 0;
+      border-radius: 11px;
+      padding: 12px 17px;
       cursor: pointer;
-      font-size: 14px;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+      background:
+        linear-gradient(
+          135deg,
+          #0284c7,
+          #0891b2
+        );
+      box-shadow:
+        0 8px 24px rgba(2, 132, 199, 0.18);
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
     }
 
-    .primary {
-      background: #2563eb;
-      color: white;
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 28px rgba(2, 132, 199, 0.27);
     }
 
-    .primary:hover {
-      background: #1d4ed8;
+    button:active {
+      transform: translateY(0);
     }
 
-    .secondary {
-      background: #e5e7eb;
-      color: #222;
+    button.secondary {
+      color: #d8e7f5;
+      background:
+        linear-gradient(
+          135deg,
+          #334155,
+          #475569
+        );
+      box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.20);
     }
 
-    .success {
-      background: #16a34a;
-      color: white;
+    button.success {
+      background:
+        linear-gradient(
+          135deg,
+          #059669,
+          #10b981
+        );
+      box-shadow:
+        0 8px 24px rgba(16, 185, 129, 0.16);
     }
 
     .status {
       display: none;
-      margin: 15px 0;
-      padding: 12px;
-      border-radius: 8px;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .valid {
-      background: #f0fdf4;
-      color: #166534;
-    }
-
-    .invalid {
-      background: #fef2f2;
-      color: #991b1b;
-    }
-
-    .info-card {
-      margin-top: 20px;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    }
-
-    .info-card h2 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-
-    .info-card p,
-    .info-card li {
-      line-height: 1.7;
-    }
-
-    .info-card ol {
-      padding-left: 22px;
-    }
-
-    .related-tools a {
-      display: inline-block;
-      margin: 5px 8px 5px 0;
-      padding: 8px 12px;
-      background: #eef2ff;
-      color: #2563eb;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .related-tools a:hover {
-      opacity: 0.85;
+      margin: 12px 0 17px;
+      padding: 11px 14px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
     }
 
     .privacy {
-      margin-top: 25px;
-      padding: 15px;
-      background: #f0fdf4;
-      color: #166534;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.5;
+      margin-top: 19px;
+      padding: 14px 16px;
+      border: 1px solid rgba(52, 211, 153, 0.14);
+      border-radius: 13px;
+      background: rgba(52, 211, 153, 0.055);
+      color: #a9c8ba;
+      font-size: 13px;
     }
 
-    .back {
-      display: inline-block;
+    .privacy strong {
+      color: #7ee7bd;
+    }
+
+    .back-link {
+      display: inline-flex;
       margin-top: 20px;
-      color: #2563eb;
+      color: #8bdcff;
       text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      color: #c3f1ff;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .content-card {
+      padding: 27px;
+      border: 1px solid rgba(148, 163, 184, 0.10);
+      border-radius: 20px;
+      background: rgba(9, 23, 39, 0.78);
+      box-shadow:
+        0 18px 55px rgba(0,0,0,0.16);
+    }
+
+    .content-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .content-card h2 {
+      margin: 0 0 13px;
+      color: #f0f8ff;
+      font-size: 23px;
+      line-height: 1.3;
+      letter-spacing: -0.5px;
+    }
+
+    .content-card h3 {
+      margin: 23px 0 8px;
+      color: #dff5ff;
+      font-size: 17px;
+    }
+
+    .content-card p {
+      margin: 10px 0;
+      color: #a9bacb;
       font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .content-card ul,
+    .content-card ol {
+      padding-left: 21px;
+      color: #a9bacb;
+      font-size: 14px;
+    }
+
+    .content-card li {
+      margin: 8px 0;
+      line-height: 1.75;
+    }
+
+    .example-box {
+      margin-top: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      border-radius: 14px;
+      background: #06121f;
+    }
+
+    .example-title {
+      padding: 10px 14px;
+      background: rgba(56, 189, 248, 0.055);
+      color: #8bdcff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .example-box pre {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      color: #c7eaff;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .faq-item {
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .faq-item:first-child {
+      padding-top: 4px;
+    }
+
+    .faq-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .faq-question {
+      margin-bottom: 5px;
+      color: #e8f7ff;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 11px;
+      margin-top: 18px;
+    }
+
+    .related-grid a {
+      display: block;
+      padding: 13px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.045);
+      color: #bdeeff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .related-grid a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.35);
+      background: rgba(56, 189, 248, 0.09);
+    }
+
+    .site-footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 22px 45px;
+      text-align: center;
+      color: #64788c;
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 17px;
+      margin-bottom: 13px;
+    }
+
+    .footer-links a {
+      color: #8195a8;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+
+    code {
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.08);
+      color: #9de4ff;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 820px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-card.full {
+        grid-column: auto;
+      }
+
+      .related-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 600px) {
-      .container {
-        width: 94%;
-        padding: 15px 0;
+      .header-inner {
+        padding: 13px 15px;
       }
 
-      .tool {
-        padding: 18px;
+      .brand-text {
+        font-size: 13px;
       }
 
-      h1 {
-        font-size: 27px;
+      .header-link {
+        font-size: 12px;
+      }
+
+      .page {
+        padding: 48px 13px 40px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+        letter-spacing: -1.8px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .tool-card,
+      .content-card {
+        padding: 20px;
+        border-radius: 18px;
+      }
+
+      .tool-heading h2 {
+        font-size: 21px;
+      }
+
+      textarea {
+        min-height: 220px;
       }
 
       button {
         width: 100%;
-        margin-right: 0;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -225,399 +742,964 @@
 
 <body>
 
-  <div class="container">
+<header class="site-header">
+  <div class="header-inner">
 
-    <div class="tool">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">&lt;/&gt;</span>
+      <span class="brand-text">
+        CSV &amp; JSON Developer Tools
+      </span>
+    </a>
 
-      <h1>CSV to SQL Converter</h1>
+    <a class="header-link" href="index.html">
+      All Developer Tools →
+    </a>
 
-      <p class="description">
-        Convert CSV data into SQL INSERT statements instantly in your browser.
-        Your data stays on your device.
+  </div>
+</header>
+
+
+<main class="page">
+
+  <section class="hero">
+
+    <div class="hero-badge">
+      ⚡ Free Developer Tool
+    </div>
+
+    <h1>
+      Convert CSV to <span>SQL</span>
+    </h1>
+
+    <p class="hero-description">
+      Convert CSV data into SQL INSERT statements directly in your browser.
+      Choose a table name, generate ready-to-use SQL, then copy or download
+      the result for your database workflow.
+    </p>
+
+    <div class="trust-row">
+      <span class="trust-pill">✓ Free to use</span>
+      <span class="trust-pill">✓ No signup</span>
+      <span class="trust-pill">✓ SQL INSERT statements</span>
+      <span class="trust-pill">✓ Browser-based</span>
+      <span class="trust-pill">✓ Privacy-focused</span>
+    </div>
+
+  </section>
+
+
+  <section class="tool-card">
+
+    <div class="tool-heading">
+      <h2>CSV to SQL Converter</h2>
+
+      <p>
+        Enter a SQL table name and paste your CSV data to generate
+        SQL INSERT statements.
       </p>
+    </div>
 
-      <label for="tableName">SQL Table Name</label>
 
-      <input
-        type="text"
-        id="tableName"
-        value="users"
-        placeholder="Enter table name, e.g. users"
-      >
+    <label class="field-label" for="tableName">
+      SQL Table Name
+    </label>
 
-      <label for="csvInput">Enter CSV</label>
+    <input
+      type="text"
+      id="tableName"
+      value="users"
+      placeholder="Enter table name, e.g. users"
+    >
 
-      <textarea id="csvInput">name,age,city
+
+    <label class="field-label" for="csvInput">
+      CSV Input
+    </label>
+
+    <textarea id="csvInput">name,age,city
 Ali,28,Karachi
 Emma,34,London</textarea>
 
-      <div class="buttons">
-        <button class="primary" onclick="convertToSQL()">Convert to SQL</button>
-        <button class="secondary" onclick="clearAll()">Clear</button>
-      </div>
 
-      <div id="status" class="status"></div>
+    <div class="buttons">
 
-      <label for="sqlOutput">SQL Output</label>
+      <button
+        class="primary"
+        onclick="convertToSQL()"
+      >
+        Convert to SQL
+      </button>
 
-      <textarea
-        id="sqlOutput"
-        readonly
-        placeholder="SQL INSERT statements will appear here..."
-      ></textarea>
-
-      <div class="buttons">
-        <button class="success" onclick="copySQL()">Copy SQL</button>
-        <button class="primary" onclick="downloadSQL()">Download SQL</button>
-      </div>
-
-      <div class="privacy">
-        <strong>Privacy First</strong><br>
-        This CSV to SQL converter processes your data directly in your browser.
-        Your CSV is not uploaded to our server.
-      </div>
-
-      <a class="back" href="index.html">← Back to All Tools</a>
+      <button
+        class="secondary"
+        onclick="clearAll()"
+      >
+        Clear
+      </button>
 
     </div>
 
 
-    <div class="info-card">
+    <div id="status" class="status"></div>
 
-      <h2>How to Use</h2>
+
+    <label class="field-label" for="sqlOutput">
+      SQL Output
+    </label>
+
+    <textarea
+      id="sqlOutput"
+      readonly
+      placeholder="SQL INSERT statements will appear here..."
+    ></textarea>
+
+
+    <div class="buttons">
+
+      <button
+        class="success"
+        onclick="copySQL()"
+      >
+        Copy SQL
+      </button>
+
+      <button
+        class="primary"
+        onclick="downloadSQL()"
+      >
+        Download SQL
+      </button>
+
+    </div>
+
+
+    <div class="privacy">
+      🔒 <strong>Privacy-focused:</strong>
+      This CSV to SQL converter processes your data directly in your browser.
+      Your CSV data is not uploaded to our server.
+    </div>
+
+
+    <a
+      class="back-link"
+      href="index.html"
+    >
+      ← Back to All Tools
+    </a>
+
+    <section class="content-grid">
+
+    <div class="content-card full">
+
+      <h2>CSV to SQL Converter: Convert CSV Data into SQL INSERT Statements</h2>
+
+      <p>
+        A CSV to SQL converter helps you transform structured CSV data into
+        SQL INSERT statements. This is useful when your data is stored in a
+        spreadsheet or CSV format and you need SQL statements for database
+        testing, sample data, development workflows, or compatible import
+        processes.
+      </p>
+
+      <p>
+        This free online CSV to SQL tool lets you choose a table name,
+        paste your CSV data, and generate SQL INSERT statements without
+        manually writing each record.
+      </p>
+
+      <h3>What Can This CSV to SQL Tool Do?</h3>
+
+      <ul>
+        <li>Convert CSV rows into SQL INSERT statements.</li>
+        <li>Use the first CSV row as database column names.</li>
+        <li>Choose your own SQL table name.</li>
+        <li>Handle text, numeric, boolean and empty values.</li>
+        <li>Copy the generated SQL with one click.</li>
+        <li>Download the generated statements as a SQL file.</li>
+        <li>Process the conversion directly in your browser.</li>
+      </ul>
+
+    </div>
+
+
+    <div class="content-card">
+
+      <h2>How to Convert CSV to SQL</h2>
 
       <ol>
         <li>Enter the name of your SQL table.</li>
         <li>Paste your CSV data into the input box.</li>
-        <li>Make sure the first row contains the column names.</li>
+        <li>Make sure the first row contains column names.</li>
         <li>Click <strong>Convert to SQL</strong>.</li>
-        <li>Copy the generated SQL or download it as a `.sql` file.</li>
+        <li>Review the generated INSERT statements.</li>
+        <li>Copy the SQL or download it as a file.</li>
       </ol>
 
+    </div>
+
+
+    <div class="content-card">
+
+      <h2>CSV to SQL Example</h2>
+
       <p>
-        The converter generates SQL <code>INSERT</code> statements from your CSV
-        data. Numeric values, boolean values and empty values are handled
-        automatically.
+        For example, this CSV data:
+      </p>
+
+      <div class="example-box">
+
+        <div class="example-title">
+          CSV Input
+        </div>
+
+        <pre>name,age,city
+Ali,28,Karachi
+Emma,34,London</pre>
+
+      </div>
+
+      <p>
+        With the table name <code>users</code>, the generated SQL will look
+        like this:
+      </p>
+
+      <div class="example-box">
+
+        <div class="example-title">
+          SQL Output
+        </div>
+
+        <pre>INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Ali', 28, 'Karachi');
+INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Emma', 34, 'London');</pre>
+
+      </div>
+
+    </div>
+
+
+    <div class="content-card">
+
+      <h2>What Is CSV?</h2>
+
+      <p>
+        CSV stands for <strong>Comma-Separated Values</strong>. It is a
+        simple text-based format used to store structured data in rows and
+        columns.
+      </p>
+
+      <p>
+        CSV files are commonly used with spreadsheets, databases, reports,
+        data exports and many software applications.
+      </p>
+
+      <h3>What Is SQL?</h3>
+
+      <p>
+        SQL stands for <strong>Structured Query Language</strong>. It is
+        widely used to work with relational databases, including inserting,
+        reading, updating and managing structured records.
       </p>
 
     </div>
 
 
-    <div class="info-card">
+    <div class="content-card">
 
-      <h2>FAQ</h2>
+      <h2>Why Convert CSV to SQL?</h2>
 
       <p>
-        <strong>What does this CSV to SQL converter generate?</strong><br>
-        It generates SQL <code>INSERT INTO</code> statements using the first CSV
-        row as column names.
+        Manually creating SQL INSERT statements for many CSV rows can be
+        repetitive and time-consuming. A converter can automate the basic
+        transformation and produce statements much faster.
       </p>
 
       <p>
-        <strong>Can I choose the SQL table name?</strong><br>
-        Yes. Enter your desired table name in the SQL Table Name field before
-        converting the CSV.
-      </p>
-
-      <p>
-        <strong>Are my CSV data uploaded to a server?</strong><br>
-        No. The conversion is performed directly in your browser.
-      </p>
-
-      <p>
-        <strong>What happens to empty CSV values?</strong><br>
-        Empty values are converted to SQL <code>NULL</code>.
-      </p>
-
-      <p>
-        <strong>Can I download the generated SQL?</strong><br>
-        Yes. Use the Download SQL button to save the generated statements as a
-        `.sql` file.
+        It can be especially useful for developers preparing sample records,
+        testing database structures, or converting structured data into a
+        SQL-based workflow.
       </p>
 
     </div>
 
 
-    <div class="info-card related-tools">
+    <div class="content-card">
 
-      <h2>Related Tools</h2>
+      <h2>Useful Tips</h2>
 
-      <a href="csv-to-json.html">CSV to JSON</a>
-      <a href="csv-to-html.html">CSV to HTML</a>
-      <a href="csv-to-jsonl.html">CSV to JSONL</a>
-      <a href="csv-to-markdown.html">CSV to Markdown</a>
-      <a href="csv-to-tsv.html">CSV to TSV</a>
-      <a href="json-to-sql.html">JSON to SQL</a>
+      <ul>
+        <li>Keep your CSV header names consistent with your table columns.</li>
+        <li>Make sure every data row contains the expected number of values.</li>
+        <li>Check the generated SQL before executing it.</li>
+        <li>Use a valid table name containing letters, numbers or underscores.</li>
+        <li>Keep backups of important database data before importing records.</li>
+        <li>SQL syntax can vary between different database systems.</li>
+      </ul>
 
     </div>
+
+
+    <div class="content-card full">
+
+      <h2>Browser-Based and Privacy-Focused</h2>
+
+      <p>
+        This CSV to SQL converter works directly in your web browser.
+        The conversion does not require your CSV data to be uploaded to
+        a server. Your pasted data remains within the browser while the
+        SQL statements are generated.
+      </p>
+
+      <p>
+        This browser-based approach makes the tool convenient for quick
+        data conversion when you want to avoid uploading CSV content to
+        an external service.
+      </p>
+
+    </div>
+
+
+    <div class="content-card full">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          What does a CSV to SQL converter do?
+        </div>
+
+        <p>
+          It converts CSV rows and columns into SQL INSERT statements that
+          can be used in compatible database workflows.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          How do I convert CSV to SQL?
+        </div>
+
+        <p>
+          Enter your table name, paste the CSV data, and click
+          <strong>Convert to SQL</strong>. The generated INSERT statements
+          will appear in the SQL output box.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Can I choose my SQL table name?
+        </div>
+
+        <p>
+          Yes. Enter your desired table name in the SQL Table Name field
+          before converting your CSV data.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Does this tool upload my CSV data?
+        </div>
+
+        <p>
+          No. The conversion is performed directly in your browser and
+          does not require uploading the pasted CSV data to a server.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          What happens to empty CSV values?
+        </div>
+
+        <p>
+          Empty values are converted to SQL <code>NULL</code> in the
+          generated statements.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Can I copy the generated SQL?
+        </div>
+
+        <p>
+          Yes. Click the <strong>Copy SQL</strong> button to copy the
+          generated statements to your clipboard.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Can I download the SQL output?
+        </div>
+
+        <p>
+          Yes. Click <strong>Download SQL</strong> to save the generated
+          statements as a <code>.sql</code> file.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-question">
+          Is the generated SQL compatible with every database?
+        </div>
+
+        <p>
+          SQL syntax can differ between database systems. Review the
+          generated statements and make any database-specific adjustments
+          required by your SQL environment.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="content-card full">
+
+      <h2>Related Developer Tools</h2>
+
+      <p>
+        You can also use these related tools to convert, format and transform
+        structured data in your browser.
+      </p>
+
+      <div class="related-grid">
+
+        <a href="csv-to-json.html">
+          CSV → JSON
+        </a>
+
+        <a href="json-to-sql.html">
+          JSON → SQL
+        </a>
+
+        <a href="csv-to-jsonl.html">
+          CSV → JSONL
+        </a>
+
+        <a href="csv-to-markdown.html">
+          CSV → Markdown
+        </a>
+
+        <a href="csv-to-html.html">
+          CSV → HTML
+        </a>
+
+        <a href="json-formatter.html">
+          JSON Formatter
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+  <div class="footer-links">
+
+    <a href="index.html">Home</a>
+
+    <a href="about.html">About</a>
+
+    <a href="privacy-policy.html">
+      Privacy Policy
+    </a>
+
+    <a href="terms.html">
+      Terms &amp; Conditions
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+    <a href="cookie-policy.html">
+      Cookie Policy
+    </a>
 
   </div>
 
+  <p>
+    © 2026 CSV &amp; JSON Developer Tools. All rights reserved.
+  </p>
 
-  <script>
+</footer>
 
-    function showStatus(message, type) {
-      const status = document.getElementById("status");
 
-      status.textContent = message;
-      status.className = "status " + type;
-      status.style.display = "block";
+<script>
+
+function showStatus(message, type = "success") {
+
+  const status =
+    document.getElementById("status");
+
+  status.textContent = message;
+
+  status.style.display = "block";
+
+  if (type === "error") {
+
+    status.style.color = "#fecdd3";
+
+    status.style.background =
+      "rgba(244, 63, 94, 0.10)";
+
+    status.style.borderColor =
+      "rgba(251, 113, 133, 0.20)";
+
+  } else {
+
+    status.style.color = "#b7f7d9";
+
+    status.style.background =
+      "rgba(16, 185, 129, 0.08)";
+
+    status.style.borderColor =
+      "rgba(52, 211, 153, 0.18)";
+
+  }
+
+}
+
+
+function escapeSQL(value) {
+
+  const trimmed = value.trim();
+
+  if (trimmed === "") {
+    return "NULL";
+  }
+
+  if (/^-?\d+(\.\d+)?$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  if (/^(true|false)$/i.test(trimmed)) {
+    return trimmed.toUpperCase();
+  }
+
+  return "'" +
+    trimmed.replace(/'/g, "''") +
+    "'";
+
+}
+
+
+function quoteIdentifier(identifier) {
+
+  return "`" +
+    identifier.replace(/`/g, "``") +
+    "`";
+
+}
+
+
+function parseCSVLine(line) {
+
+  const result = [];
+
+  let current = "";
+
+  let insideQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+
+    const char = line[i];
+
+    if (char === '"') {
+
+      if (
+        insideQuotes &&
+        line[i + 1] === '"'
+      ) {
+
+        current += '"';
+
+        i++;
+
+      } else {
+
+        insideQuotes = !insideQuotes;
+
+      }
+
+    } else if (
+      char === "," &&
+      !insideQuotes
+    ) {
+
+      result.push(current.trim());
+
+      current = "";
+
+    } else {
+
+      current += char;
+
     }
 
-    function escapeSQL(value) {
+  }
 
-      if (value === null || value === undefined || value === "") {
-        return "NULL";
-      }
+  result.push(current.trim());
 
-      const trimmed = String(value).trim();
+  return result;
 
-      if (trimmed === "") {
-        return "NULL";
-      }
+}
 
-      if (/^-?\d+(\.\d+)?$/.test(trimmed)) {
-        return trimmed;
-      }
 
-      if (trimmed.toLowerCase() === "true") {
-        return "TRUE";
-      }
+function convertToSQL() {
 
-      if (trimmed.toLowerCase() === "false") {
-        return "FALSE";
-      }
+  const tableName =
+    document
+      .getElementById("tableName")
+      .value
+      .trim();
 
-      return "'" + trimmed.replace(/'/g, "''") + "'";
-    }
+  const csv =
+    document
+      .getElementById("csvInput")
+      .value
+      .trim();
 
-    function quoteIdentifier(identifier) {
-      return "`" + identifier.replace(/`/g, "``") + "`";
-    }
+  const output =
+    document.getElementById("sqlOutput");
 
-    function parseCSVLine(line) {
 
-      const result = [];
-      let current = "";
-      let insideQuotes = false;
+  if (!tableName) {
 
-      for (let i = 0; i < line.length; i++) {
+    showStatus(
+      "Please enter a table name.",
+      "error"
+    );
 
-        const char = line[i];
+    return;
+  }
 
-        if (char === '"') {
 
-          if (insideQuotes && line[i + 1] === '"') {
-            current += '"';
-            i++;
-          } else {
-            insideQuotes = !insideQuotes;
-          }
+  if (
+    !/^[A-Za-z_][A-Za-z0-9_]*$/
+      .test(tableName)
+  ) {
 
-        } else if (char === "," && !insideQuotes) {
+    showStatus(
+      "Invalid table name. Use letters, numbers and underscores.",
+      "error"
+    );
 
-          result.push(current);
-          current = "";
+    return;
+  }
 
-        } else {
 
-          current += char;
-        }
-      }
+  if (!csv) {
 
-      if (insideQuotes) {
-        throw new Error("Unclosed quotation mark in CSV data.");
-      }
+    showStatus(
+      "Please enter CSV data.",
+      "error"
+    );
 
-      result.push(current);
+    return;
+  }
 
-      return result;
-    }
 
-    function convertToSQL() {
+  const lines =
+    csv
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(Boolean);
 
-      const input = document.getElementById("csvInput").value.trim();
-      const tableName = document.getElementById("tableName").value.trim();
 
-      if (!input) {
-        showStatus("Please enter CSV data.", "invalid");
-        return;
-      }
+  if (lines.length < 2) {
 
-      if (!tableName) {
-        showStatus("Please enter a table name.", "invalid");
-        return;
-      }
+    showStatus(
+      "Please provide a header row and at least one data row.",
+      "error"
+    );
 
-      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(tableName)) {
-        showStatus(
-          "Invalid table name. Use letters, numbers and underscores only, and do not start with a number.",
-          "invalid"
-        );
-        return;
-      }
+    return;
+  }
 
-      try {
 
-        const lines = input
-          .split(/\r?\n/)
-          .filter(line => line.trim() !== "");
+  const headers =
+    parseCSVLine(lines[0]);
 
-        if (lines.length < 2) {
-          showStatus(
-            "CSV must contain a header row and at least one data row.",
-            "invalid"
-          );
-          return;
-        }
 
-        const headers = parseCSVLine(lines[0]).map(header => header.trim());
+  if (
+    !headers.length ||
+    headers.some(
+      header => !header.trim()
+    )
+  ) {
 
-        if (headers.length === 0 || headers.some(header => !header)) {
-          showStatus(
-            "CSV contains an empty column name.",
-            "invalid"
-          );
-          return;
-        }
+    showStatus(
+      "Column names cannot be empty.",
+      "error"
+    );
 
-        const duplicateHeaders = headers.filter(
-          (header, index) => headers.indexOf(header) !== index
-        );
+    return;
+  }
 
-        if (duplicateHeaders.length > 0) {
-          showStatus(
-            "CSV contains duplicate column names.",
-            "invalid"
-          );
-          return;
-        }
 
-        const columnSQL = headers
-          .map(quoteIdentifier)
-          .join(", ");
+  const normalizedHeaders =
+    headers.map(
+      header =>
+        header.trim().toLowerCase()
+    );
 
-        const statements = [];
 
-        for (let i = 1; i < lines.length; i++) {
+  const duplicates =
+    normalizedHeaders.filter(
+      (item, index) =>
+        normalizedHeaders
+          .indexOf(item) !== index
+    );
 
-          const values = parseCSVLine(lines[i]);
 
-          if (values.length !== headers.length) {
-            showStatus(
-              "Row " + (i + 1) +
-              " has " + values.length +
-              " values, but the header contains " +
-              headers.length + " columns.",
-              "invalid"
-            );
-            return;
-          }
+  if (duplicates.length) {
 
-          const valueSQL = values
-            .map(value => escapeSQL(value))
-            .join(", ");
+    showStatus(
+      "Duplicate column names are not allowed.",
+      "error"
+    );
 
-          statements.push(
-            `INSERT INTO ${quoteIdentifier(tableName)} (${columnSQL}) VALUES (${valueSQL});`
-          );
-        }
+    return;
+  }
 
-        document.getElementById("sqlOutput").value =
-          statements.join("\n");
 
-        showStatus(
-          "CSV converted successfully. SQL INSERT statements generated.",
-          "valid"
-        );
+  const quotedHeaders =
+    headers
+      .map(
+        header =>
+          quoteIdentifier(
+            header.trim()
+          )
+      )
+      .join(", ");
 
-      } catch (error) {
 
-        document.getElementById("sqlOutput").value = "";
+  const statements = [];
 
-        showStatus(
-          "Invalid CSV: " + error.message,
-          "invalid"
-        );
-      }
-    }
 
-    function copySQL() {
+  for (
+    let i = 1;
+    i < lines.length;
+    i++
+  ) {
 
-      const output = document.getElementById("sqlOutput").value;
+    const values =
+      parseCSVLine(lines[i]);
 
-      if (!output) {
-        showStatus(
-          "Please convert CSV to SQL first.",
-          "invalid"
-        );
-        return;
-      }
 
-      navigator.clipboard.writeText(output)
-        .then(() => {
-          showStatus(
-            "SQL copied to clipboard.",
-            "valid"
-          );
-        })
-        .catch(() => {
-          showStatus(
-            "Unable to copy SQL.",
-            "invalid"
-          );
-        });
-    }
-
-    function downloadSQL() {
-
-      const output = document.getElementById("sqlOutput").value;
-
-      if (!output) {
-        showStatus(
-          "Please convert CSV to SQL first.",
-          "invalid"
-        );
-        return;
-      }
-
-      const blob = new Blob(
-        [output],
-        { type: "text/sql;charset=utf-8;" }
-      );
-
-      const url = URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-
-      link.href = url;
-      link.download = "converted.sql";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      URL.revokeObjectURL(url);
+    if (
+      values.length !==
+      headers.length
+    ) {
 
       showStatus(
-        "SQL file downloaded.",
-        "valid"
+        "Row " +
+        (i + 1) +
+        " has a different number of columns.",
+        "error"
       );
+
+      return;
     }
 
-    function clearAll() {
 
-      document.getElementById("csvInput").value = "";
-      document.getElementById("sqlOutput").value = "";
-      document.getElementById("tableName").value = "users";
+    const sqlValues =
+      values
+        .map(value =>
+          escapeSQL(value)
+        )
+        .join(", ");
 
-      const status = document.getElementById("status");
 
-      status.style.display = "none";
-      status.textContent = "";
-    }
+    statements.push(
+      "INSERT INTO " +
+      quoteIdentifier(tableName) +
+      " (" +
+      quotedHeaders +
+      ") VALUES (" +
+      sqlValues +
+      ");"
+    );
 
-  </script>
+  }
+
+
+  output.value =
+    statements.join("\n");
+
+
+  showStatus(
+    statements.length +
+    " SQL INSERT statement(s) generated successfully.",
+    "success"
+  );
+
+}
+
+
+async function copySQL() {
+
+  const output =
+    document.getElementById("sqlOutput");
+
+
+  if (!output.value) {
+
+    showStatus(
+      "Nothing to copy.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  try {
+
+    await navigator.clipboard
+      .writeText(output.value);
+
+    showStatus(
+      "SQL copied to clipboard.",
+      "success"
+    );
+
+  } catch (error) {
+
+    output.select();
+
+    document.execCommand("copy");
+
+    showStatus(
+      "SQL copied to clipboard.",
+      "success"
+    );
+
+  }
+
+}
+
+
+function downloadSQL() {
+
+  const output =
+    document
+      .getElementById("sqlOutput")
+      .value;
+
+
+  if (!output) {
+
+    showStatus(
+      "Nothing to download.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const blob =
+    new Blob(
+      [output],
+      {
+        type: "text/sql;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+
+  link.download =
+    "converted.sql";
+
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+
+  URL.revokeObjectURL(url);
+
+
+  showStatus(
+    "SQL file downloaded.",
+    "success"
+  );
+
+}
+
+
+function clearAll() {
+
+  document.getElementById(
+    "tableName"
+  ).value = "users";
+
+
+  document.getElementById(
+    "csvInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "sqlOutput"
+  ).value = "";
+
+
+  const status =
+    document.getElementById("status");
+
+
+  status.textContent = "";
+
+  status.style.display = "none";
+
+}
+
+</script>
 
 </body>
 </html>
