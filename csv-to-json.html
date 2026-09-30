@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>CSV to JSON Converter - Free Online CSV to JSON Tool</title>
+  <title>
+    CSV to JSON Converter - Free Online CSV to JSON Tool
+  </title>
 
-  <meta name="description" content="Convert CSV to JSON online for free. Fast, secure and browser-based CSV to JSON converter. Convert CSV files or text to JSON without uploading your data.">
+  <meta
+    name="description"
+    content="Convert CSV to JSON online with a fast, free and browser-based CSV to JSON converter. No file upload to a server."
+  >
 
-  <meta name="robots" content="index, follow">
+  <meta
+    name="robots"
+    content="index, follow"
+  >
 
-  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-json.html">
+  <link
+    rel="canonical"
+    href="https://toolforge1.github.io/csv-json-tools/csv-to-json.html"
+  >
 
-  <meta property="og:title" content="CSV to JSON Converter - Free Online Tool">
-  <meta property="og:description" content="Convert CSV files and data to JSON instantly in your browser. Free, fast and privacy-friendly.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-json.html">
+  <meta
+    property="og:title"
+    content="CSV to JSON Converter - Free Online Tool"
+  >
+
+  <meta
+    property="og:description"
+    content="Convert CSV data to clean JSON instantly in your browser."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://toolforge1.github.io/csv-json-tools/csv-to-json.html"
+  >
+
+  <meta
+    name="google-site-verification"
+    content="TceL4f4jlXE3dUB_2ktnZEPng8o0MgdfGnTJ3oaZuDg"
+  >
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"
+  ></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
+
     gtag('config', 'G-CGGJEQ96S7');
   </script>
+
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -35,8 +80,8 @@
     "name": "CSV to JSON Converter",
     "url": "https://toolforge1.github.io/csv-json-tools/csv-to-json.html",
     "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Web Browser",
-    "description": "Free browser-based CSV to JSON converter for converting CSV files and text into JSON.",
+    "operatingSystem": "Any",
+    "description": "A free browser-based tool for converting CSV data to JSON.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -44,6 +89,7 @@
     }
   }
   </script>
+
 
   <script type="application/ld+json">
   {
@@ -55,15 +101,7 @@
         "name": "What is a CSV to JSON converter?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A CSV to JSON converter transforms comma-separated data into structured JSON objects that can be used by applications, APIs and developer tools."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I convert CSV to JSON?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Paste your CSV data or upload a CSV file, then click Convert to JSON. The converted JSON appears instantly in the output area."
+          "text": "A CSV to JSON converter transforms comma-separated tabular data into JSON objects that can be used by applications, APIs and developer tools."
         }
       },
       {
@@ -71,54 +109,53 @@
         "name": "Is this CSV to JSON converter free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The CSV to JSON converter is free to use in your browser."
+          "text": "Yes. The tool is free to use directly in your browser."
         }
       },
       {
         "@type": "Question",
-        "name": "Is my CSV data uploaded to a server?",
+        "name": "Are my CSV files uploaded to a server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Conversion is performed directly in your browser, so your CSV data does not need to be uploaded to a server."
+          "text": "No. The conversion is performed in your browser and the CSV data is not sent to a server by this tool."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I download the converted JSON?",
+        "name": "How do I convert CSV to JSON?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. After conversion, you can copy the JSON or download it as a JSON file."
+          "text": "Paste your CSV data or upload a CSV file, then click Convert to JSON. The converted JSON will appear in the output box."
         }
       }
     ]
   }
   </script>
 
+
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+
     :root {
-      --bg: #060914;
-      --bg-soft: #0a1020;
-      --card: rgba(16, 24, 43, 0.78);
-      --card-solid: #10182b;
-      --border: rgba(148, 163, 184, 0.14);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --blue: #4f8cff;
-      --blue-bright: #60a5fa;
+      --bg: #06111f;
+      --bg-soft: #0a1728;
+      --card: rgba(13, 29, 49, 0.88);
+      --card-border: rgba(120, 170, 220, 0.14);
+      --text: #f4f8ff;
+      --muted: #9eb0c5;
+      --blue: #38bdf8;
+      --blue-dark: #0284c7;
       --cyan: #22d3ee;
       --green: #34d399;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      --input: #071522;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
 
     body {
       font-family:
@@ -129,59 +166,66 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
       background:
-        radial-gradient(circle at 15% 0%, rgba(59,130,246,.18), transparent 30%),
-        radial-gradient(circle at 85% 8%, rgba(34,211,238,.12), transparent 25%),
-        linear-gradient(180deg, #060914 0%, #080d19 45%, #060914 100%);
+        radial-gradient(
+          circle at top left,
+          rgba(14, 165, 233, 0.16),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(34, 211, 238, 0.10),
+          transparent 28%
+        ),
+        var(--bg);
+
       color: var(--text);
       line-height: 1.7;
       min-height: 100vh;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, black, transparent 75%);
-      z-index: -1;
-    }
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
     .container {
-      width: min(1120px, calc(100% - 36px));
+      width: min(1120px, 92%);
       margin: auto;
     }
 
-    /* Top Navigation */
 
-    .topbar {
-      padding: 22px 0;
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: rgba(6,17,31,0.72);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
+
     .nav {
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
     }
 
+
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
       font-weight: 800;
-      font-size: 16px;
-      letter-spacing: -.3px;
+      font-size: 17px;
+      letter-spacing: -0.3px;
     }
+
 
     .brand-icon {
       width: 38px;
@@ -189,752 +233,1530 @@
       display: grid;
       place-items: center;
       border-radius: 12px;
-      background: linear-gradient(135deg, #2563eb, #06b6d4);
-      box-shadow: 0 10px 30px rgba(37,99,235,.3);
-      font-size: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--cyan)
+        );
+
+      color: #03101c;
+      font-weight: 900;
+      box-shadow:
+        0 8px 28px rgba(34,211,238,0.20);
     }
+
 
     .home-link {
-      color: #cbd5e1;
-      font-size: 14px;
-      font-weight: 700;
-      transition: .2s ease;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s ease;
     }
+
 
     .home-link:hover {
-      color: white;
+      color: var(--text);
     }
 
-    /* Hero */
+
+    main {
+      padding-bottom: 80px;
+    }
+
 
     .hero {
-      position: relative;
+      padding: 82px 0 55px;
       text-align: center;
-      padding: 72px 0 54px;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 220px;
-      left: 50%;
-      top: 40px;
-      transform: translateX(-50%);
-      background: rgba(37,99,235,.16);
-      filter: blur(80px);
-      z-index: -1;
-    }
 
-    .badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 14px;
-      border: 1px solid rgba(96,165,250,.25);
+
+      padding: 7px 14px;
       border-radius: 999px;
-      background: rgba(59,130,246,.08);
-      color: #93c5fd;
-      font-size: 12px;
+
+      border: 1px solid rgba(56,189,248,0.20);
+      background: rgba(56,189,248,0.07);
+
+      color: #8bdcff;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: .6px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 22px;
     }
 
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 12px #34d399;
-    }
 
     .hero h1 {
-      max-width: 850px;
-      margin: auto;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: .98;
-      letter-spacing: -3.5px;
+      max-width: 900px;
+      margin: 20px auto 18px;
+
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 1.05;
+      letter-spacing: -2.8px;
       font-weight: 900;
     }
 
-    .gradient-text {
-      background: linear-gradient(100deg, #60a5fa, #22d3ee);
+
+    .hero h1 span {
+      background:
+        linear-gradient(
+          90deg,
+          #38bdf8,
+          #67e8f9
+        );
+
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
+
     .hero p {
-      max-width: 700px;
-      margin: 25px auto 0;
-      color: #9aa9bf;
+      max-width: 760px;
+      margin: auto;
+      color: var(--muted);
       font-size: 18px;
-      line-height: 1.8;
     }
 
-    .hero-trust {
-      margin-top: 28px;
+
+    .trust-row {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: 28px;
     }
 
-    .trust-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: rgba(15,23,42,.65);
-      border: 1px solid var(--border);
-      color: #b8c5d7;
-      font-size: 12px;
+
+    .trust-pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+
+      color: #c9d7e7;
+      font-size: 13px;
       font-weight: 700;
     }
 
-    /* Main Tool */
 
-    .tool-shell {
-      position: relative;
-      margin-top: 18px;
-      padding: 1px;
-      border-radius: 28px;
-      background: linear-gradient(
-        135deg,
-        rgba(96,165,250,.38),
-        rgba(34,211,238,.12),
-        rgba(255,255,255,.04)
-      );
-      box-shadow: var(--shadow);
+    .tool-section {
+      padding: 10px 0 70px;
     }
+
 
     .tool-card {
-      background:
-        radial-gradient(circle at 100% 0%, rgba(59,130,246,.09), transparent 30%),
-        #0b1222;
-      border-radius: 27px;
+      max-width: 980px;
+      margin: auto;
+
       padding: 30px;
+
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(17,39,65,0.96),
+          rgba(8,22,38,0.96)
+        );
+
+      border: 1px solid var(--card-border);
+
+      box-shadow:
+        0 30px 90px rgba(0,0,0,0.35);
     }
 
-    .tool-header {
+
+    .tool-heading {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
-    .tool-title {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+
+    .tool-heading h2 {
+      font-size: 25px;
+      font-weight: 850;
+      letter-spacing: -0.7px;
     }
 
-    .tool-icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #1d4ed8, #0891b2);
-      box-shadow: 0 12px 28px rgba(37,99,235,.25);
-      font-size: 21px;
-    }
 
-    .tool-title h2 {
-      font-size: 20px;
-      letter-spacing: -.5px;
-    }
-
-    .tool-title span {
-      display: block;
-      color: #718096;
-      font-size: 12px;
-      margin-top: 2px;
-    }
-
-    .privacy-pill {
-      padding: 7px 11px;
-      border-radius: 9px;
-      border: 1px solid rgba(52,211,153,.2);
-      background: rgba(52,211,153,.06);
-      color: #6ee7b7;
-      font-size: 11px;
-      font-weight: 800;
+    .privacy-badge {
       white-space: nowrap;
+
+      padding: 7px 12px;
+      border-radius: 999px;
+
+      background: rgba(52,211,153,0.09);
+      border: 1px solid rgba(52,211,153,0.20);
+
+      color: #72efbd;
+      font-size: 12px;
+      font-weight: 800;
     }
+
+
+    .input-label,
+    .output-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+
+      margin-bottom: 9px;
+
+      color: #dce8f5;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+
+    .input-label span:last-child,
+    .output-label span:last-child {
+      color: #71869d;
+      font-weight: 600;
+    }
+
 
     textarea {
       width: 100%;
-      min-height: 280px;
+      min-height: 260px;
+
       resize: vertical;
-      border: 1px solid rgba(148,163,184,.14);
-      border-radius: 17px;
-      padding: 20px;
-      outline: none;
-      background: #070c18;
-      color: #dbeafe;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+      padding: 18px;
+
+      border-radius: 16px;
+
+      border: 1px solid rgba(110,150,190,0.18);
+
+      background: var(--input);
+      color: #dff6ff;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
       font-size: 14px;
-      line-height: 1.7;
-      transition: .25s ease;
+      line-height: 1.65;
+
+      outline: none;
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
-    textarea::placeholder {
-      color: #536176;
-    }
 
     textarea:focus {
-      border-color: rgba(96,165,250,.65);
-      box-shadow: 0 0 0 4px rgba(59,130,246,.08);
+      border-color: rgba(56,189,248,0.55);
+
+      box-shadow:
+        0 0 0 4px rgba(56,189,248,0.08);
     }
+
+
+    textarea::placeholder {
+      color: #526a82;
+    }
+
 
     .tool-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 11px;
-      margin-top: 16px;
+      margin: 16px 0 26px;
     }
+
 
     button,
     .upload-label {
       border: 0;
       cursor: pointer;
-      font: inherit;
-      font-weight: 800;
+
+      min-height: 46px;
+
+      padding: 0 18px;
+
       border-radius: 12px;
-      padding: 12px 17px;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 14px;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
     }
+
+
+    button:hover,
+    .upload-label:hover {
+      transform: translateY(-2px);
+    }
+
 
     .primary-btn {
-      color: white;
-      background: linear-gradient(135deg, #2563eb, #0891b2);
-      box-shadow: 0 12px 26px rgba(37,99,235,.22);
+      color: #02111d;
+
+      background:
+        linear-gradient(
+          135deg,
+          #38bdf8,
+          #22d3ee
+        );
+
+      box-shadow:
+        0 10px 28px rgba(34,211,238,0.16);
     }
+
 
     .primary-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(37,99,235,.32);
+      box-shadow:
+        0 14px 34px rgba(34,211,238,0.25);
     }
 
-    .secondary-btn {
-      color: #dbeafe;
-      background: #131d32;
-      border: 1px solid rgba(148,163,184,.14);
-    }
 
-    .secondary-btn:hover,
-    .upload-label:hover {
-      background: #18243c;
-      transform: translateY(-1px);
-    }
-
+    .secondary-btn,
     .upload-label {
-      color: #cbd5e1;
-      background: #101a2d;
-      border: 1px solid rgba(148,163,184,.14);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+
+      color: #d7e7f7;
+
+      background: rgba(255,255,255,0.055);
+
+      border: 1px solid rgba(255,255,255,0.10);
     }
+
 
     input[type="file"] {
       display: none;
     }
 
-    .output-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 27px 0 10px;
-      color: #cbd5e1;
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    #output {
-      min-height: 280px;
-      background: #050a13;
-      color: #86efac;
-    }
-
-    /* Content */
 
     .content {
-      padding: 90px 0 20px;
+      max-width: 920px;
+      margin: auto;
     }
 
-    .section {
-      margin-bottom: 75px;
+
+    .content-card {
+      margin-bottom: 22px;
+      padding: 30px;
+
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(12,29,49,0.92),
+          rgba(8,20,35,0.90)
+        );
+
+      border: 1px solid rgba(120,170,220,0.10);
     }
 
-    .section-heading {
-      max-width: 760px;
-      margin-bottom: 28px;
+
+    .content-card h2 {
+      margin-bottom: 13px;
+
+      font-size: 27px;
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+      font-weight: 850;
     }
 
-    .eyebrow {
-      color: #60a5fa;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+
+    .content-card h3 {
+      margin: 24px 0 9px;
+
+      font-size: 19px;
+      font-weight: 800;
+      color: #dff6ff;
     }
 
-    .section h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.15;
-      letter-spacing: -1.5px;
-      margin-bottom: 15px;
+
+    .content-card p {
+      color: #aebed0;
+      margin-bottom: 14px;
     }
 
-    .section-heading p,
-    .section > p {
-      color: var(--muted);
-      font-size: 16px;
+
+    .content-card ul {
+      padding-left: 21px;
+      color: #aebed0;
     }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
+
+    .content-card li {
+      margin: 7px 0;
     }
 
-    .info-card {
-      background: linear-gradient(
-        145deg,
-        rgba(18,29,51,.9),
-        rgba(10,16,29,.85)
-      );
-      border: 1px solid var(--border);
-      border-radius: 19px;
-      padding: 24px;
-      transition: .25s ease;
-    }
-
-    .info-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(96,165,250,.28);
-      box-shadow: 0 18px 40px rgba(0,0,0,.22);
-    }
-
-    .info-card .number {
-      display: inline-flex;
-      width: 34px;
-      height: 34px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: rgba(59,130,246,.1);
-      color: #60a5fa;
-      font-size: 13px;
-      font-weight: 900;
-      margin-bottom: 17px;
-    }
-
-    .info-card h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
-
-    .info-card p {
-      color: #8796aa;
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    /* Example */
 
     .example-box {
-      overflow: hidden;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background: #090f1c;
-      box-shadow: 0 20px 55px rgba(0,0,0,.2);
-    }
+      margin-top: 18px;
+      padding: 20px;
 
-    .example-top {
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-      color: #94a3b8;
-      font-size: 12px;
-      font-weight: 800;
-    }
+      border-radius: 16px;
 
-    .example-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
+      background: #050e18;
+      border: 1px solid rgba(56,189,248,0.13);
 
-    .code-panel {
-      padding: 23px;
-    }
-
-    .code-panel + .code-panel {
-      border-left: 1px solid var(--border);
-    }
-
-    .code-panel h4 {
-      color: #94a3b8;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 13px;
-    }
-
-    pre {
       overflow-x: auto;
-      color: #dbeafe;
-      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+
+    .example-box pre {
+      color: #bdefff;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.65;
+      white-space: pre-wrap;
     }
 
-    /* Tips */
 
-    .tips {
-      display: grid;
-      gap: 11px;
+    .faq-item {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .tip {
-      display: flex;
-      gap: 13px;
-      align-items: flex-start;
-      padding: 17px 19px;
-      background: rgba(15,23,42,.62);
-      border: 1px solid var(--border);
-      border-radius: 15px;
+
+    .faq-item:last-child {
+      border-bottom: 0;
     }
 
-    .tip-icon {
-      flex: 0 0 auto;
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      border-radius: 8px;
-      background: rgba(34,211,238,.08);
-      color: #67e8f9;
-      font-size: 13px;
+
+    .faq-item h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
     }
 
-    .tip p {
-      color: #9aa8ba;
-      font-size: 14px;
+
+    .faq-item p {
+      margin: 0;
     }
 
-    /* FAQ */
-
-    .faq-list {
-      display: grid;
-      gap: 11px;
-    }
-
-    details {
-      background: rgba(14,22,39,.75);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 0 20px;
-      transition: .2s ease;
-    }
-
-    details[open] {
-      border-color: rgba(96,165,250,.25);
-    }
-
-    summary {
-      cursor: pointer;
-      list-style: none;
-      padding: 19px 0;
-      font-weight: 800;
-      color: #e2e8f0;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details p {
-      padding: 0 0 19px;
-      color: #8796aa;
-      font-size: 14px;
-    }
-
-    /* Related */
 
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .related-card {
-      position: relative;
-      padding: 21px;
-      border-radius: 17px;
-      background: linear-gradient(145deg, #101a2e, #0b1221);
-      border: 1px solid var(--border);
-      transition: .25s ease;
+
+    .related-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      padding: 15px 17px;
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+
+      color: #dcecff;
+      font-weight: 750;
+
+      transition: 0.2s ease;
     }
 
-    .related-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(96,165,250,.35);
-      box-shadow: 0 18px 35px rgba(0,0,0,.22);
+
+    .related-link:hover {
+      border-color: rgba(56,189,248,0.35);
+      background: rgba(56,189,248,0.07);
+      transform: translateY(-2px);
     }
 
-    .related-card small {
-      color: #60a5fa;
-      font-weight: 800;
-      font-size: 11px;
-    }
 
-    .related-card h3 {
-      margin-top: 7px;
-      font-size: 16px;
-    }
-
-    .related-card p {
-      color: #77869b;
-      font-size: 13px;
-      margin-top: 5px;
-    }
-
-    /* Privacy */
-
-    .privacy-box {
-      position: relative;
-      overflow: hidden;
-      padding: 30px;
-      border-radius: 22px;
-      border: 1px solid rgba(52,211,153,.17);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(52,211,153,.08), transparent 35%),
-        rgba(10,25,25,.65);
-    }
-
-    .privacy-box h2 {
-      font-size: 25px;
-      margin-bottom: 9px;
-    }
-
-    .privacy-box p {
-      color: #8da3a2;
-      max-width: 760px;
+    .privacy-note {
+      color: #91a7bc !important;
       font-size: 14px;
     }
 
-    /* Footer */
 
     footer {
-      margin-top: 80px;
-      padding: 42px 0 50px;
-      border-top: 1px solid var(--border);
-      color: #64748b;
-      text-align: center;
-      font-size: 13px;
+      margin-top: 30px;
+      padding: 38px 0;
+
+      border-top: 1px solid rgba(255,255,255,0.07);
+
+      background: rgba(2,9,18,0.75);
     }
 
-    .footer-brand {
-      color: #cbd5e1;
-      font-weight: 800;
-      margin-bottom: 15px;
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      flex-wrap: wrap;
     }
+
+
+    .footer-brand {
+      font-weight: 850;
+      color: #e8f4ff;
+    }
+
 
     .footer-links {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 17px;
-      margin-bottom: 17px;
+      gap: 16px;
     }
+
 
     .footer-links a {
-      transition: .2s ease;
+      color: #8195aa;
+      font-size: 13px;
+      font-weight: 650;
+      transition: 0.2s ease;
     }
+
 
     .footer-links a:hover {
-      color: #93c5fd;
+      color: #65d9ff;
     }
 
-    /* Responsive */
 
-    @media (max-width: 850px) {
-      .info-grid,
-      .related-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    .copyright {
+      width: 100%;
+      color: #61768b;
+      font-size: 13px;
+      text-align: center;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+
+    @media (max-width: 700px) {
 
       .hero {
-        padding-top: 55px;
+        padding: 58px 0 38px;
       }
 
       .hero h1 {
-        letter-spacing: -2.5px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .container {
-        width: min(100% - 24px, 1120px);
-      }
-
-      .topbar {
-        padding: 16px 0;
-      }
-
-      .hero {
-        padding: 48px 0 38px;
-      }
-
-      .hero h1 {
-        font-size: 43px;
-        letter-spacing: -2px;
+        font-size: 42px;
+        letter-spacing: -1.8px;
       }
 
       .hero p {
-        font-size: 15px;
+        font-size: 16px;
       }
 
-      .tool-card {
-        padding: 18px;
-        border-radius: 22px;
+      .tool-card,
+      .content-card {
+        padding: 21px;
+        border-radius: 19px;
       }
 
-      .tool-shell {
-        border-radius: 23px;
-      }
-
-      .tool-header {
+      .tool-heading {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .privacy-pill {
-        align-self: flex-start;
+      .privacy-badge {
+        white-space: normal;
       }
 
-      textarea,
-      #output {
+      textarea {
         min-height: 230px;
       }
 
-      .tool-actions {
-        flex-direction: column;
-      }
-
-      button,
-      .upload-label {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .content {
-        padding-top: 65px;
-      }
-
-      .info-grid,
-      .related-grid,
-      .example-grid {
+      .related-grid {
         grid-template-columns: 1fr;
       }
 
-      .code-panel + .code-panel {
-        border-left: 0;
-        border-top: 1px solid var(--border);
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .section {
-        margin-bottom: 58px;
-      }
-
-      .section h2 {
-        font-size: 29px;
-      }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <header class="topbar">
+
+  <header>
+
     <div class="container nav">
-      <a href="index.html" class="brand">
+
+      <a
+        href="index.html"
+        class="brand"
+      >
         <span class="brand-icon">⌘</span>
-        <span>CSV &amp; JSON Developer Tools</span>
+
+        <span>
+          CSV &amp; JSON Developer Tools
+        </span>
       </a>
 
-      <a href="index.html" class="home-link">← All Tools</a>
+
+      <a
+        href="index.html"
+        class="home-link"
+      >
+        ← All Tools
+      </a>
+
     </div>
+
   </header>
 
 
   <main>
 
-    <!-- HERO -->
 
     <section class="hero">
+
       <div class="container">
 
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Developer Data Tool
+        <div class="eyebrow">
+          ⚡ Developer Data Tool
         </div>
 
+
         <h1>
-          Convert
-          <span class="gradient-text">CSV to JSON</span>
-          Instantly
+          Convert CSV to
+          <span>JSON Instantly</span>
         </h1>
 
+
         <p>
-          A fast, free and privacy-friendly CSV to JSON converter.
-          Convert CSV files or text into clean JSON directly in your browser.
+          A fast, free and browser-based CSV to JSON converter.
+          Convert CSV data into clean JSON objects without
+          uploading your files to a server.
         </p>
 
-        <div class="hero-trust">
-          <span class="trust-item">⚡ Instant Conversion</span>
-          <span class="trust-item">🔒 Browser-Based</span>
-          <span class="trust-item">✓ Free to Use</span>
-          <span class="trust-item">☁ No Server Upload</span>
+
+        <div class="trust-row">
+
+          <div class="trust-pill">
+            ✓ Free to use
+          </div>
+
+          <div class="trust-pill">
+            ✓ Browser-based
+          </div>
+
+          <div class="trust-pill">
+            ✓ No signup
+          </div>
+
+          <div class="trust-pill">
+            ✓ No server upload
+          </div>
+
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- TOOL -->
+    <section class="tool-section">
 
-    <section class="container">
-
-      <div class="tool-shell">
+      <div class="container">
 
         <div class="tool-card">
 
-          <div class="tool-header">
+          <div class="tool-heading">
 
-            <div class="tool-title">
-              <div class="tool-icon">⇄</div>
+            <h2>
+              CSV → JSON Converter
+            </h2>
 
-              <div>
-                <h2>CSV → JSON Converter</h2>
-                <span>Convert structured CSV data into JSON objects</span>
-              </div>
+            <div class="privacy-badge">
+              🔒 Processed in your browser
             </div>
 
-            <div class="privacy-pill">
-              🔒 Your data stays in your browser
-            </div>
+          </div>
+
+
+          <div class="input-label">
+
+            <span>
+              CSV Input
+            </span>
+
+            <span>
+              Paste or upload CSV
+            </span>
 
           </div>
 
 
           <textarea
             id="csvInput"
-            place
+            placeholder="Paste your CSV data here...
+
+Example:
+name,age,city
+Ali,25,Karachi
+Sara,30,Lahore
+Ahmed,28,Islamabad"
+          ></textarea>
+
+
+          <div class="tool-actions">
+
+            <label
+              for="fileInput"
+              class="upload-label"
+            >
+              📁 Upload CSV
+            </label>
+
+            <input
+              type="file"
+              id="fileInput"
+              accept=".csv,text/csv"
+              onchange="loadFile(event)"
+            >
+
+
+            <button
+              class="primary-btn"
+              onclick="convertCSV()"
+            >
+              Convert to JSON
+            </button>
+
+
+            <button
+              class="secondary-btn"
+              onclick="clearAll()"
+            >
+              Clear
+            </button>
+
+          </div>
+
+
+          <div class="output-label">
+
+            <span>
+              JSON Output
+            </span>
+
+            <span>
+              Ready to use
+            </span>
+
+          </div>
+
+
+          <textarea
+            id="output"
+            readonly
+            placeholder="Your converted JSON will appear here..."
+          ></textarea>
+
+
+          <div class="tool-actions">
+
+            <button
+              class="primary-btn"
+              onclick="copyJSON()"
+            >
+              📋 Copy JSON
+            </button>
+
+
+            <button
+              class="secondary-btn"
+              onclick="downloadJSON()"
+            >
+              ⬇ Download JSON
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+        <section class="content">
+
+      <div class="content-card">
+
+        <h2>
+          CSV to JSON Converter
+        </h2>
+
+        <p>
+          This free online CSV to JSON converter helps you
+          convert comma-separated values into structured JSON
+          data directly in your browser.
+        </p>
+
+        <p>
+          CSV is commonly used for spreadsheets, tables,
+          databases and data exports, while JSON is widely
+          used by websites, applications, APIs and modern
+          development workflows.
+        </p>
+
+        <h3>
+          What is CSV?
+        </h3>
+
+        <p>
+          CSV stands for Comma-Separated Values. It stores
+          information in rows and columns, with each row
+          representing a record and each column representing
+          a field.
+        </p>
+
+        <h3>
+          What is JSON?
+        </h3>
+
+        <p>
+          JSON stands for JavaScript Object Notation. It is a
+          lightweight data format commonly used to exchange
+          structured information between applications and
+          services.
+        </p>
+
+        <h3>
+          Why convert CSV to JSON?
+        </h3>
+
+        <p>
+          Converting CSV data to JSON makes tabular information
+          easier to work with in JavaScript applications,
+          websites, databases and other developer workflows.
+        </p>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          How to Convert CSV to JSON
+        </h2>
+
+        <p>
+          You can convert CSV data to JSON in just a few steps:
+        </p>
+
+        <ul>
+          <li>
+            Paste your CSV data into the input box.
+          </li>
+
+          <li>
+            Or click Upload CSV to select a CSV file.
+          </li>
+
+          <li>
+            Click Convert to JSON.
+          </li>
+
+          <li>
+            Review the generated JSON output.
+          </li>
+
+          <li>
+            Copy the JSON or download it as a file.
+          </li>
+        </ul>
+
+        <p>
+          The conversion takes place directly in your browser,
+          making the process simple and convenient.
+        </p>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          CSV to JSON Example
+        </h2>
+
+        <p>
+          For example, this CSV data:
+        </p>
+
+        <div class="example-box">
+
+<pre>name,age,city
+Ali,25,Karachi
+Sara,30,Lahore
+Ahmed,28,Islamabad</pre>
+
+        </div>
+
+        <p style="margin-top:18px;">
+          Can be converted into JSON like this:
+        </p>
+
+        <div class="example-box">
+
+<pre>[
+  {
+    "name": "Ali",
+    "age": "25",
+    "city": "Karachi"
+  },
+  {
+    "name": "Sara",
+    "age": "30",
+    "city": "Lahore"
+  },
+  {
+    "name": "Ahmed",
+    "age": "28",
+    "city": "Islamabad"
+  }
+]</pre>
+
+        </div>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          Common Uses for CSV to JSON Conversion
+        </h2>
+
+        <p>
+          CSV to JSON conversion can be useful in many
+          development and data-processing situations.
+        </p>
+
+        <ul>
+          <li>
+            Preparing spreadsheet data for web applications.
+          </li>
+
+          <li>
+            Converting exported table data into structured
+            JSON objects.
+          </li>
+
+          <li>
+            Preparing data for JavaScript applications.
+          </li>
+
+          <li>
+            Working with datasets in developer tools.
+          </li>
+
+          <li>
+            Moving data between different file formats.
+          </li>
+
+          <li>
+            Creating JSON data from simple CSV tables.
+          </li>
+        </ul>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          Helpful CSV to JSON Tips
+        </h2>
+
+        <ul>
+          <li>
+            Make sure your first row contains the column names.
+          </li>
+
+          <li>
+            Keep the number of columns consistent between rows.
+          </li>
+
+          <li>
+            Use quotation marks when CSV values contain commas.
+          </li>
+
+          <li>
+            Check the generated JSON before using it in your
+            application.
+          </li>
+
+          <li>
+            Keep your CSV headers clear and descriptive.
+          </li>
+        </ul>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          Private Browser-Based Conversion
+        </h2>
+
+        <p>
+          This CSV to JSON tool performs the conversion directly
+          in your web browser. Your CSV data is not intentionally
+          uploaded to a conversion server by this tool.
+        </p>
+
+        <p class="privacy-note">
+          For sensitive information, you should still follow
+          your organization's data-handling and security
+          requirements.
+        </p>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          Frequently Asked Questions
+        </h2>
+
+
+        <div class="faq-item">
+
+          <h3>
+            What is a CSV to JSON converter?
+          </h3>
+
+          <p>
+            It is a tool that converts tabular CSV data into
+            structured JSON objects.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Is this CSV to JSON converter free?
+          </h3>
+
+          <p>
+            Yes. You can use this browser-based converter for
+            free without creating an account.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Can I upload a CSV file?
+          </h3>
+
+          <p>
+            Yes. Use the Upload CSV button to select a CSV file
+            from your device.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            How do I convert CSV to JSON?
+          </h3>
+
+          <p>
+            Paste or upload your CSV data and click Convert to
+            JSON. The resulting JSON will appear in the output
+            box.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Does the tool upload my CSV file?
+          </h3>
+
+          <p>
+            No. The conversion is performed in your browser
+            rather than intentionally uploading the CSV to a
+            conversion server.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Can I download the converted JSON?
+          </h3>
+
+          <p>
+            Yes. After conversion, click Download JSON to save
+            the generated JSON file.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="content-card">
+
+        <h2>
+          Related Developer Tools
+        </h2>
+
+        <p>
+          Explore more free browser-based tools for working
+          with CSV and JSON data.
+        </p>
+
+
+        <div class="related-grid">
+
+          <a
+            class="related-link"
+            href="json-to-csv.html"
+          >
+            JSON to CSV
+            <span>→</span>
+          </a>
+
+
+          <a
+            class="related-link"
+            href="json-formatter.html"
+          >
+            JSON Formatter
+            <span>→</span>
+          </a>
+
+
+          <a
+            class="related-link"
+            href="csv-to-jsonl.html"
+          >
+            CSV to JSONL
+            <span>→</span>
+          </a>
+
+
+          <a
+            class="related-link"
+            href="csv-to-markdown.html"
+          >
+            CSV to Markdown
+            <span>→</span>
+          </a>
+
+
+          <a
+            class="related-link"
+            href="csv-to-html.html"
+          >
+            CSV to HTML
+            <span>→</span>
+          </a>
+
+
+          <a
+            class="related-link"
+            href="csv-to-sql.html"
+          >
+            CSV to SQL
+            <span>→</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          CSV &amp; JSON Developer Tools
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="index.html">
+            Home
+          </a>
+
+          <a href="about.html">
+            About
+          </a>
+
+          <a href="privacy-policy.html">
+            Privacy Policy
+          </a>
+
+          <a href="terms.html">
+            Terms &amp; Conditions
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
+
+          <a href="cookie-policy.html">
+            Cookie Policy
+          </a>
+
+        </div>
+
+
+        <div class="copyright">
+          © 2026 CSV &amp; JSON Developer Tools.
+          All rights reserved.
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    function parseCSV(text) {
+
+      const rows = [];
+
+      let row = [];
+
+      let value = "";
+
+      let insideQuotes = false;
+
+
+      for (let i = 0; i < text.length; i++) {
+
+        const char = text[i];
+
+        const next = text[i + 1];
+
+
+        if (
+          char === '"' &&
+          insideQuotes &&
+          next === '"'
+        ) {
+
+          value += '"';
+
+          i++;
+
+        }
+
+        else if (char === '"') {
+
+          insideQuotes = !insideQuotes;
+
+        }
+
+        else if (
+          char === "," &&
+          !insideQuotes
+        ) {
+
+          row.push(value);
+
+          value = "";
+
+        }
+
+        else if (
+          (char === "\n" || char === "\r") &&
+          !insideQuotes
+        ) {
+
+          if (
+            char === "\r" &&
+            next === "\n"
+          ) {
+
+            i++;
+
+          }
+
+          row.push(value);
+
+          rows.push(row);
+
+          row = [];
+
+          value = "";
+
+        }
+
+        else {
+
+          value += char;
+
+        }
+
+      }
+
+
+      if (
+        value !== "" ||
+        row.length > 0
+      ) {
+
+        row.push(value);
+
+        rows.push(row);
+
+      }
+
+
+      return rows;
+
+    }
+
+
+    function convertCSV() {
+
+      const input =
+        document
+          .getElementById("csvInput")
+          .value
+          .trim();
+
+
+      const output =
+        document.getElementById("output");
+
+
+      if (!input) {
+
+        output.value =
+          "Please enter CSV data first.";
+
+        return;
+
+      }
+
+
+      try {
+
+        const rows = parseCSV(input);
+
+
+        if (rows.length < 2) {
+
+          output.value =
+            "Please provide a header row and at least one data row.";
+
+          return;
+
+        }
+
+
+        const headers = rows[0];
+
+
+        const data =
+          rows.slice(1).map(row => {
+
+            const obj = {};
+
+
+            headers.forEach(
+              (header, index) => {
+
+                obj[header] =
+                  row[index] ?? "";
+
+              }
+            );
+
+
+            return obj;
+
+          });
+
+
+        output.value =
+          JSON.stringify(
+            data,
+            null,
+            2
+          );
+
+      }
+
+      catch (error) {
+
+        output.value =
+          "Error converting CSV: " +
+          error.message;
+
+      }
+
+    }
+
+
+    function loadFile(event) {
+
+      const file =
+        event.target.files[0];
+
+
+      if (!file) return;
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(e) {
+
+          document
+            .getElementById("csvInput")
+            .value =
+            e.target.result;
+
+        };
+
+
+      reader.readAsText(file);
+
+    }
+
+
+    function copyJSON() {
+
+      const output =
+        document.getElementById("output");
+
+
+      if (!output.value) return;
+
+
+      navigator.clipboard.writeText(
+        output.value
+      );
+
+    }
+
+
+    function downloadJSON() {
+
+      const output =
+        document
+          .getElementById("output")
+          .value;
+
+
+      if (!output) return;
+
+
+      const blob =
+        new Blob(
+          [output],
+          {
+            type: "application/json"
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(blob);
+
+
+      const a =
+        document.createElement("a");
+
+
+      a.href = url;
+
+      a.download =
+        "converted.json";
+
+
+      document.body.appendChild(a);
+
+      a.click();
+
+      document.body.removeChild(a);
+
+
+      URL.revokeObjectURL(url);
+
+    }
+
+
+    function clearAll() {
+
+      document
+        .getElementById("csvInput")
+        .value = "";
+
+
+      document
+        .getElementById("output")
+        .value = "";
+
+
+      document
+        .getElementById("fileInput")
+        .value = "";
+
+    }
+
+  </script>
+
+
+</body>
+</html>
