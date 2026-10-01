@@ -3,26 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
   <title>JSON to TSV Converter - Free Online Tool</title>
-  <meta name="description" content="Convert JSON arrays to TSV or tab-separated data instantly in your browser. Free, fast and privacy-focused JSON to TSV converter.">
+
+  <meta name="description" content="Convert JSON arrays to TSV or tab-separated values online for free. Fast browser-based JSON to TSV converter with copy and download options.">
+
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-tsv.html">
 
   <meta property="og:title" content="JSON to TSV Converter - Free Online Tool">
-  <meta property="og:description" content="Convert JSON arrays to TSV or tab-separated data instantly in your browser.">
+  <meta property="og:description" content="Convert JSON arrays to TSV or tab-separated values instantly in your browser. Free, fast and privacy-focused.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-tsv.html">
+
+  <meta name="theme-color" content="#07111f">
 
   <script type="application/ld+json">
   {
@@ -30,7 +35,7 @@
     "@type": "WebApplication",
     "name": "JSON to TSV Converter",
     "url": "https://toolforge1.github.io/csv-json-tools/json-to-tsv.html",
-    "description": "Free online tool to convert JSON arrays into TSV or tab-separated data.",
+    "description": "Free browser-based tool for converting JSON arrays of objects into TSV data.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript",
@@ -43,177 +48,550 @@
   </script>
 
   <style>
+    :root {
+      --bg: #06101d;
+      --bg-soft: #0a1727;
+      --panel: rgba(12, 27, 45, 0.86);
+      --panel-solid: #0d1b2d;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(56, 189, 248, 0.28);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --danger: #fb7185;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.12), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    header {
-      background: #1f2937;
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 16, 29, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
       color: white;
-      padding: 25px 15px;
-      text-align: center;
+      font-weight: 900;
+      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.18);
     }
 
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
+    .brand-text {
+      font-size: 15px;
     }
 
-    header p {
-      margin: 0;
-      color: #d1d5db;
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .header-link:hover {
+      color: white;
     }
 
     main {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 15px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 54px 20px 70px;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
+    .hero {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 38px;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(34, 211, 238, 0.22);
+      background: rgba(34, 211, 238, 0.07);
+      color: #67e8f9;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .trust-pill {
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.7);
+      color: #cbd5e1;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      background: linear-gradient(
+        145deg,
+        rgba(15, 31, 51, 0.96),
+        rgba(8, 20, 35, 0.96)
+      );
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .tool-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .tool-card-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .tool-card-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .editor-box {
+      min-width: 0;
+    }
+
+    .tool-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px;
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tool-label span {
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     textarea {
       width: 100%;
-      min-height: 300px;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      min-height: 330px;
+      padding: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 15px;
       resize: vertical;
-      font-family: Consolas, monospace;
-      font-size: 14px;
-      line-height: 1.5;
+      outline: none;
+      background: #050d18;
+      color: #dbeafe;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    textarea:focus {
+      border-color: rgba(34, 211, 238, 0.48);
+      box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.06);
+    }
+
+    textarea[readonly] {
+      color: #bae6fd;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 12px;
     }
 
     button {
-      border: none;
-      padding: 11px 18px;
-      border-radius: 7px;
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 11px;
       cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
+      font-size: 13px;
+      font-weight: 800;
       color: white;
+      background: linear-gradient(135deg, #2563eb, #0891b2);
+      transition: transform 0.18s, opacity 0.18s, box-shadow 0.18s;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: translateY(-1px);
+      opacity: 0.96;
+      box-shadow: 0 9px 25px rgba(37, 99, 235, 0.18);
     }
 
     button.secondary {
-      background: #6b7280;
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid var(--border);
     }
 
     button.success {
-      background: #15803d;
+      background: linear-gradient(135deg, #15803d, #16a34a);
     }
 
     .message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 7px;
+      margin-top: 14px;
+      padding: 11px 14px;
+      border-radius: 11px;
       display: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
     }
 
     .success-message {
-      background: #dcfce7;
-      color: #166534;
+      background: rgba(34, 197, 94, 0.09);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.2);
     }
 
     .error-message {
-      background: #fee2e2;
-      color: #991b1b;
+      background: rgba(244, 63, 94, 0.09);
+      color: #fda4af;
+      border-color: rgba(244, 63, 94, 0.2);
     }
 
-    .privacy {
-      text-align: center;
-      color: #555;
-      font-size: 14px;
-      line-height: 1.6;
+    .privacy-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 17px;
+      border: 1px solid rgba(34, 197, 94, 0.16);
+      background: rgba(34, 197, 94, 0.045);
+      border-radius: 14px;
+      color: #a7f3d0;
+      font-size: 13px;
+      margin-top: 18px;
     }
 
-    .info h2 {
-      margin-top: 0;
-      font-size: 22px;
+    .privacy-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: rgba(34, 197, 94, 0.1);
+      font-size: 15px;
     }
 
-    .info h3 {
-      margin-bottom: 8px;
-      font-size: 18px;
+    .content-card {
+      background: rgba(10, 23, 39, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-top: 24px;
     }
 
-    .info p,
-    .info li {
-      line-height: 1.7;
-      color: #444;
+    .section-kicker {
+      color: #22d3ee;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 7px;
     }
 
-    .related a {
-      display: inline-block;
-      margin: 6px 8px 6px 0;
-      padding: 8px 12px;
-      background: #eef2ff;
-      color: #2563eb;
+    .content-card h2 {
+      margin: 0 0 14px;
+      font-size: 25px;
+      letter-spacing: -0.025em;
+    }
+
+    .content-card h3 {
+      margin: 25px 0 8px;
+      font-size: 17px;
+      color: #e2e8f0;
+    }
+
+    .content-card p,
+    .content-card li {
+      color: #aab8ca;
+      line-height: 1.75;
+    }
+
+    .content-card ul,
+    .content-card ol {
+      padding-left: 22px;
+    }
+
+    .code-example {
+      margin: 18px 0;
+      padding: 17px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #050d18;
+      overflow-x: auto;
+    }
+
+    .code-example pre {
+      margin: 0;
+      white-space: pre-wrap;
+      color: #bfdbfe;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .related-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .related-tools a {
+      display: block;
+      padding: 14px 15px;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(15, 31, 51, 0.7);
+      color: #dbeafe;
+      font-size: 13px;
+      font-weight: 800;
+      transition: border-color 0.18s, transform 0.18s;
+    }
+
+    .related-tools a:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .bottom-cta {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 25px;
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at center, rgba(37, 99, 235, 0.13), transparent 62%),
+        rgba(10, 23, 39, 0.7);
+    }
+
+    .bottom-cta h2 {
+      margin: 0 0 8px;
+      font-size: 23px;
+    }
+
+    .bottom-cta p {
+      margin: 0 auto 17px;
+      max-width: 650px;
+      color: var(--muted);
       font-size: 14px;
     }
 
-    .back {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .back a {
-      color: #2563eb;
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #2563eb, #0891b2);
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    footer {
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px;
       text-align: center;
-      padding: 25px 15px;
-      color: #666;
-      font-size: 14px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    @media (max-width: 820px) {
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .related-tools {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        margin-bottom: 28px;
+      }
     }
 
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
+      .header-inner {
+        padding: 13px 15px;
+      }
+
+      .brand-text {
+        font-size: 13px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      main {
+        padding: 38px 14px 55px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .tool-card,
+      .content-card {
+        padding: 18px;
+        border-radius: 17px;
       }
 
       textarea {
-        min-height: 250px;
+        min-height: 270px;
+      }
+
+      .buttons {
+        flex-direction: column;
       }
 
       button {
         width: 100%;
+      }
+
+      .related-tools {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -221,131 +599,429 @@
 
 <body>
 
-<header>
-  <h1>JSON to TSV Converter</h1>
-  <p>Convert JSON arrays to tab-separated data instantly.</p>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">{ }</span>
+      <span class="brand-text">CSV &amp; JSON Developer Tools</span>
+    </a>
+
+    <a class="header-link" href="index.html">All Tools →</a>
+  </div>
 </header>
 
 <main>
 
-  <div class="card">
+  <section class="hero">
+    <div class="hero-badge">⚡ Free Developer Tool</div>
 
-    <label for="jsonInput">JSON Input</label>
+    <h1>
+      JSON to <span>TSV Converter</span>
+    </h1>
 
-    <textarea
-      id="jsonInput"
-      placeholder='Paste a JSON array here...
+    <p>
+      Convert JSON arrays into clean tab-separated values directly in your
+      browser. Fast, simple and privacy-focused.
+    </p>
+
+    <div class="trust-row">
+      <span class="trust-pill">✓ Free to use</span>
+      <span class="trust-pill">✓ Browser-based</span>
+      <span class="trust-pill">✓ No file upload</span>
+      <span class="trust-pill">✓ Copy &amp; Download</span>
+    </div>
+  </section>
+
+  <section class="tool-card">
+
+    <div class="tool-card-head">
+      <div>
+        <h2 class="tool-card-title">JSON → TSV Converter</h2>
+        <div class="tool-card-subtitle">
+          Paste a JSON array of objects and convert it to tab-separated data.
+        </div>
+      </div>
+    </div>
+
+    <div class="editor-grid">
+
+      <div class="editor-box">
+
+        <div class="tool-label">
+          <span>JSON INPUT</span>
+          <span>Array of objects</span>
+        </div>
+
+        <textarea
+          id="jsonInput"
+          placeholder='Paste a JSON array here...
 
 Example:
 [
   {"name":"Ali","age":28,"city":"Karachi"},
   {"name":"Emma","age":34,"city":"London"}
 ]'
-    ></textarea>
+        ></textarea>
 
-    <div class="buttons">
-      <button onclick="convertJson()">Convert to TSV</button>
-      <button class="secondary" onclick="clearAll()">Clear</button>
+        <div class="buttons">
+          <button onclick="convertJson()">Convert to TSV</button>
+          <button class="secondary" onclick="clearAll()">Clear</button>
+        </div>
+
+        <div id="message" class="message"></div>
+
+      </div>
+
+      <div class="editor-box">
+
+        <div class="tool-label">
+          <span>TSV OUTPUT</span>
+          <span>Tab-separated values</span>
+        </div>
+
+        <textarea
+          id="tsvOutput"
+          readonly
+          placeholder="Converted TSV data will appear here..."
+        ></textarea>
+
+        <div class="buttons">
+          <button class="success" onclick="copyTsv()">Copy TSV</button>
+          <button onclick="downloadTsv()">Download TSV</button>
+        </div>
+
+      </div>
+
     </div>
 
-    <div id="message" class="message"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <label for="tsvOutput">TSV Output</label>
-
-    <textarea
-      id="tsvOutput"
-      readonly
-      placeholder="Converted TSV data will appear here..."
-    ></textarea>
-
-    <div class="buttons">
-      <button class="success" onclick="copyTsv()">Copy TSV</button>
-      <button onclick="downloadTsv()">Download TSV</button>
+    <div class="privacy-mini">
+      <div class="privacy-icon">🔒</div>
+      <div>
+        <strong>Your data stays in your browser.</strong><br>
+        JSON is processed locally on your device and is not uploaded to our server.
+      </div>
     </div>
 
-  </div>
+  </section>
+    <section class="content-card">
 
+    <div class="section-kicker">JSON to TSV Guide</div>
 
-  <div class="card privacy">
+    <h2>How to Convert JSON to TSV</h2>
 
-    <strong>Privacy:</strong>
-    Your JSON data is processed entirely in your browser.
-    No data is uploaded to our server.
-
-  </div>
-
-
-  <div class="card info">
-
-    <h2>How to Use JSON to TSV Converter</h2>
+    <p>
+      This JSON to TSV converter turns a JSON array containing objects into
+      tab-separated values. Each object property becomes a TSV column, while
+      each JSON object becomes a row in the generated output.
+    </p>
 
     <ol>
-      <li>Paste a JSON array containing objects into the input box.</li>
+      <li>Paste a valid JSON array containing objects into the input box.</li>
       <li>Click <strong>Convert to TSV</strong>.</li>
       <li>Review the generated tab-separated data.</li>
-      <li>Use <strong>Copy TSV</strong> to copy the result or <strong>Download TSV</strong> to save it as a TSV file.</li>
+      <li>Copy the TSV result or download it as a <strong>.tsv</strong> file.</li>
     </ol>
+
+    <h3>Example JSON Input</h3>
+
+    <div class="code-example">
+      <pre>[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
+  }
+]</pre>
+    </div>
+
+    <h3>Example TSV Output</h3>
+
+    <div class="code-example">
+      <pre>name	age	city
+Ali	28	Karachi
+Emma	34	London</pre>
+    </div>
+
+    <p>
+      The converter automatically collects property names from the JSON
+      objects and uses them as TSV headers. If a later object contains a
+      property that was not present earlier, that property is also added as
+      a column.
+    </p>
+
+  </section>
+
+
+  <section class="content-card">
+
+    <div class="section-kicker">About TSV</div>
+
+    <h2>What Is TSV?</h2>
+
+    <p>
+      TSV stands for <strong>Tab-Separated Values</strong>. It is a plain-text
+      data format where columns are separated by tab characters instead of
+      commas. TSV files are commonly used for spreadsheets, data exports,
+      databases, scripts and data-processing workflows.
+    </p>
+
+    <p>
+      Because TSV is plain text, it is easy to generate, read and process
+      with many programming languages and spreadsheet applications.
+    </p>
+
+    <h3>JSON vs TSV</h3>
+
+    <p>
+      JSON is structured and well suited for APIs, applications and nested
+      data. TSV is more table-oriented and is useful when the data needs to
+      be represented as rows and columns.
+    </p>
+
+    <p>
+      Converting JSON to TSV can therefore be useful when structured JSON data
+      needs to be opened or processed as tabular data.
+    </p>
+
+  </section>
+
+
+  <section class="content-card">
+
+    <div class="section-kicker">Developer Notes</div>
+
+    <h2>JSON to TSV Conversion Details</h2>
+
+    <h3>Input format</h3>
+
+    <p>
+      The converter expects the top-level JSON value to be an array. Every
+      item in the array must be an object.
+    </p>
+
+    <h3>Different object properties</h3>
+
+    <p>
+      Objects do not need to contain exactly the same properties. The converter
+      builds a combined list of property names and creates columns for them.
+      Missing properties produce empty TSV cells.
+    </p>
+
+    <h3>Nested values</h3>
+
+    <p>
+      If a property contains an object or another array, that value is
+      converted to a JSON string before being placed into the TSV cell.
+    </p>
+
+    <h3>Tabs and line breaks</h3>
+
+    <p>
+      Tab characters and line breaks inside individual values are replaced
+      with spaces so they do not interfere with the TSV row and column
+      structure.
+    </p>
+
+  </section>
+
+
+  <section class="content-card">
+
+    <div class="section-kicker">Common Uses</div>
+
+    <h2>When Is JSON to TSV Useful?</h2>
+
+    <ul>
+      <li>Preparing JSON data for spreadsheet workflows.</li>
+      <li>Creating tab-separated data for scripts and data pipelines.</li>
+      <li>Moving structured JSON records into table-oriented tools.</li>
+      <li>Creating simple TSV files for data analysis.</li>
+      <li>Converting API response data into a row-and-column format.</li>
+    </ul>
+
+  </section>
+    <section class="content-card">
+
+    <div class="section-kicker">FAQ</div>
 
     <h2>Frequently Asked Questions</h2>
 
-    <h3>What is TSV?</h3>
-    <p>
-      TSV stands for Tab-Separated Values. It is a plain-text format where
-      columns are separated by tab characters.
-    </p>
-
     <h3>What JSON format does this tool support?</h3>
+
     <p>
-      The input should be a JSON array containing objects. Object properties
-      are converted into TSV columns.
+      The input should be a JSON array containing objects. The properties of
+      those objects are converted into TSV columns.
     </p>
 
-    <h3>Is my JSON data uploaded to a server?</h3>
+    <h3>What happens if objects have different properties?</h3>
+
     <p>
-      No. The conversion is performed directly in your browser, so the JSON
-      data is not sent to our server.
+      The converter combines the property names from all objects into the TSV
+      header. A missing property results in an empty cell for that object.
     </p>
 
-    <h3>Can I download the converted TSV?</h3>
+    <h3>Are nested JSON objects supported?</h3>
+
     <p>
-      Yes. After conversion, click the <strong>Download TSV</strong> button
-      to save the result as a TSV file.
+      Nested objects and arrays can be included as values. They are converted
+      into JSON text inside the corresponding TSV cell.
     </p>
 
-  </div>
+    <h3>Is my JSON uploaded to a server?</h3>
+
+    <p>
+      No. The conversion runs directly in your browser. The JSON input is not
+      sent to our server by this tool.
+    </p>
+
+    <h3>Can I download the TSV file?</h3>
+
+    <p>
+      Yes. After conversion, use the <strong>Download TSV</strong> button to
+      save the generated data as <strong>converted.tsv</strong>.
+    </p>
+
+    <h3>Can I copy the TSV result?</h3>
+
+    <p>
+      Yes. Click <strong>Copy TSV</strong> to copy the generated tab-separated
+      data to your clipboard.
+    </p>
+
+  </section>
 
 
-  <div class="card info related">
+  <section class="content-card">
+
+    <div class="section-kicker">More Developer Tools</div>
 
     <h2>Related Tools</h2>
 
-    <a href="json-to-csv.html">JSON to CSV</a>
-    <a href="json-to-markdown.html">JSON to Markdown</a>
-    <a href="json-to-jsonl.html">JSON to JSONL</a>
-    <a href="csv-to-tsv.html">CSV to TSV</a>
-    <a href="tsv-to-json.html">TSV to JSON</a>
-    <a href="tsv-to-csv.html">TSV to CSV</a>
+    <p>
+      Working with structured and tabular data? Try these related free browser
+      tools.
+    </p>
 
-  </div>
+    <div class="related-tools">
+
+      <a href="json-to-csv.html">
+        JSON to CSV →
+      </a>
+
+      <a href="json-to-markdown.html">
+        JSON to Markdown →
+      </a>
+
+      <a href="json-to-jsonl.html">
+        JSON to JSONL →
+      </a>
+
+      <a href="csv-to-tsv.html">
+        CSV to TSV →
+      </a>
+
+      <a href="tsv-to-json.html">
+        TSV to JSON →
+      </a>
+
+      <a href="tsv-to-csv.html">
+        TSV to CSV →
+      </a>
+
+    </div>
+
+  </section>
 
 
-  <div class="back">
-    <a href="index.html">← Back to All Tools</a>
-  </div>
+  <section class="bottom-cta">
+
+    <h2>More Free Developer Tools</h2>
+
+    <p>
+      Convert, format, validate and transform CSV and JSON data with our
+      growing collection of browser-based developer utilities.
+    </p>
+
+    <a class="home-link" href="index.html">
+      Explore All Tools →
+    </a>
+
+  </section>
 
 </main>
 
 
-<footer>
-  © 2026 CSV & JSON Developer Tools
+<footer class="site-footer">
+
+  <div class="footer-links">
+    <a href="index.html">All Tools</a>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+    <a href="cookie-policy.html">Cookie Policy</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div>
+    © 2026 CSV &amp; JSON Developer Tools
+  </div>
+
 </footer>
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What JSON format does this tool support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool expects a JSON array containing objects and converts their properties into TSV columns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if objects have different properties?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The converter combines property names from all objects into the TSV header and leaves missing values empty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are nested JSON objects supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nested objects and arrays are converted into JSON text inside the corresponding TSV cell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my JSON uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion is performed directly in the browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download the TSV file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The converted data can be downloaded as a converted.tsv file."
+      }
+    }
+  ]
+}
+</script>
 <script>
 
 function convertJson() {
