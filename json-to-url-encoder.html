@@ -3,26 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
-  <title>JSON to URL Encoder - Encode JSON for URLs</title>
-  <meta name="description" content="Encode JSON data into URL-safe encoded text instantly in your browser. Free, fast, and privacy-friendly JSON to URL encoder.">
+  <title>JSON to URL Encoder - Free Online JSON Encoder</title>
+
+  <meta name="description" content="Encode JSON data into URL-encoded text online for free. Fast browser-based JSON to URL encoder with Unicode support, copy and download options.">
+
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-url-encoder.html">
 
   <meta property="og:title" content="JSON to URL Encoder - Free Online Tool">
-  <meta property="og:description" content="Encode JSON data into URL-safe text instantly in your browser.">
+  <meta property="og:description" content="Encode JSON data into URL-safe encoded text instantly in your browser. Free, fast and privacy-focused.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-url-encoder.html">
+
+  <meta name="theme-color" content="#07111f">
 
   <script type="application/ld+json">
   {
@@ -30,7 +35,7 @@
     "@type": "WebApplication",
     "name": "JSON to URL Encoder",
     "url": "https://toolforge1.github.io/csv-json-tools/json-to-url-encoder.html",
-    "description": "Free online tool to encode JSON data into URL-encoded text.",
+    "description": "Free browser-based tool for encoding normalized JSON data into URL-encoded text.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript",
@@ -43,173 +48,542 @@
   </script>
 
   <style>
+    :root {
+      --bg: #06101d;
+      --bg-soft: #0a1727;
+      --panel: rgba(12, 27, 45, 0.86);
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(56, 189, 248, 0.28);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .description {
-      text-align: center;
-      color: #666;
-      margin-bottom: 25px;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.12), transparent 28%),
+        var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    .card {
-      background: #fff;
-      padding: 22px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
+    a {
+      color: inherit;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 16, 29, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-weight: 900;
+      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.18);
+    }
+
+    .brand-text {
+      font-size: 15px;
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .header-link:hover {
+      color: white;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 54px 20px 70px;
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 38px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(34, 211, 238, 0.22);
+      background: rgba(34, 211, 238, 0.07);
+      color: #67e8f9;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .trust-pill {
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.7);
+      color: #cbd5e1;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      background: linear-gradient(
+        145deg,
+        rgba(15, 31, 51, 0.96),
+        rgba(8, 20, 35, 0.96)
+      );
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .tool-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .tool-card-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .tool-card-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .editor-box {
+      min-width: 0;
+    }
+
+    .tool-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px;
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tool-label span:last-child {
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     textarea {
       width: 100%;
-      min-height: 240px;
-      padding: 14px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      min-height: 330px;
+      padding: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 15px;
       resize: vertical;
-      font-family: monospace;
-      font-size: 14px;
-      line-height: 1.5;
+      outline: none;
+      background: #050d18;
+      color: #dbeafe;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .output {
-      min-height: 180px;
-      background: #f8f9fa;
+    textarea:focus {
+      border-color: rgba(34, 211, 238, 0.48);
+      box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.06);
+    }
+
+    textarea.output {
+      color: #bae6fd;
+      min-height: 330px;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 12px;
     }
 
     button {
-      border: none;
-      padding: 11px 18px;
-      border-radius: 7px;
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 11px;
       cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .primary {
-      background: #2563eb;
+      font-size: 13px;
+      font-weight: 800;
       color: white;
-    }
-
-    .secondary {
-      background: #e5e7eb;
-      color: #222;
+      background: linear-gradient(135deg, #2563eb, #0891b2);
+      transition: transform 0.18s, opacity 0.18s, box-shadow 0.18s;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: translateY(-1px);
+      opacity: 0.96;
+      box-shadow: 0 9px 25px rgba(37, 99, 235, 0.18);
+    }
+
+    button.secondary {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid var(--border);
     }
 
     .message {
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 6px;
+      margin-top: 14px;
+      padding: 11px 14px;
+      border-radius: 11px;
       display: none;
-      line-height: 1.5;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
     }
 
     .success {
-      background: #dcfce7;
-      color: #166534;
+      background: rgba(34, 197, 94, 0.09);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.2);
     }
 
     .error {
-      background: #fee2e2;
-      color: #991b1b;
+      background: rgba(244, 63, 94, 0.09);
+      color: #fda4af;
+      border-color: rgba(244, 63, 94, 0.2);
     }
 
-    .privacy {
-      background: #ecfdf5;
-      border-left: 4px solid #10b981;
-      padding: 15px;
-      border-radius: 6px;
-      line-height: 1.6;
+    .privacy-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 17px;
+      border: 1px solid rgba(34, 197, 94, 0.16);
+      background: rgba(34, 197, 94, 0.045);
+      border-radius: 14px;
+      color: #a7f3d0;
+      font-size: 13px;
+      margin-top: 18px;
     }
 
-    .info {
-      line-height: 1.7;
+    .privacy-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: rgba(34, 197, 94, 0.1);
+      font-size: 15px;
     }
 
-    .info h2 {
-      margin-top: 0;
+    .content-card {
+      background: rgba(10, 23, 39, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-top: 24px;
     }
 
-    .info h3 {
-      margin-bottom: 6px;
+    .section-kicker {
+      color: #22d3ee;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 7px;
     }
 
-    .info ol {
+    .content-card h2 {
+      margin: 0 0 14px;
+      font-size: 25px;
+      letter-spacing: -0.025em;
+    }
+
+    .content-card h3 {
+      margin: 25px 0 8px;
+      font-size: 17px;
+      color: #e2e8f0;
+    }
+
+    .content-card p,
+    .content-card li {
+      color: #aab8ca;
+      line-height: 1.75;
+    }
+
+    .content-card ol,
+    .content-card ul {
       padding-left: 22px;
     }
 
-    .related a {
-      display: inline-block;
-      margin: 6px 8px 6px 0;
-      padding: 8px 12px;
-      background: #eef2ff;
-      color: #2563eb;
+    .code-example {
+      margin: 18px 0;
+      padding: 17px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #050d18;
+      overflow-x: auto;
+    }
+
+    .code-example pre {
+      margin: 0;
+      white-space: pre-wrap;
+      color: #bfdbfe;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .related-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .related-tools a {
+      display: block;
+      padding: 14px 15px;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(15, 31, 51, 0.7);
+      color: #dbeafe;
+      font-size: 13px;
+      font-weight: 800;
+      transition: border-color 0.18s, transform 0.18s;
+    }
+
+    .related-tools a:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .bottom-cta {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 25px;
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at center, rgba(37, 99, 235, 0.13), transparent 62%),
+        rgba(10, 23, 39, 0.7);
+    }
+
+    .bottom-cta h2 {
+      margin: 0 0 8px;
+      font-size: 23px;
+    }
+
+    .bottom-cta p {
+      margin: 0 auto 17px;
+      max-width: 650px;
+      color: var(--muted);
       font-size: 14px;
     }
 
-    .back {
-      text-align: center;
-      margin-top: 20px;
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #2563eb, #0891b2);
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .back a {
-      color: #2563eb;
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px;
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
       text-decoration: none;
-      font-weight: bold;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    @media (max-width: 820px) {
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .related-tools {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 600px) {
-      .container {
-        margin: 20px auto;
-        padding: 12px;
+      .header-inner {
+        padding: 13px 15px;
       }
 
-      .card {
-        padding: 16px;
+      .brand-text {
+        font-size: 13px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      main {
+        padding: 38px 14px 55px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .tool-card,
+      .content-card {
+        padding: 18px;
+        border-radius: 17px;
+      }
+
+      textarea,
+      textarea.output {
+        min-height: 270px;
+      }
+
+      .buttons {
+        flex-direction: column;
       }
 
       button {
         width: 100%;
+      }
+
+      .related-tools {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -217,133 +591,469 @@
 
 <body>
 
-<div class="container">
+<header class="site-header">
+  <div class="header-inner">
 
-  <h1>JSON to URL Encoder</h1>
+    <a class="brand" href="index.html">
+      <span class="brand-icon">{ }</span>
+      <span class="brand-text">CSV &amp; JSON Developer Tools</span>
+    </a>
 
-  <p class="description">
-    Encode JSON data into URL-safe encoded text instantly in your browser.
-    No data is uploaded to a server.
-  </p>
+    <a class="header-link" href="index.html">
+      All Tools →
+    </a>
 
-  <div class="card">
+  </div>
+</header>
 
-    <label for="jsonInput">JSON Input</label>
+<main>
 
-    <textarea id="jsonInput" placeholder='Example:
+  <section class="hero">
+
+    <div class="hero-badge">⚡ Free Developer Tool</div>
+
+    <h1>
+      JSON to <span>URL Encoder</span>
+    </h1>
+
+    <p>
+      Convert valid JSON into URL-encoded text directly in your browser.
+      Useful for safely placing JSON data inside URL components.
+    </p>
+
+    <div class="trust-row">
+      <span class="trust-pill">✓ Free to use</span>
+      <span class="trust-pill">✓ Browser-based</span>
+      <span class="trust-pill">✓ Unicode support</span>
+      <span class="trust-pill">✓ No server upload</span>
+    </div>
+
+  </section>
+
+  <section class="tool-card">
+
+    <div class="tool-card-head">
+      <div>
+        <h2 class="tool-card-title">JSON → URL Encoder</h2>
+        <div class="tool-card-subtitle">
+          Validate, normalize and URL-encode JSON in your browser.
+        </div>
+      </div>
+    </div>
+
+    <div class="editor-grid">
+
+      <div class="editor-box">
+
+        <div class="tool-label">
+          <span>JSON INPUT</span>
+          <span>Valid JSON required</span>
+        </div>
+
+        <textarea
+          id="jsonInput"
+          placeholder='Example:
 {
   "name": "Ali",
   "city": "Karachi",
   "message": "السلام علیکم"
-}'></textarea>
+}'
+        ></textarea>
 
-    <div class="buttons">
-      <button class="primary" onclick="encodeJSON()">Encode JSON</button>
-      <button class="secondary" onclick="copyOutput()">Copy Encoded URL</button>
-      <button class="secondary" onclick="downloadOutput()">Download TXT</button>
-      <button class="secondary" onclick="clearAll()">Clear</button>
+        <div class="buttons">
+
+          <button
+            class="primary"
+            onclick="encodeJSON()"
+          >
+            Encode JSON
+          </button>
+
+          <button
+            class="secondary"
+            onclick="copyOutput()"
+          >
+            Copy Encoded URL
+          </button>
+
+          <button
+            class="secondary"
+            onclick="downloadOutput()"
+          >
+            Download TXT
+          </button>
+
+          <button
+            class="secondary"
+            onclick="clearAll()"
+          >
+            Clear
+          </button>
+
+        </div>
+
+        <div id="message" class="message"></div>
+
+      </div>
+
+
+      <div class="editor-box">
+
+        <div class="tool-label">
+          <span>ENCODED OUTPUT</span>
+          <span>URL-encoded text</span>
+        </div>
+
+        <textarea
+          id="output"
+          class="output"
+          readonly
+          placeholder="Encoded JSON will appear here..."
+        ></textarea>
+
+      </div>
+
     </div>
 
-    <div id="message" class="message"></div>
+    <div class="privacy-mini">
 
-  </div>
+      <div class="privacy-icon">🔒</div>
 
+      <div>
+        <strong>Your JSON stays in your browser.</strong><br>
+        The tool processes your input locally and does not upload it to our server.
+      </div>
 
-  <div class="card">
+    </div>
 
-    <label for="output">Encoded URL Text</label>
+  </section>
+    <section class="content-card">
 
-    <textarea
-      id="output"
-      class="output"
-      readonly
-      placeholder="Encoded JSON will appear here..."
-    ></textarea>
+    <div class="section-kicker">JSON URL Encoding Guide</div>
 
-  </div>
+    <h2>How to Encode JSON for a URL</h2>
 
-
-  <div class="card info">
-
-    <h2>How to Use</h2>
+    <p>
+      JSON can contain spaces, quotation marks, braces, Unicode characters
+      and other characters that have special meaning in URLs. URL encoding
+      converts those characters into a percent-encoded representation.
+    </p>
 
     <ol>
-      <li>Paste valid JSON into the input box.</li>
+      <li>Paste valid JSON into the input editor.</li>
       <li>Click <strong>Encode JSON</strong>.</li>
-      <li>The JSON will be converted into URL-encoded text.</li>
+      <li>The tool first parses and normalizes the JSON.</li>
+      <li>The normalized JSON is then URL-encoded.</li>
       <li>Copy the encoded result or download it as a TXT file.</li>
     </ol>
 
-    <h2>What is URL Encoding?</h2>
+    <h3>Example JSON</h3>
+
+    <div class="code-example">
+      <pre>{
+  "name": "Ali",
+  "city": "Karachi",
+  "message": "Hello World"
+}</pre>
+    </div>
+
+    <h3>What the Tool Does</h3>
 
     <p>
-      URL encoding converts characters such as spaces, special characters,
-      and Unicode characters into a percent-encoded format that can be safely
-      used as part of a URL.
+      The converter uses the browser's native
+      <strong>JSON.parse()</strong>,
+      <strong>JSON.stringify()</strong> and
+      <strong>encodeURIComponent()</strong> functions.
+      This means the input is validated and normalized before the final
+      URL-encoded text is generated.
+    </p>
+
+  </section>
+
+
+  <section class="content-card">
+
+    <div class="section-kicker">Understanding URL Encoding</div>
+
+    <h2>What Is URL Encoding?</h2>
+
+    <p>
+      URL encoding, also called percent-encoding, represents characters that
+      may not be safe or convenient to use directly inside a URL in an encoded
+      form.
     </p>
 
     <p>
-      This tool uses the browser's built-in
-      <strong>encodeURIComponent()</strong> function to encode the normalized
-      JSON string.
+      For example, spaces and many special or Unicode characters are converted
+      into percent-encoded sequences. This makes data suitable for use as part
+      of a URL component.
     </p>
+
+    <h3>Why Encode JSON?</h3>
+
+    <p>
+      JSON is commonly used when applications exchange structured data.
+      Sometimes a JSON value needs to be passed through a URL query parameter
+      or another URL component. Encoding helps prevent JSON characters from
+      interfering with the URL structure.
+    </p>
+
+    <p>
+      The exact way encoded data should be placed into a URL depends on the
+      application and the URL component being used. This tool provides the
+      encoded JSON text; it does not construct a complete application-specific
+      URL.
+    </p>
+
+  </section>
+
+
+  <section class="content-card">
+
+    <div class="section-kicker">Developer Notes</div>
+
+    <h2>JSON to URL Encoding Details</h2>
+
+    <h3>JSON validation</h3>
+
+    <p>
+      The input is parsed with the browser's JSON parser before encoding.
+      Invalid JSON therefore produces an error instead of an encoded result.
+    </p>
+
+    <h3>JSON normalization</h3>
+
+    <p>
+      After parsing, the tool uses <strong>JSON.stringify()</strong> to create
+      a normalized JSON representation. Formatting whitespace from the
+      original input is therefore not preserved in the encoded result.
+    </p>
+
+    <h3>Unicode characters</h3>
+
+    <p>
+      Unicode text such as Urdu, Arabic, Chinese and other non-Latin
+      characters can be processed by the browser's URL encoding functionality.
+    </p>
+
+    <h3>URL component encoding</h3>
+
+    <p>
+      This tool uses <strong>encodeURIComponent()</strong>, which is intended
+      for encoding a value as a URI component. It is not the same as manually
+      building an entire URL.
+    </p>
+
+  </section>
+
+
+  <section class="content-card">
+
+    <div class="section-kicker">Practical Uses</div>
+
+    <h2>Common Uses for JSON URL Encoding</h2>
+
+    <ul>
+      <li>Preparing JSON for a URL query parameter.</li>
+      <li>Testing URL-based APIs and application parameters.</li>
+      <li>Encoding structured data for development and debugging.</li>
+      <li>Working with Unicode JSON data in URL components.</li>
+      <li>Quickly generating encoded JSON without installing software.</li>
+    </ul>
+
+    <p>
+      Always check the requirements of the service receiving the URL. Some
+      applications impose URL length limits or expect JSON to be transmitted
+      using a request body instead of a URL.
+    </p>
+
+  </section>
+    <section class="content-card">
+
+    <div class="section-kicker">FAQ</div>
 
     <h2>Frequently Asked Questions</h2>
 
     <h3>Does this tool validate JSON?</h3>
 
     <p>
-      Yes. The tool parses the input as JSON before encoding it. Invalid JSON
-      produces an error message instead of an encoded result.
+      Yes. The input is parsed with JSON.parse() before it is encoded.
+      Invalid JSON produces an error message.
+    </p>
+
+    <h3>Does the converter change my JSON formatting?</h3>
+
+    <p>
+      Yes. The tool parses the JSON and then uses JSON.stringify() to create
+      a normalized representation before URL encoding it. Original formatting
+      whitespace is not preserved.
     </p>
 
     <h3>Does it support Urdu and other Unicode characters?</h3>
 
     <p>
-      Yes. Unicode characters, including Urdu and other non-Latin scripts,
-      are handled by the browser's URL encoding functionality.
+      Yes. Unicode characters are handled by the browser's URL encoding
+      functionality, so JSON containing Urdu and other non-Latin text can
+      be encoded.
     </p>
 
     <h3>Is my JSON uploaded to a server?</h3>
 
     <p>
-      No. JSON processing and URL encoding take place directly in your
-      browser. Your input is not uploaded to our server.
+      No. The processing takes place directly in your browser. The tool does
+      not send your JSON input to our server.
     </p>
 
-  </div>
+    <h3>Can I copy the encoded JSON?</h3>
+
+    <p>
+      Yes. Click <strong>Copy Encoded URL</strong> after generating the
+      encoded result.
+    </p>
+
+    <h3>Can I download the encoded result?</h3>
+
+    <p>
+      Yes. Click <strong>Download TXT</strong> to save the encoded text as
+      <strong>encoded-json.txt</strong>.
+    </p>
+
+    <h3>Does URL encoding create a complete URL?</h3>
+
+    <p>
+      No. The tool creates URL-encoded JSON text. You can then use that value
+      in the appropriate URL component or query parameter for your application.
+    </p>
+
+  </section>
 
 
-  <div class="card privacy">
+  <section class="content-card">
 
-    <strong>Privacy:</strong>
-    Your JSON is processed entirely in your browser.
-    Nothing is uploaded to our server.
-
-  </div>
-
-
-  <div class="card info related">
+    <div class="section-kicker">More Developer Tools</div>
 
     <h2>Related Tools</h2>
 
-    <a href="json-url-decoder.html">JSON URL Decoder</a>
-    <a href="json-formatter.html">JSON Formatter</a>
-    <a href="json-to-base64.html">JSON to Base64</a>
-    <a href="base64-to-json.html">Base64 to JSON</a>
-    <a href="json-to-text.html">JSON to Text</a>
-    <a href="text-to-json.html">Text to JSON</a>
+    <p>
+      Continue working with JSON, encoding and decoding using these related
+      browser-based tools.
+    </p>
 
+    <div class="related-tools">
+
+      <a href="json-url-decoder.html">
+        JSON URL Decoder →
+      </a>
+
+      <a href="json-formatter.html">
+        JSON Formatter →
+      </a>
+
+      <a href="json-to-base64.html">
+        JSON to Base64 →
+      </a>
+
+      <a href="base64-to-json.html">
+        Base64 to JSON →
+      </a>
+
+      <a href="json-to-text.html">
+        JSON to Text →
+      </a>
+
+      <a href="text-to-json.html">
+        Text to JSON →
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section class="bottom-cta">
+
+    <h2>More Free Developer Tools</h2>
+
+    <p>
+      Convert, format, validate, encode and transform CSV and JSON data with
+      our growing collection of browser-based developer utilities.
+    </p>
+
+    <a class="home-link" href="index.html">
+      Explore All Tools →
+    </a>
+
+  </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+  <div class="footer-links">
+    <a href="index.html">All Tools</a>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+    <a href="cookie-policy.html">Cookie Policy</a>
+    <a href="contact.html">Contact</a>
   </div>
 
-
-  <div class="back">
-    <a href="index.html">← Back to All Tools</a>
+  <div>
+    © 2026 CSV &amp; JSON Developer Tools
   </div>
 
-</div>
+</footer>
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool validate JSON?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The input is parsed with JSON.parse() before it is encoded. Invalid JSON produces an error message."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the converter change my JSON formatting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The JSON is parsed and then normalized with JSON.stringify() before URL encoding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support Urdu and other Unicode characters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Unicode characters are handled by the browser's URL encoding functionality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my JSON uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. JSON processing and URL encoding take place directly in the browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download the encoded result?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The encoded result can be downloaded as a TXT file."
+      }
+    }
+  ]
+}
+</script>
 <script>
 
 function showMessage(text, type) {
