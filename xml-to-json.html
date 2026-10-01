@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
-  <title>XML to JSON Converter - Free Online Tool</title>
+  <title>XML to JSON Converter - Free Online XML to JSON Tool</title>
 
   <meta name="description" content="Convert XML to JSON online for free. Transform XML data into clean, readable JSON directly in your browser. Fast, simple and privacy-focused.">
 
@@ -21,7 +22,9 @@
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/xml-to-json.html">
 
-  <meta property="og:title" content="XML to JSON Converter - Free Online Tool">
+  <meta name="theme-color" content="#07111f">
+
+  <meta property="og:title" content="XML to JSON Converter - Free Online XML to JSON Tool">
   <meta property="og:description" content="Convert XML data to clean JSON instantly in your browser. Free, fast and privacy-focused.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/xml-to-json.html">
@@ -38,213 +41,514 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this XML to JSON converter free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The XML to JSON converter is free to use directly in your web browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my XML uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion is performed locally in your browser, so the XML input is not sent to our server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if the XML is invalid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool checks the XML syntax and displays an error message when invalid XML is detected."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can repeated XML elements become JSON arrays?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. When the same XML element occurs multiple times under the same parent, the converter represents those repeated elements as a JSON array."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --bg: #050b14;
+      --bg-soft: #081321;
+      --panel: rgba(12, 25, 42, 0.88);
+      --panel-2: #0d1b2d;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-light: rgba(56, 189, 248, 0.22);
+      --text: #e6edf7;
+      --muted: #94a8bd;
+      --cyan: #22d3ee;
+      --blue: #3b82f6;
+      --blue-dark: #2563eb;
+      --green: #22c55e;
+      --green-dark: #16a34a;
+      --red: #ef4444;
+      --shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at 15% 5%, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(5, 11, 20, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-size: 17px;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+    }
+
+    .brand-name {
+      font-size: 15px;
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-link:hover {
+      color: white;
     }
 
     .container {
-      width: 92%;
-      max-width: 1000px;
+      width: min(1180px, 92%);
       margin: auto;
-      padding: 30px 0;
     }
 
-    .tool {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    h1 {
+    .hero {
       text-align: center;
-      margin: 0 0 10px;
+      padding: 72px 0 42px;
     }
 
-    h2 {
-      margin-top: 30px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      background: rgba(14, 35, 58, 0.7);
+      color: #8be9f7;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 18px auto 14px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -2.8px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .trust-pill {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(15, 31, 50, 0.9);
+      border: 1px solid var(--border);
+      color: #b9c9d9;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      background:
+        linear-gradient(145deg, rgba(15, 31, 51, 0.96), rgba(7, 18, 31, 0.96));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: -180px;
+      right: -120px;
+      background: rgba(34, 211, 238, 0.08);
+      border-radius: 50%;
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .tool-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .tool-heading h2 {
+      margin: 0;
       font-size: 21px;
+      letter-spacing: -0.5px;
     }
 
-    .description {
-      text-align: center;
-      color: #6b7280;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    label {
+    .tool-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
       display: block;
-      font-weight: bold;
-      margin: 15px 0 8px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .editor-box {
+      min-width: 0;
     }
 
     textarea {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 14px;
-      min-height: 280px;
+      min-height: 330px;
+      padding: 17px;
       resize: vertical;
-      font-family: monospace;
-      line-height: 1.5;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 15px;
+      background: #06101c;
+      color: #dbeafe;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    textarea::placeholder {
+      color: #587087;
     }
 
     textarea:focus {
-      outline: none;
-      border-color: #2563eb;
+      border-color: rgba(34, 211, 238, 0.55);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.08);
+    }
+
+    textarea[readonly] {
+      background: #071321;
     }
 
     .buttons {
-      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
     }
 
     button {
-      padding: 11px 17px;
-      margin: 5px 5px 5px 0;
-      border: none;
-      border-radius: 7px;
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 16px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 800;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
     }
 
     .primary {
-      background: #2563eb;
+      background: linear-gradient(135deg, var(--blue-dark), #3b82f6);
       color: white;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
     }
 
     .primary:hover {
-      background: #1d4ed8;
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
     }
 
     .secondary {
-      background: #e5e7eb;
-      color: #222;
+      background: #17263a;
+      color: #cbd5e1;
+      border: 1px solid var(--border);
+    }
+
+    .secondary:hover {
+      background: #20334c;
     }
 
     .success {
-      background: #16a34a;
+      background: linear-gradient(135deg, #15803d, var(--green));
       color: white;
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.16);
     }
 
     .status {
       display: none;
-      margin: 15px 0;
-      padding: 12px;
-      border-radius: 8px;
-      line-height: 1.5;
-      font-size: 14px;
+      margin: 18px 0 0;
+      padding: 12px 15px;
+      border-radius: 11px;
+      font-size: 13px;
+      line-height: 1.55;
+      border: 1px solid transparent;
     }
 
     .valid {
-      background: #f0fdf4;
-      color: #166534;
+      display: block;
+      background: rgba(22, 101, 52, 0.16);
+      border-color: rgba(34, 197, 94, 0.25);
+      color: #86efac;
     }
 
     .invalid {
-      background: #fef2f2;
-      color: #991b1b;
+      display: block;
+      background: rgba(153, 27, 27, 0.16);
+      border-color: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
     }
 
-    .info-section {
-      margin-top: 30px;
-      line-height: 1.7;
+    .privacy-mini {
+      margin-top: 20px;
+      padding: 15px 17px;
+      border-radius: 14px;
+      background: rgba(15, 53, 45, 0.34);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      color: #b7e7c5;
+      font-size: 13px;
     }
 
-    .info-section ul {
+    .privacy-mini strong {
+      color: #86efac;
+    }
+
+    .content-section {
+      margin-top: 28px;
+      padding: 34px 0 10px;
+    }
+
+    .content-card {
+      background: rgba(10, 23, 39, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+
+    .content-card h2 {
+      margin: 0 0 13px;
+      font-size: 26px;
+      letter-spacing: -0.8px;
+    }
+
+    .content-card h3 {
+      margin: 25px 0 9px;
+      font-size: 18px;
+      color: #dbeafe;
+    }
+
+    .content-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .content-card ul,
+    .content-card ol {
+      color: var(--muted);
       padding-left: 22px;
     }
 
-    .faq-item {
-      margin-bottom: 18px;
+    .content-card li {
+      margin: 7px 0;
     }
 
-    .faq-item strong {
-      display: block;
-      margin-bottom: 5px;
+    .code-example {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #050c15;
+      border: 1px solid var(--border);
+      overflow-x: auto;
     }
 
-    .related-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
+    .code-example pre {
+      margin: 0;
+      color: #bfe8ff;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
     }
 
-    .related-tools a {
-      display: inline-block;
-      padding: 9px 12px;
-      background: #eff6ff;
-      color: #2563eb;
-      text-decoration: none;
-      border-radius: 7px;
-      font-size: 14px;
-    }
-
-    .related-tools a:hover {
-      background: #dbeafe;
-    }
-
-    .privacy {
-      margin-top: 25px;
-      padding: 15px;
-      background: #f0fdf4;
-      color: #166534;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      color: #2563eb;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        width: 94%;
-        padding: 15px 0;
-      }
-
-      .tool {
-        padding: 18px;
-      }
-
-      h1 {
-        font-size: 27px;
-      }
+    .section-kicker {
+      color: var(--cyan);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
+      margin-bottom: 7px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">{ }</span>
+        <span class="brand-name">CSV &amp; JSON Developer Tools</span>
+      </a>
 
-    <div class="tool">
+      <a class="header-link" href="index.html">All Tools →</a>
+    </div>
+  </header>
 
-      <h1>XML to JSON Converter</h1>
+  <main class="container">
 
-      <p class="description">
-        Convert XML data into clean JSON instantly in your browser.
-        Your data stays on your device.
+    <section class="hero">
+      <div class="hero-badge">⚡ XML Developer Tool</div>
+
+      <h1>
+        XML to <span>JSON Converter</span>
+      </h1>
+
+      <p>
+        Convert XML data into clean, readable JSON directly in your browser.
+        Fast, simple and designed for everyday developer workflows.
       </p>
 
-      <label for="xmlInput">Enter XML</label>
+      <div class="trust-row">
+        <span class="trust-pill">✓ Browser-based</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ Privacy-focused</span>
+        <span class="trust-pill">✓ Free to use</span>
+      </div>
+    </section>
 
-      <textarea id="xmlInput"><?xml version="1.0" encoding="UTF-8"?>
+    <section class="tool-card">
+
+      <div class="tool-heading">
+        <h2>Convert XML to JSON</h2>
+      </div>
+
+      <div class="editor-grid">
+
+        <div class="editor-box">
+          <label class="tool-label" for="xmlInput">XML Input</label>
+
+          <textarea id="xmlInput"><?xml version="1.0" encoding="UTF-8"?>
 <root>
   <item>
     <name>Ali</name>
@@ -258,99 +562,551 @@
   </item>
 </root></textarea>
 
-      <div class="buttons">
-        <button class="primary" onclick="convertToJSON()">Convert to JSON</button>
-        <button class="secondary" onclick="clearAll()">Clear</button>
+          <div class="buttons">
+            <button class="primary" onclick="convertToJSON()">
+              Convert to JSON
+            </button>
+
+            <button class="secondary" onclick="clearAll()">
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <div class="editor-box">
+          <label class="tool-label" for="jsonOutput">JSON Output</label>
+
+          <textarea
+            id="jsonOutput"
+            readonly
+            placeholder="JSON output will appear here..."
+          ></textarea>
+
+          <div class="buttons">
+            <button class="success" onclick="copyJSON()">
+              Copy JSON
+            </button>
+
+            <button class="primary" onclick="downloadJSON()">
+              Download JSON
+            </button>
+          </div>
+        </div>
+
       </div>
 
       <div id="status" class="status"></div>
 
-      <label for="jsonOutput">JSON Output</label>
-
-      <textarea
-        id="jsonOutput"
-        readonly
-        placeholder="JSON output will appear here..."
-      ></textarea>
-
-      <div class="buttons">
-        <button class="success" onclick="copyJSON()">Copy JSON</button>
-        <button class="primary" onclick="downloadJSON()">Download JSON</button>
+      <div class="privacy-mini">
+        <strong>🔒 Privacy First</strong><br>
+        This XML to JSON converter processes your data directly in your
+        browser. Your XML is not uploaded to our server.
       </div>
 
-      <div class="privacy">
-        <strong>Privacy First</strong><br>
-        This XML to JSON converter processes your data directly in your browser.
-        Your XML is not uploaded to our server.
-      </div>
+    </section>
+        <section class="content-section">
 
-      <section class="info-section">
+      <article class="content-card">
 
-        <h2>How to Use XML to JSON Converter</h2>
+        <div class="section-kicker">XML → JSON</div>
 
-        <ol>
-          <li>Paste or enter your XML data in the input box.</li>
-          <li>Click <strong>Convert to JSON</strong>.</li>
-          <li>Review the generated JSON output.</li>
-          <li>Use <strong>Copy JSON</strong> to copy the result.</li>
-          <li>Use <strong>Download JSON</strong> to save the JSON file.</li>
-        </ol>
-
-        <h2>About XML to JSON Conversion</h2>
+        <h2>XML to JSON Converter: Convert XML into JSON</h2>
 
         <p>
-          XML and JSON are commonly used formats for storing and exchanging
-          structured data. This tool converts XML elements into a JSON
-          structure directly in your browser, making XML data easier to work
-          with in applications and development workflows.
+          XML and JSON are two widely used formats for representing structured
+          data. If you have XML data that needs to be used in a JSON-based
+          application, API workflow or development project, this converter can
+          transform supported XML structures into formatted JSON directly in
+          your browser.
         </p>
+
+        <p>
+          The conversion happens locally in your browser. You can paste XML,
+          convert it, review the generated JSON, copy the result or download
+          it as a JSON file.
+        </p>
+
+        <h3>What this XML to JSON converter supports</h3>
+
+        <ul>
+          <li>XML elements and nested elements</li>
+          <li>Repeated XML elements represented as JSON arrays</li>
+          <li>Text content inside XML elements</li>
+          <li>XML documents with a root element</li>
+          <li>Standard XML syntax validation through the browser</li>
+        </ul>
+
+        <p>
+          The converter is intended for straightforward XML-to-JSON
+          transformations. XML features such as attributes, namespaces and
+          mixed-content documents may require specialized XML processing
+          depending on the structure of your data.
+        </p>
+
+      </article>
+
+      <article class="content-card">
+
+        <div class="section-kicker">How it works</div>
+
+        <h2>How to Use the XML to JSON Converter</h2>
+
+        <ol>
+          <li>Paste your XML data into the XML input box.</li>
+          <li>Click <strong>Convert to JSON</strong>.</li>
+          <li>Review the generated JSON structure.</li>
+          <li>Click <strong>Copy JSON</strong> to copy the result.</li>
+          <li>Click <strong>Download JSON</strong> to save the result as a file.</li>
+        </ol>
+
+        <h3>Example XML</h3>
+
+        <div class="code-example">
+          <pre>&lt;users&gt;
+  &lt;user&gt;
+    &lt;name&gt;Ali&lt;/name&gt;
+    &lt;age&gt;28&lt;/age&gt;
+    &lt;city&gt;Karachi&lt;/city&gt;
+  &lt;/user&gt;
+&lt;/users&gt;</pre>
+        </div>
+
+        <h3>Example JSON result</h3>
+
+        <div class="code-example">
+          <pre>{
+  "users": {
+    "user": {
+      "name": "Ali",
+      "age": "28",
+      "city": "Karachi"
+    }
+  }
+}</pre>
+        </div>
+
+      </article>
+
+      <article class="content-card">
+
+        <div class="section-kicker">Developer Guide</div>
+
+        <h2>XML vs JSON</h2>
+
+        <p>
+          XML uses nested elements and tags to represent structured data,
+          while JSON uses objects, arrays and key-value pairs. JSON is commonly
+          used in modern web applications and APIs because of its compact
+          structure and straightforward representation in many programming
+          languages.
+        </p>
+
+        <p>
+          Converting XML to JSON can be useful when migrating data between
+          systems, working with APIs, preparing test data or moving an older
+          XML-based workflow into a JSON-oriented application.
+        </p>
+
+        <h3>Common uses</h3>
+
+        <ul>
+          <li>Converting XML API responses for development</li>
+          <li>Preparing XML data for JSON-based applications</li>
+          <li>Inspecting structured XML data in JSON form</li>
+          <li>Testing and debugging data transformations</li>
+          <li>Preparing sample data for development workflows</li>
+        </ul>
+
+      </article>
+
+      <article class="content-card">
+
+        <div class="section-kicker">FAQ</div>
 
         <h2>Frequently Asked Questions</h2>
 
         <div class="faq-item">
-          <strong>Is this XML to JSON converter free?</strong>
-          Yes. The tool is free to use directly in your web browser.
+          <h3>Is this XML to JSON converter free?</h3>
+          <p>
+            Yes. The XML to JSON converter is free to use directly in your
+            web browser.
+          </p>
         </div>
 
         <div class="faq-item">
-          <strong>Is my XML uploaded to a server?</strong>
-          No. The conversion is performed locally in your browser, so the XML
-          input is not sent to our server.
+          <h3>Is my XML uploaded to a server?</h3>
+          <p>
+            No. The conversion is performed locally in your browser, so the
+            XML input is not sent to our server.
+          </p>
         </div>
 
         <div class="faq-item">
-          <strong>What happens if the XML is invalid?</strong>
-          The tool checks the XML syntax and displays an error message when
-          invalid XML is detected.
+          <h3>What happens if the XML is invalid?</h3>
+          <p>
+            The browser checks the XML syntax and the tool displays an error
+            message when invalid XML is detected.
+          </p>
         </div>
 
         <div class="faq-item">
-          <strong>Can repeated XML elements become JSON arrays?</strong>
-          Yes. When the same XML element occurs multiple times under the same
-          parent, the converter represents those repeated elements as a JSON
-          array.
+          <h3>Can repeated XML elements become JSON arrays?</h3>
+          <p>
+            Yes. When the same XML element occurs multiple times under the
+            same parent, the converter represents those repeated elements as
+            a JSON array.
+          </p>
         </div>
+
+      </article>
+            <article class="content-card">
+
+        <div class="section-kicker">More Developer Tools</div>
 
         <h2>Related Tools</h2>
 
+        <p>
+          Continue working with structured data using these related conversion
+          and formatting tools.
+        </p>
+
         <div class="related-tools">
-          <a href="json-to-xml.html">JSON to XML</a>
-          <a href="json-formatter.html">JSON Formatter</a>
-          <a href="json-to-yaml.html">JSON to YAML</a>
-          <a href="yaml-to-json.html">YAML to JSON</a>
-          <a href="toml-to-json.html">TOML to JSON</a>
-          <a href="json-to-csv.html">JSON to CSV</a>
+
+          <a href="json-to-xml.html">
+            <strong>JSON to XML</strong>
+            <span>Convert JSON data to XML</span>
+          </a>
+
+          <a href="json-formatter.html">
+            <strong>JSON Formatter</strong>
+            <span>Format and inspect JSON</span>
+          </a>
+
+          <a href="json-to-yaml.html">
+            <strong>JSON to YAML</strong>
+            <span>Convert JSON into YAML</span>
+          </a>
+
+          <a href="yaml-to-json.html">
+            <strong>YAML to JSON</strong>
+            <span>Convert YAML into JSON</span>
+          </a>
+
+          <a href="toml-to-json.html">
+            <strong>TOML to JSON</strong>
+            <span>Convert TOML into JSON</span>
+          </a>
+
+          <a href="json-to-csv.html">
+            <strong>JSON to CSV</strong>
+            <span>Convert JSON data to CSV</span>
+          </a>
+
         </div>
+
+      </article>
+
+      <section class="bottom-cta">
+
+        <div>
+          <div class="section-kicker">Developer Toolkit</div>
+
+          <h2>Need another data conversion tool?</h2>
+
+          <p>
+            Explore the complete collection of free browser-based CSV, JSON
+            and developer data tools.
+          </p>
+        </div>
+
+        <a href="index.html" class="cta-button">
+          Explore All Tools →
+        </a>
 
       </section>
 
-      <a class="back" href="index.html">← Back to All Tools</a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="footer-logo">{ }</div>
+
+        <div>
+          <strong>CSV &amp; JSON Developer Tools</strong>
+          <p>
+            Free browser-based tools for working with structured developer
+            data.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 CSV &amp; JSON Developer Tools. All rights reserved.
+      </div>
 
     </div>
 
-  </div>
+  </footer>
 
-  <script>
+  <style>
+    .faq-item {
+      padding: 17px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 6px;
+      color: #e5edf7;
+      font-size: 16px;
+    }
+
+    .faq-item p {
+      margin: 0;
+    }
+
+    .related-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .related-tools a {
+      min-height: 105px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      padding: 17px;
+      text-decoration: none;
+      background: rgba(9, 22, 38, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .related-tools a:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 211, 238, 0.35);
+      background: rgba(13, 32, 53, 0.95);
+    }
+
+    .related-tools strong {
+      color: #e5edf7;
+      font-size: 14px;
+    }
+
+    .related-tools span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .bottom-cta {
+      margin: 28px 0 70px;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(59, 130, 246, 0.22);
+      background:
+        radial-gradient(circle at 90% 20%, rgba(34, 211, 238, 0.13), transparent 30%),
+        linear-gradient(135deg, rgba(15, 35, 59, 0.95), rgba(8, 20, 35, 0.95));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .bottom-cta h2 {
+      margin: 0 0 6px;
+      font-size: 23px;
+      letter-spacing: -0.6px;
+    }
+
+    .bottom-cta p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta-button {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 11px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.25);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: rgba(3, 9, 17, 0.75);
+    }
+
+    .footer-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 35px 0;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #10243a;
+      color: var(--cyan);
+      font-family: monospace;
+      font-weight: 900;
+    }
+
+    .footer-brand strong {
+      font-size: 14px;
+    }
+
+    .footer-brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin: 25px 0 18px;
+    }
+
+    .footer-links a {
+      color: #91a4b8;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-copy {
+      padding-top: 17px;
+      border-top: 1px solid var(--border);
+      color: #63788e;
+      font-size: 11px;
+    }
+
+    @media (max-width: 850px) {
+
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .related-tools {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bottom-cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      .header-inner,
+      .container,
+      .footer-inner {
+        width: 94%;
+      }
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 50px 0 30px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+        letter-spacing: -1.8px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .tool-card {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      textarea {
+        min-height: 270px;
+      }
+
+      .content-card {
+        padding: 22px;
+        border-radius: 17px;
+      }
+
+      .content-card h2 {
+        font-size: 23px;
+      }
+
+      .related-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-cta {
+        padding: 22px;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+    }
+  </style>
+    <script>
 
     function showStatus(message, type) {
       const status = document.getElementById("status");
