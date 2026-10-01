@@ -1,248 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CGGJEQ96S7');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CGGJEQ96S7');
 </script>
 
-  <title>JSON to Markdown Table Converter - Free Online Tool</title>
+<title>JSON to Markdown Table Converter - Free Online Tool</title>
 
-  <meta name="description" content="Convert JSON arrays into clean Markdown tables instantly in your browser. Free, fast and privacy-focused JSON to Markdown converter.">
+<meta name="description" content="Convert JSON arrays into clean Markdown tables online for free. Generate Markdown tables from JSON instantly in your browser with this fast and privacy-focused converter.">
 
-  <meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow">
 
-  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-markdown.html">
+<link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-markdown.html">
 
-  <meta property="og:title" content="JSON to Markdown Table Converter - Free Online Tool">
-  <meta property="og:description" content="Convert JSON arrays into clean Markdown tables instantly in your browser. Free and privacy-focused.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-markdown.html">
+<meta property="og:title" content="JSON to Markdown Table Converter - Free Online Tool">
+<meta property="og:description" content="Convert JSON arrays into clean Markdown tables instantly in your browser. Free, fast and privacy-focused.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-markdown.html">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to Markdown Table Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-to-markdown.html",
-    "description": "Free online tool to convert JSON arrays into Markdown tables directly in the browser.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any"
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to Markdown Table Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-markdown.html",
+  "description": "Free browser-based tool for converting JSON arrays into Markdown tables.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any"
+}
+</script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    .description {
-      text-align: center;
-      color: #6b7280;
-      margin-bottom: 25px;
-      line-height: 1.6;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 280px;
-      padding: 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-family: monospace;
-      font-size: 14px;
-      resize: vertical;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: #2563eb;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 15px 0;
-    }
-
-    button {
-      border: none;
-      padding: 11px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
-      color: white;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .success {
-      background: #16a34a;
-    }
-
-    .danger {
-      background: #dc2626;
-    }
-
-    .status {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
-      display: none;
-      font-size: 14px;
-    }
-
-    .privacy {
-      margin-top: 20px;
-      padding: 12px;
-      background: #eef6ff;
-      border-radius: 8px;
-      color: #374151;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .info-section {
-      margin-top: 25px;
-      padding: 20px;
-      background: #f8fafc;
-      border-radius: 10px;
-    }
-
-    .info-section h2 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-
-    .info-section h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
-
-    .info-section p {
-      color: #555;
-      line-height: 1.6;
-    }
-
-    .related-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .related-tools a {
-      display: inline-block;
-      padding: 9px 12px;
-      background: #e8f0fe;
-      color: #1d4ed8;
-      text-decoration: none;
-      border-radius: 7px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .related-tools a:hover {
-      background: #dbeafe;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-
-      .container {
-        margin: 15px auto;
-        padding: 12px;
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What JSON format does this tool support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool supports JSON arrays containing objects. Object properties are used as Markdown table columns."
       }
-
-      .card {
-        padding: 18px;
+    },
+    {
+      "@type": "Question",
+      "name": "Can nested JSON objects be converted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Nested objects and arrays are converted into JSON text before being placed inside a Markdown table cell."
       }
-
-      h1 {
-        font-size: 24px;
+    },
+    {
+      "@type": "Question",
+      "name": "Is my JSON uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion is performed directly in your browser."
       }
-
-      button {
-        width: 100%;
-      }
-
-      .related-tools {
-        flex-direction: column;
-      }
-
-      .related-tools a {
-        text-align: center;
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download the Markdown table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can download the generated Markdown table as a .md file."
       }
     }
-  </style>
+  ]
+}
+</script>
+
+<style>
+
+:root {
+  --bg: #070d1a;
+  --bg-soft: #0b1428;
+  --card: #0f1b31;
+  --card-light: #111f38;
+  --border: rgba(148,163,184,0.13);
+  --border-blue: rgba(96,165,250,0.22);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --muted-2: #64748b;
+  --blue: #2563eb;
+  --blue-light: #60a5fa;
+  --cyan: #22d3ee;
+  --green: #22c55e;
+  --red: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(37,99,235,0.16),
+      transparent 35%
+    ),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(7,13,26,0.84);
+  border-bottom: 1px solid rgba(148,163,184,0.08);
+  backdrop-filter: blur(18px);
+}
+
+.header-inner {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #f8fafc;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  color: white;
+  background:
+    linear-gradient(135deg,#2563eb,#06b6d4);
+  box-shadow:
+    0 8px 25px rgba(37,99,235,0.28);
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.header-link:hover {
+  border-color: var(--border-blue);
+  color: white;
+  background: rgba(37,99,235,0.08);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 90px 0 65px;
+  text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: 50%;
+  top: -260px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(
+      circle,
+      rgba(37,99,235,0.18),
+      transparent 68%
+    );
+  pointer-events: none;
+}
+
+.hero-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  border: 1px solid rgba(96,165,250,0.18);
+  border-radius: 999px;
+  background: rgba(37,99,235,0.09);
+  color: #93c5fd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  position: relative;
+  max-width: 900px;
+  margin: 20px auto 16px;
+  color: #f8fafc;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -2.8px;
+  font-weight: 900;
+}
+
+.highlight {
+  background:
+    linear-gradient(
+      90deg,
+      #60a5fa,
+      #22d3ee
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  color: #94a3b8;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.trust-row {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 27px;
+}
+
+.trust-pill {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(15,27,49,0.72);
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   TOOL
+========================= */
+
+.tool-section {
+  padding: 10px 0 65px;
+}
+
+.tool-card {
+  overflow: hidden;
+  padding: 26px;
+  border: 1px solid var(--border-blue);
+  border-radius: 25px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,27,49,0.98),
+      rgba(8,17,33,0.98)
+    );
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.32);
+}
+
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.tool-card-title {
+  color: #f8fafc;
+  font-size: 22px;
+  font-weight: 850;
+}
+
+.tool-card-subtitle {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.live-badge {
+  padding: 6px 10px;
+  border: 1px solid rgba(34,197,94,0.18);
+  border-radius: 999px;
+  background: rgba(34,197,94,0.08);
+  color: #86efac;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.editor-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.editor-label {
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.editor-hint {
+  color: var(--muted-2);
+  font-size: 11px;
+}
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 290px;
+  padding: 17px;
+  border: 1px solid rgba(148,163,184,0.14);
+  border-radius: 15px;
+  outline: none;
+  resize: vertical;
+  background: #070f1f;
+  color: #dbeafe;
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  transition: 0.2s ease;
+}
+
+textarea::placeholder {
+  color: #475569;
+}
+
+textarea:focus {
+  border-color: rgba(96,165,250,0.5);
+  box-shadow:
+    0 0 0 3px rgba(37,99,235,0.1);
+}
+
+textarea[readonly] {
+  color: #a5f3fc;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.15fr 0.75fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  min-height: 46px;
+  border: 1px solid rgba(96,165,250,0.15);
+  border-radius: 12px;
+  padding: 0 15px;
+  cursor: pointer;
+  color: #e2e8f0;
+  background: #16243d;
+  font-size: 13px;
+  font-weight: 800;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(96,165,250,0.3);
+  background: #1b2d4c;
+}
+
+button.primary {
+  border-color: rgba(96,165,250,0.3);
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1d4ed8
+    );
+  color: white;
+  box-shadow:
+    0 10px 28px rgba(37,99,235,0.22);
+}
+
+button.success {
+  background: rgba(22,163,74,0.15);
+  border-color: rgba(34,197,94,0.2);
+  color: #86efac;
+}
+
+button.danger {
+  background: rgba(220,38,38,0.1);
+  border-color: rgba(239,68,68,0.18);
+  color: #fca5a5;
+}
+
+.status {
+  display: none;
+  margin-top: 13px;
+  padding: 11px 14px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.status-success {
+  display: block;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.16);
+  color: #86efac;
+}
+
+.status-error {
+  display: block;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.16);
+  color: #fca5a5;
+}
+
+.privacy-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border: 1px solid rgba(96,165,250,0.1);
+  border-radius: 12px;
+  background: rgba(37,99,235,0.05);
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 19px;
+  color: #60a5fa;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+</style>
 </head>
 
 <body>
+  <header class="site-header">
 
-<div class="container">
-  <div class="card">
+  <div class="container header-inner">
 
-    <h1>JSON to Markdown Table Converter</h1>
+    <a href="index.html" class="brand">
+      <span class="brand-icon">{ }</span>
+      <span>CSV &amp; JSON Tools</span>
+    </a>
 
-    <p class="description">
-      Convert JSON arrays into clean Markdown tables instantly in your browser.
-      Your data stays on your device.
+    <a href="index.html" class="header-link">
+      All Tools
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+  <div class="container">
+
+    <div class="hero-badge">
+      Developer Data Tool
+    </div>
+
+    <h1>
+      Convert JSON to
+      <span class="highlight">Markdown Tables</span>
+      Instantly
+    </h1>
+
+    <p>
+      Turn JSON arrays into clean Markdown tables directly in your browser.
+      Fast, simple and privacy-focused with no server upload required.
     </p>
 
-    <label for="jsonInput">JSON Input</label>
+    <div class="trust-row">
+      <span class="trust-pill">✓ Free to use</span>
+      <span class="trust-pill">✓ Browser-based</span>
+      <span class="trust-pill">✓ No upload required</span>
+      <span class="trust-pill">✓ Markdown ready</span>
+    </div>
 
-    <textarea id="jsonInput" placeholder='[
+  </div>
+
+</section>
+
+
+<section class="tool-section">
+
+  <div class="container">
+
+    <div class="tool-card">
+
+      <div class="tool-card-header">
+
+        <div>
+          <div class="tool-card-title">
+            JSON to Markdown Table Converter
+          </div>
+
+          <div class="tool-card-subtitle">
+            Convert a JSON array into a clean Markdown table.
+          </div>
+        </div>
+
+        <div class="live-badge">
+          ● Live
+        </div>
+
+      </div>
+
+
+      <div class="editor-grid">
+
+        <div>
+
+          <div class="editor-label-row">
+
+            <label
+              class="editor-label"
+              for="jsonInput"
+            >
+              JSON Input
+            </label>
+
+            <span class="editor-hint">
+              JSON array
+            </span>
+
+          </div>
+
+          <textarea
+            id="jsonInput"
+            placeholder='Paste a JSON array here...'
+            spellcheck="false"
+          >[
   {
     "name": "Ali",
     "age": 28,
@@ -253,147 +630,1565 @@
     "age": 34,
     "city": "London"
   }
-]'></textarea>
+]</textarea>
 
-    <div class="buttons">
-      <button onclick="convertToMarkdown()">Convert to Markdown</button>
-      <button class="success" onclick="copyMarkdown()">Copy Markdown</button>
-      <button onclick="downloadMarkdown()">Download Markdown</button>
-      <button class="danger" onclick="clearAll()">Clear</button>
+        </div>
+
+
+        <div>
+
+          <div class="editor-label-row">
+
+            <label
+              class="editor-label"
+              for="markdownOutput"
+            >
+              Markdown Output
+            </label>
+
+            <span class="editor-hint">
+              Markdown table
+            </span>
+
+          </div>
+
+          <textarea
+            id="markdownOutput"
+            readonly
+            placeholder="Markdown table will appear here..."
+            spellcheck="false"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          class="primary"
+          onclick="convertToMarkdown()"
+        >
+          Convert to Markdown
+        </button>
+
+        <button
+          class="success"
+          onclick="copyMarkdown()"
+        >
+          Copy Markdown
+        </button>
+
+        <button
+          onclick="downloadMarkdown()"
+        >
+          Download Markdown
+        </button>
+
+        <button
+          class="danger"
+          onclick="clearAll()"
+        >
+          Clear
+        </button>
+
+      </div>
+
+
+      <div
+        id="status"
+        class="status"
+      ></div>
+
+
+      <div class="privacy-mini">
+        <span>🔒</span>
+        Your JSON is processed directly in your browser.
+        Nothing is uploaded to our server.
+      </div>
+
+
+      <a
+        href="index.html"
+        class="back-link"
+      >
+        ← Back to All Developer Tools
+      </a>
+
     </div>
 
-    <div id="status" class="status"></div>
+  </div>
 
-    <label for="markdownOutput">Markdown Output</label>
+</section>
 
-    <textarea
-      id="markdownOutput"
-      readonly
-      placeholder="Markdown table will appear here..."
-    ></textarea>
 
-    <div class="privacy">
-      🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
-      Nothing is uploaded to our server.
+<section class="content-section">
+
+  <div class="container">
+
+    <div class="content-grid">
+
+      <article class="article-card">
+
+        <div class="section-eyebrow">
+          JSON TO MARKDOWN GUIDE
+        </div>
+
+        <h2>
+          JSON to Markdown Table Converter: Convert JSON Data Online
+        </h2>
+
+        <p>
+          A JSON to Markdown converter transforms structured JSON data into
+          a readable Markdown table. This is especially useful when JSON
+          records need to be displayed in documentation, README files,
+          technical notes, GitHub projects or other Markdown-based content.
+        </p>
+
+        <p>
+          This free browser-based JSON to Markdown table converter accepts
+          a JSON array containing objects and automatically turns object
+          properties into table columns and object values into table rows.
+        </p>
+
+
+        <h3>
+          What Can This JSON to Markdown Converter Do?
+        </h3>
+
+        <div class="feature-grid">
+
+          <div class="feature-card">
+            <span class="feature-icon">↔</span>
+
+            <strong>
+              Convert JSON Arrays
+            </strong>
+
+            <p>
+              Turn JSON arrays of objects into readable Markdown tables.
+            </p>
+          </div>
+
+
+          <div class="feature-card">
+            <span class="feature-icon">▦</span>
+
+            <strong>
+              Create Markdown Tables
+            </strong>
+
+            <p>
+              Generate Markdown table syntax ready to copy and use.
+            </p>
+          </div>
+
+
+          <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+
+            <strong>
+              Instant Browser Conversion
+            </strong>
+
+            <p>
+              Process JSON directly in your browser without server upload.
+            </p>
+          </div>
+
+        </div>
+
+
+        <h3>
+          How to Convert JSON to Markdown
+        </h3>
+
+        <ol class="steps-list">
+
+          <li>
+            Paste a valid JSON array into the JSON input box.
+          </li>
+
+          <li>
+            Click <strong>Convert to Markdown</strong>.
+          </li>
+
+          <li>
+            Review the generated Markdown table.
+          </li>
+
+          <li>
+            Copy the Markdown or download it as a
+            <strong>.md</strong> file.
+          </li>
+
+        </ol>
+
+
+        <h3>
+          JSON to Markdown Example
+        </h3>
+
+        <p>
+          For example, the following JSON contains two records:
+        </p>
+
+        <div class="code-example">
+
+<pre>[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
+  }
+]</pre>
+
+        </div>
+
+        <p>
+          The converter turns this data into a Markdown table:
+        </p>
+
+        <div class="code-example">
+
+<pre>| name | age | city |
+| --- | --- | --- |
+| Ali | 28 | Karachi |
+| Emma | 34 | London |</pre>
+
+        </div>
+
+
+        <h3>
+          What Is a Markdown Table?
+        </h3>
+
+        <p>
+          A Markdown table is a simple text-based table created with
+          Markdown syntax. Columns are separated with the pipe character
+          <strong>|</strong>, while a separator row defines the table header.
+        </p>
+
+        <p>
+          Markdown tables are commonly used in README files, documentation,
+          project notes, GitHub repositories and other platforms that support
+          Markdown formatting.
+        </p>
+
+      </article>
+
+
+      <aside class="quick-card">
+
+        <div class="section-eyebrow">
+          QUICK REFERENCE
+        </div>
+
+        <h3>
+          JSON to Markdown at a Glance
+        </h3>
+
+        <div class="quick-list">
+
+          <div class="quick-item">
+            <span>Input</span>
+            <strong>JSON Array</strong>
+          </div>
+
+          <div class="quick-item">
+            <span>Output</span>
+            <strong>Markdown Table</strong>
+          </div>
+
+          <div class="quick-item">
+            <span>Processing</span>
+            <strong>Browser-based</strong>
+          </div>
+
+          <div class="quick-item">
+            <span>Download</span>
+            <strong>.md File</strong>
+          </div>
+
+          <div class="quick-item">
+            <span>Upload required</span>
+            <strong>No</strong>
+          </div>
+
+          <div class="quick-item">
+            <span>Nested values</span>
+            <strong>JSON text</strong>
+          </div>
+
+        </div>
+
+      </aside>
+
     </div>
 
-    <div class="info-section">
+  </div>
 
-      <h2>How to Use</h2>
+</section>
+<section class="article-extra">
 
-      <h3>1. Enter JSON Data</h3>
+  <div class="container">
+
+    <article class="article-card full-width">
+
+      <h3>
+        Why Convert JSON to Markdown?
+      </h3>
+
       <p>
-        Paste a JSON array containing objects into the input box.
+        JSON is excellent for storing and exchanging structured data, but it
+        is not always the easiest format for people to read. Markdown tables
+        provide a more visual way to present rows and columns in documentation
+        and technical content.
       </p>
 
-      <h3>2. Convert to Markdown</h3>
       <p>
-        Click <strong>Convert to Markdown</strong> to create a Markdown table
-        from your JSON data.
+        Converting JSON to Markdown can therefore make structured data easier
+        to understand and share without manually creating every table row.
       </p>
 
-      <h3>3. Copy the Markdown</h3>
+
+      <div class="use-case-grid">
+
+        <div class="use-case-card">
+          <span>📚</span>
+
+          <strong>
+            Documentation
+          </strong>
+
+          <p>
+            Present structured JSON data clearly inside technical documentation.
+          </p>
+        </div>
+
+
+        <div class="use-case-card">
+          <span>🐙</span>
+
+          <strong>
+            README Files
+          </strong>
+
+          <p>
+            Create readable tables for Markdown README files and projects.
+          </p>
+        </div>
+
+
+        <div class="use-case-card">
+          <span>📝</span>
+
+          <strong>
+            Technical Notes
+          </strong>
+
+          <p>
+            Turn JSON records into tables for notes and developer references.
+          </p>
+        </div>
+
+
+        <div class="use-case-card">
+          <span>📊</span>
+
+          <strong>
+            Data Presentation
+          </strong>
+
+          <p>
+            Make structured JSON information easier for people to scan.
+          </p>
+        </div>
+
+      </div>
+
+
+      <h3>
+        JSON Arrays and Markdown Columns
+      </h3>
+
       <p>
-        Click <strong>Copy Markdown</strong> to copy the generated table
-        to your clipboard.
+        This converter uses the properties found in the JSON objects to create
+        Markdown table columns. If different objects contain different
+        properties, the converter collects the available properties and
+        creates columns for them.
       </p>
 
-      <h3>4. Download the Markdown File</h3>
       <p>
-        Click <strong>Download Markdown</strong> to save the generated table
-        as a <code>.md</code> file.
+        When an object does not contain a particular property, the corresponding
+        Markdown table cell remains empty.
       </p>
+
+
+      <h3>
+        How Nested JSON Values Are Handled
+      </h3>
+
+      <p>
+        JSON objects and arrays can contain nested data. When a nested object
+        or array appears as a value, this converter converts that value into
+        JSON text before placing it inside the Markdown table.
+      </p>
+
+      <p>
+        This keeps the information available while maintaining the structure
+        of the generated Markdown table.
+      </p>
+
+
+      <h3>
+        Useful Tips for JSON to Markdown Conversion
+      </h3>
+
+      <ul class="tips-list">
+
+        <li>
+          Make sure your input is valid JSON before converting it.
+        </li>
+
+        <li>
+          Use a JSON array containing objects for the best table structure.
+        </li>
+
+        <li>
+          Keep property names short and descriptive when creating
+          documentation tables.
+        </li>
+
+        <li>
+          Remember that very large datasets may produce very large
+          Markdown tables.
+        </li>
+
+        <li>
+          Review the generated Markdown before publishing it in documentation.
+        </li>
+
+      </ul>
+
+
+      <h3>
+        Browser-Based and Privacy-Focused
+      </h3>
+
+      <p>
+        The conversion takes place directly in your browser. The JSON you
+        paste into the tool does not need to be sent to a remote server.
+      </p>
+
+      <p>
+        This browser-based approach makes the tool convenient for everyday
+        developer workflows where you want to quickly transform JSON data
+        without setting up additional software.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<section class="faq-section">
+
+  <div class="container">
+
+    <div class="section-eyebrow">
+      FREQUENTLY ASKED QUESTIONS
+    </div>
+
+    <h2>
+      JSON to Markdown FAQ
+    </h2>
+
+    <div class="faq-list">
+
+      <details>
+
+        <summary>
+          What JSON format does this tool support?
+        </summary>
+
+        <p>
+          The tool expects a JSON array containing objects.
+          Object properties are used as Markdown table columns.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          Can I convert JSON to a Markdown table online?
+        </summary>
+
+        <p>
+          Yes. Paste your JSON array into the converter and click
+          Convert to Markdown to generate a Markdown table.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          What happens if JSON objects have different properties?
+        </summary>
+
+        <p>
+          The converter collects properties from all objects and creates
+          columns for them. Missing properties result in empty table cells.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          How are nested objects and arrays handled?
+        </summary>
+
+        <p>
+          Nested objects and arrays are converted into JSON text before
+          being placed inside the corresponding Markdown table cell.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          What happens to pipe characters in JSON values?
+        </summary>
+
+        <p>
+          Pipe characters are escaped so they do not accidentally break
+          the Markdown table structure.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          Is my JSON data uploaded?
+        </summary>
+
+        <p>
+          No. The conversion is performed directly in your browser and
+          your JSON data is not uploaded to our server.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          Can I download the generated Markdown?
+        </summary>
+
+        <p>
+          Yes. Use the Download Markdown button to save the generated
+          table as a .md file.
+        </p>
+
+      </details>
 
     </div>
 
-    <div class="info-section">
+  </div>
 
-      <h2>FAQ</h2>
+</section>
 
-      <h3>What JSON format does this tool support?</h3>
-      <p>
-        The tool expects a JSON array containing objects. Object properties
-        are used as Markdown table columns.
-      </p>
 
-      <h3>What happens if objects have different properties?</h3>
-      <p>
-        The tool collects the properties from all objects and creates columns
-        for them. A missing property results in an empty table cell.
-      </p>
+<section class="related-section">
 
-      <h3>How are nested objects and arrays handled?</h3>
-      <p>
-        Nested objects and arrays are converted into JSON text before being
-        placed inside the Markdown table cell.
-      </p>
+  <div class="container">
 
-      <h3>What happens to the pipe character?</h3>
-      <p>
-        Pipe characters inside values are escaped so they do not accidentally
-        break the Markdown table structure.
-      </p>
+    <div class="section-eyebrow">
+      EXPLORE MORE TOOLS
+    </div>
 
-      <h3>Is my JSON data uploaded?</h3>
-      <p>
-        No. The conversion is performed directly in your browser and your
-        JSON data is not uploaded to our server.
-      </p>
+    <h2>
+      Related Developer Tools
+    </h2>
+
+    <p class="related-intro">
+      Explore more browser-based tools for converting, formatting and
+      transforming JSON, CSV, JSONL, TSV and other developer data formats.
+    </p>
+
+
+    <div class="related-grid">
+
+      <a
+        href="json-to-csv.html"
+        class="related-card"
+      >
+        <span class="related-icon">⇄</span>
+
+        <div>
+          <strong>JSON to CSV</strong>
+
+          <p>
+            Convert JSON arrays into CSV data.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="json-to-html.html"
+        class="related-card"
+      >
+        <span class="related-icon">&lt;/&gt;</span>
+
+        <div>
+          <strong>JSON to HTML</strong>
+
+          <p>
+            Convert JSON data into HTML tables.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="json-to-jsonl.html"
+        class="related-card"
+      >
+        <span class="related-icon">{ }</span>
+
+        <div>
+          <strong>JSON to JSONL</strong>
+
+          <p>
+            Convert JSON arrays into JSONL format.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="json-to-sql.html"
+        class="related-card"
+      >
+        <span class="related-icon">SQL</span>
+
+        <div>
+          <strong>JSON to SQL</strong>
+
+          <p>
+            Generate SQL statements from JSON data.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="json-to-tsv.html"
+        class="related-card"
+      >
+        <span class="related-icon">TSV</span>
+
+        <div>
+          <strong>JSON to TSV</strong>
+
+          <p>
+            Convert JSON arrays into TSV format.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="json-formatter.html"
+        class="related-card"
+      >
+        <span class="related-icon">✦</span>
+
+        <div>
+          <strong>JSON Formatter</strong>
+
+          <p>
+            Format, beautify and validate JSON.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="csv-to-markdown.html"
+        class="related-card"
+      >
+        <span class="related-icon">CSV</span>
+
+        <div>
+          <strong>CSV to Markdown</strong>
+
+          <p>
+            Convert CSV data into Markdown tables.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
+
+
+      <a
+        href="tsv-to-json.html"
+        class="related-card"
+      >
+        <span class="related-icon">TSV</span>
+
+        <div>
+          <strong>TSV to JSON</strong>
+
+          <p>
+            Convert tab-separated data into JSON.
+          </p>
+        </div>
+
+        <span class="related-arrow">→</span>
+      </a>
 
     </div>
 
-    <div class="info-section">
+  </div>
 
-      <h2>Related Tools</h2>
+</section>
+<section class="privacy-section">
 
-      <div class="related-tools">
-        <a href="json-to-csv.html">JSON to CSV</a>
-        <a href="json-to-html.html">JSON to HTML</a>
-        <a href="json-to-jsonl.html">JSON to JSONL</a>
-        <a href="json-to-sql.html">JSON to SQL</a>
-        <a href="json-to-tsv.html">JSON to TSV</a>
-        <a href="json-formatter.html">JSON Formatter</a>
-        <a href="csv-to-markdown.html">CSV to Markdown</a>
-        <a href="csv-to-json.html">CSV to JSON</a>
-        <a href="tsv-to-json.html">TSV to JSON</a>
+  <div class="container">
+
+    <div class="privacy-card">
+
+      <div class="privacy-icon">
+        🔒
+      </div>
+
+      <div>
+
+        <div class="section-eyebrow">
+          PRIVACY FIRST
+        </div>
+
+        <h2>
+          Your JSON Stays in Your Browser
+        </h2>
+
+        <p>
+          This JSON to Markdown converter processes your data directly
+          on your device. Your JSON does not need to be uploaded to a
+          remote server for conversion.
+        </p>
+
       </div>
 
     </div>
 
-    <div class="info-section">
+  </div>
 
-      <h2>Privacy</h2>
+</section>
 
-      <p>
-        This JSON to Markdown converter runs entirely in your browser.
-        Your JSON data is processed locally and is not sent to or stored
-        on our server.
-      </p>
+
+<section class="bottom-cta">
+
+  <div class="container">
+
+    <div class="cta-card">
+
+      <div>
+
+        <span class="cta-badge">
+          MORE DEVELOPER TOOLS
+        </span>
+
+        <h2>
+          Need Another Data Converter?
+        </h2>
+
+        <p>
+          Explore our collection of free browser-based tools for JSON,
+          CSV, JSONL, XML, YAML, TSV and other developer data formats.
+        </p>
+
+      </div>
+
+      <a
+        href="index.html"
+        class="cta-button"
+      >
+        Explore All Tools →
+      </a>
 
     </div>
 
-    <a class="back" href="index.html">← Back to All Tools</a>
+  </div>
+
+</section>
+
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+
+        <div class="footer-logo">
+
+          <span class="brand-icon">{ }</span>
+
+          <strong>
+            CSV &amp; JSON Developer Tools
+          </strong>
+
+        </div>
+
+        <p>
+          Free browser-based developer tools for converting,
+          formatting, validating and transforming structured data.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="about.html">About</a>
+
+        <a href="privacy-policy.html">Privacy Policy</a>
+
+        <a href="terms.html">Terms &amp; Conditions</a>
+
+        <a href="contact.html">Contact</a>
+
+        <a href="cookie-policy.html">Cookie Policy</a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 CSV &amp; JSON Developer Tools
+      </span>
+
+      <span>
+        Built for developers
+      </span>
+
+    </div>
 
   </div>
-</div>
+
+</footer>
+
+
+<style>
+
+/* =========================
+   CONTENT
+========================= */
+
+.content-section,
+.article-extra {
+  padding: 10px 0 70px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 22px;
+  align-items: start;
+}
+
+.article-card,
+.quick-card {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,27,49,0.96),
+      rgba(9,17,32,0.96)
+    );
+  box-shadow:
+    0 20px 65px rgba(0,0,0,0.2);
+}
+
+.article-card {
+  padding: 34px;
+}
+
+.article-card.full-width {
+  width: 100%;
+}
+
+.section-eyebrow {
+  color: #60a5fa;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.article-card h2 {
+  margin: 9px 0 17px;
+  color: #f8fafc;
+  font-size: 32px;
+  line-height: 1.22;
+  letter-spacing: -0.7px;
+}
+
+.article-card h3 {
+  margin: 34px 0 12px;
+  color: #f1f5f9;
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.article-card p {
+  margin: 0 0 16px;
+  color: #94a3b8;
+  line-height: 1.85;
+  font-size: 15px;
+}
+
+.article-card strong {
+  color: #cbd5e1;
+}
+
+.feature-grid,
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.feature-card,
+.use-case-card {
+  padding: 20px;
+  border: 1px solid rgba(148,163,184,0.1);
+  border-radius: 17px;
+  background: rgba(255,255,255,0.025);
+}
+
+.feature-icon,
+.use-case-card > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 13px;
+  border-radius: 11px;
+  background: rgba(37,99,235,0.12);
+  color: #60a5fa;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.feature-card strong,
+.use-case-card strong {
+  display: block;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.feature-card p,
+.use-case-card p {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.steps-list,
+.tips-list {
+  margin: 15px 0 0;
+  padding-left: 22px;
+  color: #94a3b8;
+}
+
+.steps-list li,
+.tips-list li {
+  margin: 9px 0;
+  padding-left: 4px;
+  line-height: 1.7;
+}
+
+.code-example {
+  overflow-x: auto;
+  margin: 16px 0;
+  padding: 18px;
+  border: 1px solid rgba(96,165,250,0.1);
+  border-radius: 15px;
+  background: #050b16;
+}
+
+.code-example pre {
+  margin: 0;
+  color: #a5f3fc;
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+  font-size: 13px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.quick-card {
+  position: sticky;
+  top: 92px;
+  padding: 25px;
+}
+
+.quick-card h3 {
+  margin: 8px 0 20px;
+  color: #f8fafc;
+  font-size: 21px;
+}
+
+.quick-list {
+  display: grid;
+  gap: 8px;
+}
+
+.quick-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 13px;
+  border: 1px solid rgba(148,163,184,0.08);
+  border-radius: 11px;
+  background: rgba(255,255,255,0.025);
+}
+
+.quick-item span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.quick-item strong {
+  color: #cbd5e1;
+  font-size: 12px;
+  text-align: right;
+}
+
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-section {
+  padding: 20px 0 75px;
+}
+
+.faq-section h2,
+.related-section h2 {
+  margin: 8px 0 24px;
+  color: #f8fafc;
+  font-size: 31px;
+  letter-spacing: -0.7px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-list details {
+  border: 1px solid rgba(148,163,184,0.1);
+  border-radius: 15px;
+  background: rgba(15,27,49,0.72);
+}
+
+.faq-list summary {
+  padding: 18px 20px;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-weight: 800;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  float: right;
+  color: #60a5fa;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.faq-list details[open] summary::after {
+  content: "−";
+}
+
+.faq-list details p {
+  margin: 0;
+  padding: 0 20px 19px;
+  color: #94a3b8;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+
+/* =========================
+   RELATED
+========================= */
+
+.related-section {
+  padding: 10px 0 75px;
+}
+
+.related-intro {
+  max-width: 750px;
+  margin: -10px 0 25px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.related-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px;
+  border: 1px solid rgba(148,163,184,0.1);
+  border-radius: 17px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,27,49,0.9),
+      rgba(8,16,31,0.9)
+    );
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.related-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96,165,250,0.28);
+}
+
+.related-icon {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(37,99,235,0.12);
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: monospace;
+}
+
+.related-card strong {
+  display: block;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.related-card p {
+  margin: 3px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.related-arrow {
+  margin-left: auto;
+  color: #475569;
+  font-size: 18px;
+}
+
+.current-tool {
+  border-color: rgba(96,165,250,0.2);
+}
+
+
+/* =========================
+   PRIVACY
+========================= */
+
+.privacy-section {
+  padding: 5px 0 70px;
+}
+
+.privacy-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 30px;
+  border: 1px solid rgba(96,165,250,0.15);
+  border-radius: 23px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15,27,49,0.95),
+      rgba(8,17,33,0.95)
+    );
+}
+
+.privacy-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: rgba(37,99,235,0.12);
+  font-size: 22px;
+}
+
+.privacy-card h2 {
+  margin: 4px 0 8px;
+  color: #f8fafc;
+  font-size: 24px;
+}
+
+.privacy-card p {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.bottom-cta {
+  padding-bottom: 80px;
+}
+
+.cta-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px;
+  border: 1px solid rgba(96,165,250,0.2);
+  border-radius: 26px;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37,99,235,0.18),
+      transparent 38%
+    ),
+    #0c1830;
+}
+
+.cta-badge {
+  display: inline-flex;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(37,99,235,0.1);
+  border: 1px solid rgba(96,165,250,0.15);
+  color: #93c5fd;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.cta-card h2 {
+  margin: 10px 0 8px;
+  color: #f8fafc;
+  font-size: 29px;
+}
+
+.cta-card p {
+  max-width: 700px;
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.75;
+}
+
+.cta-button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 47px;
+  padding: 0 21px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 850;
+  box-shadow: 0 12px 28px rgba(37,99,235,0.22);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  border-top: 1px solid rgba(148,163,184,0.08);
+  background: #050a14;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 45px 0 32px;
+}
+
+.footer-brand {
+  max-width: 500px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #f8fafc;
+  font-size: 15px;
+}
+
+.footer-logo .brand-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.footer-brand p {
+  margin: 14px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 11px 20px;
+  max-width: 500px;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer-links a:hover {
+  color: #60a5fa;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(148,163,184,0.07);
+  color: #475569;
+  font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-card {
+    position: static;
+  }
+
+  .cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-main {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .hero {
+    padding: 70px 0 50px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+    letter-spacing: -1.8px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feature-grid,
+  .use-case-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-card {
+    padding: 23px;
+  }
+
+  .article-card h2 {
+    font-size: 27px;
+  }
+
+  .privacy-card {
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .cta-card {
+    padding: 28px 23px;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .trust-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trust-pill {
+    text-align: center;
+  }
+
+}
+
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+</style>
+
 
 <script>
 
 function showStatus(message, type = "success") {
 
-  const status = document.getElementById("status");
+  const status =
+    document.getElementById("status");
 
   status.textContent = message;
-  status.style.display = "block";
 
-  if (type === "error") {
-    status.style.background = "#fee2e2";
-    status.style.color = "#991b1b";
-  } else {
-    status.style.background = "#dcfce7";
-    status.style.color = "#166534";
-  }
+  status.className =
+    type === "error"
+      ? "status status-error"
+      : "status status-success";
 }
+
 
 function escapeMarkdown(value) {
 
@@ -410,6 +2205,7 @@ function escapeMarkdown(value) {
     .replace(/\r?\n/g, " ");
 }
 
+
 function convertToMarkdown() {
 
   const input =
@@ -419,7 +2215,14 @@ function convertToMarkdown() {
     document.getElementById("markdownOutput");
 
   if (!input) {
-    showStatus("Please enter JSON data.", "error");
+
+    output.value = "";
+
+    showStatus(
+      "Please enter JSON data.",
+      "error"
+    );
+
     return;
   }
 
@@ -428,20 +2231,29 @@ function convertToMarkdown() {
     const data = JSON.parse(input);
 
     if (!Array.isArray(data)) {
-      throw new Error("JSON must be an array of objects.");
+      throw new Error(
+        "JSON must be an array of objects."
+      );
     }
 
     if (data.length === 0) {
-      throw new Error("JSON array is empty.");
+      throw new Error(
+        "JSON array is empty."
+      );
     }
 
-    if (!data.every(item =>
-      item !== null &&
-      typeof item === "object" &&
-      !Array.isArray(item)
-    )) {
-      throw new Error("Each item must be a JSON object.");
+    if (
+      !data.every(item =>
+        item !== null &&
+        typeof item === "object" &&
+        !Array.isArray(item)
+      )
+    ) {
+      throw new Error(
+        "Each item must be a JSON object."
+      );
     }
+
 
     const headers = [];
 
@@ -457,44 +2269,63 @@ function convertToMarkdown() {
 
     });
 
+
     if (headers.length === 0) {
-      throw new Error("No columns found in JSON objects.");
+      throw new Error(
+        "No columns found in JSON objects."
+      );
     }
+
 
     const headerRow =
       "| " +
-      headers.map(escapeMarkdown).join(" | ") +
+      headers
+        .map(escapeMarkdown)
+        .join(" | ") +
       " |";
+
 
     const separatorRow =
       "| " +
-      headers.map(() => "---").join(" | ") +
+      headers
+        .map(() => "---")
+        .join(" | ") +
       " |";
 
-    const dataRows = data.map(item => {
 
-      return "| " +
-        headers.map(header => {
+    const dataRows =
+      data.map(item => {
 
-          return escapeMarkdown(
-            Object.prototype.hasOwnProperty.call(item, header)
-              ? item[header]
-              : ""
-          );
+        return "| " +
+          headers
+            .map(header => {
 
-        }).join(" | ") +
-        " |";
-    });
+              return escapeMarkdown(
+                Object.prototype.hasOwnProperty.call(
+                  item,
+                  header
+                )
+                  ? item[header]
+                  : ""
+              );
 
-    const markdown = [
+            })
+            .join(" | ") +
+          " |";
+
+      });
+
+
+    output.value = [
       headerRow,
       separatorRow,
       ...dataRows
     ].join("\n");
 
-    output.value = markdown;
 
-    showStatus("Markdown table generated successfully.");
+    showStatus(
+      "Markdown table generated successfully."
+    );
 
   } catch (error) {
 
@@ -507,13 +2338,19 @@ function convertToMarkdown() {
   }
 }
 
+
 async function copyMarkdown() {
 
   const output =
     document.getElementById("markdownOutput").value;
 
   if (!output) {
-    showStatus("Please convert JSON first.", "error");
+
+    showStatus(
+      "Please convert JSON first.",
+      "error"
+    );
+
     return;
   }
 
@@ -521,7 +2358,9 @@ async function copyMarkdown() {
 
     await navigator.clipboard.writeText(output);
 
-    showStatus("Markdown copied to clipboard.");
+    showStatus(
+      "Markdown copied to clipboard."
+    );
 
   } catch (error) {
 
@@ -532,23 +2371,34 @@ async function copyMarkdown() {
   }
 }
 
+
 function downloadMarkdown() {
 
   const output =
     document.getElementById("markdownOutput").value;
 
   if (!output) {
-    showStatus("Please convert JSON first.", "error");
+
+    showStatus(
+      "Please convert JSON first.",
+      "error"
+    );
+
     return;
   }
 
+
   const blob = new Blob(
     [output],
-    { type: "text/markdown;charset=utf-8" }
+    {
+      type: "text/markdown;charset=utf-8"
+    }
   );
+
 
   const url =
     URL.createObjectURL(blob);
+
 
   const link =
     document.createElement("a");
@@ -557,23 +2407,32 @@ function downloadMarkdown() {
   link.download = "converted-table.md";
 
   document.body.appendChild(link);
+
   link.click();
+
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
 
-  showStatus("Markdown file downloaded.");
+
+  showStatus(
+    "Markdown file downloaded successfully."
+  );
 }
+
 
 function clearAll() {
 
   document.getElementById("jsonInput").value = "";
+
   document.getElementById("markdownOutput").value = "";
 
   const status =
     document.getElementById("status");
 
-  status.style.display = "none";
+  status.textContent = "";
+
+  status.className = "status";
 }
 
 </script>
