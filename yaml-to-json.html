@@ -1,349 +1,1140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-CGGJEQ96S7');
 </script>
 
-  <title>YAML to JSON Converter - Free Online Tool</title>
+<meta name="description" content="Convert YAML to JSON online for free. Turn supported YAML data into clean, formatted JSON directly in your browser with this fast, privacy-focused converter.">
+<meta name="robots" content="index, follow">
 
-  <meta name="description" content="Convert YAML data to JSON instantly in your browser. Free, fast and privacy-focused YAML to JSON converter for developers.">
+<link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/yaml-to-json.html">
 
-  <meta name="robots" content="index, follow">
+<meta property="og:title" content="YAML to JSON Converter - Free Online Tool">
+<meta property="og:description" content="Convert supported YAML data to clean JSON instantly in your browser. Free, fast and privacy-focused.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/yaml-to-json.html">
 
-  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/yaml-to-json.html">
+<title>YAML to JSON Converter - Free Online YAML Tool</title>
 
-  <meta property="og:title" content="YAML to JSON Converter - Free Online Tool">
-  <meta property="og:description" content="Convert YAML data to clean JSON instantly in your browser. Free, fast and privacy-focused.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/yaml-to-json.html">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "YAML to JSON Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/yaml-to-json.html",
-    "description": "Free online tool to convert YAML data into JSON directly in the browser.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any"
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "YAML to JSON Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/yaml-to-json.html",
+  "description": "Free browser-based tool for converting supported YAML data into formatted JSON.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
-
-    header {
-      background: #1f2937;
-      color: white;
-      padding: 25px 15px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-    }
-
-    header p {
-      margin: 0;
-      color: #d1d5db;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 300px;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      resize: vertical;
-      font-family: Consolas, monospace;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    button {
-      border: none;
-      padding: 11px 18px;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
-      color: white;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    button.secondary {
-      background: #6b7280;
-    }
-
-    button.success {
-      background: #15803d;
-    }
-
-    .message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 7px;
-      display: none;
-    }
-
-    .success-message {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .error-message {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .info-section {
-      line-height: 1.7;
-    }
-
-    .info-section h2 {
-      margin-top: 30px;
-      font-size: 21px;
-    }
-
-    .info-section ul,
-    .info-section ol {
-      padding-left: 22px;
-    }
-
-    .faq-item {
-      margin-bottom: 18px;
-    }
-
-    .faq-item strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .related-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .related-tools a {
-      display: inline-block;
-      padding: 9px 12px;
-      background: #eff6ff;
-      color: #2563eb;
-      text-decoration: none;
-      border-radius: 7px;
-      font-size: 14px;
-    }
-
-    .related-tools a:hover {
-      background: #dbeafe;
-    }
-
-    .privacy {
-      text-align: center;
-      color: #555;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .back {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .back a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this YAML to JSON converter free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. This tool is free to use directly in your browser."
       }
-
-      textarea {
-        min-height: 250px;
+    },
+    {
+      "@type": "Question",
+      "name": "Is my YAML data uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion is performed locally in your browser."
       }
-
-      button {
-        width: 100%;
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool convert YAML arrays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Supported YAML array structures are converted into JSON arrays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the converter support numbers, booleans and null values?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Supported numbers, true and false values, and null values are converted to their corresponding JSON types."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the YAML is invalid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The converter displays an error message when it detects unsupported or invalid YAML structure."
       }
     }
-  </style>
+  ]
+}
+</script>
+
+<style>
+:root {
+    --bg: #050b16;
+    --bg-soft: #08111f;
+    --card: rgba(13, 25, 43, 0.84);
+    --border: rgba(120, 160, 210, 0.16);
+    --border-strong: rgba(66, 199, 255, 0.30);
+    --text: #f4f8ff;
+    --muted: #9aabc0;
+    --cyan: #42c7ff;
+    --blue: #4f7cff;
+    --green: #35d49a;
+    --red: #ff647c;
+    --purple: #9b7cff;
+    --shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 15% 5%, rgba(66,199,255,0.10), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(79,124,255,0.10), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+}
+
+a {
+    color: inherit;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(5,11,22,0.84);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+}
+
+.header-inner {
+    width: min(1180px, calc(100% - 32px));
+    margin: auto;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    color: white;
+    font-weight: 900;
+    box-shadow: 0 8px 25px rgba(66,199,255,0.22);
+}
+
+.header-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.header-link:hover {
+    color: white;
+}
+
+.container {
+    width: min(1120px, calc(100% - 32px));
+    margin: auto;
+}
+
+.hero {
+    padding: 70px 0 38px;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: rgba(66,199,255,0.07);
+    color: #aee8ff;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    max-width: 900px;
+    margin: 0 auto 15px;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -2.5px;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, #ffffff, var(--cyan), #8ea7ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 730px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+.trust-pill {
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.035);
+    color: #b9c7d9;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.tool-card {
+    background: linear-gradient(
+        145deg,
+        rgba(17,32,54,0.95),
+        rgba(8,17,31,0.97)
+    );
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+}
+
+.tool-heading {
+    margin-bottom: 20px;
+}
+
+.tool-heading h2 {
+    margin: 0 0 5px;
+    font-size: 22px;
+}
+
+.tool-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.editor-box {
+    min-width: 0;
+}
+
+.editor-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    color: #dbe8f8;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.editor-label span:last-child {
+    color: #71849c;
+    font-size: 11px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 310px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    outline: none;
+    resize: vertical;
+    background: #050d19;
+    color: #dcecff;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 14px;
+    line-height: 1.65;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+textarea:focus {
+    border-color: rgba(66,199,255,0.55);
+    box-shadow: 0 0 0 3px rgba(66,199,255,0.08);
+}
+
+textarea::placeholder {
+    color: #53657b;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+button {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 11px 17px;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    transition: transform .18s, opacity .18s, box-shadow .18s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: .94;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--blue), #697fff);
+    box-shadow: 0 8px 24px rgba(79,124,255,0.22);
+}
+
+.btn-success {
+    background: rgba(53,212,154,0.12);
+    border-color: rgba(53,212,154,0.28);
+    color: #70e8ba;
+}
+
+.btn-download {
+    background: rgba(66,199,255,0.10);
+    border-color: rgba(66,199,255,0.25);
+    color: #75d9ff;
+}
+
+.btn-danger {
+    background: rgba(255,100,124,0.09);
+    border-color: rgba(255,100,124,0.22);
+    color: #ff8da0;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 12px 14px;
+    border-radius: 11px;
+    display: none;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.success-message {
+    background: rgba(53,212,154,0.08);
+    border: 1px solid rgba(53,212,154,0.20);
+    color: #70e8ba;
+}
+
+.error-message {
+    background: rgba(255,100,124,0.08);
+    border: 1px solid rgba(255,100,124,0.20);
+    color: #ff8da0;
+}
+
+.privacy-mini {
+    margin-top: 18px;
+    padding: 13px 15px;
+    border: 1px solid rgba(53,212,154,0.18);
+    border-radius: 12px;
+    background: rgba(53,212,154,0.05);
+    color: #a6e8ce;
+    font-size: 13px;
+}
+
+.section {
+    margin-top: 28px;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+}
+
+.section h2 {
+    margin: 0 0 14px;
+    font-size: 27px;
+    letter-spacing: -0.6px;
+}
+
+.section h3 {
+    margin: 25px 0 7px;
+    font-size: 18px;
+    color: #eaf3ff;
+}
+
+.section p,
+.section li {
+    color: var(--muted);
+}
+
+.section strong {
+    color: #dceaff;
+}
+
+.section ol,
+.section ul {
+    padding-left: 22px;
+}
+
+.code-example {
+    margin: 18px 0;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: #040a13;
+    overflow-x: auto;
+}
+
+.code-example pre {
+    margin: 0;
+    color: #bfe9ff;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.feature-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+}
+
+.feature-card strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #e8f3ff;
+}
+
+.feature-card p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.faq-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.faq-item h3 {
+    margin-top: 0;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.related-card {
+    display: block;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    text-decoration: none;
+    background: rgba(255,255,255,0.025);
+    transition: border-color .2s, transform .2s, background .2s;
+}
+
+.related-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    background: rgba(66,199,255,0.05);
+}
+
+.related-card strong {
+    display: block;
+    color: #e7f3ff;
+    margin-bottom: 4px;
+}
+
+.related-card span {
+    color: #8193a9;
+    font-size: 12px;
+}
+
+.cta {
+    margin: 28px 0 0;
+    padding: 32px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid rgba(79,124,255,0.24);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(79,124,255,0.16), transparent 60%),
+        #091323;
+}
+
+.cta h2 {
+    margin: 0 0 8px;
+}
+
+.cta p {
+    max-width: 650px;
+    margin: auto;
+    color: var(--muted);
+}
+
+.back-link {
+    display: inline-flex;
+    margin-top: 22px;
+    color: #91dfff;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.back-link:hover {
+    color: white;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>YAML to JSON Converter</h1>
-  <p>Convert YAML data to JSON instantly in your browser.</p>
+<header class="site-header">
+    <div class="header-inner">
+
+        <a class="brand" href="index.html">
+            <span class="brand-icon">{ }</span>
+            <span>CSV &amp; JSON Developer Tools</span>
+        </a>
+
+        <a class="header-link" href="index.html">All Tools →</a>
+
+    </div>
 </header>
 
-<main>
+<main class="container">
 
-  <div class="card">
-    <label for="yamlInput">YAML Input</label>
+<section class="hero">
 
-    <textarea id="yamlInput" placeholder="Paste your YAML here..."></textarea>
+    <div class="hero-badge">⚡ Free YAML Developer Tool</div>
 
-    <div class="buttons">
-      <button onclick="convertYaml()">Convert to JSON</button>
-      <button class="secondary" onclick="clearAll()">Clear</button>
-    </div>
-
-    <div id="message" class="message"></div>
-  </div>
-
-  <div class="card">
-    <label for="jsonOutput">JSON Output</label>
-
-    <textarea id="jsonOutput" readonly placeholder="Converted JSON will appear here..."></textarea>
-
-    <div class="buttons">
-      <button class="success" onclick="copyJson()">Copy JSON</button>
-      <button onclick="downloadJson()">Download JSON</button>
-    </div>
-  </div>
-
-  <div class="card privacy">
-    <strong>Privacy First:</strong><br>
-    Your YAML data is processed entirely in your browser.
-    No data is uploaded to our server.
-  </div>
-
-  <div class="card info-section">
-
-    <h2>How to Use YAML to JSON Converter</h2>
-
-    <ol>
-      <li>Paste your YAML data into the input box.</li>
-      <li>Click <strong>Convert to JSON</strong>.</li>
-      <li>Review the generated JSON output.</li>
-      <li>Click <strong>Copy JSON</strong> to copy the result.</li>
-      <li>Click <strong>Download JSON</strong> to save the result as a JSON file.</li>
-    </ol>
-
-    <h2>About YAML to JSON Conversion</h2>
+    <h1>
+        YAML to <span>JSON Converter</span>
+    </h1>
 
     <p>
-      YAML and JSON are commonly used formats for representing structured
-      data. This tool converts supported YAML structures into readable JSON
-      directly in your browser, making the resulting data easier to use in
-      applications, APIs and development workflows.
+        Convert supported YAML data into clean, formatted JSON directly in your browser.
+        Fast, simple and designed for everyday developer workflows.
     </p>
+
+    <div class="trust-row">
+        <span class="trust-pill">✓ Browser-based</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ Privacy-focused</span>
+        <span class="trust-pill">✓ Free to use</span>
+    </div>
+
+</section>
+
+<section class="tool-card">
+
+    <div class="tool-heading">
+        <h2>Convert YAML into formatted JSON</h2>
+        <p>
+            Paste supported YAML below, convert it, then copy or download the JSON result.
+        </p>
+    </div>
+
+    <div class="editor-grid">
+
+        <div class="editor-box">
+
+            <div class="editor-label">
+                <span>YAML Input</span>
+                <span>INPUT</span>
+            </div>
+
+            <textarea
+                id="yamlInput"
+                aria-label="YAML input"
+                placeholder="Paste your YAML here...
+
+Example:
+name: Ali
+age: 28
+city: Karachi
+skills:
+  - JavaScript
+  - Python
+active: true"></textarea>
+
+        </div>
+
+        <div class="editor-box">
+
+            <div class="editor-label">
+                <span>JSON Output</span>
+                <span>OUTPUT</span>
+            </div>
+
+            <textarea
+                id="jsonOutput"
+                aria-label="Converted JSON output"
+                readonly
+                placeholder="Converted JSON will appear here..."></textarea>
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button class="btn-primary" onclick="convertYaml()">
+            Convert to JSON
+        </button>
+
+        <button class="btn-success" onclick="copyJson()">
+            Copy JSON
+        </button>
+
+        <button class="btn-download" onclick="downloadJson()">
+            Download JSON
+        </button>
+
+        <button class="btn-danger" onclick="clearAll()">
+            Clear
+        </button>
+
+    </div>
+
+    <div id="message" class="message" aria-live="polite"></div>
+
+    <div class="privacy-mini">
+        🔒 <strong>Privacy-focused:</strong>
+        Your YAML data is processed locally in your browser and is not uploaded to our server.
+    </div>
+
+</section>
+<section class="section">
+
+    <h2>YAML to JSON Converter: Convert Structured Data Easily</h2>
+
+    <p>
+        YAML and JSON are popular formats for representing structured data.
+        YAML is often used for configuration files because its syntax can be
+        concise and human-readable, while JSON is widely used by applications,
+        APIs and web services.
+    </p>
+
+    <p>
+        This YAML to JSON Converter transforms supported YAML structures into
+        formatted JSON directly in your browser. It is useful when you need
+        to move structured data from a YAML-based workflow into a JSON-based
+        application or development task.
+    </p>
+
+    <h3>What does this YAML to JSON converter support?</h3>
+
+    <p>
+        The converter supports the YAML structures handled by its built-in
+        browser parser, including key-value data, indentation-based nested
+        structures, arrays, quoted values, numbers, booleans and null values.
+    </p>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <strong>YAML Input</strong>
+            <p>Paste supported YAML directly into the input editor.</p>
+        </div>
+
+        <div class="feature-card">
+            <strong>Formatted JSON</strong>
+            <p>Receive readable JSON with consistent indentation.</p>
+        </div>
+
+        <div class="feature-card">
+            <strong>Local Processing</strong>
+            <p>Conversion happens directly inside your browser.</p>
+        </div>
+
+    </div>
+
+    <h3>How to Use</h3>
+
+    <ol>
+        <li>Paste your supported YAML into the input box.</li>
+        <li>Click <strong>Convert to JSON</strong>.</li>
+        <li>Review the generated JSON output.</li>
+        <li>Click <strong>Copy JSON</strong> to copy the result.</li>
+        <li>Click <strong>Download JSON</strong> to save the result.</li>
+    </ol>
+
+    <h3>YAML Example</h3>
+
+    <div class="code-example">
+<pre>name: Ali
+age: 28
+city: Karachi
+skills:
+  - JavaScript
+  - Python
+active: true</pre>
+    </div>
+
+    <h3>Converted JSON</h3>
+
+    <div class="code-example">
+<pre>{
+  "name": "Ali",
+  "age": 28,
+  "city": "Karachi",
+  "skills": [
+    "JavaScript",
+    "Python"
+  ],
+  "active": true
+}</pre>
+    </div>
+
+    <h3>YAML Arrays</h3>
+
+    <p>
+        YAML list items beginning with a hyphen can be converted into JSON
+        arrays when they follow the supported structure.
+    </p>
+
+    <div class="code-example">
+<pre>colors:
+  - red
+  - green
+  - blue</pre>
+    </div>
+
+    <p>The resulting JSON structure is:</p>
+
+    <div class="code-example">
+<pre>{
+  "colors": [
+    "red",
+    "green",
+    "blue"
+  ]
+}</pre>
+    </div>
+
+    <h3>Nested YAML Data</h3>
+
+    <p>
+        Indentation can be used to represent nested objects. Consistent
+        indentation is important because YAML structure depends heavily on
+        whitespace.
+    </p>
+
+    <div class="code-example">
+<pre>user:
+  name: Ali
+  address:
+    city: Karachi
+    country: Pakistan</pre>
+    </div>
+
+    <h3>YAML vs JSON</h3>
+
+    <p>
+        YAML is designed to be convenient for humans to write and read,
+        particularly for configuration data. JSON uses a more explicit
+        syntax and is commonly used for data exchange between applications.
+        Converting between the formats can help when different tools or
+        workflows require different data representations.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <h2>Useful Tips for YAML to JSON Conversion</h2>
+
+    <ul>
+        <li>Keep indentation consistent throughout your YAML.</li>
+        <li>Check that every property uses a colon where required.</li>
+        <li>Use supported list syntax for YAML arrays.</li>
+        <li>Use quotes when a value needs to remain a string.</li>
+        <li>Check the error message if conversion fails.</li>
+        <li>Review the generated JSON before using it in an application.</li>
+    </ul>
+
+    <h3>Common YAML Conversion Errors</h3>
+
+    <p>
+        Most conversion problems come from unsupported structure, incorrect
+        indentation, missing colons or malformed inline values. If the tool
+        reports an error, check the line mentioned in the message and review
+        the surrounding indentation and syntax.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <h2>Browser-Based YAML to JSON Conversion</h2>
+
+    <p>
+        This converter runs its parsing and conversion logic in your browser.
+        You do not need to install software or create an account to use the tool.
+    </p>
+
+    <p>
+        Since the conversion is performed locally, your YAML input does not
+        need to be uploaded to a conversion server. This makes the tool
+        convenient for quick development and data-formatting tasks.
+    </p>
+
+</section>
+<section class="section">
 
     <h2>Frequently Asked Questions</h2>
 
     <div class="faq-item">
-      <strong>Is this YAML to JSON converter free?</strong>
-      Yes. This tool is free to use directly in your browser.
+        <h3>Is this YAML to JSON converter free?</h3>
+        <p>
+            Yes. This tool is free to use directly in your browser.
+        </p>
     </div>
 
     <div class="faq-item">
-      <strong>Is my YAML data uploaded to a server?</strong>
-      No. The conversion takes place locally in your browser and the YAML
-      data is not uploaded to our server.
+        <h3>Is my YAML data uploaded to a server?</h3>
+        <p>
+            No. The conversion takes place locally in your browser and the
+            YAML data is not uploaded to our server.
+        </p>
     </div>
 
     <div class="faq-item">
-      <strong>Can this tool convert YAML arrays?</strong>
-      Yes. Supported YAML array structures are converted into JSON arrays.
+        <h3>Can this tool convert YAML arrays?</h3>
+        <p>
+            Yes. Supported YAML array structures are converted into JSON arrays.
+        </p>
     </div>
 
     <div class="faq-item">
-      <strong>Does the converter support numbers, booleans and null values?</strong>
-      Yes. Supported numeric values, true/false values and null values are
-      converted to their corresponding JSON types.
+        <h3>Does the converter support numbers, booleans and null values?</h3>
+        <p>
+            Yes. Supported numeric values, true and false values, and null
+            values are converted to their corresponding JSON types.
+        </p>
     </div>
 
     <div class="faq-item">
-      <strong>What happens if the YAML is invalid?</strong>
-      The converter displays an error message when it detects unsupported or
-      invalid YAML structure.
+        <h3>What happens if the YAML is invalid?</h3>
+        <p>
+            The converter displays an error message when it detects unsupported
+            or invalid YAML structure.
+        </p>
     </div>
 
-    <h2>Related Tools</h2>
-
-    <div class="related-tools">
-      <a href="json-to-yaml.html">JSON to YAML</a>
-      <a href="json-formatter.html">JSON Formatter</a>
-      <a href="xml-to-json.html">XML to JSON</a>
-      <a href="toml-to-json.html">TOML to JSON</a>
-      <a href="json-to-xml.html">JSON to XML</a>
-      <a href="json-to-csv.html">JSON to CSV</a>
+    <div class="faq-item">
+        <h3>Can I download the converted JSON?</h3>
+        <p>
+            Yes. Click <strong>Download JSON</strong> to save the generated
+            result as a JSON file.
+        </p>
     </div>
 
-  </div>
+</section>
 
-  <div class="back">
-    <a href="index.html">← Back to All Tools</a>
-  </div>
+<section class="section">
+
+    <h2>Related Developer Tools</h2>
+
+    <div class="related-grid">
+
+        <a class="related-card" href="json-to-yaml.html">
+            <strong>JSON to YAML</strong>
+            <span>Convert JSON data into YAML.</span>
+        </a>
+
+        <a class="related-card" href="json-formatter.html">
+            <strong>JSON Formatter</strong>
+            <span>Format and beautify JSON data.</span>
+        </a>
+
+        <a class="related-card" href="xml-to-json.html">
+            <strong>XML to JSON</strong>
+            <span>Convert XML data into JSON.</span>
+        </a>
+
+        <a class="related-card" href="toml-to-json.html">
+            <strong>TOML to JSON</strong>
+            <span>Convert TOML data into JSON.</span>
+        </a>
+
+        <a class="related-card" href="json-to-xml.html">
+            <strong>JSON to XML</strong>
+            <span>Convert JSON data into XML.</span>
+        </a>
+
+        <a class="related-card" href="json-to-csv.html">
+            <strong>JSON to CSV</strong>
+            <span>Convert JSON records into CSV.</span>
+        </a>
+
+        <a class="related-card" href="json-to-text.html">
+            <strong>JSON to Text</strong>
+            <span>Convert JSON data into readable text.</span>
+        </a>
+
+        <a class="related-card" href="json-to-jsonl.html">
+            <strong>JSON to JSONL</strong>
+            <span>Convert JSON arrays into JSONL records.</span>
+        </a>
+
+        <a class="related-card" href="text-to-json.html">
+            <strong>Text to JSON</strong>
+            <span>Convert structured text into JSON.</span>
+        </a>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>Privacy</h2>
+
+    <p>
+        This YAML to JSON converter processes your input using JavaScript
+        running in your browser. The tool does not require you to upload a
+        YAML file or create an account.
+    </p>
+
+    <p>
+        For more information about this website and its privacy practices,
+        please visit our
+        <a href="privacy-policy.html" style="color:#72d9ff;">
+            Privacy Policy
+        </a>.
+    </p>
+
+</section>
+
+<section class="cta">
+
+    <h2>More Free Developer Tools</h2>
+
+    <p>
+        Convert, format and transform CSV, JSON and other structured data
+        with free browser-based developer tools.
+    </p>
+
+    <a class="back-link" href="index.html">
+        Explore All Tools →
+    </a>
+
+</section>
+
+<a class="back-link" href="index.html">
+    ← Back to All Tools
+</a>
 
 </main>
 
-<footer>
-  © 2026 CSV & JSON Developer Tools
-</footer>
+<footer style="
+    margin-top:60px;
+    border-top:1px solid var(--border);
+    background:#040914;
+">
+    <div style="
+        width:min(1120px,calc(100% - 32px));
+        margin:auto;
+        padding:28px 0;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-between;
+        align-items:center;
+        gap:15px;
+    ">
 
+        <div style="color:#71849c;font-size:13px;">
+            © 2026 CSV &amp; JSON Developer Tools
+        </div>
+
+        <div style="
+            display:flex;
+            flex-wrap:wrap;
+            gap:15px;
+            font-size:13px;
+        ">
+            <a href="index.html" style="color:#9aabc0;text-decoration:none;">Home</a>
+            <a href="about.html" style="color:#9aabc0;text-decoration:none;">About</a>
+            <a href="privacy-policy.html" style="color:#9aabc0;text-decoration:none;">Privacy</a>
+            <a href="terms.html" style="color:#9aabc0;text-decoration:none;">Terms</a>
+            <a href="contact.html" style="color:#9aabc0;text-decoration:none;">Contact</a>
+            <a href="cookie-policy.html" style="color:#9aabc0;text-decoration:none;">Cookies</a>
+        </div>
+
+    </div>
+</footer>
+<style>
+@media (max-width: 800px) {
+
+    .header-inner {
+        padding: 13px 0;
+    }
+
+    .hero {
+        padding: 50px 0 28px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        letter-spacing: -1.7px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tool-card,
+    .section {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .container {
+        width: min(100% - 22px, 1120px);
+    }
+
+    .header-link {
+        display: none;
+    }
+
+    .brand {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 38px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+    }
+
+    .tool-card,
+    .section {
+        border-radius: 16px;
+        padding: 18px;
+    }
+
+    textarea {
+        min-height: 250px;
+        font-size: 13px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta {
+        padding: 25px 18px;
+    }
+
+    footer div {
+        justify-content: center !important;
+        text-align: center;
+    }
+}
+</style>
 
 <script>
 
@@ -481,7 +1272,9 @@ function parseYaml(text) {
       if (isArray) {
 
         if (!current.text.startsWith("-")) {
-          throw new Error("Mixed array/object structure near: " + current.text);
+          throw new Error(
+            "Mixed array/object structure near: " + current.text
+          );
         }
 
         let content = current.text.slice(1).trim();
@@ -492,9 +1285,14 @@ function parseYaml(text) {
             index + 1 < lines.length &&
             lines[index + 1].indent > indent
           ) {
-            const child = parseBlock(index + 1, lines[index + 1].indent);
+            const child = parseBlock(
+              index + 1,
+              lines[index + 1].indent
+            );
+
             result.push(child.value);
             index = child.index;
+
           } else {
             result.push(null);
             index++;
@@ -529,7 +1327,9 @@ function parseYaml(text) {
             const childColon = childText.indexOf(":");
 
             if (childColon === -1) {
-              throw new Error("Invalid object property: " + childText);
+              throw new Error(
+                "Invalid object property: " + childText
+              );
             }
 
             const childKey = childText.slice(0, childColon).trim();
@@ -541,22 +1341,32 @@ function parseYaml(text) {
                 index + 1 < lines.length &&
                 lines[index + 1].indent > childIndent
               ) {
+
                 const child = parseBlock(
                   index + 1,
                   lines[index + 1].indent
                 );
 
-                obj[childKey.replace(/^['"]|['"]$/g, "")] = child.value;
+                obj[
+                  childKey.replace(/^['"]|['"]$/g, "")
+                ] = child.value;
+
                 index = child.index;
+
               } else {
-                obj[childKey.replace(/^['"]|['"]$/g, "")] = null;
+
+                obj[
+                  childKey.replace(/^['"]|['"]$/g, "")
+                ] = null;
+
                 index++;
               }
 
             } else {
 
-              obj[childKey.replace(/^['"]|['"]$/g, "")] =
-                parseValue(childVal);
+              obj[
+                childKey.replace(/^['"]|['"]$/g, "")
+              ] = parseValue(childVal);
 
               index++;
             }
@@ -573,13 +1383,17 @@ function parseYaml(text) {
       } else {
 
         if (current.text.startsWith("-")) {
-          throw new Error("Unexpected array item near: " + current.text);
+          throw new Error(
+            "Unexpected array item near: " + current.text
+          );
         }
 
         const colon = current.text.indexOf(":");
 
         if (colon === -1) {
-          throw new Error("Invalid YAML line: " + current.text);
+          throw new Error(
+            "Invalid YAML line: " + current.text
+          );
         }
 
         const key = current.text.slice(0, colon).trim();
