@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CGGJEQ96S7');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CGGJEQ96S7');
 </script>
 
-<meta name="description" content="Convert TSV data to CSV format instantly in your browser. Free, fast and privacy-friendly TSV to CSV converter.">
+<meta name="description" content="Convert TSV to CSV online with this free browser-based TSV to CSV converter. Fast, private and easy to use with no server upload.">
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/tsv-to-csv.html">
 
 <meta property="og:title" content="TSV to CSV Converter - Free Online Tool">
-<meta property="og:description" content="Convert tab-separated values (TSV) into CSV format instantly in your browser. Free, fast and privacy-friendly.">
+<meta property="og:description" content="Convert tab-separated TSV data to CSV format instantly in your browser. Free, fast and privacy-friendly.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/tsv-to-csv.html">
 
@@ -42,277 +42,1041 @@
 }
 </script>
 
-<style>
-    * {
-        box-sizing: border-box;
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is TSV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TSV stands for Tab-Separated Values. It is a text format where columns are separated by tab characters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is CSV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CSV stands for Comma-Separated Values. It is a common text format for storing tabular data with commas separating fields."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the TSV to CSV converter upload my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion is performed locally in your browser and the TSV data is not uploaded to a server by this tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download the converted CSV file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After converting the TSV data, use the Download CSV button to save the converted file."
+      }
     }
+  ]
+}
+</script>
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        color: #222;
+<style>
+:root {
+    --bg: #07111f;
+    --bg-soft: #0b1728;
+    --panel: rgba(15, 29, 48, 0.88);
+    --panel-2: #0d1b2e;
+    --border: rgba(148, 163, 184, 0.16);
+    --text: #f4f7fb;
+    --muted: #9aabc0;
+    --blue: #4f8cff;
+    --cyan: #22d3ee;
+    --green: #34d399;
+    --red: #fb7185;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at 15% 5%, rgba(79, 140, 255, 0.15), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(34, 211, 238, 0.10), transparent 25%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(18px);
+    background: rgba(7, 17, 31, 0.82);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 15px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    color: white;
+    font-weight: 900;
+    box-shadow: 0 8px 25px rgba(34, 211, 238, 0.18);
+}
+
+.header-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-link:hover {
+    color: white;
+}
+
+.container {
+    max-width: 1180px;
+    margin: auto;
+    padding: 45px 22px 70px;
+}
+
+.hero {
+    text-align: center;
+    max-width: 850px;
+    margin: 10px auto 38px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    border: 1px solid rgba(79, 140, 255, 0.28);
+    background: rgba(79, 140, 255, 0.09);
+    border-radius: 999px;
+    color: #a9c5ff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    margin: 18px 0 12px;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -2.5px;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, #6ea8ff, #35d8ed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.trust-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 22px;
+}
+
+.trust-pill {
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.035);
+    color: #b7c5d8;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.tool-card {
+    background: linear-gradient(
+        145deg,
+        rgba(16, 32, 53, 0.96),
+        rgba(9, 21, 37, 0.96)
+    );
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.tool-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.tool-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.tool-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.status-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #9ee9c9;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-dot::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.7);
+}
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.editor-box {
+    background: rgba(4, 12, 23, 0.72);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.tool-label {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    color: #c6d4e5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 270px;
+    padding: 17px;
+    border: 0;
+    outline: none;
+    resize: vertical;
+    background: transparent;
+    color: #e7edf7;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+textarea::placeholder {
+    color: #617188;
+}
+
+textarea:focus {
+    box-shadow: inset 0 0 0 1px rgba(79, 140, 255, 0.35);
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 12px;
+}
+
+button {
+    border: 0;
+    border-radius: 11px;
+    padding: 12px 17px;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: 0.94;
+}
+
+.primary {
+    background: linear-gradient(135deg, #4f8cff, #3575e8);
+    box-shadow: 0 10px 25px rgba(79, 140, 255, 0.20);
+}
+
+.secondary {
+    background: #182a42;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.success {
+    background: linear-gradient(135deg, #149d78, #16b981);
+}
+
+.clear-btn {
+    background: #271b2b;
+    border: 1px solid rgba(251, 113, 133, 0.16);
+}
+
+.status {
+    min-height: 24px;
+    margin: 7px 2px 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.privacy-mini {
+    margin-top: 17px;
+    padding: 12px 14px;
+    border: 1px solid rgba(52, 211, 153, 0.16);
+    background: rgba(52, 211, 153, 0.055);
+    border-radius: 12px;
+    color: #9ddcc7;
+    font-size: 13px;
+}
+
+.content-card {
+    margin-top: 24px;
+    padding: 30px;
+    background: rgba(12, 27, 45, 0.78);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+}
+
+.section-kicker {
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.content-card h2 {
+    margin: 6px 0 12px;
+    font-size: 26px;
+    letter-spacing: -0.6px;
+}
+
+.content-card h3 {
+    margin: 24px 0 7px;
+    font-size: 18px;
+}
+
+.content-card p,
+.content-card li {
+    color: var(--muted);
+}
+
+.content-card ul,
+.content-card ol {
+    padding-left: 22px;
+}
+
+.content-card li {
+    margin: 7px 0;
+}
+
+.code-example {
+    margin: 18px 0;
+    padding: 18px;
+    overflow-x: auto;
+    border-radius: 14px;
+    background: #050c16;
+    border: 1px solid var(--border);
+    color: #c9d7e8;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.comparison-box {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.025);
+}
+
+.comparison-box strong {
+    color: white;
+}
+
+@media (max-width: 760px) {
+    .editor-grid,
+    .comparison-grid {
+        grid-template-columns: 1fr;
     }
 
     .container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
+        padding: 30px 14px 55px;
     }
 
-    .card {
-        background: #fff;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    .tool-card,
+    .content-card {
+        padding: 19px;
+        border-radius: 18px;
     }
 
-    h1 {
-        margin-top: 0;
-        font-size: 28px;
+    .hero h1 {
+        letter-spacing: -1.5px;
+    }
+}
+
+@media (max-width: 520px) {
+    .header-inner {
+        padding: 12px 14px;
     }
 
-    h2 {
-        margin-top: 30px;
-        font-size: 21px;
-    }
-
-    h3 {
-        font-size: 17px;
-        margin-bottom: 5px;
-    }
-
-    p {
-        color: #555;
-        line-height: 1.6;
-    }
-
-    textarea {
-        width: 100%;
-        min-height: 230px;
-        padding: 14px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-family: monospace;
+    .brand {
         font-size: 14px;
-        resize: vertical;
+    }
+
+    .brand-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .header-link {
+        font-size: 12px;
     }
 
     .buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 15px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     button {
-        padding: 11px 18px;
-        border: none;
-        border-radius: 7px;
-        cursor: pointer;
-        background: #222;
-        color: white;
-        font-size: 14px;
+        width: 100%;
     }
 
-    button:hover {
-        opacity: 0.85;
+    .hero p {
+        font-size: 15px;
     }
-
-    .status {
-        margin: 10px 0;
-        font-weight: bold;
-    }
-
-    .privacy {
-        margin-top: 20px;
-        padding: 12px;
-        background: #f0f7f0;
-        border-radius: 7px;
-        font-size: 14px;
-    }
-
-    .info-section {
-        margin-top: 30px;
-    }
-
-    .info-section ul {
-        line-height: 1.8;
-        color: #555;
-    }
-
-    .faq {
-        margin-top: 18px;
-    }
-
-    .related {
-        margin-top: 25px;
-        line-height: 2;
-    }
-
-    .related a {
-        color: #222;
-        font-weight: bold;
-    }
-
-    .back {
-        display: inline-block;
-        margin-top: 20px;
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            margin: 15px auto;
-            padding: 12px;
-        }
-
-        .card {
-            padding: 18px;
-        }
-
-        h1 {
-            font-size: 24px;
-        }
-
-        button {
-            width: 100%;
-        }
-    }
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="card">
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand" href="index.html">
+            <span class="brand-icon">{ }</span>
+            <span>CSV &amp; JSON Developer Tools</span>
+        </a>
 
-        <h1>TSV to CSV Converter</h1>
+        <a class="header-link" href="index.html">
+            All Tools →
+        </a>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="hero-badge">⚡ Free Developer Tool</div>
+
+        <h1>
+            TSV to <span>CSV Converter</span>
+        </h1>
 
         <p>
-            Convert tab-separated values (TSV) into CSV format instantly in your browser.
-            Your data stays on your device.
+            Convert tab-separated TSV data into clean CSV format directly
+            in your browser. Fast, simple and privacy-friendly.
         </p>
 
-        <textarea id="input" placeholder="Paste TSV data here...
+        <div class="trust-row">
+            <span class="trust-pill">✓ Free to use</span>
+            <span class="trust-pill">✓ Browser-based</span>
+            <span class="trust-pill">✓ No file upload</span>
+            <span class="trust-pill">✓ Instant conversion</span>
+        </div>
+    </section>
+
+    <section class="tool-card">
+
+        <div class="tool-card-top">
+            <div>
+                <h2 class="tool-title">Convert TSV data</h2>
+                <div class="tool-subtitle">
+                    Paste your tab-separated data and convert it to CSV.
+                </div>
+            </div>
+
+            <div class="status-dot">Local processing</div>
+        </div>
+
+        <div class="editor-grid">
+
+            <div class="editor-box">
+                <div class="tool-label">TSV Input</div>
+
+                <textarea id="input" placeholder="Paste TSV data here...
 
 Example:
 name	age	city
 Ali	28	Karachi
 Emma	34	London"></textarea>
+            </div>
+
+            <div class="editor-box">
+                <div class="tool-label">CSV Output</div>
+
+                <textarea id="output" placeholder="CSV output will appear here..." readonly></textarea>
+            </div>
+
+        </div>
 
         <div class="buttons">
-            <button onclick="convertTSV()">Convert to CSV</button>
-            <button onclick="copyCSV()">Copy CSV</button>
-            <button onclick="downloadCSV()">Download CSV</button>
-            <button onclick="clearAll()">Clear</button>
+            <button class="primary" onclick="convertTSV()">Convert to CSV</button>
+            <button class="secondary" onclick="copyCSV()">Copy CSV</button>
+            <button class="success" onclick="downloadCSV()">Download CSV</button>
+            <button class="clear-btn" onclick="clearAll()">Clear</button>
         </div>
 
         <div id="status" class="status"></div>
 
-        <textarea id="output" placeholder="CSV output will appear here..." readonly></textarea>
-
-        <div class="privacy">
-            🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
+        <div class="privacy-mini">
+            🔒 <strong>Privacy-friendly:</strong>
+            Your TSV data is processed locally in your browser and is not uploaded
+            to a server by this tool.
         </div>
 
-        <section class="info-section">
-            <h2>How to Use TSV to CSV Converter</h2>
+    </section>
+        <section class="content-card">
 
-            <p>
-                TSV files use tab characters to separate columns, while CSV files
-                normally use commas. This tool converts TSV rows into properly
-                formatted CSV data.
-            </p>
+        <div class="section-kicker">Guide</div>
 
-            <ul>
-                <li>Paste your TSV data into the input box.</li>
-                <li>Make sure columns are separated by tab characters.</li>
-                <li>Click <strong>Convert to CSV</strong>.</li>
-                <li>Copy the CSV result or download it as a CSV file.</li>
-            </ul>
+        <h2>How to Use the TSV to CSV Converter</h2>
 
-            <p>
-                Example TSV:
-            </p>
+        <p>
+            TSV and CSV are both common text formats for structured table data.
+            TSV uses tab characters to separate columns, while CSV normally uses
+            commas. This free TSV to CSV converter transforms your data directly
+            in the browser.
+        </p>
 
-            <p>
-                name&nbsp;&nbsp;&nbsp;age&nbsp;&nbsp;&nbsp;city<br>
-                Ali&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;Karachi<br>
-                Emma&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;London
-            </p>
+        <h3>Convert TSV to CSV in a few steps</h3>
 
-            <p>
-                The converter also handles CSV escaping when a value contains
-                commas, quotation marks or line breaks.
-            </p>
-        </section>
+        <ol>
+            <li>Paste your TSV data into the input box.</li>
+            <li>Make sure your columns are separated by tab characters.</li>
+            <li>Click <strong>Convert to CSV</strong>.</li>
+            <li>Review the generated CSV output.</li>
+            <li>Copy the result or download it as a CSV file.</li>
+        </ol>
 
-        <section class="info-section">
-            <h2>Frequently Asked Questions</h2>
+        <h3>Example TSV data</h3>
 
-            <div class="faq">
-                <h3>What is TSV?</h3>
+        <div class="code-example">name	age	city
+Ali	28	Karachi
+Emma	34	London
+John	31	New York</div>
+
+        <h3>Converted CSV output</h3>
+
+        <div class="code-example">name,age,city
+Ali,28,Karachi
+Emma,34,London
+John,31,"New York"</div>
+
+        <p>
+            The converter automatically applies CSV escaping when a field contains
+            commas, quotation marks or line breaks. This helps keep the generated
+            CSV structure intact.
+        </p>
+
+    </section>
+
+    <section class="content-card">
+
+        <div class="section-kicker">Understanding the formats</div>
+
+        <h2>TSV vs CSV</h2>
+
+        <div class="comparison-grid">
+
+            <div class="comparison-box">
+                <strong>TSV — Tab-Separated Values</strong>
                 <p>
-                    TSV stands for Tab-Separated Values. It is a text format in
-                    which columns are separated by tab characters.
+                    TSV separates columns with tab characters. It is useful when
+                    tab-delimited data is easier to generate or work with.
                 </p>
             </div>
 
-            <div class="faq">
-                <h3>What is CSV?</h3>
+            <div class="comparison-box">
+                <strong>CSV — Comma-Separated Values</strong>
                 <p>
-                    CSV stands for Comma-Separated Values. It is a common format
-                    for storing tabular data using commas between fields.
+                    CSV commonly separates columns with commas and is widely used
+                    for spreadsheets, databases and data exchange.
                 </p>
             </div>
 
-            <div class="faq">
-                <h3>Does this tool upload my data?</h3>
-                <p>
-                    No. The conversion is performed locally in your browser and
-                    your TSV data is not uploaded to a server by this tool.
-                </p>
-            </div>
+        </div>
 
-            <div class="faq">
-                <h3>Can I download the converted CSV?</h3>
-                <p>
-                    Yes. After conversion, click the Download CSV button to save
-                    the result as a CSV file.
-                </p>
-            </div>
-        </section>
+        <h3>When should you convert TSV to CSV?</h3>
 
-        <section class="related">
-            <h2>Related Tools</h2>
+        <p>
+            Converting TSV to CSV can be useful when a spreadsheet, database,
+            script or other application expects comma-separated data instead of
+            tab-separated values.
+        </p>
+
+        <p>
+            Because the conversion happens inside your browser, you can quickly
+            transform copied table data without sending the content to an
+            external conversion service.
+        </p>
+
+    </section>
+
+    <section class="content-card">
+
+        <div class="section-kicker">Developer Notes</div>
+
+        <h2>TSV to CSV for Developers</h2>
+
+        <p>
+            TSV is often encountered when data is exported from spreadsheets,
+            command-line tools or applications that use tab-delimited text.
+            CSV is another widely supported format for exchanging tabular data.
+        </p>
+
+        <p>
+            This converter reads each TSV line, separates fields using tab
+            characters and then creates CSV rows. Values that require CSV quoting
+            are automatically escaped.
+        </p>
+
+        <h3>CSV escaping</h3>
+
+        <p>
+            CSV values containing commas, quotation marks or line breaks need
+            special handling. When required, this converter wraps the value in
+            double quotes and escapes internal quotation marks according to the
+            standard CSV convention.
+        </p>
+
+        <h3>Browser-based processing</h3>
+
+        <p>
+            The conversion logic runs on the client side using JavaScript.
+            There is no server-side conversion request made by this tool.
+        </p>
+
+    </section>
+        <section class="content-card">
+
+        <div class="section-kicker">FAQ</div>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq">
+
+            <h3>What is TSV?</h3>
 
             <p>
-                <a href="tsv-to-json.html">TSV to JSON Converter</a><br>
-                <a href="csv-to-tsv.html">CSV to TSV Converter</a><br>
-                <a href="csv-to-json.html">CSV to JSON Converter</a><br>
-                <a href="json-to-csv.html">JSON to CSV Converter</a><br>
-                <a href="csv-to-html.html">CSV to HTML Converter</a><br>
-                <a href="csv-to-markdown.html">CSV to Markdown Converter</a>
+                TSV stands for Tab-Separated Values. It is a text format in which
+                columns are separated by tab characters.
             </p>
-        </section>
 
-        <section class="info-section">
-            <h2>Privacy</h2>
+        </div>
+
+        <div class="faq">
+
+            <h3>What is CSV?</h3>
 
             <p>
-                This TSV to CSV Converter processes your data locally in your
-                browser. Your input is not uploaded to a server by this tool.
+                CSV stands for Comma-Separated Values. It is a common format for
+                storing tabular data using commas between fields.
             </p>
-        </section>
 
-        <a class="back" href="index.html">← Back to All Tools</a>
+        </div>
+
+        <div class="faq">
+
+            <h3>Does this TSV to CSV converter upload my data?</h3>
+
+            <p>
+                No. The conversion is performed locally in your browser and your
+                TSV data is not uploaded to a server by this tool.
+            </p>
+
+        </div>
+
+        <div class="faq">
+
+            <h3>Can I download the converted CSV?</h3>
+
+            <p>
+                Yes. After conversion, click the <strong>Download CSV</strong>
+                button to save the generated CSV file.
+            </p>
+
+        </div>
+
+        <div class="faq">
+
+            <h3>Can this tool handle commas inside values?</h3>
+
+            <p>
+                Yes. When a value contains a comma, quotation mark or line break,
+                the converter applies CSV escaping so the generated CSV preserves
+                the value correctly.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="content-card">
+
+        <div class="section-kicker">More Tools</div>
+
+        <h2>Related Developer Tools</h2>
+
+        <p>
+            Working with other CSV, TSV or JSON formats? Try these related tools:
+        </p>
+
+        <div class="related-grid">
+
+            <a href="tsv-to-json.html" class="related-link">
+                <span>TSV → JSON</span>
+                <small>Convert TSV data to JSON</small>
+            </a>
+
+            <a href="csv-to-tsv.html" class="related-link">
+                <span>CSV → TSV</span>
+                <small>Convert CSV data to TSV</small>
+            </a>
+
+            <a href="csv-to-json.html" class="related-link">
+                <span>CSV → JSON</span>
+                <small>Convert CSV data to JSON</small>
+            </a>
+
+            <a href="json-to-csv.html" class="related-link">
+                <span>JSON → CSV</span>
+                <small>Convert JSON data to CSV</small>
+            </a>
+
+            <a href="csv-to-html.html" class="related-link">
+                <span>CSV → HTML</span>
+                <small>Turn CSV data into HTML tables</small>
+            </a>
+
+            <a href="csv-to-markdown.html" class="related-link">
+                <span>CSV → Markdown</span>
+                <small>Convert CSV into Markdown tables</small>
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="content-card">
+
+        <div class="section-kicker">Privacy</div>
+
+        <h2>Your Data Stays in Your Browser</h2>
+
+        <p>
+            This TSV to CSV Converter performs the conversion locally in your
+            browser. Your input data is not uploaded to a server by this tool.
+        </p>
+
+        <p>
+            This makes the tool convenient for quickly converting copied or
+            locally available tab-separated data while keeping the conversion
+            process on your device.
+        </p>
+
+    </section>
+
+    <section class="bottom-cta">
+
+        <div>
+            <strong>Need another data conversion tool?</strong>
+            <span>Explore the complete collection of free developer tools.</span>
+        </div>
+
+        <a href="index.html">Explore All Tools →</a>
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div>
+            <strong>CSV &amp; JSON Developer Tools</strong>
+            <p>
+                Free browser-based tools for converting, formatting and
+                transforming developer data.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">All Tools</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="contact.html">Contact</a>
+        </div>
 
     </div>
-</div>
 
+    <div class="footer-bottom">
+        © 2026 CSV &amp; JSON Developer Tools. All rights reserved.
+    </div>
+
+</footer>
+
+<style>
+.faq + .faq {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
+
+.faq h3 {
+    color: #eef5ff;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.related-link {
+    display: block;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.025);
+    text-decoration: none;
+    transition: transform 0.18s ease, border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+.related-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(79, 140, 255, 0.4);
+    background: rgba(79, 140, 255, 0.06);
+}
+
+.related-link span {
+    display: block;
+    color: #edf4ff;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.related-link small {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.bottom-cta {
+    margin-top: 25px;
+    padding: 23px 25px;
+    border-radius: 18px;
+    border: 1px solid rgba(79, 140, 255, 0.20);
+    background:
+        linear-gradient(
+            120deg,
+            rgba(79, 140, 255, 0.12),
+            rgba(34, 211, 238, 0.06)
+        );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bottom-cta strong {
+    display: block;
+    color: white;
+    font-size: 16px;
+}
+
+.bottom-cta span {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.bottom-cta a {
+    flex-shrink: 0;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--blue), #3477eb);
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: rgba(4, 10, 18, 0.78);
+}
+
+.footer-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 35px 22px 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-inner strong {
+    color: #eef5ff;
+}
+
+.footer-inner p {
+    max-width: 470px;
+    margin: 8px 0 0;
+    color: #75869c;
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px 18px;
+}
+
+.footer-links a {
+    color: #8798ae;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    max-width: 1180px;
+    margin: auto;
+    padding: 15px 22px 25px;
+    color: #596b82;
+    font-size: 12px;
+    border-top: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+@media (max-width: 800px) {
+    .related-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 520px) {
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bottom-cta a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-inner {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .footer-bottom {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+</style>
 <script>
 let csvResult = "";
 
@@ -380,13 +1144,13 @@ function convertTSV() {
 
         output.value = csvResult;
         status.textContent = "TSV converted to CSV successfully.";
-        status.style.color = "green";
+        status.style.color = "var(--green)";
 
     } catch (error) {
         csvResult = "";
         output.value = "";
         status.textContent = error.message;
-        status.style.color = "red";
+        status.style.color = "var(--red)";
     }
 }
 
@@ -396,18 +1160,18 @@ function copyCSV() {
 
     if (!output.value) {
         status.textContent = "Please convert TSV data first.";
-        status.style.color = "red";
+        status.style.color = "var(--red)";
         return;
     }
 
     navigator.clipboard.writeText(output.value)
         .then(() => {
             status.textContent = "CSV copied to clipboard.";
-            status.style.color = "green";
+            status.style.color = "var(--green)";
         })
         .catch(() => {
             status.textContent = "Unable to copy CSV.";
-            status.style.color = "red";
+            status.style.color = "var(--red)";
         });
 }
 
@@ -417,7 +1181,7 @@ function downloadCSV() {
 
     if (!output.value) {
         status.textContent = "Please convert TSV data first.";
-        status.style.color = "red";
+        status.style.color = "var(--red)";
         return;
     }
 
@@ -438,7 +1202,7 @@ function downloadCSV() {
     URL.revokeObjectURL(url);
 
     status.textContent = "CSV file downloaded.";
-    status.style.color = "green";
+    status.style.color = "var(--green)";
 }
 
 function clearAll() {
