@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,18 +14,18 @@
   gtag('config', 'G-CGGJEQ96S7');
 </script>
 
-<meta name="description" content="Convert plain text to JSON instantly in your browser. Free, fast and privacy-friendly Text to JSON converter.">
+<title>Text to JSON Converter - Free Online Text to JSON Tool</title>
+
+<meta name="description" content="Convert structured text to JSON online for free. Turn key-value text, lists and indented data into formatted JSON directly in your browser. Fast and privacy-friendly.">
 
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/text-to-json.html">
 
-<meta property="og:title" content="Text to JSON Converter - Free Online Tool">
-<meta property="og:description" content="Convert structured plain text to JSON instantly in your browser. Free, fast and privacy-friendly.">
+<meta property="og:title" content="Text to JSON Converter - Free Online Text to JSON Tool">
+<meta property="og:description" content="Convert structured text into formatted JSON instantly in your browser. Free, fast and privacy-friendly.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/text-to-json.html">
-
-<title>Text to JSON Converter - Free Online Tool</title>
 
 <script type="application/ld+json">
 {
@@ -32,7 +33,7 @@
   "@type": "WebApplication",
   "name": "Text to JSON Converter",
   "url": "https://toolforge1.github.io/csv-json-tools/text-to-json.html",
-  "description": "Convert structured plain text to JSON instantly in your browser.",
+  "description": "Free online tool to convert structured text into formatted JSON directly in the browser.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any",
   "offers": {
@@ -43,142 +44,542 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Text to JSON converter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Text to JSON converter transforms structured plain text written in key-value and indented list formats into valid JSON."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool convert lists to JSON arrays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Lines beginning with a dash can be converted into JSON arrays when they are correctly indented beneath a key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the Text to JSON Converter upload my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion runs directly in your browser and the tool does not upload the entered text to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download the converted JSON?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After conversion, you can copy the generated JSON or download it as a JSON file."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        color: #222;
-    }
+:root {
+    --bg: #050b16;
+    --bg-soft: #08111f;
+    --panel: #0c1728;
+    --panel-2: #101d31;
+    --border: rgba(148, 163, 184, 0.16);
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --blue: #3b82f6;
+    --blue-light: #60a5fa;
+    --cyan: #22d3ee;
+    --green: #22c55e;
+    --red: #ef4444;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
 
-    .container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    .card {
-        background: #fff;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.16),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(34, 211, 238, 0.08),
+            transparent 28%
+        ),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
 
-    h1 {
-        margin-top: 0;
-        font-size: 28px;
-    }
+a {
+    color: inherit;
+}
 
-    h2 {
-        margin-top: 30px;
-        font-size: 21px;
-    }
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    background: rgba(5, 11, 22, 0.82);
+    backdrop-filter: blur(18px);
+}
 
-    p {
-        color: #555;
-        line-height: 1.6;
-    }
+.header-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 
-    textarea {
-        width: 100%;
-        min-height: 230px;
-        padding: 14px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-family: monospace;
-        font-size: 14px;
-        resize: vertical;
-    }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
 
-    .buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 15px 0;
-    }
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--cyan)
+        );
+    color: white;
+    font-size: 18px;
+    box-shadow:
+        0 8px 24px rgba(59, 130, 246, 0.28);
+}
 
-    button {
-        padding: 11px 18px;
-        border: none;
-        border-radius: 7px;
-        cursor: pointer;
-        background: #222;
-        color: white;
-        font-size: 14px;
-    }
+.brand-text {
+    font-size: 15px;
+}
 
-    button:hover {
-        opacity: 0.85;
-    }
+.header-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
 
-    .status {
-        margin: 10px 0;
-        font-weight: bold;
-    }
+.header-link:hover {
+    color: white;
+}
 
-    .privacy {
-        margin-top: 20px;
-        padding: 12px;
-        background: #f0f7f0;
-        border-radius: 7px;
-        font-size: 14px;
-    }
+.container {
+    width: min(1160px, calc(100% - 32px));
+    margin: auto;
+}
 
-    .info-section {
-        margin-top: 30px;
-    }
+.hero {
+    padding: 74px 0 42px;
+    text-align: center;
+}
 
-    .info-section ul {
-        line-height: 1.8;
-        color: #555;
-    }
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    border-radius: 999px;
+    background: rgba(59, 130, 246, 0.09);
+    color: #bfdbfe;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
 
-    .faq {
-        margin-top: 15px;
-    }
+.hero h1 {
+    max-width: 880px;
+    margin: 22px auto 16px;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.03;
+    letter-spacing: -0.055em;
+    font-weight: 900;
+}
 
-    .faq h3 {
-        font-size: 17px;
-        margin-bottom: 5px;
-    }
+.highlight {
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue-light),
+            var(--cyan)
+        );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
-    .related {
-        margin-top: 25px;
-        line-height: 2;
-    }
+.hero-description {
+    max-width: 760px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+}
 
-    .related a {
-        color: #222;
-        font-weight: bold;
-    }
+.trust-row {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-    .back {
-        display: inline-block;
-        margin-top: 20px;
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-    }
-</style>
+.trust-pill {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.025);
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.tool-section {
+    padding-bottom: 55px;
+}
+
+.tool-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16, 29, 49, 0.98),
+            rgba(8, 17, 31, 0.98)
+        );
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.tool-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.tool-card-title {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 850;
+    letter-spacing: -0.025em;
+}
+
+.tool-card-subtitle {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.live-badge {
+    flex-shrink: 0;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.editor-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 18px 0 9px;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.editor-hint {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    min-height: 285px;
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    outline: none;
+    resize: vertical;
+    background:
+        linear-gradient(
+            180deg,
+            #07111f,
+            #091523
+        );
+    color: #e2e8f0;
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    font-size: 14px;
+    line-height: 1.65;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.025);
+    transition: 0.2s ease;
+}
+
+textarea::placeholder {
+    color: #475569;
+}
+
+textarea:focus {
+    border-color: rgba(59, 130, 246, 0.72);
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.09);
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0 20px;
+}
+
+button {
+    border: 1px solid transparent;
+    border-radius: 11px;
+    padding: 12px 17px;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+.primary {
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #3b82f6
+        );
+    box-shadow:
+        0 10px 24px rgba(37, 99, 235, 0.22);
+}
+
+.primary:hover {
+    box-shadow:
+        0 13px 30px rgba(37, 99, 235, 0.32);
+}
+
+.secondary {
+    background: #172337;
+    border-color: var(--border);
+    color: #cbd5e1;
+}
+
+.success {
+    background:
+        linear-gradient(
+            135deg,
+            #15803d,
+            #22c55e
+        );
+    box-shadow:
+        0 10px 24px rgba(34, 197, 94, 0.16);
+}
+
+.danger {
+    background:
+        linear-gradient(
+            135deg,
+            #b91c1c,
+            #ef4444
+        );
+    box-shadow:
+        0 10px 24px rgba(239, 68, 68, 0.14);
+}
+
+.status {
+    display: none;
+    margin: 12px 0 18px;
+    padding: 12px 14px;
+    border-radius: 11px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.success-message {
+    background: rgba(34, 197, 94, 0.09);
+    border-color: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+}
+
+.error-message {
+    background: rgba(239, 68, 68, 0.09);
+    border-color: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+}
+
+.privacy-mini {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 13px;
+    background: rgba(34, 197, 94, 0.055);
+    border: 1px solid rgba(34, 197, 94, 0.13);
+    color: #a7f3d0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 20px;
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    transition: 0.2s ease;
+}
+
+.back-link:hover {
+    color: white;
+}
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="card">
+<header class="site-header">
+    <div class="header-inner">
 
-        <h1>Text to JSON Converter</h1>
+        <a class="brand" href="index.html">
+            <span class="brand-icon">{ }</span>
+            <span class="brand-text">CSV &amp; JSON Developer Tools</span>
+        </a>
 
-        <p>
-            Convert simple structured text into JSON instantly in your browser.
-            Your data stays on your device.
+        <a class="header-link" href="index.html">
+            All Tools →
+        </a>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="hero-badge">
+            ⚡ Text Processing Tool
+        </div>
+
+        <h1>
+            Text to <span class="highlight">JSON Converter</span>
+        </h1>
+
+        <p class="hero-description">
+            Convert structured plain text into clean, formatted JSON directly
+            in your browser. Turn key-value text, nested data and indented lists
+            into usable JSON without uploading your data.
         </p>
 
-        <textarea id="input" placeholder="Paste text here...
+        <div class="trust-row">
+            <span class="trust-pill">✓ Free Online Tool</span>
+            <span class="trust-pill">✓ Browser-Based</span>
+            <span class="trust-pill">✓ No File Upload</span>
+            <span class="trust-pill">✓ Instant Conversion</span>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="tool-section">
+    <div class="container">
+
+        <div class="tool-card">
+
+            <div class="tool-card-header">
+
+                <div>
+                    <h2 class="tool-card-title">
+                        Convert Structured Text to JSON
+                    </h2>
+
+                    <p class="tool-card-subtitle">
+                        Enter key-value text with indentation and convert it
+                        into readable JSON in seconds.
+                    </p>
+                </div>
+
+                <span class="live-badge">
+                    ● Runs Locally
+                </span>
+
+            </div>
+
+
+            <label class="editor-label" for="input">
+                <span>Text Input</span>
+                <span class="editor-hint">Key: value format</span>
+            </label>
+
+            <textarea
+                id="input"
+                placeholder="Paste structured text here...
 
 Example:
 name: Ali
@@ -189,119 +590,1028 @@ skills:
   - Python
 active: true"></textarea>
 
-        <div class="buttons">
-            <button onclick="convertText()">Convert to JSON</button>
-            <button onclick="copyJSON()">Copy JSON</button>
-            <button onclick="downloadJSON()">Download JSON</button>
-            <button onclick="clearAll()">Clear</button>
+
+            <div class="buttons">
+
+                <button
+                    class="primary"
+                    onclick="convertText()">
+                    Convert to JSON
+                </button>
+
+                <button
+                    class="success"
+                    onclick="copyJSON()">
+                    Copy JSON
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="downloadJSON()">
+                    Download JSON
+                </button>
+
+                <button
+                    class="danger"
+                    onclick="clearAll()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div id="status" class="status"></div>
+
+
+            <label class="editor-label" for="output">
+                <span>JSON Output</span>
+                <span class="editor-hint">Formatted JSON</span>
+            </label>
+
+            <textarea
+                id="output"
+                placeholder="Converted JSON will appear here..."
+                readonly></textarea>
+
+
+            <div class="privacy-mini">
+
+                <span>🔒</span>
+
+                <div>
+                    <strong>Your data stays in your browser.</strong><br>
+                    This converter processes your text locally and does not
+                    upload your input to a server.
+                </div>
+
+            </div>
+
+
+            <a class="back-link" href="index.html">
+                ← Back to All Developer Tools
+            </a>
+
         </div>
-
-        <div id="status" class="status"></div>
-
-        <textarea id="output" placeholder="JSON output will appear here..." readonly></textarea>
-
-        <div class="privacy">
-            🔒 Privacy-friendly: Your data is processed locally in your browser and is not uploaded to a server.
-        </div>
-
-        <section class="info-section">
-            <h2>How to Use Text to JSON Converter</h2>
-
-            <p>
-                Enter structured text using a simple <strong>key: value</strong> format.
-                You can also create nested objects and lists using indentation.
-            </p>
-
-            <ul>
-                <li>Paste or type your structured text into the input box.</li>
-                <li>Use <strong>key: value</strong> pairs for basic data.</li>
-                <li>Use indentation and <strong>-</strong> for lists.</li>
-                <li>Click <strong>Convert to JSON</strong>.</li>
-                <li>Copy the JSON or download it as a JSON file.</li>
-            </ul>
-
-            <p>
-                Example:
-            </p>
-
-            <p>
-                <strong>Input:</strong><br>
-                name: Ali<br>
-                age: 28<br>
-                city: Karachi<br>
-                skills:<br>
-                &nbsp;&nbsp;- JavaScript<br>
-                &nbsp;&nbsp;- Python
-            </p>
-
-            <p>
-                The converter automatically recognizes basic values such as numbers,
-                true, false and null.
-            </p>
-        </section>
-
-        <section class="info-section">
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq">
-                <h3>What is a Text to JSON converter?</h3>
-                <p>
-                    It converts structured plain text written in a simple key-value
-                    format into properly formatted JSON.
-                </p>
-            </div>
-
-            <div class="faq">
-                <h3>Does this tool upload my data?</h3>
-                <p>
-                    No. The conversion is performed locally in your browser, so the
-                    entered data is not sent to a server by this tool.
-                </p>
-            </div>
-
-            <div class="faq">
-                <h3>Can I create lists in the input?</h3>
-                <p>
-                    Yes. Use a dash before each list item and indent the items beneath
-                    the relevant key.
-                </p>
-            </div>
-
-            <div class="faq">
-                <h3>Can I download the converted JSON?</h3>
-                <p>
-                    Yes. After conversion, use the Download JSON button to save the
-                    result as a JSON file.
-                </p>
-            </div>
-        </section>
-
-        <section class="related">
-            <h2>Related Tools</h2>
-
-            <p>
-                <a href="json-formatter.html">JSON Formatter</a><br>
-                <a href="json-to-text.html">JSON to Text Converter</a><br>
-                <a href="json-to-csv.html">JSON to CSV Converter</a><br>
-                <a href="json-to-yaml.html">JSON to YAML Converter</a><br>
-                <a href="yaml-to-json.html">YAML to JSON Converter</a><br>
-                <a href="toml-to-json.html">TOML to JSON Converter</a>
-            </p>
-        </section>
-
-        <section class="info-section">
-            <h2>Privacy</h2>
-
-            <p>
-                This Text to JSON Converter processes your data locally in your
-                browser. Your input is not uploaded to a server by this tool.
-            </p>
-        </section>
-
-        <a class="back" href="index.html">← Back to All Tools</a>
 
     </div>
-</div>
+</section>
+
+
+<section class="content-area">
+    <div class="container">
+
+        <article class="article-card">
+
+            <div class="article-kicker">
+                TEXT TO JSON GUIDE
+            </div>
+
+            <h2>
+                Text to JSON Converter: Convert Structured Text into JSON
+            </h2>
+
+            <p class="lead">
+                A Text to JSON converter transforms structured plain text into
+                valid JSON that can be used in applications, APIs, configuration
+                files and developer workflows. This free online tool lets you
+                convert simple key-value text, nested structures and indented
+                lists into formatted JSON directly in your browser.
+            </p>
+
+
+            <h3>What Is a Text to JSON Converter?</h3>
+
+            <p>
+                A Text to JSON converter is useful when information is written
+                as simple human-readable text but needs to be transformed into
+                structured JSON. Instead of manually adding quotation marks,
+                brackets and commas, you can enter your data using a simple
+                key-value format and let the converter create the JSON structure.
+            </p>
+
+            <p>
+                For example, text such as
+                <code>name: Ali</code> and
+                <code>age: 28</code>
+                can be converted into JSON properties. Indented list items can
+                also be represented as JSON arrays.
+            </p>
+
+
+            <h3>What Can This Text to JSON Tool Do?</h3>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <strong>Key-Value Conversion</strong>
+                    <p>
+                        Convert simple key-value text into structured JSON
+                        properties.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <strong>Nested Structures</strong>
+                    <p>
+                        Use indentation to create nested objects and structured
+                        JSON data.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <strong>JSON Arrays</strong>
+                    <p>
+                        Use indented dash-prefixed lines to create JSON arrays.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <strong>Automatic Values</strong>
+                    <p>
+                        Recognizes numbers, true, false and null values
+                        automatically.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <h3>How to Convert Text to JSON</h3>
+
+            <ol class="steps">
+
+                <li>
+                    <strong>Enter your structured text.</strong>
+                    Use the key-value format such as
+                    <code>name: Ali</code>.
+                </li>
+
+                <li>
+                    <strong>Use indentation for nested data.</strong>
+                    Indented keys can become nested JSON objects.
+                </li>
+
+                <li>
+                    <strong>Create lists when needed.</strong>
+                    Start list items with a dash.
+                </li>
+
+                <li>
+                    <strong>Click Convert to JSON.</strong>
+                    The tool will process your text and generate formatted JSON.
+                </li>
+
+                <li>
+                    <strong>Copy or download the result.</strong>
+                    Use the available buttons to reuse your JSON.
+                </li>
+
+            </ol>
+
+
+            <h3>Text to JSON Example</h3>
+
+            <p>
+                Suppose you have the following structured text:
+            </p>
+
+            <div class="code-example">
+<pre>name: Ali
+age: 28
+city: Karachi
+skills:
+  - JavaScript
+  - Python
+active: true</pre>
+            </div>
+
+            <p>
+                The converter interprets the values and structure and produces
+                formatted JSON that can be copied into a project or saved as a
+                JSON file.
+            </p>
+
+
+            <h3>Why Convert Plain Text to JSON?</h3>
+
+            <p>
+                JSON is widely used for structured data because it is easy for
+                both humans and software to read. Developers commonly use JSON
+                for APIs, configuration files, application data, browser tools
+                and data exchange between different systems.
+            </p>
+
+            <p>
+                Converting structured text to JSON can save time when data is
+                already available in a simple text format but needs to be used
+                by software that expects JSON.
+            </p>
+
+        </article>
+                <article class="article-card">
+
+            <h3>Supported Text Structure</h3>
+
+            <p>
+                This converter is designed for structured text using a simple
+                <strong>key: value</strong> format. Indentation can be used to
+                represent nested objects and list items.
+            </p>
+
+            <p>
+                Basic values such as numbers, booleans and null are interpreted
+                according to their text representation. Other values remain
+                text strings.
+            </p>
+
+
+            <h3>Useful Tips for Better Text to JSON Conversion</h3>
+
+            <ul class="tips-list">
+
+                <li>
+                    Keep one key-value pair on each line.
+                </li>
+
+                <li>
+                    Use consistent indentation for nested data.
+                </li>
+
+                <li>
+                    Start list items with a dash.
+                </li>
+
+                <li>
+                    Use <code>true</code>, <code>false</code> and
+                    <code>null</code> when you want JSON boolean or null values.
+                </li>
+
+                <li>
+                    Check the generated JSON before using it in an application.
+                </li>
+
+            </ul>
+
+
+            <h3>Text to JSON for Developer Workflows</h3>
+
+            <p>
+                Structured text can appear in notes, configuration drafts,
+                documentation, data preparation tasks and development workflows.
+                Converting that information into JSON makes it easier to move
+                the data into software systems that use JSON.
+            </p>
+
+            <p>
+                The generated JSON can be copied into source code, configuration
+                files, API requests or other developer tools.
+            </p>
+
+
+            <h3>Browser-Based and Privacy-Friendly</h3>
+
+            <p>
+                This Text to JSON Converter performs its conversion directly in
+                your web browser. The tool does not need to send your input to
+                a remote conversion service.
+            </p>
+
+            <p>
+                This makes the tool convenient for quick conversions where you
+                want to keep your entered text on your device.
+            </p>
+
+
+            <div class="article-note">
+                <strong>Tip:</strong>
+                If you already have JSON and want to make it easier to read,
+                use our
+                <a href="json-formatter.html">JSON Formatter</a>
+                instead.
+            </div>
+
+        </article>
+
+
+        <section class="faq-section">
+
+            <div class="section-heading">
+                <span>COMMON QUESTIONS</span>
+                <h2>Text to JSON FAQ</h2>
+                <p>
+                    Answers to common questions about converting structured
+                    text into JSON.
+                </p>
+            </div>
+
+
+            <div class="faq-grid">
+
+                <div class="faq-card">
+                    <h3>What is a Text to JSON converter?</h3>
+
+                    <p>
+                        It converts structured plain text written in a simple
+                        key-value format into properly formatted JSON.
+                    </p>
+                </div>
+
+
+                <div class="faq-card">
+                    <h3>What text format does the tool support?</h3>
+
+                    <p>
+                        The tool supports key-value lines such as
+                        <code>name: Ali</code>, along with indented nested
+                        structures and dash-prefixed lists.
+                    </p>
+                </div>
+
+
+                <div class="faq-card">
+                    <h3>Can I create JSON arrays?</h3>
+
+                    <p>
+                        Yes. Use dash-prefixed items beneath a key and indent
+                        them consistently to create a JSON array.
+                    </p>
+                </div>
+
+
+                <div class="faq-card">
+                    <h3>Does it recognize numbers and booleans?</h3>
+
+                    <p>
+                        Yes. Values such as numbers, true, false and null are
+                        automatically interpreted as their corresponding JSON
+                        data types.
+                    </p>
+                </div>
+
+
+                <div class="faq-card">
+                    <h3>Does this tool upload my text?</h3>
+
+                    <p>
+                        No. The conversion is performed directly in your browser
+                        and the tool does not upload the entered text to a server.
+                    </p>
+                </div>
+
+
+                <div class="faq-card">
+                    <h3>Can I download the JSON result?</h3>
+
+                    <p>
+                        Yes. After conversion, click Download JSON to save the
+                        generated data as a JSON file.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="related-section">
+
+            <div class="section-heading">
+                <span>KEEP EXPLORING</span>
+                <h2>Related Developer Tools</h2>
+                <p>
+                    More tools for working with JSON and structured data.
+                </p>
+            </div>
+
+
+            <div class="related-grid">
+
+                <a href="json-formatter.html" class="related-card">
+                    <strong>JSON Formatter</strong>
+                    <span>Format and validate JSON online.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="json-to-text.html" class="related-card">
+                    <strong>JSON to Text</strong>
+                    <span>Convert JSON data into readable text.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="json-to-csv.html" class="related-card">
+                    <strong>JSON to CSV</strong>
+                    <span>Convert JSON arrays into CSV data.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="json-to-yaml.html" class="related-card">
+                    <strong>JSON to YAML</strong>
+                    <span>Convert JSON into YAML format.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="yaml-to-json.html" class="related-card">
+                    <strong>YAML to JSON</strong>
+                    <span>Convert YAML data into JSON.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="toml-to-json.html" class="related-card">
+                    <strong>TOML to JSON</strong>
+                    <span>Convert TOML configuration into JSON.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="json-to-jsonl.html" class="related-card">
+                    <strong>JSON to JSONL</strong>
+                    <span>Convert JSON arrays into JSONL records.</span>
+                    <b>→</b>
+                </a>
+
+                <a href="json-to-markdown.html" class="related-card">
+                    <strong>JSON to Markdown</strong>
+                    <span>Convert JSON arrays into Markdown tables.</span>
+                    <b>→</b>
+                </a>
+
+            </div>
+
+        </section>
+                <section class="privacy-section">
+
+            <div class="privacy-card">
+
+                <div class="privacy-icon">🔒</div>
+
+                <div>
+                    <h2>Privacy by Design</h2>
+
+                    <p>
+                        Your text is processed directly in your browser.
+                        This tool does not upload your input to our server.
+                        You can convert structured text to JSON without
+                        sending your data to an online processing service.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="bottom-cta">
+
+            <div>
+                <span class="cta-label">MORE DEVELOPER TOOLS</span>
+
+                <h2>
+                    Need another data conversion tool?
+                </h2>
+
+                <p>
+                    Explore the complete collection of free browser-based
+                    CSV, JSON and developer data tools.
+                </p>
+            </div>
+
+            <a href="index.html">
+                Explore All Tools →
+            </a>
+
+        </section>
+
+    </div>
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <strong>CSV &amp; JSON Developer Tools</strong>
+
+            <p>
+                Free browser-based tools for developers and structured data.
+            </p>
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="contact.html">Contact</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        © 2026 CSV &amp; JSON Developer Tools. All rights reserved.
+    </div>
+
+</footer>
+
+
+<style>
+
+.content-area {
+    padding-bottom: 70px;
+}
+
+.article-card {
+    max-width: 920px;
+    margin: 0 auto 30px;
+    padding: 38px;
+    border-radius: 22px;
+    background: rgba(12, 23, 40, 0.78);
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.24);
+}
+
+.article-kicker,
+.section-heading > span,
+.cta-label {
+    display: block;
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+}
+
+.article-card h2 {
+    margin: 10px 0 17px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+}
+
+.article-card h3 {
+    margin: 34px 0 11px;
+    font-size: 22px;
+    letter-spacing: -0.025em;
+}
+
+.article-card p {
+    color: #aab8ca;
+    line-height: 1.85;
+    font-size: 15px;
+}
+
+.article-card .lead {
+    font-size: 17px;
+    color: #cbd5e1;
+}
+
+.article-card code {
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: #111f33;
+    color: #93c5fd;
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+    font-size: 0.9em;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.feature-card {
+    padding: 19px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+}
+
+.feature-card strong {
+    display: block;
+    color: #e2e8f0;
+    margin-bottom: 7px;
+}
+
+.feature-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.steps {
+    padding-left: 22px;
+    color: #aab8ca;
+}
+
+.steps li {
+    margin-bottom: 13px;
+    padding-left: 5px;
+    line-height: 1.75;
+}
+
+.steps strong {
+    color: #e2e8f0;
+}
+
+.code-example {
+    overflow-x: auto;
+    margin: 18px 0;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: #050b16;
+}
+
+.code-example pre {
+    margin: 0;
+    padding: 20px;
+    color: #cbd5e1;
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.tips-list {
+    padding-left: 22px;
+    color: #aab8ca;
+}
+
+.tips-list li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
+
+.article-note {
+    margin-top: 28px;
+    padding: 17px 19px;
+    border-radius: 14px;
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.15);
+    color: #bfdbfe;
+}
+
+.article-note a {
+    color: #60a5fa;
+    font-weight: 800;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 28px;
+}
+
+.section-heading h2 {
+    margin: 8px 0 9px;
+    font-size: 32px;
+    letter-spacing: -0.035em;
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.faq-section {
+    padding: 25px 0 55px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.faq-card {
+    padding: 21px;
+    border-radius: 16px;
+    background: rgba(12,23,40,0.72);
+    border: 1px solid var(--border);
+}
+
+.faq-card h3 {
+    margin: 0 0 9px;
+    font-size: 16px;
+    color: #e2e8f0;
+}
+
+.faq-card p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.faq-card code {
+    color: #93c5fd;
+}
+
+.related-section {
+    padding: 25px 0 60px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+}
+
+.related-card {
+    position: relative;
+    min-height: 145px;
+    padding: 19px;
+    border-radius: 16px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,29,49,0.95),
+            rgba(8,17,31,0.95)
+        );
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59,130,246,0.42);
+}
+
+.related-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #f8fafc;
+    font-size: 14px;
+}
+
+.related-card span {
+    display: block;
+    color: #8190a4;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.related-card b {
+    position: absolute;
+    right: 17px;
+    bottom: 15px;
+    color: var(--blue-light);
+}
+
+.privacy-section {
+    padding: 0 0 35px;
+}
+
+.privacy-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 24px;
+    border-radius: 18px;
+    background: rgba(34,197,94,0.045);
+    border: 1px solid rgba(34,197,94,0.13);
+}
+
+.privacy-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(34,197,94,0.09);
+}
+
+.privacy-card h2 {
+    margin: 0 0 7px;
+    font-size: 18px;
+}
+
+.privacy-card p {
+    margin: 0;
+    color: #9fb0c4;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.bottom-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin: 25px auto 70px;
+    padding: 30px;
+    border-radius: 21px;
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(34,211,238,0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,0.13),
+            rgba(12,23,40,0.9)
+        );
+    border: 1px solid rgba(59,130,246,0.18);
+}
+
+.bottom-cta h2 {
+    margin: 8px 0;
+    font-size: 25px;
+    letter-spacing: -0.03em;
+}
+
+.bottom-cta p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.bottom-cta a {
+    flex-shrink: 0;
+    padding: 12px 17px;
+    border-radius: 11px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: #040914;
+}
+
+.footer-inner {
+    max-width: 1160px;
+    margin: auto;
+    padding: 35px 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-brand strong {
+    color: #e2e8f0;
+}
+
+.footer-brand p {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px 18px;
+}
+
+.footer-links a {
+    color: #7f8da1;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-links a:hover {
+    color: #dbeafe;
+}
+
+.footer-bottom {
+    max-width: 1160px;
+    margin: auto;
+    padding: 18px 22px;
+    border-top: 1px solid rgba(148,163,184,0.08);
+    color: #526176;
+    font-size: 11px;
+    text-align: center;
+}
+
+
+@media (max-width: 900px) {
+
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        padding: 13px 16px;
+    }
+
+    .brand-text {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 52px 0 30px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .tool-card {
+        padding: 19px;
+        border-radius: 19px;
+    }
+
+    .tool-card-header {
+        flex-direction: column;
+    }
+
+    .article-card {
+        padding: 24px 20px;
+    }
+
+    .feature-grid,
+    .faq-grid,
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 45px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        justify-content: flex-start;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .container {
+        width: min(100% - 22px, 1160px);
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .trust-row {
+        gap: 7px;
+    }
+
+    .trust-pill {
+        font-size: 11px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    textarea {
+        min-height: 245px;
+    }
+
+    .privacy-card {
+        flex-direction: column;
+    }
+
+    .bottom-cta {
+        padding: 23px;
+    }
+
+}
+
+</style>
+
 
 <script>
 
@@ -341,6 +1651,7 @@ function parseValue(value) {
     return value;
 }
 
+
 function parseText(text) {
 
     const lines = text
@@ -354,6 +1665,7 @@ function parseText(text) {
     }
 
     const root = {};
+
     const stack = [
         {
             indent: -1,
@@ -361,12 +1673,17 @@ function parseText(text) {
         }
     ];
 
+
     for (let i = 0; i < lines.length; i++) {
 
         const line = lines[i];
 
-        const indent = line.match(/^\s*/)[0].length;
-        const content = line.trim();
+        const indent =
+            line.match(/^\s*/)[0].length;
+
+        const content =
+            line.trim();
+
 
         while (
             stack.length > 1 &&
@@ -375,74 +1692,100 @@ function parseText(text) {
             stack.pop();
         }
 
+
         const parent =
             stack[stack.length - 1].container;
+
 
         if (content.startsWith("- ")) {
 
             if (!Array.isArray(parent)) {
+
                 throw new Error(
                     `Invalid list structure near line ${i + 1}.`
                 );
+
             }
 
-            const itemText = content.slice(2).trim();
+
+            const itemText =
+                content.slice(2).trim();
+
 
             if (itemText === "") {
 
-                const nextLine = lines[i + 1];
+                const nextLine =
+                    lines[i + 1];
 
                 if (!nextLine) {
                     parent.push(null);
                     continue;
                 }
 
+
                 const nextIndent =
                     nextLine.match(/^\s*/)[0].length;
 
+
                 if (nextIndent <= indent) {
+
                     parent.push(null);
                     continue;
                 }
 
-                const nextContent = nextLine.trim();
+
+                const nextContent =
+                    nextLine.trim();
+
 
                 const newItem =
                     nextContent.includes(":")
                         ? {}
                         : [];
 
+
                 parent.push(newItem);
+
 
                 stack.push({
                     indent: indent,
                     container: newItem
                 });
 
+
             } else if (itemText.includes(":")) {
 
                 const newItem = {};
+
                 parent.push(newItem);
+
 
                 const colonIndex =
                     itemText.indexOf(":");
+
 
                 const key =
                     itemText
                         .slice(0, colonIndex)
                         .trim();
 
+
                 const value =
                     itemText
                         .slice(colonIndex + 1)
                         .trim();
 
+
                 if (value !== "") {
+
                     newItem[key] =
                         parseValue(value);
+
                 } else {
 
-                    const nextLine = lines[i + 1];
+                    const nextLine =
+                        lines[i + 1];
+
 
                     if (
                         nextLine &&
@@ -452,12 +1795,16 @@ function parseText(text) {
                         const nextContent =
                             nextLine.trim();
 
+
                         const child =
                             nextContent.startsWith("- ")
                                 ? []
                                 : {};
 
-                        newItem[key] = child;
+
+                        newItem[key] =
+                            child;
+
 
                         stack.push({
                             indent: indent,
@@ -465,53 +1812,76 @@ function parseText(text) {
                         });
 
                     } else {
+
                         newItem[key] = {};
+
                     }
+
                 }
+
 
                 stack.push({
                     indent: indent,
                     container: newItem
                 });
 
+
             } else {
-                parent.push(parseValue(itemText));
+
+                parent.push(
+                    parseValue(itemText)
+                );
+
             }
 
             continue;
         }
 
-        const colonIndex = content.indexOf(":");
+
+        const colonIndex =
+            content.indexOf(":");
+
 
         if (colonIndex === -1) {
+
             throw new Error(
                 `Invalid format on line ${i + 1}. Use key: value format.`
             );
+
         }
+
 
         const key =
             content
                 .slice(0, colonIndex)
                 .trim();
 
+
         if (!key) {
+
             throw new Error(
                 `Missing key on line ${i + 1}.`
             );
+
         }
+
 
         const value =
             content
                 .slice(colonIndex + 1)
                 .trim();
 
+
         if (value !== "") {
 
-            parent[key] = parseValue(value);
+            parent[key] =
+                parseValue(value);
 
         } else {
 
-            const nextLine = lines[i + 1];
+            const nextLine =
+                lines[i + 1];
+
 
             if (
                 nextLine &&
@@ -521,12 +1891,16 @@ function parseText(text) {
                 const nextContent =
                     nextLine.trim();
 
+
                 const child =
                     nextContent.startsWith("- ")
                         ? []
                         : {};
 
-                parent[key] = child;
+
+                parent[key] =
+                    child;
+
 
                 stack.push({
                     indent: indent,
@@ -534,24 +1908,33 @@ function parseText(text) {
                 });
 
             } else {
+
                 parent[key] = {};
+
             }
+
         }
+
     }
+
 
     return root;
 }
+
 
 function convertText() {
 
     const input =
         document.getElementById("input").value.trim();
 
+
     const output =
         document.getElementById("output");
 
+
     const status =
         document.getElementById("status");
+
 
     try {
 
@@ -559,55 +1942,92 @@ function convertText() {
             throw new Error("Please enter text data.");
         }
 
-        const data = parseText(input);
+
+        const data =
+            parseText(input);
+
 
         jsonResult =
-            JSON.stringify(data, null, 2);
+            JSON.stringify(
+                data,
+                null,
+                2
+            );
 
-        output.value = jsonResult;
+
+        output.value =
+            jsonResult;
+
 
         status.textContent =
             "Text converted to JSON successfully.";
 
-        status.style.color = "green";
+        status.className =
+            "status success-message";
+
+        status.style.display =
+            "block";
+
 
     } catch (error) {
 
         jsonResult = "";
+
         output.value = "";
 
-        status.textContent =
-            "Conversion error: " + error.message;
 
-        status.style.color = "red";
+        status.textContent =
+            "Conversion error: " +
+            error.message;
+
+        status.className =
+            "status error-message";
+
+        status.style.display =
+            "block";
+
     }
+
 }
+
 
 function copyJSON() {
 
     const output =
         document.getElementById("output");
 
+
     const status =
         document.getElementById("status");
+
 
     if (!output.value) {
 
         status.textContent =
             "Please convert text first.";
 
-        status.style.color = "red";
+        status.className =
+            "status error-message";
+
+        status.style.display =
+            "block";
 
         return;
     }
 
-    navigator.clipboard.writeText(output.value)
+
+    navigator.clipboard
+        .writeText(output.value)
         .then(() => {
 
             status.textContent =
                 "JSON copied to clipboard.";
 
-            status.style.color = "green";
+            status.className =
+                "status success-message";
+
+            status.style.display =
+                "block";
 
         })
         .catch(() => {
@@ -615,64 +2035,107 @@ function copyJSON() {
             status.textContent =
                 "Unable to copy JSON.";
 
-            status.style.color = "red";
+            status.className =
+                "status error-message";
+
+            status.style.display =
+                "block";
+
         });
+
 }
+
 
 function downloadJSON() {
 
     const output =
         document.getElementById("output");
 
+
     const status =
         document.getElementById("status");
+
 
     if (!output.value) {
 
         status.textContent =
             "Please convert text first.";
 
-        status.style.color = "red";
+        status.className =
+            "status error-message";
+
+        status.style.display =
+            "block";
 
         return;
     }
+
 
     const blob =
         new Blob(
             [output.value],
             {
-                type: "application/json;charset=utf-8;"
+                type:
+                    "application/json;charset=utf-8;"
             }
         );
+
 
     const url =
         URL.createObjectURL(blob);
 
+
     const link =
         document.createElement("a");
 
+
     link.href = url;
-    link.download = "converted.json";
+
+    link.download =
+        "converted.json";
+
 
     document.body.appendChild(link);
+
     link.click();
+
     document.body.removeChild(link);
 
+
     URL.revokeObjectURL(url);
+
 
     status.textContent =
         "JSON file downloaded.";
 
-    status.style.color = "green";
+    status.className =
+        "status success-message";
+
+    status.style.display =
+        "block";
+
 }
+
 
 function clearAll() {
 
     document.getElementById("input").value = "";
+
     document.getElementById("output").value = "";
-    document.getElementById("status").textContent = "";
+
+    const status =
+        document.getElementById("status");
+
+
+    status.textContent = "";
+
+    status.style.display = "none";
+
+    status.className = "status";
+
 
     jsonResult = "";
+
 }
 
 </script>
