@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
   <title>JSONL to JSON Converter - Free Online Tool</title>
-  <meta name="description" content="Convert JSONL or NDJSON data to JSON instantly in your browser. Free, fast and privacy-focused JSONL to JSON converter.">
+  <meta name="description" content="Convert JSONL or NDJSON data to a formatted JSON array online for free. Fast, private and browser-based JSONL to JSON converter.">
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/jsonl-to-json.html">
@@ -30,7 +30,7 @@
     "@type": "WebApplication",
     "name": "JSONL to JSON Converter",
     "url": "https://toolforge1.github.io/csv-json-tools/jsonl-to-json.html",
-    "description": "Free online tool to convert JSONL or NDJSON data into a formatted JSON array.",
+    "description": "Free browser-based tool to convert JSONL or NDJSON records into a formatted JSON array.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript",
@@ -42,313 +42,799 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What input format does this tool accept?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool accepts JSONL or NDJSON data with one valid JSON record per line. Empty lines are ignored."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if one line contains invalid JSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The conversion stops and the tool identifies the line containing the invalid JSON so you can correct it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the tool upload my JSONL data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion is performed entirely in your browser and the JSONL data is not uploaded to the server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the converted JSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After conversion, click Download JSON to save the formatted result as a JSON file."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --panel: #0e1c2f;
+      --panel-2: #101f34;
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --red: #ef4444;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
+    html {
+      scroll-behavior: smooth;
     }
 
-    header {
-      background: #1f2937;
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(34, 211, 238, 0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 17, 31, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
       color: white;
-      padding: 25px 15px;
+      font-weight: 900;
+      font-size: 18px;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+    }
+
+    .brand-text {
+      font-size: 15px;
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .header-link:hover {
+      color: white;
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 70px 20px 40px;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      background: rgba(34, 211, 238, 0.08);
+      color: #67e8f9;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
     }
 
-    header p {
-      margin: 0;
-      color: #d1d5db;
+    .hero h1 {
+      margin: 18px auto 12px;
+      max-width: 850px;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .trust-pill {
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      background: rgba(15, 31, 52, 0.75);
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 13px;
     }
 
     main {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 15px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px 70px;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
+    .tool-card,
+    .content-card {
+      background: linear-gradient(
+        145deg,
+        rgba(15, 31, 52, 0.96),
+        rgba(10, 24, 41, 0.96)
+      );
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .tool-card {
+      padding: 24px;
+      margin-bottom: 25px;
+    }
+
+    .tool-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .tool-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .tool-status {
+      color: #86efac;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.20);
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .editor-box {
+      min-width: 0;
+    }
+
+    .tool-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 800;
     }
 
     textarea {
       width: 100%;
-      min-height: 300px;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      min-height: 340px;
+      padding: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 14px;
       resize: vertical;
-      font-family: Consolas, monospace;
+      outline: none;
+      background: #06101d;
+      color: #e2e8f0;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.65;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    textarea::placeholder {
+      color: #64748b;
+    }
+
+    textarea:focus {
+      border-color: rgba(59, 130, 246, 0.7);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.10);
+    }
+
+    #jsonOutput {
+      background: #081525;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 13px;
     }
 
     button {
-      border: none;
+      border: 0;
       padding: 11px 18px;
-      border-radius: 7px;
+      border-radius: 10px;
       cursor: pointer;
       font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
+      font-weight: 800;
       color: white;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+      transition: transform 0.18s, opacity 0.18s;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: translateY(-1px);
+      opacity: 0.94;
     }
 
     button.secondary {
-      background: #6b7280;
+      background: #1e293b;
+      color: #cbd5e1;
+      box-shadow: none;
+      border: 1px solid var(--border);
     }
 
     button.success {
-      background: #15803d;
+      background: linear-gradient(135deg, #15803d, #22c55e);
     }
 
     .message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 7px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 11px;
       display: none;
+      font-size: 14px;
       line-height: 1.5;
+      border: 1px solid transparent;
     }
 
     .success-message {
-      background: #dcfce7;
-      color: #166534;
+      background: rgba(34, 197, 94, 0.10);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.22);
     }
 
     .error-message {
-      background: #fee2e2;
-      color: #991b1b;
+      background: rgba(239, 68, 68, 0.10);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.22);
     }
 
-    .privacy {
+    .privacy-mini {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: rgba(34, 211, 238, 0.06);
+      border: 1px solid rgba(34, 211, 238, 0.14);
+      color: #a5f3fc;
+      font-size: 13px;
       text-align: center;
-      color: #555;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .info {
-      line-height: 1.7;
-    }
-
-    .info h2 {
-      margin-top: 0;
-    }
-
-    .info h3 {
-      margin-bottom: 6px;
-    }
-
-    .info ol {
-      padding-left: 22px;
-    }
-
-    .related a {
-      display: inline-block;
-      margin: 6px 8px 6px 0;
-      padding: 8px 12px;
-      background: #eef2ff;
-      color: #2563eb;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .back {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .back a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
-
-      textarea {
-        min-height: 250px;
-      }
-
-      button {
-        width: 100%;
-      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>JSONL to JSON Converter</h1>
-  <p>Convert JSONL or NDJSON data to a JSON array instantly.</p>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-icon">{ }</span>
+      <span class="brand-text">CSV &amp; JSON Developer Tools</span>
+    </a>
+
+    <a href="index.html" class="header-link">All Tools →</a>
+  </div>
 </header>
+
+<section class="hero">
+  <div class="hero-badge">Developer Data Utility</div>
+
+  <h1>
+    JSONL to <span>JSON Converter</span>
+  </h1>
+
+  <p>
+    Convert JSONL or NDJSON records into a clean, formatted JSON array
+    directly in your browser.
+  </p>
+
+  <div class="trust-row">
+    <span class="trust-pill">✓ Free to use</span>
+    <span class="trust-pill">✓ Browser-based</span>
+    <span class="trust-pill">✓ No upload required</span>
+    <span class="trust-pill">✓ JSONL &amp; NDJSON</span>
+  </div>
+</section>
 
 <main>
 
-  <div class="card">
+  <section class="tool-card">
 
-    <label for="jsonlInput">JSONL / NDJSON Input</label>
+    <div class="tool-top">
+      <h2 class="tool-title">JSONL Converter</h2>
+      <span class="tool-status">● Ready</span>
+    </div>
 
-    <textarea
-      id="jsonlInput"
-      placeholder='Paste JSONL data here...
+    <div class="editor-grid">
+
+      <div class="editor-box">
+        <div class="tool-label">
+          <span>JSONL / NDJSON Input</span>
+          <span>INPUT</span>
+        </div>
+
+        <textarea
+          id="jsonlInput"
+          placeholder='Paste JSONL data here...
 
 Example:
 {"name":"Ali","age":28}
 {"name":"Emma","age":34}'
-    ></textarea>
+        ></textarea>
 
-    <div class="buttons">
-      <button onclick="convertJsonl()">Convert to JSON</button>
-      <button class="secondary" onclick="clearAll()">Clear</button>
+        <div class="buttons">
+          <button onclick="convertJsonl()">Convert to JSON</button>
+          <button class="secondary" onclick="clearAll()">Clear</button>
+        </div>
+      </div>
+
+      <div class="editor-box">
+        <div class="tool-label">
+          <span>JSON Output</span>
+          <span>OUTPUT</span>
+        </div>
+
+        <textarea
+          id="jsonOutput"
+          readonly
+          placeholder="Converted JSON will appear here..."
+        ></textarea>
+
+        <div class="buttons">
+          <button class="success" onclick="copyJson()">Copy JSON</button>
+          <button onclick="downloadJson()">Download JSON</button>
+        </div>
+      </div>
+
     </div>
 
     <div id="message" class="message"></div>
 
-  </div>
-
-
-  <div class="card">
-
-    <label for="jsonOutput">JSON Output</label>
-
-    <textarea
-      id="jsonOutput"
-      readonly
-      placeholder="Converted JSON will appear here..."
-    ></textarea>
-
-    <div class="buttons">
-      <button class="success" onclick="copyJson()">Copy JSON</button>
-      <button onclick="downloadJson()">Download JSON</button>
+    <div class="privacy-mini">
+      🔒 <strong>Privacy-first:</strong>
+      Your JSONL data is processed locally in your browser and is not
+      uploaded to our server.
     </div>
 
-  </div>
+  </section>
+    <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
 
+    <div class="section-kicker">HOW IT WORKS</div>
 
-  <div class="card privacy">
+    <h2>How to Use the JSONL to JSON Converter</h2>
 
-    <strong>Privacy:</strong>
-    Your JSONL data is processed entirely in your browser.
-    No data is uploaded to our server.
-
-  </div>
-
-
-  <div class="card info">
-
-    <h2>How to Use JSONL to JSON Converter</h2>
+    <p>
+      This free JSONL to JSON converter turns newline-delimited JSON records
+      into a standard JSON array. It is useful when working with logs,
+      exported records, datasets, APIs and developer data.
+    </p>
 
     <ol>
-      <li>Paste JSONL or NDJSON data into the input box.</li>
-      <li>Make sure each JSON object is on its own line.</li>
+      <li>Paste your JSONL or NDJSON data into the input area.</li>
+      <li>Keep one valid JSON record on each line.</li>
       <li>Click <strong>Convert to JSON</strong>.</li>
-      <li>Copy the formatted JSON or download it as a JSON file.</li>
+      <li>Review the generated JSON array.</li>
+      <li>Copy the result or download it as a JSON file.</li>
     </ol>
 
+    <div class="code-example">
+      <div class="code-title">JSONL input</div>
+      <pre><code>{"name":"Ali","age":28}
+{"name":"Emma","age":34}
+{"name":"John","age":31}</code></pre>
+    </div>
+
+    <div class="code-example">
+      <div class="code-title">JSON output</div>
+      <pre><code>[
+  {
+    "name": "Ali",
+    "age": 28
+  },
+  {
+    "name": "Emma",
+    "age": 34
+  },
+  {
+    "name": "John",
+    "age": 31
+  }
+]</code></pre>
+    </div>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">JSONL EXPLAINED</div>
 
     <h2>What is JSONL?</h2>
 
     <p>
-      JSONL, also known as JSON Lines, is a text format where each line
-      contains one valid JSON value. It is commonly used for logs,
-      data processing and large datasets.
+      JSONL, or JSON Lines, is a text-based format where each line contains
+      one valid JSON value. When the records are objects, every line
+      normally represents one JSON object.
     </p>
 
     <p>
-      NDJSON (Newline Delimited JSON) is another commonly used name for
-      newline-separated JSON records.
+      JSONL is commonly used for logs, data pipelines, exports,
+      machine-learning datasets and other situations where records need
+      to be processed one at a time.
     </p>
 
+    <h3>JSONL vs JSON</h3>
+
+    <p>
+      Standard JSON commonly stores multiple objects inside an array,
+      while JSONL stores records as separate newline-delimited values.
+      Converting JSONL to JSON can make the data easier to consume in
+      applications that expect a normal JSON array.
+    </p>
+
+    <div class="comparison-grid">
+
+      <div class="mini-card">
+        <h3>JSONL</h3>
+        <p>
+          One JSON record per line. Useful for streaming,
+          logs and line-by-line processing.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>JSON</h3>
+        <p>
+          A structured JSON document, often using an array
+          when multiple records are stored together.
+        </p>
+      </div>
+
+    </div>
+
+    <h2>JSONL and NDJSON</h2>
+
+    <p>
+      JSONL and NDJSON (Newline Delimited JSON) are commonly used names
+      for newline-separated JSON records. This converter accepts both
+      formats as long as each non-empty line contains valid JSON.
+    </p>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">USE CASES</div>
+
+    <h2>When to Convert JSONL to JSON</h2>
+
+    <div class="tips-grid">
+
+      <div class="mini-card">
+        <h3>📊 Data Processing</h3>
+        <p>
+          Convert newline-delimited records into an array that can be
+          handled by applications and scripts expecting standard JSON.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>🧾 Log Analysis</h3>
+        <p>
+          Turn JSONL logs into a structured JSON array for easier
+          inspection and manual analysis.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>🔄 Data Migration</h3>
+        <p>
+          Quickly transform line-separated JSON records before importing
+          them into another workflow.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>💻 Developer Testing</h3>
+        <p>
+          Convert sample JSONL records into readable JSON while testing
+          APIs, scripts and data-processing applications.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">DEVELOPER NOTES</div>
+
+    <h2>JSONL Conversion Notes</h2>
+
+    <ul>
+      <li>Each non-empty line is parsed independently.</li>
+      <li>Empty lines are ignored during conversion.</li>
+      <li>Each line must contain valid JSON.</li>
+      <li>If a line contains invalid JSON, conversion stops at that line.</li>
+      <li>The output is formatted with two-space indentation.</li>
+      <li>The converted result can be copied or downloaded as JSON.</li>
+    </ul>
+
+    <p>
+      Because the conversion runs directly in your browser, the tool does
+      not need to send the JSONL content to a remote conversion service.
+    </p>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">QUICK EXAMPLE</div>
+
+    <h2>Example: JSONL to JSON</h2>
+
+    <p>
+      Suppose you have three JSONL records:
+    </p>
+
+    <div class="code-example">
+      <pre><code>{"id":1,"name":"Ali"}
+{"id":2,"name":"Sara"}
+{"id":3,"name":"Ahmed"}</code></pre>
+    </div>
+
+    <p>
+      The converter combines those individual records into one JSON array:
+    </p>
+
+    <div class="code-example">
+      <pre><code>[
+  {
+    "id": 1,
+    "name": "Ali"
+  },
+  {
+    "id": 2,
+    "name": "Sara"
+  },
+  {
+    "id": 3,
+    "name": "Ahmed"
+  }
+]</code></pre>
+    </div>
+
+  </section>
+    <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">FAQ</div>
 
     <h2>Frequently Asked Questions</h2>
 
-    <h3>What input format does this tool accept?</h3>
+    <div class="faq-item">
+      <h3>What input format does this tool accept?</h3>
+      <p>
+        The tool accepts JSONL or NDJSON data with one valid JSON record
+        per line. Empty lines are ignored.
+      </p>
+    </div>
 
-    <p>
-      The tool accepts JSONL or NDJSON data with one valid JSON record
-      per line. Empty lines are ignored.
-    </p>
+    <div class="faq-item">
+      <h3>What happens if one line contains invalid JSON?</h3>
+      <p>
+        The conversion stops and the tool reports the line containing
+        the invalid JSON so you can correct it.
+      </p>
+    </div>
 
-    <h3>What happens if one line contains invalid JSON?</h3>
+    <div class="faq-item">
+      <h3>Does this JSONL converter upload my data?</h3>
+      <p>
+        No. Conversion takes place directly in your browser. Your JSONL
+        content is not uploaded to our server.
+      </p>
+    </div>
 
-    <p>
-      The conversion stops and the tool identifies the line containing
-      the invalid JSON so you can correct it.
-    </p>
+    <div class="faq-item">
+      <h3>Are empty lines allowed?</h3>
+      <p>
+        Yes. Empty lines are ignored during conversion.
+      </p>
+    </div>
 
-    <h3>Does the tool upload my JSONL data?</h3>
+    <div class="faq-item">
+      <h3>Can I convert NDJSON with this tool?</h3>
+      <p>
+        Yes. NDJSON uses newline-delimited JSON records, which this
+        converter can process.
+      </p>
+    </div>
 
-    <p>
-      No. The conversion is performed entirely in your browser.
-      Your data is not uploaded to our server.
-    </p>
+    <div class="faq-item">
+      <h3>Can I download the converted JSON?</h3>
+      <p>
+        Yes. After a successful conversion, click
+        <strong>Download JSON</strong> to save the result as a JSON file.
+      </p>
+    </div>
 
-    <h3>Can I download the converted JSON?</h3>
-
-    <p>
-      Yes. After conversion, click <strong>Download JSON</strong> to save
-      the formatted result as a JSON file.
-    </p>
-
-  </div>
+  </section>
 
 
-  <div class="card info related">
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">MORE DEVELOPER TOOLS</div>
 
     <h2>Related Tools</h2>
 
-    <a href="json-to-jsonl.html">JSON to JSONL</a>
-    <a href="csv-to-jsonl.html">CSV to JSONL</a>
-    <a href="json-formatter.html">JSON Formatter</a>
-    <a href="json-to-csv.html">JSON to CSV</a>
-    <a href="json-to-tsv.html">JSON to TSV</a>
-    <a href="json-to-markdown.html">JSON to Markdown</a>
+    <div class="related-tools">
 
+      <a href="json-to-jsonl.html">
+        <strong>JSON to JSONL</strong>
+        <span>Convert JSON arrays to JSONL.</span>
+      </a>
+
+      <a href="csv-to-jsonl.html">
+        <strong>CSV to JSONL</strong>
+        <span>Convert CSV records into JSONL.</span>
+      </a>
+
+      <a href="json-formatter.html">
+        <strong>JSON Formatter</strong>
+        <span>Format and validate JSON.</span>
+      </a>
+
+      <a href="json-to-csv.html">
+        <strong>JSON to CSV</strong>
+        <span>Convert JSON data into CSV.</span>
+      </a>
+
+      <a href="json-to-tsv.html">
+        <strong>JSON to TSV</strong>
+        <span>Convert JSON data into TSV.</span>
+      </a>
+
+      <a href="json-to-markdown.html">
+        <strong>JSON to Markdown</strong>
+        <span>Turn JSON data into Markdown.</span>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section class="bottom-cta">
+
+    <div>
+      <div class="cta-kicker">PRIVATE BY DESIGN</div>
+
+      <h2>Convert your JSONL data without uploading it.</h2>
+
+      <p>
+        Process JSONL and NDJSON records directly in your browser.
+      </p>
+    </div>
+
+    <a href="index.html">Explore All Tools →</a>
+
+  </section>
+
+
+  <div class="site-footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cookie-policy.html">Cookie Policy</a>
   </div>
 
 
@@ -359,11 +845,355 @@ Example:
 </main>
 
 
-<footer>
-  © 2026 CSV & JSON Developer Tools
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="brand-icon">{ }</span>
+    <strong>CSV &amp; JSON Developer Tools</strong>
+  </div>
+
+  <p>
+    Free browser-based tools for converting, formatting and transforming
+    CSV and JSON data.
+  </p>
+
+  <div>
+    © 2026 CSV &amp; JSON Developer Tools
+  </div>
 </footer>
 
 
+<style>
+  .section-kicker {
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+    margin-bottom: 8px;
+  }
+
+  .content-card h2 {
+    margin: 0 0 14px;
+    font-size: 27px;
+    line-height: 1.25;
+    letter-spacing: -0.6px;
+  }
+
+  .content-card h3 {
+    color: #e2e8f0;
+    margin: 22px 0 7px;
+    font-size: 17px;
+  }
+
+  .content-card p,
+  .content-card li {
+    color: var(--muted);
+  }
+
+  .content-card p {
+    margin: 0 0 15px;
+  }
+
+  .content-card ol,
+  .content-card ul {
+    padding-left: 22px;
+  }
+
+  .content-card li {
+    margin-bottom: 8px;
+  }
+
+  .code-example {
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: #050d18;
+  }
+
+  .code-title {
+    padding: 10px 14px;
+    color: #94a3b8;
+    background: #0b1626;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .code-example pre {
+    margin: 0;
+    padding: 17px;
+    overflow-x: auto;
+    color: #c4f1ff;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .comparison-grid,
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .mini-card {
+    padding: 19px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: rgba(6, 16, 29, 0.58);
+  }
+
+  .mini-card h3 {
+    margin: 0 0 7px;
+    color: #f8fafc;
+  }
+
+  .mini-card p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .faq-item {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: 0;
+  }
+
+  .faq-item h3 {
+    margin: 0 0 7px;
+    color: #f8fafc;
+  }
+
+  .faq-item p {
+    margin: 0;
+  }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-top: 18px;
+  }
+
+  .related-tools a {
+    display: block;
+    padding: 17px;
+    border-radius: 14px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: rgba(6, 16, 29, 0.60);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .related-tools a:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.55);
+  }
+
+  .related-tools strong {
+    display: block;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+  }
+
+  .related-tools span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .bottom-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.22);
+    background:
+      radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.12), transparent 30%),
+      linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 31, 52, 0.95));
+  }
+
+  .bottom-cta h2 {
+    margin: 3px 0 6px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  .bottom-cta p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .cta-kicker {
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+  }
+
+  .bottom-cta > a {
+    flex-shrink: 0;
+    padding: 12px 17px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.22);
+  }
+
+  .site-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 17px;
+    margin: 25px 0;
+  }
+
+  .site-footer-links a {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .site-footer-links a:hover {
+    color: #cbd5e1;
+  }
+
+  .back {
+    text-align: center;
+    margin: 25px 0 0;
+  }
+
+  .back a {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .site-footer {
+    padding: 35px 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    background: #050d18;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #cbd5e1;
+  }
+
+  .footer-brand .brand-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 14px;
+  }
+
+  .site-footer p {
+    max-width: 620px;
+    margin: 12px auto;
+  }
+
+  @media (max-width: 850px) {
+    .editor-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related-tools {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bottom-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header-inner {
+      padding: 13px 15px;
+    }
+
+    .brand-text {
+      font-size: 13px;
+    }
+
+    .header-link {
+      font-size: 12px;
+    }
+
+    .hero {
+      padding: 52px 15px 30px;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      letter-spacing: -1.7px;
+    }
+
+    .hero p {
+      font-size: 16px;
+    }
+
+    main {
+      padding: 0 15px 50px;
+    }
+
+    .tool-card {
+      padding: 17px;
+      border-radius: 16px;
+    }
+
+    textarea {
+      min-height: 260px;
+    }
+
+    .buttons {
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .content-card {
+      padding: 23px !important;
+      border-radius: 16px;
+    }
+
+    .comparison-grid,
+    .tips-grid,
+    .related-tools {
+      grid-template-columns: 1fr;
+    }
+
+    .bottom-cta {
+      padding: 23px;
+    }
+
+    .bottom-cta h2 {
+      font-size: 22px;
+    }
+
+    .bottom-cta > a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
 <script>
 
 function convertJsonl() {
