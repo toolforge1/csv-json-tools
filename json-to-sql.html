@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <title>JSON to SQL Converter - Free Online JSON to SQL Tool</title>
 
-  <title>JSON to SQL Converter - Free Online Tool</title>
-
-  <meta name="description" content="Convert JSON data to SQL INSERT statements online for free. Generate SQL from JSON instantly in your browser. Fast, simple and privacy-focused.">
+  <meta name="description" content="Convert JSON arrays to SQL INSERT statements online for free. Generate SQL queries from JSON data instantly in your browser with this fast and privacy-focused JSON to SQL converter.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
 
-  <meta property="og:title" content="JSON to SQL Converter - Free Online Tool">
-  <meta property="og:description" content="Convert JSON data into SQL INSERT statements instantly in your browser.">
+  <meta property="og:title" content="JSON to SQL Converter - Free Online JSON to SQL Tool">
+  <meta property="og:description" content="Convert JSON data into SQL INSERT statements instantly in your browser. Free, fast and privacy-focused.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
 
@@ -32,7 +32,7 @@
     "@type": "WebApplication",
     "name": "JSON to SQL Converter",
     "url": "https://toolforge1.github.io/csv-json-tools/json-to-sql.html",
-    "description": "Convert JSON arrays into SQL INSERT statements directly in your browser.",
+    "description": "Free online tool to convert JSON arrays into SQL INSERT statements directly in the browser.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "offers": {
@@ -43,240 +43,521 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What JSON format does this tool support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The converter accepts a JSON array containing objects. Each object represents one row of data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this JSON to SQL converter upload my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion runs directly in your browser and the JSON input is not uploaded to the server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What SQL does this tool generate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool generates SQL INSERT statements using the table name and columns found in the JSON objects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the generated SQL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can download the generated SQL statements as a .sql file."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --card: rgba(15, 28, 48, 0.88);
+      --card-strong: #101f35;
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f8fafc;
+      --muted: #9fb0c7;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --red: #ef4444;
+      --shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7, 17, 31, 0.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 68px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+      font-size: 18px;
+    }
+
+    .header-link {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .header-link:hover {
+      color: white;
     }
 
     .container {
-      width: 92%;
-      max-width: 1000px;
+      width: min(1180px, calc(100% - 32px));
       margin: auto;
-      padding: 30px 0;
     }
 
-    .tool {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    h1 {
+    .hero {
       text-align: center;
-      margin: 0 0 10px;
+      padding: 72px 0 48px;
     }
 
-    .description {
-      text-align: center;
-      color: #6b7280;
-      line-height: 1.6;
-      margin-bottom: 25px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.10);
+      color: #93c5fd;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 22px;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 15px 0 8px;
+    .hero h1 {
+      max-width: 850px;
+      margin: 0 auto 18px;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .trust-row {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trust-pill {
+      padding: 8px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 28, 48, 0.65);
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tool-section {
+      padding-bottom: 55px;
+    }
+
+    .tool-card {
+      background:
+        linear-gradient(145deg, rgba(17, 34, 58, 0.96), rgba(10, 22, 39, 0.96));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .tool-card-header {
+      padding: 26px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .tool-card-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 850;
+    }
+
+    .tool-card-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .live-badge {
+      white-space: nowrap;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      color: #86efac;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tool-body {
+      padding: 28px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .editor-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .editor-hint {
+      color: #71839d;
+      font-size: 12px;
+      font-weight: 600;
     }
 
     input,
     textarea {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.20);
+      border-radius: 14px;
+      background: #07111f;
+      color: #e5eefc;
+      outline: none;
+      transition: 0.2s ease;
     }
 
     input {
-      font-family: Arial, sans-serif;
+      min-height: 50px;
+      padding: 13px 15px;
+      font-size: 15px;
+      font-family: inherit;
     }
 
     textarea {
-      min-height: 280px;
+      min-height: 310px;
+      padding: 17px;
       resize: vertical;
-      font-family: monospace;
-      line-height: 1.5;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.65;
     }
 
     input:focus,
     textarea:focus {
-      outline: none;
-      border-color: #2563eb;
+      border-color: rgba(59, 130, 246, 0.85);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.10);
+    }
+
+    .field-block {
+      margin-bottom: 20px;
     }
 
     .buttons {
-      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 17px;
     }
 
     button {
-      padding: 11px 17px;
-      margin: 5px 5px 5px 0;
-      border: none;
-      border-radius: 7px;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      padding: 12px 17px;
       cursor: pointer;
       font-size: 14px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
     }
 
     .primary {
-      background: #2563eb;
       color: white;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
     }
 
     .primary:hover {
-      background: #1d4ed8;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
     }
 
     .secondary {
-      background: #e5e7eb;
-      color: #222;
+      color: #dbeafe;
+      background: #16263d;
+      border-color: var(--border);
     }
 
     .success {
-      background: #16a34a;
       color: white;
+      background: linear-gradient(135deg, #15803d, #22c55e);
+    }
+
+    .danger {
+      color: #fecaca;
+      background: rgba(127, 29, 29, 0.35);
+      border-color: rgba(239, 68, 68, 0.25);
     }
 
     .status {
       display: none;
-      margin: 15px 0;
-      padding: 12px;
-      border-radius: 8px;
-      line-height: 1.5;
+      margin: 18px 0;
+      padding: 13px 15px;
+      border-radius: 12px;
       font-size: 14px;
+      line-height: 1.6;
+      border: 1px solid transparent;
     }
 
     .valid {
-      background: #f0fdf4;
-      color: #166534;
+      background: rgba(34, 197, 94, 0.09);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.20);
     }
 
     .invalid {
-      background: #fef2f2;
-      color: #991b1b;
+      background: rgba(239, 68, 68, 0.09);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.20);
     }
 
-    .info-section {
-      margin-top: 30px;
-      padding: 20px;
-      background: #f8fafc;
-      border-radius: 10px;
+    .privacy-mini {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 13px;
+      border: 1px solid rgba(34, 197, 94, 0.16);
+      background: rgba(34, 197, 94, 0.06);
+      color: #b7e4c7;
+      font-size: 13px;
     }
 
-    .info-section h2 {
-      margin-top: 0;
-      font-size: 21px;
-    }
-
-    .info-section h3 {
-      font-size: 17px;
-      margin-bottom: 6px;
-    }
-
-    .info-section p,
-    .info-section li {
-      line-height: 1.6;
-      color: #4b5563;
-    }
-
-    .privacy {
-      margin-top: 25px;
-      padding: 15px;
-      background: #f0fdf4;
-      color: #166534;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .related-tools {
-      margin-top: 25px;
-      padding: 20px;
-      background: #eef6ff;
-      border-radius: 10px;
-    }
-
-    .related-tools h2 {
-      margin-top: 0;
-      font-size: 21px;
-    }
-
-    .related-tools a {
-      display: inline-block;
-      margin: 5px 8px 5px 0;
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .related-tools a:hover {
-      text-decoration: underline;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      color: #2563eb;
+    .back-link {
+      display: inline-flex;
+      margin-top: 22px;
+      color: #93c5fd;
       text-decoration: none;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 800;
     }
 
-    @media (max-width: 600px) {
-      .container {
-        width: 94%;
-        padding: 15px 0;
-      }
-
-      .tool {
-        padding: 18px;
-      }
-
-      h1 {
-        font-size: 27px;
-      }
-
-      button {
-        width: 100%;
-        margin-right: 0;
-      }
+    .back-link:hover {
+      color: white;
     }
-  </style>
+      </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">{ }</span>
+        <span>CSV &amp; JSON Developer Tools</span>
+      </a>
 
-    <div class="tool">
+      <a class="header-link" href="index.html">
+        All Tools →
+      </a>
+    </div>
+  </header>
 
-      <h1>JSON to SQL Converter</h1>
+  <main>
 
-      <p class="description">
-        Convert JSON data into SQL INSERT statements instantly in your browser.
-        Your data stays on your device.
-      </p>
+    <section class="hero">
+      <div class="container">
 
-      <label for="tableName">SQL Table Name</label>
+        <div class="hero-badge">
+          ⚡ Developer Data Conversion Tool
+        </div>
 
-      <input
-        type="text"
-        id="tableName"
-        value="users"
-        placeholder="Enter table name, e.g. users"
-      >
+        <h1>
+          Convert <span class="highlight">JSON to SQL</span>
+          Instantly
+        </h1>
 
-      <label for="jsonInput">Enter JSON</label>
+        <p class="hero-description">
+          Turn JSON arrays into ready-to-use SQL INSERT statements
+          directly in your browser. Fast, simple and privacy-focused.
+        </p>
 
-      <textarea id="jsonInput">[
+        <div class="trust-row">
+          <span class="trust-pill">✓ Free to Use</span>
+          <span class="trust-pill">✓ Browser-Based</span>
+          <span class="trust-pill">✓ No File Upload</span>
+          <span class="trust-pill">✓ SQL INSERT Output</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="tool-section">
+      <div class="container">
+
+        <div class="tool-card">
+
+          <div class="tool-card-header">
+
+            <div>
+              <h2 class="tool-card-title">
+                JSON to SQL Converter
+              </h2>
+
+              <p class="tool-card-subtitle">
+                Convert JSON objects into SQL INSERT statements.
+              </p>
+            </div>
+
+            <span class="live-badge">
+              ● Runs in Browser
+            </span>
+
+          </div>
+
+
+          <div class="tool-body">
+
+            <div class="field-block">
+
+              <div class="editor-label">
+                <span>SQL Table Name</span>
+                <span class="editor-hint">
+                  Example: users
+                </span>
+              </div>
+
+              <input
+                type="text"
+                id="tableName"
+                value="users"
+                placeholder="Enter table name, e.g. users"
+              >
+
+            </div>
+
+
+            <div class="field-block">
+
+              <div class="editor-label">
+                <span>JSON Input</span>
+                <span class="editor-hint">
+                  JSON array of objects
+                </span>
+              </div>
+
+              <textarea
+                id="jsonInput"
+                placeholder='[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
+  }
+]'>[
   {
     "name": "Ali",
     "age": 28,
@@ -289,96 +570,939 @@
   }
 ]</textarea>
 
-      <div class="buttons">
-        <button class="primary" onclick="convertToSQL()">Convert to SQL</button>
-        <button class="secondary" onclick="clearAll()">Clear</button>
+              <div class="buttons">
+
+                <button
+                  class="primary"
+                  onclick="convertToSQL()"
+                >
+                  Convert to SQL
+                </button>
+
+                <button
+                  class="secondary"
+                  onclick="clearAll()"
+                >
+                  Clear
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div id="status" class="status"></div>
+
+
+            <div class="field-block">
+
+              <div class="editor-label">
+                <span>SQL Output</span>
+                <span class="editor-hint">
+                  Generated INSERT statements
+                </span>
+              </div>
+
+              <textarea
+                id="sqlOutput"
+                readonly
+                placeholder="SQL INSERT statements will appear here..."
+              ></textarea>
+
+              <div class="buttons">
+
+                <button
+                  class="success"
+                  onclick="copySQL()"
+                >
+                  Copy SQL
+                </button>
+
+                <button
+                  class="primary"
+                  onclick="downloadSQL()"
+                >
+                  Download SQL
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="privacy-mini">
+              🔒 <strong>Privacy First:</strong>
+              Your JSON is processed directly in your browser.
+              The data is not uploaded to our server.
+            </div>
+
+
+            <a class="back-link" href="index.html">
+              ← Back to All Developer Tools
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="content-section">
+      <div class="container">
+
+        <div class="content-grid">
+
+          <article class="article-card">
+
+            <span class="article-kicker">
+              JSON TO SQL GUIDE
+            </span>
+
+            <h2>
+              JSON to SQL Converter: Convert JSON Data into SQL INSERT Statements
+            </h2>
+
+            <p class="lead">
+              A JSON to SQL converter transforms structured JSON data into
+              SQL INSERT statements that can be used with relational databases.
+              This tool is designed for developers who need a quick way to
+              convert JSON arrays into database-ready SQL statements.
+            </p>
+
+
+            <h3>What Does a JSON to SQL Converter Do?</h3>
+
+            <p>
+              JSON is widely used for APIs, configuration files, web
+              applications and data exchange. SQL is commonly used to insert
+              structured data into relational database tables.
+            </p>
+
+            <p>
+              This JSON to SQL tool bridges the gap between these two formats.
+              It reads an array of JSON objects, identifies the available
+              properties and creates an SQL INSERT statement for each object.
+            </p>
+
+
+            <h3>What Can This Tool Convert?</h3>
+
+            <ul>
+              <li>JSON arrays containing multiple objects</li>
+              <li>JSON object properties into SQL columns</li>
+              <li>Text values into quoted SQL values</li>
+              <li>Numbers into SQL numeric values</li>
+              <li>Boolean values into TRUE or FALSE</li>
+              <li>Null values into SQL NULL</li>
+              <li>Nested JSON objects and arrays into JSON text</li>
+            </ul>
+
+
+            <h3>How to Convert JSON to SQL</h3>
+
+            <ol>
+              <li>Enter the name of your SQL table.</li>
+              <li>Paste a JSON array into the JSON input field.</li>
+              <li>Click <strong>Convert to SQL</strong>.</li>
+              <li>Review the generated SQL INSERT statements.</li>
+              <li>Copy the SQL or download it as a .sql file.</li>
+            </ol>
+
+
+            <h3>JSON to SQL Example</h3>
+
+            <p>
+              For example, a JSON array containing user information can be
+              converted into SQL statements for a table named
+              <strong>users</strong>.
+            </p>
+
+            <pre class="code-example"><code>[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
+  }
+]</code></pre>
+
+            <p>
+              The generated output follows the SQL INSERT format and maps
+              each JSON property to a corresponding database column.
+            </p>
+
+
+            <h3>Why Convert JSON to SQL?</h3>
+
+            <p>
+              Developers often receive data as JSON from APIs, web services
+              or JavaScript applications while working with relational
+              databases that use SQL.
+            </p>
+
+            <p>
+              Converting JSON into SQL can make it easier to prepare test
+              data, migrate small datasets, create sample records and
+              prepare database INSERT statements.
+            </p>
+
+
+            <h3>Useful JSON to SQL Tips</h3>
+
+            <ul>
+              <li>Use a valid SQL table name such as <strong>users</strong>.</li>
+              <li>Make sure the JSON is a valid array.</li>
+              <li>Each item in the array should be an object.</li>
+              <li>Review generated SQL before running it on a production database.</li>
+              <li>Check that your database column types match the JSON values.</li>
+              <li>Back up important database data before executing generated SQL.</li>
+            </ul>
+
+          </article>
+
+
+          <aside class="quick-card">
+
+            <h3>Quick Reference</h3>
+
+            <div class="quick-item">
+              <span>Input</span>
+              <strong>JSON Array</strong>
+            </div>
+
+            <div class="quick-item">
+              <span>Output</span>
+              <strong>SQL INSERT</strong>
+            </div>
+
+            <div class="quick-item">
+              <span>Processing</span>
+              <strong>Browser</strong>
+            </div>
+
+            <div class="quick-item">
+              <span>Upload</span>
+              <strong>Not Required</strong>
+            </div>
+
+            <div class="quick-item">
+              <span>Download</span>
+              <strong>.sql File</strong>
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+        <section class="extra-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>COMMON QUESTIONS</span>
+          <h2>JSON to SQL FAQ</h2>
+          <p>
+            Answers to common questions about converting JSON data into SQL.
+          </p>
+        </div>
+
+
+        <div class="faq-grid">
+
+          <div class="faq-card">
+            <h3>What JSON format does this tool support?</h3>
+            <p>
+              The converter accepts a JSON array containing objects.
+              Each object represents one row of data.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>Does the tool upload my JSON?</h3>
+            <p>
+              No. The conversion is performed directly in your browser.
+              Your JSON input is not uploaded to our server.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>What SQL does the converter generate?</h3>
+            <p>
+              It generates SQL INSERT statements using the table name and
+              columns found in the JSON objects.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>How are numbers handled?</h3>
+            <p>
+              Numeric JSON values are written as SQL numeric values rather
+              than being unnecessarily wrapped in quotes.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>How are null values handled?</h3>
+            <p>
+              JSON null values are converted to SQL NULL.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>Can I download the generated SQL?</h3>
+            <p>
+              Yes. Use the Download SQL button to save the generated
+              statements as a .sql file.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="related-section">
+
+          <div class="section-heading left">
+            <span>MORE DEVELOPER TOOLS</span>
+            <h2>Related JSON &amp; Data Tools</h2>
+            <p>
+              Explore other browser-based tools for converting and working
+              with structured data.
+            </p>
+          </div>
+
+
+          <div class="related-grid">
+
+            <a href="json-to-csv.html" class="related-card">
+              <strong>JSON to CSV</strong>
+              <span>Convert JSON arrays into CSV data.</span>
+              <b>→</b>
+            </a>
+
+            <a href="json-to-tsv.html" class="related-card">
+              <strong>JSON to TSV</strong>
+              <span>Convert JSON data into tab-separated values.</span>
+              <b>→</b>
+            </a>
+
+            <a href="json-to-jsonl.html" class="related-card">
+              <strong>JSON to JSONL</strong>
+              <span>Convert JSON arrays into JSON Lines format.</span>
+              <b>→</b>
+            </a>
+
+            <a href="json-to-markdown.html" class="related-card">
+              <strong>JSON to Markdown</strong>
+              <span>Create Markdown tables from JSON arrays.</span>
+              <b>→</b>
+            </a>
+
+            <a href="json-to-html.html" class="related-card">
+              <strong>JSON to HTML</strong>
+              <span>Convert JSON data into HTML tables.</span>
+              <b>→</b>
+            </a>
+
+            <a href="csv-to-sql.html" class="related-card">
+              <strong>CSV to SQL</strong>
+              <span>Generate SQL INSERT statements from CSV.</span>
+              <b>→</b>
+            </a>
+
+            <a href="json-formatter.html" class="related-card">
+              <strong>JSON Formatter</strong>
+              <span>Format, beautify and validate JSON.</span>
+              <b>→</b>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="privacy-section">
+
+          <div class="privacy-icon">
+            🔒
+          </div>
+
+          <div>
+            <h2>Private Browser-Based Conversion</h2>
+
+            <p>
+              This JSON to SQL converter processes your data locally in
+              your browser. Your JSON is not sent to or stored on our server
+              during the conversion process.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="bottom-cta">
+
+          <div>
+            <span>NEED ANOTHER FORMAT?</span>
+
+            <h2>
+              Explore More Free Developer Tools
+            </h2>
+
+            <p>
+              Convert, format and transform CSV, JSON and other structured
+              data directly in your browser.
+            </p>
+          </div>
+
+          <a href="index.html">
+            Explore All Tools →
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <footer class="site-footer">
+
+      <div class="container">
+
+        <div class="footer-main">
+
+          <div>
+            <div class="footer-brand">
+              <span class="brand-icon">{ }</span>
+              <strong>CSV &amp; JSON Developer Tools</strong>
+            </div>
+
+            <p>
+              Free browser-based developer tools for converting,
+              formatting and transforming structured data.
+            </p>
+          </div>
+
+
+          <div class="footer-links">
+
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="contact.html">Contact</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+
+          </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+          <span>
+            © 2026 CSV &amp; JSON Developer Tools.
+            All rights reserved.
+          </span>
+
+          <span>
+            Built for developers.
+          </span>
+
+        </div>
+
       </div>
 
-      <div id="status" class="status"></div>
+    </footer>
 
-      <label for="sqlOutput">SQL Output</label>
+  </main>
+    <style>
 
-      <textarea
-        id="sqlOutput"
-        readonly
-        placeholder="SQL INSERT statements will appear here..."
-      ></textarea>
+    .content-section {
+      padding: 10px 0 70px;
+    }
 
-      <div class="buttons">
-        <button class="success" onclick="copySQL()">Copy SQL</button>
-        <button class="primary" onclick="downloadSQL()">Download SQL</button>
-      </div>
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 24px;
+      align-items: start;
+    }
 
-      <div class="privacy">
-        <strong>Privacy First</strong><br>
-        This JSON to SQL converter processes your data directly in your browser.
-        Your JSON is not uploaded to our server.
-      </div>
+    .article-card,
+    .quick-card {
+      background: rgba(15, 28, 48, 0.82);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.20);
+    }
 
-      <div class="info-section">
-        <h2>How to Use</h2>
+    .article-card {
+      padding: 34px;
+    }
 
-        <ol>
-          <li>Enter a valid SQL table name, such as <strong>users</strong>.</li>
-          <li>Paste a JSON array containing objects into the input box.</li>
-          <li>Click <strong>Convert to SQL</strong>.</li>
-          <li>Copy the generated SQL statements or download them as a .sql file.</li>
-        </ol>
+    .article-kicker,
+    .section-heading > span,
+    .bottom-cta span {
+      color: #60a5fa;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+    }
 
-        <h2>FAQ</h2>
+    .article-card h2 {
+      margin: 9px 0 18px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
 
-        <h3>What JSON format does this tool support?</h3>
-        <p>
-          The converter accepts a JSON array containing objects. Each object
-          represents one row of data.
-        </p>
+    .article-card h3 {
+      margin-top: 34px;
+      margin-bottom: 10px;
+      font-size: 21px;
+      color: #f8fafc;
+    }
 
-        <h3>Does this tool upload my JSON data?</h3>
-        <p>
-          No. The conversion is performed locally in your browser, so the JSON
-          input is not uploaded to our server.
-        </p>
+    .article-card p,
+    .article-card li {
+      color: #aebed2;
+      line-height: 1.8;
+    }
 
-        <h3>What SQL does this tool generate?</h3>
-        <p>
-          The tool generates SQL INSERT statements using the table name and
-          columns found in your JSON objects.
-        </p>
+    .article-card .lead {
+      color: #cbd5e1;
+      font-size: 17px;
+    }
 
-        <h3>Can I download the generated SQL?</h3>
-        <p>
-          Yes. After conversion, use the Download SQL button to save the
-          generated statements as a .sql file.
-        </p>
-      </div>
+    .article-card ul,
+    .article-card ol {
+      padding-left: 22px;
+    }
 
-      <div class="related-tools">
-        <h2>Related Tools</h2>
+    .article-card li {
+      margin: 7px 0;
+    }
 
-        <a href="json-to-csv.html">JSON to CSV</a>
-        <a href="json-to-tsv.html">JSON to TSV</a>
-        <a href="json-to-jsonl.html">JSON to JSONL</a>
-        <a href="json-to-markdown.html">JSON to Markdown</a>
-        <a href="json-to-html.html">JSON to HTML</a>
-        <a href="csv-to-sql.html">CSV to SQL</a>
-        <a href="json-formatter.html">JSON Formatter</a>
-      </div>
+    .code-example {
+      margin: 20px 0;
+      padding: 20px;
+      overflow-x: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #050c16;
+      color: #c7e2ff;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+    }
 
-      <a class="back" href="index.html">← Back to All Tools</a>
+    .quick-card {
+      padding: 24px;
+      position: sticky;
+      top: 90px;
+    }
 
-    </div>
+    .quick-card h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 19px;
+    }
 
-  </div>
+    .quick-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .quick-item:last-child {
+      border-bottom: 0;
+    }
+
+    .quick-item span {
+      color: #8294ad;
+    }
+
+    .quick-item strong {
+      color: #dbeafe;
+      text-align: right;
+    }
+
+    .extra-section {
+      padding: 0 0 75px;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    .section-heading.left {
+      text-align: left;
+      margin-left: 0;
+    }
+
+    .section-heading h2 {
+      margin: 7px 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .faq-card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(15, 28, 48, 0.70);
+    }
+
+    .faq-card h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      color: #f8fafc;
+    }
+
+    .faq-card p {
+      margin: 0;
+      color: #9fb0c7;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .related-section {
+      margin-top: 70px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .related-card {
+      position: relative;
+      display: block;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(15, 28, 48, 0.70);
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(59, 130, 246, 0.45);
+      background: rgba(20, 38, 64, 0.90);
+    }
+
+    .related-card strong {
+      display: block;
+      color: #f8fafc;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .related-card span {
+      display: block;
+      color: #899bb3;
+      font-size: 13px;
+      line-height: 1.55;
+      padding-right: 20px;
+    }
+
+    .related-card b {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      color: #60a5fa;
+    }
+
+    .privacy-section {
+      margin-top: 60px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 25px;
+      border-radius: 18px;
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      background: rgba(34, 197, 94, 0.055);
+    }
+
+    .privacy-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.10);
+    }
+
+    .privacy-section h2 {
+      margin: 0 0 5px;
+      font-size: 19px;
+    }
+
+    .privacy-section p {
+      margin: 0;
+      color: #a8c8b3;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .bottom-cta {
+      margin-top: 60px;
+      padding: 30px;
+      border-radius: 21px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.20), rgba(6, 182, 212, 0.08));
+      border: 1px solid rgba(96, 165, 250, 0.18);
+    }
+
+    .bottom-cta h2 {
+      margin: 7px 0;
+      font-size: 26px;
+    }
+
+    .bottom-cta p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .bottom-cta a {
+      flex: 0 0 auto;
+      padding: 12px 17px;
+      border-radius: 11px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: #050c16;
+    }
+
+    .footer-main {
+      padding: 42px 0 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-main p {
+      max-width: 480px;
+      margin: 15px 0 0;
+      color: #71839d;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-content: flex-start;
+      gap: 12px 20px;
+    }
+
+    .footer-links a {
+      color: #9fb0c7;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding: 18px 0 25px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #62738b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-card {
+        position: static;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .header-inner {
+        min-height: 62px;
+        padding: 0 12px;
+      }
+
+      .brand {
+        font-size: 13px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 52px 0 35px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .tool-card {
+        border-radius: 18px;
+      }
+
+      .tool-card-header {
+        padding: 20px;
+        align-items: flex-start;
+      }
+
+      .tool-card-subtitle {
+        font-size: 13px;
+      }
+
+      .live-badge {
+        display: none;
+      }
+
+      .tool-body {
+        padding: 20px;
+      }
+
+      textarea {
+        min-height: 260px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .buttons button {
+        width: 100%;
+      }
+
+      .article-card {
+        padding: 23px;
+        border-radius: 18px;
+      }
+
+      .article-card h2 {
+        font-size: 28px;
+      }
+
+      .article-card h3 {
+        font-size: 19px;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-section {
+        flex-direction: column;
+      }
+
+      .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .bottom-cta a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .footer-main,
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+
+    }
+
+  </style>
+
 
   <script>
 
     function showStatus(message, type) {
+
       const status = document.getElementById("status");
 
       status.textContent = message;
       status.className = "status " + type;
       status.style.display = "block";
     }
+
 
     function escapeSQL(value) {
 
@@ -391,7 +1515,9 @@
       }
 
       if (typeof value === "number") {
-        return Number.isFinite(value) ? String(value) : "NULL";
+        return Number.isFinite(value)
+          ? String(value)
+          : "NULL";
       }
 
       if (typeof value === "object") {
@@ -401,92 +1527,141 @@
       return "'" + String(value).replace(/'/g, "''") + "'";
     }
 
+
     function quoteIdentifier(identifier) {
 
-      return "`" + identifier.replace(/`/g, "``") + "`";
+      return "`" +
+        identifier.replace(/`/g, "``") +
+        "`";
     }
+
 
     function convertToSQL() {
 
-      const input = document.getElementById("jsonInput").value.trim();
-      const tableName = document.getElementById("tableName").value.trim();
+      const input =
+        document.getElementById("jsonInput").value.trim();
+
+      const tableName =
+        document.getElementById("tableName").value.trim();
+
 
       if (!input) {
-        showStatus("Please enter JSON data.", "invalid");
+
+        showStatus(
+          "Please enter JSON data.",
+          "invalid"
+        );
+
         return;
       }
+
 
       if (!tableName) {
-        showStatus("Please enter a table name.", "invalid");
+
+        showStatus(
+          "Please enter a table name.",
+          "invalid"
+        );
+
         return;
       }
 
+
       if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(tableName)) {
+
         showStatus(
           "Invalid table name. Use letters, numbers and underscores only, and do not start with a number.",
           "invalid"
         );
+
         return;
       }
+
 
       try {
 
         const data = JSON.parse(input);
 
+
         if (!Array.isArray(data)) {
+
           showStatus(
             "JSON must contain an array of objects.",
             "invalid"
           );
+
           return;
         }
 
+
         if (data.length === 0) {
-          showStatus("JSON array is empty.", "invalid");
+
+          showStatus(
+            "JSON array is empty.",
+            "invalid"
+          );
+
           return;
         }
+
 
         if (!data.every(item =>
           item !== null &&
           typeof item === "object" &&
           !Array.isArray(item)
         )) {
+
           showStatus(
             "Each item in the JSON array must be an object.",
             "invalid"
           );
+
           return;
         }
 
+
         const columns = [
           ...new Set(
-            data.flatMap(item => Object.keys(item))
+            data.flatMap(item =>
+              Object.keys(item)
+            )
           )
         ];
 
+
         if (columns.length === 0) {
+
           showStatus(
             "No columns were found in the JSON objects.",
             "invalid"
           );
+
           return;
         }
+
 
         const columnSQL = columns
           .map(quoteIdentifier)
           .join(", ");
 
+
         const statements = data.map(item => {
 
-          const values = columns.map(column => {
-            return escapeSQL(item[column]);
-          }).join(", ");
+          const values = columns
+            .map(column =>
+              escapeSQL(item[column])
+            )
+            .join(", ");
+
 
           return `INSERT INTO ${quoteIdentifier(tableName)} (${columnSQL}) VALUES (${values});`;
+
         });
+
 
         document.getElementById("sqlOutput").value =
           statements.join("\n");
+
 
         showStatus(
           "Valid JSON. SQL INSERT statements generated successfully.",
@@ -504,62 +1679,90 @@
       }
     }
 
+
     function copySQL() {
 
-      const output = document.getElementById("sqlOutput").value;
+      const output =
+        document.getElementById("sqlOutput").value;
+
 
       if (!output) {
+
         showStatus(
           "Please convert JSON to SQL first.",
           "invalid"
         );
+
         return;
       }
 
+
       navigator.clipboard.writeText(output)
         .then(() => {
+
           showStatus(
             "SQL copied to clipboard.",
             "valid"
           );
+
         })
         .catch(() => {
+
           showStatus(
             "Unable to copy SQL.",
             "invalid"
           );
+
         });
     }
 
+
     function downloadSQL() {
 
-      const output = document.getElementById("sqlOutput").value;
+      const output =
+        document.getElementById("sqlOutput").value;
+
 
       if (!output) {
+
         showStatus(
           "Please convert JSON to SQL first.",
           "invalid"
         );
+
         return;
       }
 
+
       const blob = new Blob(
         [output],
-        { type: "text/sql;charset=utf-8;" }
+        {
+          type: "text/sql;charset=utf-8;"
+        }
       );
 
-      const url = URL.createObjectURL(blob);
 
-      const link = document.createElement("a");
+      const url =
+        URL.createObjectURL(blob);
+
+
+      const link =
+        document.createElement("a");
+
 
       link.href = url;
       link.download = "converted.sql";
 
+
       document.body.appendChild(link);
+
       link.click();
+
       document.body.removeChild(link);
 
+
       URL.revokeObjectURL(url);
+
 
       showStatus(
         "SQL file downloaded.",
@@ -567,16 +1770,23 @@
       );
     }
 
+
     function clearAll() {
 
       document.getElementById("jsonInput").value = "";
+
       document.getElementById("sqlOutput").value = "";
+
       document.getElementById("tableName").value = "users";
 
-      const status = document.getElementById("status");
+
+      const status =
+        document.getElementById("status");
+
 
       status.style.display = "none";
       status.textContent = "";
+      status.className = "status";
     }
 
   </script>
