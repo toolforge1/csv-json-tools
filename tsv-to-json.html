@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
-  <title>TSV to JSON Converter - Free Online Tool</title>
-  <meta name="description" content="Convert TSV or tab-separated data to JSON instantly in your browser. Free, fast and privacy-friendly TSV to JSON converter.">
+  <title>TSV to JSON Converter - Free Online TSV to JSON Tool</title>
+
+  <meta name="description" content="Convert TSV or tab-separated data to JSON online for free. Turn TSV rows into structured JSON directly in your browser. Fast, simple and privacy-focused.">
+
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/tsv-to-json.html">
 
-  <meta property="og:title" content="TSV to JSON Converter - Free Online Tool">
-  <meta property="og:description" content="Convert tab-separated data to JSON instantly in your browser. Free, fast and privacy-friendly.">
+  <meta name="theme-color" content="#050b14">
+
+  <meta property="og:title" content="TSV to JSON Converter - Free Online TSV to JSON Tool">
+  <meta property="og:description" content="Convert tab-separated data to structured JSON instantly in your browser. Free, fast and privacy-focused.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/tsv-to-json.html">
 
@@ -41,568 +46,1476 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is TSV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TSV stands for Tab-Separated Values. It is a text format where columns are separated by tab characters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does this TSV to JSON converter do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It converts TSV data with column headers into an array of JSON objects, with each data row becoming a JSON object."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool upload my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion happens locally in your browser and your TSV data is not uploaded to a server by this tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if a row has a different number of columns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The converter reports a column count mismatch and does not generate the JSON result until the data is corrected."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the JSON result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After conversion, click Download JSON to save the result as a JSON file."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --bg: #050b14;
+      --panel: rgba(10, 24, 41, 0.9);
+      --panel-2: #0c1b2d;
+      --input: #06101c;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-blue: rgba(59, 130, 246, 0.28);
+      --text: #e7eef7;
+      --muted: #94a8bd;
+      --blue: #3b82f6;
+      --blue-dark: #2563eb;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --green-dark: #15803d;
+      --red: #ef4444;
+      --shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at 12% 5%,
+          rgba(37, 99, 235, 0.16),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 88% 12%,
+          rgba(34, 211, 238, 0.10),
+          transparent 28%
+        ),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
     }
 
-    header {
-      background: #1f2937;
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(5, 11, 20, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      width: min(1180px, 92%);
+      min-height: 68px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
       color: white;
-      padding: 25px 15px;
+      font-family: monospace;
+      font-size: 16px;
+      font-weight: 900;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+    }
+
+    .brand-name {
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .header-link:hover {
+      color: white;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .hero {
       text-align: center;
+      padding: 72px 0 42px;
     }
 
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 211, 238, 0.24);
+      background: rgba(10, 34, 55, 0.7);
+      color: #8be9f7;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
     }
 
-    header p {
-      margin: 0;
-      color: #d1d5db;
-      line-height: 1.6;
+    .hero h1 {
+      max-width: 900px;
+      margin: 18px auto 14px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -2.8px;
     }
 
-    main {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 15px;
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin-top: 30px;
-      font-size: 21px;
-    }
-
-    h3 {
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      color: var(--muted);
       font-size: 17px;
-      margin-bottom: 5px;
     }
 
-    p {
-      color: #555;
-      line-height: 1.6;
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
     }
 
-    label {
+    .trust-pill {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(15, 31, 50, 0.9);
+      border: 1px solid var(--border);
+      color: #b9c9d9;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15, 31, 51, 0.97),
+          rgba(7, 18, 31, 0.97)
+        );
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card::before {
+      content: "";
+      position: absolute;
+      top: -170px;
+      right: -110px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(34, 211, 238, 0.07);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .tool-heading {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .tool-heading h2 {
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: -0.5px;
+    }
+
+    .tool-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .editor-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .editor-box {
+      min-width: 0;
+    }
+
+    .tool-label {
       display: block;
-      font-weight: bold;
       margin-bottom: 8px;
+      color: #b9c9d9;
+      font-size: 13px;
+      font-weight: 800;
     }
 
     textarea {
       width: 100%;
-      min-height: 300px;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      min-height: 330px;
+      padding: 17px;
       resize: vertical;
-      font-family: Consolas, monospace;
-      font-size: 14px;
-      line-height: 1.5;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 15px;
+      outline: none;
+      background: var(--input);
+      color: #dbeafe;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      transition: 0.2s ease;
+    }
+
+    textarea::placeholder {
+      color: #587087;
+    }
+
+    textarea:focus {
+      border-color: rgba(34, 211, 238, 0.55);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.08);
+    }
+
+    textarea[readonly] {
+      background: #071321;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
+      gap: 9px;
+      margin-top: 12px;
     }
 
     button {
-      border: none;
-      padding: 11px 18px;
-      border-radius: 7px;
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 16px;
       cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
-      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    button.primary {
+      color: white;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
+    }
+
+    button.primary:hover {
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
     }
 
     button.secondary {
-      background: #6b7280;
+      color: #cbd5e1;
+      background: #17263a;
+      border: 1px solid var(--border);
+    }
+
+    button.secondary:hover {
+      background: #20334c;
     }
 
     button.success {
-      background: #15803d;
+      color: white;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.16);
     }
 
     .message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 7px;
+      margin-top: 18px;
+      padding: 12px 15px;
+      border-radius: 11px;
       display: none;
+      font-size: 13px;
+      line-height: 1.55;
+      border: 1px solid transparent;
     }
 
     .success-message {
-      background: #dcfce7;
-      color: #166534;
+      background: rgba(22, 101, 52, 0.16);
+      border-color: rgba(34, 197, 94, 0.25);
+      color: #86efac;
     }
 
     .error-message {
-      background: #fee2e2;
-      color: #991b1b;
+      background: rgba(153, 27, 27, 0.16);
+      border-color: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
     }
 
-    .privacy {
-      text-align: center;
-      color: #555;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .info-section {
-      line-height: 1.6;
-    }
-
-    .info-section ul {
-      color: #555;
-      line-height: 1.8;
-    }
-
-    .faq {
-      margin-top: 18px;
-    }
-
-    .related {
-      line-height: 2;
-    }
-
-    .related a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .back {
-      text-align: center;
+    .privacy-mini {
+      position: relative;
       margin-top: 20px;
+      padding: 15px 17px;
+      border-radius: 14px;
+      background: rgba(15, 53, 45, 0.34);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      color: #b7e7c5;
+      font-size: 13px;
     }
 
-    .back a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
+    .privacy-mini strong {
+      color: #86efac;
     }
 
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      color: #666;
-      font-size: 14px;
+    .content-section {
+      margin-top: 28px;
+      padding: 34px 0 10px;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
+    .content-card {
+      padding: 30px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(10, 23, 39, 0.78);
+    }
 
-      textarea {
-        min-height: 250px;
-      }
+    .section-kicker {
+      margin-bottom: 7px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
-      button {
-        width: 100%;
-      }
+    .content-card h2 {
+      margin: 0 0 13px;
+      font-size: 26px;
+      letter-spacing: -0.8px;
+    }
+
+    .content-card h3 {
+      margin: 25px 0 9px;
+      color: #dbeafe;
+      font-size: 18px;
+    }
+
+    .content-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .content-card ul,
+    .content-card ol {
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .content-card li {
+      margin: 7px 0;
+    }
+
+    .code-example {
+      overflow-x: auto;
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #050c15;
+    }
+
+    .code-example pre {
+      margin: 0;
+      color: #bfe8ff;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>TSV to JSON Converter</h1>
-  <p>Convert tab-separated data to JSON instantly in your browser.</p>
-</header>
+  <header class="site-header">
+    <div class="header-inner">
 
-<main>
+      <a class="brand" href="index.html">
+        <span class="brand-icon">{ }</span>
+        <span class="brand-name">CSV &amp; JSON Developer Tools</span>
+      </a>
 
-  <div class="card">
+      <a class="header-link" href="index.html">
+        All Tools →
+      </a>
 
-    <label for="tsvInput">TSV Input</label>
+    </div>
+  </header>
 
-    <textarea
-      id="tsvInput"
-      placeholder="Paste tab-separated data here...
+  <main class="container">
+
+    <section class="hero">
+
+      <div class="hero-badge">
+        ⚡ TSV Developer Tool
+      </div>
+
+      <h1>
+        TSV to <span>JSON Converter</span>
+      </h1>
+
+      <p>
+        Convert tab-separated data into structured JSON directly in your
+        browser. Fast, simple and designed for everyday developer workflows.
+      </p>
+
+      <div class="trust-row">
+        <span class="trust-pill">✓ Browser-based</span>
+        <span class="trust-pill">✓ No signup</span>
+        <span class="trust-pill">✓ Privacy-focused</span>
+        <span class="trust-pill">✓ Free to use</span>
+      </div>
+
+    </section>
+
+    <section class="tool-card">
+
+      <div class="tool-heading">
+        <h2>Convert TSV to JSON</h2>
+        <p>Paste tab-separated data with a header row.</p>
+      </div>
+
+      <div class="editor-grid">
+
+        <div class="editor-box">
+
+          <label class="tool-label" for="tsvInput">
+            TSV Input
+          </label>
+
+          <textarea
+            id="tsvInput"
+            placeholder="Paste tab-separated data here...
 
 Example:
 name    age    city
 Ali     28     Karachi
 Emma    34     London"
-    ></textarea>
+          ></textarea>
 
-    <div class="buttons">
-      <button onclick="convertTsv()">Convert to JSON</button>
-      <button class="secondary" onclick="clearAll()">Clear</button>
-    </div>
+          <div class="buttons">
 
-    <div id="message" class="message"></div>
+            <button class="primary" onclick="convertTsv()">
+              Convert to JSON
+            </button>
 
-  </div>
+            <button class="secondary" onclick="clearAll()">
+              Clear
+            </button>
 
+          </div>
 
-  <div class="card">
+        </div>
 
-    <label for="jsonOutput">JSON Output</label>
+        <div class="editor-box">
 
-    <textarea
-      id="jsonOutput"
-      readonly
-      placeholder="Converted JSON will appear here..."
-    ></textarea>
+          <label class="tool-label" for="jsonOutput">
+            JSON Output
+          </label>
 
-    <div class="buttons">
-      <button class="success" onclick="copyJson()">Copy JSON</button>
-      <button onclick="downloadJson()">Download JSON</button>
-    </div>
+          <textarea
+            id="jsonOutput"
+            readonly
+            placeholder="Converted JSON will appear here..."
+          ></textarea>
 
-  </div>
+          <div class="buttons">
 
+            <button class="success" onclick="copyJson()">
+              Copy JSON
+            </button>
 
-  <div class="card privacy">
+            <button class="primary" onclick="downloadJson()">
+              Download JSON
+            </button>
 
-    <strong>Privacy:</strong>
-    Your TSV data is processed entirely in your browser.
-    No data is uploaded to our server.
+          </div>
 
-  </div>
+        </div>
 
+      </div>
 
-  <div class="card info-section">
+      <div id="message" class="message"></div>
 
-    <h2>How to Use TSV to JSON Converter</h2>
+      <div class="privacy-mini">
+        <strong>🔒 Privacy First</strong><br>
+        Your TSV data is processed entirely in your browser.
+        No data is uploaded to our server by this tool.
+      </div>
 
-    <p>
-      TSV stands for Tab-Separated Values. This tool converts TSV data
-      containing a header row and data rows into a structured JSON array.
-    </p>
+    </section>
+        <section class="content-section">
 
-    <ul>
-      <li>Paste your TSV data into the input box.</li>
-      <li>Make sure the first row contains column headers.</li>
-      <li>Separate each column using a tab character.</li>
-      <li>Click <strong>Convert to JSON</strong>.</li>
-      <li>Copy the JSON result or download it as a JSON file.</li>
-    </ul>
+      <article class="content-card">
 
-    <p>
-      Example TSV:
-    </p>
+        <div class="section-kicker">
+          TSV → JSON
+        </div>
 
-    <p>
-      name&nbsp;&nbsp;&nbsp;age&nbsp;&nbsp;&nbsp;city<br>
-      Ali&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;Karachi<br>
-      Emma&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;London
-    </p>
+        <h2>
+          TSV to JSON Converter: Convert Tab-Separated Data
+        </h2>
 
-    <p>
-      The converter recognizes numbers, <strong>true</strong>,
-      <strong>false</strong> and <strong>null</strong> values.
-      Other values are kept as text.
-    </p>
+        <p>
+          TSV stands for Tab-Separated Values. It is a simple text format
+          where columns are separated by tab characters. This converter
+          transforms TSV data with a header row into an array of JSON objects.
+        </p>
 
-  </div>
+        <p>
+          Each column header becomes a JSON property and each data row becomes
+          a separate object in the resulting JSON array. The conversion is
+          performed directly in your browser.
+        </p>
 
+        <h3>
+          What this TSV to JSON converter supports
+        </h3>
 
-  <div class="card info-section">
+        <ul>
+          <li>Tab-separated columns</li>
+          <li>A header row followed by data rows</li>
+          <li>Multiple TSV records</li>
+          <li>Text, numeric, boolean and null values</li>
+          <li>Duplicate-header detection</li>
+          <li>Column-count validation</li>
+          <li>Copying and downloading the JSON result</li>
+        </ul>
 
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq">
-      <h3>What is TSV?</h3>
-      <p>
-        TSV stands for Tab-Separated Values. It is a text format where
-        columns are separated by tab characters.
-      </p>
-    </div>
-
-    <div class="faq">
-      <h3>What does this TSV to JSON converter do?</h3>
-      <p>
-        It converts TSV data with column headers into an array of JSON
-        objects, with each data row becoming a JSON object.
-      </p>
-    </div>
-
-    <div class="faq">
-      <h3>Does this tool upload my data?</h3>
-      <p>
-        No. The conversion happens locally in your browser and your
-        TSV data is not uploaded to a server by this tool.
-      </p>
-    </div>
-
-    <div class="faq">
-      <h3>What happens if a row has a different number of columns?</h3>
-      <p>
-        The converter reports a column count mismatch and does not
-        generate the JSON result until the data is corrected.
-      </p>
-    </div>
-
-    <div class="faq">
-      <h3>Can I download the JSON result?</h3>
-      <p>
-        Yes. After conversion, click Download JSON to save the result
-        as a JSON file.
-      </p>
-    </div>
-
-  </div>
+      </article>
 
 
-  <div class="card related">
+      <article class="content-card">
 
-    <h2>Related Tools</h2>
+        <div class="section-kicker">
+          How it works
+        </div>
 
-    <p>
-      <a href="tsv-to-csv.html">TSV to CSV Converter</a><br>
-      <a href="csv-to-tsv.html">CSV to TSV Converter</a><br>
-      <a href="csv-to-json.html">CSV to JSON Converter</a><br>
-      <a href="json-to-tsv.html">JSON to TSV Converter</a><br>
-      <a href="json-to-csv.html">JSON to CSV Converter</a><br>
-      <a href="json-formatter.html">JSON Formatter</a>
-    </p>
+        <h2>
+          How to Use the TSV to JSON Converter
+        </h2>
 
-  </div>
+        <ol>
+          <li>
+            Paste your TSV data into the input box.
+          </li>
 
+          <li>
+            Make sure the first row contains column headers.
+          </li>
 
-  <div class="card info-section">
+          <li>
+            Separate each column using a tab character.
+          </li>
 
-    <h2>Privacy</h2>
+          <li>
+            Click <strong>Convert to JSON</strong>.
+          </li>
 
-    <p>
-      This TSV to JSON Converter processes your data locally in your
-      browser. Your input is not uploaded to a server by this tool.
-    </p>
+          <li>
+            Review the generated JSON array.
+          </li>
 
-  </div>
+          <li>
+            Copy the JSON or download it as a JSON file.
+          </li>
+        </ol>
 
+        <h3>
+          Example TSV
+        </h3>
 
-  <div class="back">
-    <a href="index.html">← Back to All Tools</a>
-  </div>
+        <div class="code-example">
+          <pre>name	age	city
+Ali	28	Karachi
+Emma	34	London</pre>
+        </div>
 
-</main>
+        <h3>
+          Example JSON result
+        </h3>
 
-
-<footer>
-  © 2026 CSV & JSON Developer Tools
-</footer>
-
-
-<script>
-
-function convertTsv() {
-
-  const input = document.getElementById("tsvInput").value;
-  const output = document.getElementById("jsonOutput");
-
-  if (!input.trim()) {
-    output.value = "";
-    showMessage("Please enter TSV data first.", false);
-    return;
+        <div class="code-example">
+          <pre>[
+  {
+    "name": "Ali",
+    "age": 28,
+    "city": "Karachi"
+  },
+  {
+    "name": "Emma",
+    "age": 34,
+    "city": "London"
   }
+]</pre>
+        </div>
 
-  const lines = input
-    .split(/\r?\n/)
-    .filter(line => line.trim() !== "");
+      </article>
 
-  if (lines.length < 2) {
-    output.value = "";
-    showMessage(
-      "Please provide a header row and at least one data row.",
-      false
-    );
-    return;
-  }
 
-  const headers = lines[0].split("\t").map(header => header.trim());
+      <article class="content-card">
 
-  if (headers.length === 0 || headers.some(header => !header)) {
-    output.value = "";
-    showMessage("Invalid or empty header detected.", false);
-    return;
-  }
+        <div class="section-kicker">
+          Developer Guide
+        </div>
 
-  const duplicateHeaders = headers.filter(
-    (header, index) => headers.indexOf(header) !== index
-  );
+        <h2>
+          How TSV Data Becomes JSON
+        </h2>
 
-  if (duplicateHeaders.length > 0) {
-    output.value = "";
-    showMessage(
-      "Duplicate header detected: " + duplicateHeaders[0],
-      false
-    );
-    return;
-  }
+        <p>
+          The first row of the TSV input is used as the set of JSON property
+          names. Every following row is converted into one JSON object using
+          those headers.
+        </p>
 
-  const results = [];
+        <p>
+          The converter also recognizes certain values as JSON data types.
+          Numeric values are converted to numbers, while
+          <strong>true</strong>, <strong>false</strong> and
+          <strong>null</strong> are converted to their corresponding JSON
+          types. Other values remain text strings.
+        </p>
 
-  for (let i = 1; i < lines.length; i++) {
+        <h3>
+          Column validation
+        </h3>
 
-    const values = lines[i].split("\t");
+        <p>
+          Every data row must contain the same number of tab-separated
+          columns as the header row. If a row contains a different number of
+          columns, the converter reports the mismatch instead of generating
+          incomplete JSON.
+        </p>
 
-    if (values.length !== headers.length) {
-      output.value = "";
+        <h3>
+          Common uses
+        </h3>
 
-      showMessage(
-        "Column count mismatch on line " +
-        (i + 1) +
-        ". Expected " +
-        headers.length +
-        " column(s), found " +
-        values.length +
-        ".",
-        false
-      );
+        <ul>
+          <li>Converting spreadsheet-style tabular data to JSON</li>
+          <li>Preparing sample data for web development</li>
+          <li>Transforming TSV exports for API workflows</li>
+          <li>Testing JSON-based applications</li>
+          <li>Inspecting structured tab-separated data</li>
+        </ul>
 
-      return;
+      </article>
+
+
+      <article class="content-card">
+
+        <div class="section-kicker">
+          TSV vs JSON
+        </div>
+
+        <h2>
+          TSV vs JSON
+        </h2>
+
+        <p>
+          TSV is a compact tabular text format that works well for rows and
+          columns. JSON is a structured data format commonly used by web
+          applications, APIs and JavaScript-based systems.
+        </p>
+
+        <p>
+          Converting TSV to JSON is useful when tabular data needs to be
+          consumed by software that expects objects and arrays rather than
+          rows and columns.
+        </p>
+
+      </article>
+            <article class="content-card">
+
+        <div class="section-kicker">
+          FAQ
+        </div>
+
+        <h2>
+          Frequently Asked Questions
+        </h2>
+
+        <div class="faq-item">
+
+          <h3>
+            What is TSV?
+          </h3>
+
+          <p>
+            TSV stands for Tab-Separated Values. It is a text format where
+            columns are separated by tab characters.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            What does this TSV to JSON converter do?
+          </h3>
+
+          <p>
+            It converts TSV data with column headers into an array of JSON
+            objects, with each data row becoming a JSON object.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Does this tool upload my data?
+          </h3>
+
+          <p>
+            No. The conversion happens locally in your browser and your TSV
+            data is not uploaded to a server by this tool.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            What happens if a row has a different number of columns?
+          </h3>
+
+          <p>
+            The converter reports a column count mismatch and does not
+            generate the JSON result until the data is corrected.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Can I download the JSON result?
+          </h3>
+
+          <p>
+            Yes. After conversion, click Download JSON to save the result
+            as a JSON file.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="content-card">
+
+        <div class="section-kicker">
+          More Developer Tools
+        </div>
+
+        <h2>
+          Related Tools
+        </h2>
+
+        <p>
+          Continue working with CSV, TSV and JSON data using these related
+          browser-based developer tools.
+        </p>
+
+        <div class="related-tools">
+
+          <a href="tsv-to-csv.html">
+            <strong>TSV to CSV</strong>
+            <span>Convert tab-separated data to CSV</span>
+          </a>
+
+          <a href="csv-to-tsv.html">
+            <strong>CSV to TSV</strong>
+            <span>Convert CSV data to tab-separated values</span>
+          </a>
+
+          <a href="csv-to-json.html">
+            <strong>CSV to JSON</strong>
+            <span>Convert CSV rows into JSON objects</span>
+          </a>
+
+          <a href="json-to-tsv.html">
+            <strong>JSON to TSV</strong>
+            <span>Convert JSON data to TSV</span>
+          </a>
+
+          <a href="json-to-csv.html">
+            <strong>JSON to CSV</strong>
+            <span>Convert JSON data to CSV</span>
+          </a>
+
+          <a href="json-formatter.html">
+            <strong>JSON Formatter</strong>
+            <span>Format and inspect JSON data</span>
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="content-card">
+
+        <div class="section-kicker">
+          Privacy
+        </div>
+
+        <h2>
+          Privacy-Focused TSV Conversion
+        </h2>
+
+        <p>
+          This TSV to JSON Converter processes your data locally in your
+          browser. Your input is not uploaded to a server by this tool.
+        </p>
+
+        <p>
+          This makes the converter convenient for quickly transforming TSV
+          data without sending the input to a remote conversion service.
+        </p>
+
+      </article>
+
+
+      <section class="bottom-cta">
+
+        <div>
+          <div class="section-kicker">
+            Developer Toolkit
+          </div>
+
+          <h2>
+            Need another data conversion tool?
+          </h2>
+
+          <p>
+            Explore the complete collection of free browser-based CSV, JSON
+            and developer data tools.
+          </p>
+        </div>
+
+        <a href="index.html" class="cta-button">
+          Explore All Tools →
+        </a>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+
+        <div class="footer-logo">
+          { }
+        </div>
+
+        <div>
+          <strong>
+            CSV &amp; JSON Developer Tools
+          </strong>
+
+          <p>
+            Free browser-based tools for working with structured developer
+            data.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+
+      </div>
+
+
+      <div class="footer-copy">
+        © 2026 CSV &amp; JSON Developer Tools. All rights reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <style>
+
+    .faq-item {
+      padding: 17px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    const row = {};
+    .faq-item:first-of-type {
+      padding-top: 0;
+    }
 
-    headers.forEach((header, index) => {
-      row[header] = parseValue(values[index]);
-    });
+    .faq-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
 
-    results.push(row);
-  }
+    .faq-item h3 {
+      margin: 0 0 6px;
+      color: #e5edf7;
+      font-size: 16px;
+    }
 
-  output.value = JSON.stringify(results, null, 2);
+    .faq-item p {
+      margin: 0;
+    }
 
-  showMessage(
-    results.length +
-    " record(s) converted successfully.",
-    true
-  );
-}
+    .related-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .related-tools a {
+      min-height: 105px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      padding: 17px;
+      text-decoration: none;
+      background: rgba(9, 22, 38, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .related-tools a:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 211, 238, 0.35);
+      background: rgba(13, 32, 53, 0.95);
+    }
+
+    .related-tools strong {
+      color: #e5edf7;
+      font-size: 14px;
+    }
+
+    .related-tools span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .bottom-cta {
+      margin: 28px 0 70px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      border: 1px solid rgba(59, 130, 246, 0.22);
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(34, 211, 238, 0.13),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(15, 35, 59, 0.95),
+          rgba(8, 20, 35, 0.95)
+        );
+    }
+
+    .bottom-cta h2 {
+      margin: 0 0 6px;
+      font-size: 23px;
+      letter-spacing: -0.6px;
+    }
+
+    .bottom-cta p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta-button {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 11px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--blue-dark),
+        var(--blue)
+      );
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.25);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: rgba(3, 9, 17, 0.75);
+    }
+
+    .footer-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 35px 0;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: #10243a;
+      color: var(--cyan);
+      font-family: monospace;
+      font-weight: 900;
+    }
+
+    .footer-brand strong {
+      font-size: 14px;
+    }
+
+    .footer-brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin: 25px 0 18px;
+    }
+
+    .footer-links a {
+      color: #91a4b8;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-copy {
+      padding-top: 17px;
+      border-top: 1px solid var(--border);
+      color: #63788e;
+      font-size: 11px;
+    }
+
+    @media (max-width: 850px) {
+
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .related-tools {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bottom-cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      .header-inner,
+      .container,
+      .footer-inner {
+        width: 94%;
+      }
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 50px 0 30px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+        letter-spacing: -1.8px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .tool-card {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      textarea {
+        min-height: 270px;
+      }
+
+      .content-card {
+        padding: 22px;
+        border-radius: 17px;
+      }
+
+      .content-card h2 {
+        font-size: 23px;
+      }
+
+      .related-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-cta {
+        padding: 22px;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+    <script>
+
+    function convertTsv() {
+
+      const input = document.getElementById("tsvInput").value;
+      const output = document.getElementById("jsonOutput");
+
+      if (!input.trim()) {
+        output.value = "";
+        showMessage("Please enter TSV data first.", false);
+        return;
+      }
+
+      const lines = input
+        .split(/\r?\n/)
+        .filter(line => line.trim() !== "");
+
+      if (lines.length < 2) {
+        output.value = "";
+        showMessage(
+          "Please provide a header row and at least one data row.",
+          false
+        );
+        return;
+      }
+
+      const headers = lines[0].split("\t").map(header => header.trim());
+
+      if (headers.length === 0 || headers.some(header => !header)) {
+        output.value = "";
+        showMessage("Invalid or empty header detected.", false);
+        return;
+      }
+
+      const duplicateHeaders = headers.filter(
+        (header, index) => headers.indexOf(header) !== index
+      );
+
+      if (duplicateHeaders.length > 0) {
+        output.value = "";
+        showMessage(
+          "Duplicate header detected: " + duplicateHeaders[0],
+          false
+        );
+        return;
+      }
+
+      const results = [];
+
+      for (let i = 1; i < lines.length; i++) {
+
+        const values = lines[i].split("\t");
+
+        if (values.length !== headers.length) {
+          output.value = "";
+
+          showMessage(
+            "Column count mismatch on line " +
+            (i + 1) +
+            ". Expected " +
+            headers.length +
+            " column(s), found " +
+            values.length +
+            ".",
+            false
+          );
+
+          return;
+        }
+
+        const row = {};
+
+        headers.forEach((header, index) => {
+          row[header] = parseValue(values[index]);
+        });
+
+        results.push(row);
+      }
+
+      output.value = JSON.stringify(results, null, 2);
+
+      showMessage(
+        results.length +
+        " record(s) converted successfully.",
+        true
+      );
+    }
 
 
-function parseValue(value) {
+    function parseValue(value) {
 
-  value = value.trim();
+      value = value.trim();
 
-  if (value === "") {
-    return "";
-  }
+      if (value === "") {
+        return "";
+      }
 
-  if (value === "true") {
-    return true;
-  }
+      if (value === "true") {
+        return true;
+      }
 
-  if (value === "false") {
-    return false;
-  }
+      if (value === "false") {
+        return false;
+      }
 
-  if (value === "null") {
-    return null;
-  }
+      if (value === "null") {
+        return null;
+      }
 
-  if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value)) {
-    return Number(value);
-  }
+      if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value)) {
+        return Number(value);
+      }
 
-  return value;
-}
-
-
-function copyJson() {
-
-  const output = document.getElementById("jsonOutput");
-
-  if (!output.value) {
-    showMessage("Nothing to copy.", false);
-    return;
-  }
-
-  navigator.clipboard.writeText(output.value)
-    .then(() => {
-      showMessage("JSON copied to clipboard.", true);
-    })
-    .catch(() => {
-      showMessage("Unable to copy JSON.", false);
-    });
-}
+      return value;
+    }
 
 
-function downloadJson() {
+    function copyJson() {
 
-  const output = document.getElementById("jsonOutput").value;
+      const output = document.getElementById("jsonOutput");
 
-  if (!output) {
-    showMessage("Nothing to download.", false);
-    return;
-  }
+      if (!output.value) {
+        showMessage("Nothing to copy.", false);
+        return;
+      }
 
-  const blob = new Blob(
-    [output],
-    { type: "application/json" }
-  );
-
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = "converted.json";
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  document.body.removeChild(link);
-
-  URL.revokeObjectURL(url);
-
-  showMessage("JSON file downloaded.", true);
-}
+      navigator.clipboard.writeText(output.value)
+        .then(() => {
+          showMessage("JSON copied to clipboard.", true);
+        })
+        .catch(() => {
+          showMessage("Unable to copy JSON.", false);
+        });
+    }
 
 
-function clearAll() {
+    function downloadJson() {
 
-  document.getElementById("tsvInput").value = "";
-  document.getElementById("jsonOutput").value = "";
+      const output = document.getElementById("jsonOutput").value;
 
-  document.getElementById("message").style.display = "none";
-}
+      if (!output) {
+        showMessage("Nothing to download.", false);
+        return;
+      }
+
+      const blob = new Blob(
+        [output],
+        { type: "application/json" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "converted.json";
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+
+      showMessage("JSON file downloaded.", true);
+    }
 
 
-function showMessage(text, success) {
+    function clearAll() {
 
-  const message = document.getElementById("message");
+      document.getElementById("tsvInput").value = "";
+      document.getElementById("jsonOutput").value = "";
 
-  message.textContent = text;
-  message.style.display = "block";
+      document.getElementById("message").style.display = "none";
+    }
 
-  message.className =
-    "message " +
-    (success ? "success-message" : "error-message");
-}
 
-</script>
+    function showMessage(text, success) {
+
+      const message = document.getElementById("message");
+
+      message.textContent = text;
+      message.style.display = "block";
+
+      message.className =
+        "message " +
+        (success ? "success-message" : "error-message");
+    }
+
+  </script>
 
 </body>
 </html>
