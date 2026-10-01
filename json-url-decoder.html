@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
   <title>JSON URL Decoder - Decode URL Encoded JSON</title>
+
   <meta name="description" content="Decode URL encoded JSON back into readable JSON instantly in your browser. Free, fast and privacy-focused JSON URL decoder.">
   <meta name="robots" content="index, follow">
 
@@ -42,207 +43,514 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this tool validate the decoded JSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After URL decoding, the result is parsed as JSON and invalid JSON produces an error message."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does JSON URL Decoder support Urdu and Unicode characters?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. URL-encoded Unicode characters can be decoded and displayed as readable text."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Decoding and JSON processing happen directly in the browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the decoded JSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The decoded JSON can be downloaded as a JSON file."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(13, 27, 45, 0.88);
+      --panel-2: #0e1c30;
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #e7eef8;
+      --muted: #94a8c2;
+      --blue: #3b82f6;
+      --blue-dark: #2563eb;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --red: #f87171;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at 15% 0%,
+          rgba(37, 99, 235, 0.18),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(34, 211, 238, 0.10),
+          transparent 28%
+        ),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+    a {
+      color: inherit;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7, 17, 31, 0.82);
+      backdrop-filter: blur(18px);
     }
 
-    h1 {
-      margin-top: 0;
-      font-size: 30px;
+    .header-inner {
+      width: min(1120px, 92%);
+      margin: auto;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      color: white;
+      font-family: monospace;
+      font-size: 18px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--cyan)
+        );
+      box-shadow:
+        0 10px 30px rgba(34, 211, 238, 0.18);
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-link:hover {
+      color: white;
+    }
+
+    .page {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 52px 0 70px;
+    }
+
+    .hero {
       text-align: center;
+      max-width: 850px;
+      margin: 0 auto 38px;
     }
 
-    .description {
-      text-align: center;
-      color: #6b7280;
-      margin-bottom: 25px;
-      line-height: 1.6;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(59, 130, 246, 0.28);
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.08);
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .hero h1 {
+      margin: 17px 0 14px;
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .hero h1 span {
+      background:
+        linear-gradient(
+          90deg,
+          #60a5fa,
+          #22d3ee
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .trust-pill {
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.025);
+      color: #b9c9dc;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tool-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(15, 31, 52, 0.96),
+          rgba(9, 22, 38, 0.96)
+        );
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .tool-title {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .tool-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .privacy-badge {
+      flex-shrink: 0;
+      padding: 7px 11px;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.08);
+      color: #86efac;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .editor-box {
+      margin-bottom: 18px;
+    }
+
+    .tool-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+      color: #dbeafe;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tool-label span {
+      color: #6f86a3;
+      font-size: 11px;
+      font-weight: 600;
     }
 
     textarea {
       width: 100%;
-      min-height: 260px;
-      padding: 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-family: monospace;
-      font-size: 14px;
+      min-height: 300px;
+      padding: 17px;
       resize: vertical;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 15px;
       outline: none;
-      line-height: 1.5;
+      background: #06101d;
+      color: #dce9f8;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     textarea:focus {
-      border-color: #2563eb;
+      border-color: rgba(59, 130, 246, 0.65);
+      box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
     }
 
-    .output {
-      background: #f8fafc;
+    #jsonOutput {
+      color: #c7f9d4;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 15px 0;
+      margin: 14px 0 22px;
     }
 
     button {
-      border: none;
-      padding: 11px 16px;
-      border-radius: 8px;
+      border: 0;
+      border-radius: 11px;
+      padding: 11px 17px;
       cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
       color: white;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        box-shadow 0.18s ease;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .primary {
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue-dark),
+          #0891b2
+        );
+      box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.20);
+    }
+
+    .primary:hover {
+      box-shadow:
+        0 14px 32px rgba(37, 99, 235, 0.30);
     }
 
     .success {
-      background: #16a34a;
+      background:
+        linear-gradient(
+          135deg,
+          #15803d,
+          #16a34a
+        );
+      box-shadow:
+        0 10px 25px rgba(34, 197, 94, 0.14);
     }
 
     .danger {
-      background: #dc2626;
+      background:
+        linear-gradient(
+          135deg,
+          #b91c1c,
+          #dc2626
+        );
+    }
+
+    .secondary {
+      background: #17263a;
+      color: #c8d6e8;
+      border: 1px solid var(--border);
     }
 
     .status {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
       display: none;
-      font-size: 14px;
-      line-height: 1.5;
+      margin: 6px 0 20px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.55;
+      border: 1px solid transparent;
     }
 
-    .privacy {
-      margin-top: 20px;
-      padding: 12px;
-      background: #eef6ff;
-      border-radius: 8px;
-      color: #374151;
-      font-size: 14px;
-      line-height: 1.6;
+    .valid {
+      background: rgba(34, 197, 94, 0.08);
+      color: #86efac;
+      border-color: rgba(34, 197, 94, 0.18);
     }
 
-    .info {
-      margin-top: 20px;
-      line-height: 1.7;
+    .invalid {
+      background: rgba(248, 113, 113, 0.08);
+      color: #fca5a5;
+      border-color: rgba(248, 113, 113, 0.18);
     }
 
-    .info h2 {
-      margin-top: 0;
+    .privacy-mini {
+      margin-top: 5px;
+      padding: 13px 15px;
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      border-radius: 13px;
+      background: rgba(34, 197, 94, 0.055);
+      color: #9bc9a8;
+      font-size: 12px;
     }
 
-    .info h3 {
-      margin-bottom: 6px;
-    }
-
-    .info ol {
-      padding-left: 22px;
-    }
-
-    .related {
-      margin-top: 20px;
-    }
-
-    .related a {
-      display: inline-block;
-      margin: 6px 8px 6px 0;
-      padding: 8px 12px;
-      background: #eef2ff;
-      color: #2563eb;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 15px auto;
-        padding: 12px;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      button {
-        width: 100%;
-      }
+    .privacy-mini strong {
+      color: #86efac;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+<header class="site-header">
+  <div class="header-inner">
 
-  <div class="card">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">{ }</span>
+      <span>CSV &amp; JSON Developer Tools</span>
+    </a>
 
-    <h1>JSON URL Decoder</h1>
+    <a class="header-link" href="index.html">
+      All Tools →
+    </a>
 
-    <p class="description">
-      Decode URL encoded JSON back into readable JSON instantly in your browser.
-      No data is uploaded to a server.
+  </div>
+</header>
+
+<main class="page">
+
+  <section class="hero">
+
+    <div class="hero-badge">
+      Developer Data Tool
+    </div>
+
+    <h1>
+      JSON URL <span>Decoder</span>
+    </h1>
+
+    <p>
+      Decode URL encoded JSON back into readable, formatted JSON directly
+      in your browser. Fast, simple and privacy-focused.
     </p>
 
+    <div class="trust-row">
+      <span class="trust-pill">✓ Free to use</span>
+      <span class="trust-pill">✓ Browser-based</span>
+      <span class="trust-pill">✓ No data upload</span>
+      <span class="trust-pill">✓ Unicode support</span>
+    </div>
 
-    <label for="urlInput">URL Encoded JSON</label>
+  </section>
 
-    <textarea
-      id="urlInput"
-      placeholder="Paste URL encoded JSON here..."
-    ></textarea>
+  <section class="tool-card">
 
+    <div class="tool-card-top">
+
+      <div>
+        <h2 class="tool-title">URL Encoded JSON → JSON</h2>
+        <p class="tool-subtitle">
+          Paste encoded JSON, decode it, then copy or download the result.
+        </p>
+      </div>
+
+      <div class="privacy-badge">
+        🔒 Local Processing
+      </div>
+
+    </div>
+
+    <div class="editor-box">
+
+      <div class="tool-label">
+        <label for="urlInput">URL Encoded JSON</label>
+        <span>Paste encoded data</span>
+      </div>
+
+      <textarea
+        id="urlInput"
+        placeholder="Paste URL encoded JSON here..."
+      ></textarea>
+
+    </div>
 
     <div class="buttons">
 
-      <button onclick="decodeJSON()">
+      <button class="primary" onclick="decodeJSON()">
         Decode JSON
       </button>
 
@@ -250,7 +558,7 @@
         Copy JSON
       </button>
 
-      <button onclick="downloadJSON()">
+      <button class="primary" onclick="downloadJSON()">
         Download JSON
       </button>
 
@@ -260,272 +568,1069 @@
 
     </div>
 
-
     <div id="status" class="status"></div>
 
+    <div class="editor-box">
 
-    <label for="jsonOutput">JSON Output</label>
+      <div class="tool-label">
+        <label for="jsonOutput">Decoded JSON</label>
+        <span>Formatted locally</span>
+      </div>
 
-    <textarea
-      id="jsonOutput"
-      class="output"
-      readonly
-      placeholder="Decoded JSON will appear here..."
-    ></textarea>
+      <textarea
+        id="jsonOutput"
+        class="output"
+        readonly
+        placeholder="Decoded JSON will appear here..."
+      ></textarea>
 
+    </div>
 
-    <div class="privacy">
-      🔒 <strong>Privacy:</strong>
-      Your data is processed entirely in your browser.
-      Nothing is uploaded to our server.
+    <div class="privacy-mini">
+      <strong>Privacy first:</strong>
+      Decoding and JSON processing happen directly in your browser.
+      Your data is not uploaded to our server.
+    </div>
+
+  </section>
+    <section class="content-card">
+
+    <div class="section-kicker">JSON URL DECODER GUIDE</div>
+
+    <h2>How to Use the JSON URL Decoder</h2>
+
+    <p>
+      This free JSON URL Decoder converts percent-encoded JSON back into
+      readable JSON. The browser first decodes the URL-encoded text and
+      then parses the result as JSON.
+    </p>
+
+    <div class="steps-grid">
+
+      <div class="step-card">
+        <span class="step-number">01</span>
+
+        <h3>Paste Encoded JSON</h3>
+
+        <p>
+          Paste your URL encoded JSON into the input editor.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <span class="step-number">02</span>
+
+        <h3>Decode</h3>
+
+        <p>
+          Click <strong>Decode JSON</strong> to decode the percent-encoded
+          characters.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <span class="step-number">03</span>
+
+        <h3>Validate</h3>
+
+        <p>
+          The decoded text is parsed as JSON. Invalid JSON produces an
+          error message instead of an output.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <span class="step-number">04</span>
+
+        <h3>Copy or Download</h3>
+
+        <p>
+          Copy the formatted JSON or download it as a
+          <code>.json</code> file.
+        </p>
+      </div>
+
+    </div>
+
+    <h2>What Is URL Decoding?</h2>
+
+    <p>
+      URL encoding, also known as percent encoding, represents certain
+      characters using a percent sign followed by hexadecimal values.
+      This is commonly used when data needs to be safely represented inside
+      URLs.
+    </p>
+
+    <p>
+      URL decoding reverses this representation. For example, encoded
+      spaces, punctuation and Unicode characters can be restored to their
+      original text.
+    </p>
+
+    <h2>How JSON URL Decoding Works</h2>
+
+    <p>
+      This tool uses the browser's built-in
+      <code>decodeURIComponent()</code> function to decode the input.
+      The resulting text is then passed to
+      <code>JSON.parse()</code>.
+    </p>
+
+    <p>
+      If both steps succeed, the JSON is formatted with two-space
+      indentation and displayed in the output editor.
+    </p>
+
+    <div class="code-example">
+
+      <div class="code-title">
+        URL Encoded JSON
+      </div>
+
+      <pre>%7B%22name%22%3A%22Ali%22%2C%22age%22%3A28%7D</pre>
+
+    </div>
+
+    <div class="code-example output-example">
+
+      <div class="code-title">
+        Decoded JSON
+      </div>
+
+      <pre>{
+  "name": "Ali",
+  "age": 28
+}</pre>
+
+    </div>
+
+    <h2>Unicode and Urdu Support</h2>
+
+    <p>
+      URL encoding can represent Unicode characters as percent-encoded
+      sequences. Because the decoder uses the browser's Unicode-aware
+      URL decoding function, encoded text can include Urdu and other
+      non-Latin scripts.
+    </p>
+
+    <div class="developer-note">
+      <strong>Developer note:</strong>
+      This tool expects the decoded result to be valid JSON. It is intended
+      for URL-encoded JSON data rather than arbitrary URL query strings or
+      complete web URLs.
+    </div>
+
+  </section>
+
+  <section class="faq-section">
+
+    <div class="section-kicker">FAQ</div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-grid">
+
+      <details>
+        <summary>Does this tool validate the decoded JSON?</summary>
+
+        <p>
+          Yes. After URL decoding, the resulting text is parsed with
+          JSON.parse(). If it is not valid JSON, an error is displayed.
+        </p>
+      </details>
+
+      <details>
+        <summary>Does it support Urdu and other Unicode characters?</summary>
+
+        <p>
+          Yes. URL-encoded Unicode characters can be decoded and displayed
+          as readable text, including Urdu and other non-Latin scripts.
+        </p>
+      </details>
+
+      <details>
+        <summary>Is my data uploaded to a server?</summary>
+
+        <p>
+          No. The decoding and JSON processing happen directly in your
+          browser. Your input is not uploaded to our server by this tool.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I download the decoded JSON?</summary>
+
+        <p>
+          Yes. After decoding, click Download JSON to save the formatted
+          result as a JSON file.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I copy the decoded JSON?</summary>
+
+        <p>
+          Yes. Click Copy JSON after a successful decoding operation.
+        </p>
+      </details>
+
+      <details>
+        <summary>What happens if the URL encoded text is invalid?</summary>
+
+        <p>
+          The browser's URL decoding operation can return an error for
+          malformed percent-encoded sequences. The tool displays the
+          resulting error message.
+        </p>
+      </details>
+
+    </div>
+
+  </section>
+    <section class="related-section">
+
+    <div class="section-kicker">MORE DEVELOPER TOOLS</div>
+
+    <div class="related-heading">
+
+      <div>
+        <h2>Related JSON &amp; Encoding Tools</h2>
+
+        <p>
+          Continue working with encoded, formatted and transformed JSON
+          using other browser-based developer tools.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="related-tools">
+
+      <a href="json-to-url-encoder.html" class="related-tool">
+
+        <span class="related-icon">J→U</span>
+
+        <span>
+          <strong>JSON to URL Encoder</strong>
+          <small>Encode JSON for URL-safe representation.</small>
+        </span>
+
+        <b>→</b>
+
+      </a>
+
+      <a href="json-formatter.html" class="related-tool">
+
+        <span class="related-icon">{ }</span>
+
+        <span>
+          <strong>JSON Formatter</strong>
+          <small>Format and inspect JSON data.</small>
+        </span>
+
+        <b>→</b>
+
+      </a>
+
+      <a href="json-to-base64.html" class="related-tool">
+
+        <span class="related-icon">J→B</span>
+
+        <span>
+          <strong>JSON to Base64</strong>
+          <small>Encode JSON data as Base64.</small>
+        </span>
+
+        <b>→</b>
+
+      </a>
+
+      <a href="base64-to-json.html" class="related-tool">
+
+        <span class="related-icon">B→J</span>
+
+        <span>
+          <strong>Base64 to JSON</strong>
+          <small>Decode Base64 data into JSON.</small>
+        </span>
+
+        <b>→</b>
+
+      </a>
+
+      <a href="text-to-json.html" class="related-tool">
+
+        <span class="related-icon">T→J</span>
+
+        <span>
+          <strong>Text to JSON</strong>
+          <small>Transform text data into JSON.</small>
+        </span>
+
+        <b>→</b>
+
+      </a>
+
+      <a href="json-to-text.html" class="related-tool">
+
+        <span class="related-icon">J→T</span>
+
+        <span>
+          <strong>JSON to Text</strong>
+          <small>Convert JSON structures into text.</small>
+        </span>
+
+        <b>→</b>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <section class="bottom-cta">
+
+    <div class="cta-icon">{ }</div>
+
+    <div>
+
+      <h2>More Free Developer Tools</h2>
+
+      <p>
+        Explore the complete collection of browser-based CSV, JSON and
+        data transformation tools.
+      </p>
+
+    </div>
+
+    <a href="index.html" class="cta-button">
+      Explore All Tools →
+    </a>
+
+  </section>
+
+  <section class="privacy-section">
+
+    <div class="privacy-icon">
+      🔒
+    </div>
+
+    <div>
+
+      <h2>Privacy First</h2>
+
+      <p>
+        This JSON URL Decoder processes your data directly inside your
+        browser. Your URL encoded JSON is not uploaded to our server.
+      </p>
+
+      <p>
+        The tool uses client-side JavaScript for URL decoding, JSON parsing,
+        copying and downloading the result.
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+
+  <div class="footer-inner">
+
+    <div>
+
+      <a class="footer-brand" href="index.html">
+
+        <span class="brand-icon">{ }</span>
+
+        <span>CSV &amp; JSON Developer Tools</span>
+
+      </a>
+
+      <p class="footer-description">
+        Free browser-based tools for converting, formatting, validating
+        and transforming CSV and JSON data.
+      </p>
+
+    </div>
+
+    <div class="footer-links">
+
+      <a href="index.html">All Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms</a>
+
     </div>
 
   </div>
 
+  <div class="footer-bottom">
 
-  <div class="card info">
+    <span>© 2026 CSV &amp; JSON Developer Tools</span>
 
-    <h2>How to Use JSON URL Decoder</h2>
-
-    <ol>
-      <li>Paste URL encoded JSON into the input box.</li>
-      <li>Click <strong>Decode JSON</strong>.</li>
-      <li>The encoded text will be decoded and formatted as readable JSON.</li>
-      <li>Copy the decoded JSON or download it as a JSON file.</li>
-    </ol>
-
-
-    <h2>What is URL Decoding?</h2>
-
-    <p>
-      URL decoding converts percent-encoded characters back into their
-      original form. For example, encoded spaces, punctuation and Unicode
-      characters can be restored to readable text.
-    </p>
-
-    <p>
-      This tool uses the browser's built-in
-      <strong>decodeURIComponent()</strong> function and then parses the
-      decoded text as JSON.
-    </p>
-
-
-    <h2>Frequently Asked Questions</h2>
-
-    <h3>Does this tool validate the decoded JSON?</h3>
-
-    <p>
-      Yes. After URL decoding, the result is parsed as JSON. If the decoded
-      text is not valid JSON, an error message is displayed.
-    </p>
-
-    <h3>Does it support Urdu and other Unicode characters?</h3>
-
-    <p>
-      Yes. URL-encoded Unicode characters are decoded by the browser and
-      can be displayed as readable text, including Urdu and other
-      non-Latin scripts.
-    </p>
-
-    <h3>Is my data uploaded to a server?</h3>
-
-    <p>
-      No. The decoding and JSON processing happen directly in your browser.
-      Your data is not uploaded to our server.
-    </p>
-
-    <h3>Can I download the decoded JSON?</h3>
-
-    <p>
-      Yes. After decoding, click <strong>Download JSON</strong> to save the
-      formatted result as a JSON file.
-    </p>
+    <span>Built for developers</span>
 
   </div>
 
+</footer>
+<style>
+  .content-card,
+  .faq-section,
+  .related-section,
+  .privacy-section {
+    margin-top: 28px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(13, 28, 47, 0.90),
+        rgba(8, 20, 35, 0.90)
+      );
+    box-shadow:
+      0 18px 55px rgba(0, 0, 0, 0.18);
+  }
 
-  <div class="card related">
+  .section-kicker {
+    margin-bottom: 9px;
+    color: #60a5fa;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+  }
 
-    <h2>Related Tools</h2>
+  .content-card h2,
+  .faq-section h2,
+  .related-section h2,
+  .privacy-section h2,
+  .bottom-cta h2 {
+    margin: 0 0 12px;
+    color: #f1f6fd;
+    font-size: 26px;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
 
-    <a href="json-to-url-encoder.html">JSON to URL Encoder</a>
-    <a href="json-formatter.html">JSON Formatter</a>
-    <a href="json-to-base64.html">JSON to Base64</a>
-    <a href="base64-to-json.html">Base64 to JSON</a>
-    <a href="text-to-json.html">Text to JSON</a>
-    <a href="json-to-text.html">JSON to Text</a>
+  .content-card h2:not(:first-of-type) {
+    margin-top: 38px;
+  }
 
-  </div>
+  .content-card h3 {
+    margin: 8px 0 7px;
+    font-size: 17px;
+    color: #e7eef8;
+  }
 
+  .content-card p,
+  .faq-section p,
+  .related-section p,
+  .privacy-section p {
+    color: var(--muted);
+  }
 
-  <a class="back" href="index.html">
-    ← Back to All Tools
-  </a>
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+  }
 
-</div>
+  .step-card {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.025);
+  }
 
+  .step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 4px;
+    border-radius: 9px;
+    background: rgba(59, 130, 246, 0.12);
+    color: #93c5fd;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .step-card p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  code {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: rgba(148, 163, 184, 0.10);
+    color: #a5f3fc;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+
+  .code-example {
+    margin: 16px 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: #050d17;
+  }
+
+  .code-title {
+    padding: 9px 13px;
+    border-bottom: 1px solid var(--border);
+    color: #8da3bd;
+    background: rgba(255, 255, 255, 0.025);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .code-example pre {
+    margin: 0;
+    padding: 18px;
+    overflow-x: auto;
+    color: #cbdff4;
+    font-family:
+      "SFMono-Regular",
+      Consolas,
+      monospace;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .output-example pre {
+    color: #a7f3c0;
+  }
+
+  .developer-note {
+    margin-top: 24px;
+    padding: 17px;
+    border-left: 3px solid var(--cyan);
+    border-radius: 10px;
+    background: rgba(34, 211, 238, 0.055);
+    color: #9db2c9;
+    font-size: 13px;
+  }
+
+  .developer-note strong {
+    color: #67e8f9;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+    margin-top: 20px;
+  }
+
+  details {
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.025);
+    overflow: hidden;
+  }
+
+  summary {
+    padding: 16px 18px;
+    cursor: pointer;
+    color: #dce9f8;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  details p {
+    margin: 0;
+    padding: 0 18px 17px;
+    font-size: 13px;
+  }
+
+  .related-heading {
+    margin-bottom: 18px;
+  }
+
+  .related-heading p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+  }
+
+  .related-tool {
+    display: grid;
+    grid-template-columns: 43px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.025);
+    text-decoration: none;
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .related-tool:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.35);
+    background: rgba(59, 130, 246, 0.055);
+  }
+
+  .related-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: rgba(59, 130, 246, 0.11);
+    color: #93c5fd;
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .related-tool strong {
+    display: block;
+    color: #e4edf8;
+    font-size: 13px;
+  }
+
+  .related-tool small {
+    display: block;
+    margin-top: 2px;
+    color: #758ba5;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .related-tool b {
+    color: #6683a3;
+    font-size: 17px;
+  }
+
+  .bottom-cta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 28px;
+    padding: 24px;
+    border: 1px solid rgba(59, 130, 246, 0.20);
+    border-radius: 20px;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(37, 99, 235, 0.12),
+        rgba(34, 211, 238, 0.055)
+      );
+  }
+
+  .bottom-cta h2 {
+    margin-bottom: 5px;
+    font-size: 21px;
+  }
+
+  .bottom-cta p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .cta-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background:
+      linear-gradient(
+        135deg,
+        var(--blue),
+        var(--cyan)
+      );
+    color: white;
+    font-family: monospace;
+    font-weight: 900;
+  }
+
+  .cta-button {
+    margin-left: auto;
+    flex-shrink: 0;
+    padding: 11px 15px;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .privacy-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 17px;
+    border-color: rgba(34, 197, 94, 0.14);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(34, 197, 94, 0.06),
+        rgba(8, 20, 35, 0.92)
+      );
+  }
+
+  .privacy-section h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+
+  .privacy-section p {
+    margin: 5px 0;
+    font-size: 13px;
+  }
+
+  .privacy-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(34, 197, 94, 0.10);
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: #050c16;
+  }
+
+  .footer-inner {
+    width: min(1120px, 92%);
+    margin: auto;
+    padding: 40px 0 28px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #e5eef9;
+    text-decoration: none;
+    font-weight: 800;
+  }
+
+  .footer-brand .brand-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  .footer-description {
+    max-width: 470px;
+    margin: 14px 0 0;
+    color: #71859d;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-end;
+    gap: 10px 17px;
+    max-width: 430px;
+  }
+
+  .footer-links a {
+    color: #8297af;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .footer-links a:hover {
+    color: #dbeafe;
+  }
+
+  .footer-bottom {
+    width: min(1120px, 92%);
+    margin: auto;
+    padding: 17px 0 22px;
+    border-top: 1px solid rgba(148, 163, 184, 0.08);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #53677f;
+    font-size: 11px;
+  }
+
+  @media (max-width: 760px) {
+
+    .page {
+      width: 94%;
+      padding-top: 35px;
+    }
+
+    .header-inner {
+      width: 94%;
+    }
+
+    .header-link {
+      display: none;
+    }
+
+    .tool-card,
+    .content-card,
+    .faq-section,
+    .related-section,
+    .privacy-section {
+      padding: 21px;
+      border-radius: 18px;
+    }
+
+    .tool-card-top {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .steps-grid,
+    .faq-grid,
+    .related-tools {
+      grid-template-columns: 1fr;
+    }
+
+    textarea {
+      min-height: 250px;
+    }
+
+    .bottom-cta {
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .cta-button {
+      margin-left: 0;
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      padding-top: 30px;
+    }
+
+    .footer-links {
+      justify-content: flex-start;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .brand span:last-child {
+      font-size: 13px;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+    }
+
+    .hero p {
+      font-size: 15px;
+    }
+
+    .buttons {
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .privacy-section {
+      flex-direction: column;
+    }
+  }
+</style>
 
 <script>
 
-function showStatus(message, type = "success") {
+  function showStatus(message, type = "success") {
 
-  const status =
-    document.getElementById("status");
+    const status =
+      document.getElementById("status");
 
-  status.textContent = message;
-  status.style.display = "block";
+    status.textContent = message;
+    status.style.display = "block";
 
-  if (type === "error") {
+    if (type === "error") {
 
-    status.style.background = "#fee2e2";
-    status.style.color = "#991b1b";
+      status.className = "status invalid";
 
-  } else {
+    } else {
 
-    status.style.background = "#dcfce7";
-    status.style.color = "#166534";
+      status.className = "status valid";
 
-  }
-}
-
-
-function decodeJSON() {
-
-  const input =
-    document.getElementById("urlInput").value.trim();
-
-  const output =
-    document.getElementById("jsonOutput");
-
-  if (!input) {
-
-    output.value = "";
-
-    showStatus(
-      "Please enter URL encoded JSON.",
-      "error"
-    );
-
-    return;
+    }
   }
 
-  try {
 
-    const decoded =
-      decodeURIComponent(input);
+  function decodeJSON() {
 
-    const json =
-      JSON.parse(decoded);
+    const input =
+      document.getElementById("urlInput").value.trim();
 
-    output.value =
-      JSON.stringify(json, null, 2);
+    const output =
+      document.getElementById("jsonOutput");
 
-    showStatus(
-      "URL encoded JSON decoded successfully."
-    );
+    if (!input) {
 
-  } catch (error) {
+      output.value = "";
 
-    output.value = "";
+      showStatus(
+        "Please enter URL encoded JSON.",
+        "error"
+      );
 
-    showStatus(
-      "Unable to decode JSON: " + error.message,
-      "error"
-    );
-  }
-}
+      return;
+    }
 
+    try {
 
-async function copyJSON() {
+      const decoded =
+        decodeURIComponent(input);
 
-  const output =
-    document.getElementById("jsonOutput").value;
+      const json =
+        JSON.parse(decoded);
 
-  if (!output) {
+      output.value =
+        JSON.stringify(json, null, 2);
 
-    showStatus(
-      "Please decode JSON first.",
-      "error"
-    );
+      showStatus(
+        "URL encoded JSON decoded successfully."
+      );
 
-    return;
-  }
+    } catch (error) {
 
-  try {
+      output.value = "";
 
-    await navigator.clipboard.writeText(output);
-
-    showStatus(
-      "JSON copied to clipboard."
-    );
-
-  } catch (error) {
-
-    showStatus(
-      "Unable to copy. Please copy it manually.",
-      "error"
-    );
-  }
-}
-
-
-function downloadJSON() {
-
-  const output =
-    document.getElementById("jsonOutput").value;
-
-  if (!output) {
-
-    showStatus(
-      "Please decode JSON first.",
-      "error"
-    );
-
-    return;
+      showStatus(
+        "Unable to decode JSON: " + error.message,
+        "error"
+      );
+    }
   }
 
-  const blob =
-    new Blob(
-      [output],
-      {
-        type: "application/json;charset=utf-8"
-      }
+
+  async function copyJSON() {
+
+    const output =
+      document.getElementById("jsonOutput").value;
+
+    if (!output) {
+
+      showStatus(
+        "Please decode JSON first.",
+        "error"
+      );
+
+      return;
+    }
+
+    try {
+
+      await navigator.clipboard.writeText(output);
+
+      showStatus(
+        "JSON copied to clipboard."
+      );
+
+    } catch (error) {
+
+      showStatus(
+        "Unable to copy. Please copy it manually.",
+        "error"
+      );
+    }
+  }
+
+
+  function downloadJSON() {
+
+    const output =
+      document.getElementById("jsonOutput").value;
+
+    if (!output) {
+
+      showStatus(
+        "Please decode JSON first.",
+        "error"
+      );
+
+      return;
+    }
+
+    const blob =
+      new Blob(
+        [output],
+        {
+          type: "application/json;charset=utf-8"
+        }
+      );
+
+    const url =
+      URL.createObjectURL(blob);
+
+    const link =
+      document.createElement("a");
+
+    link.href = url;
+    link.download = "decoded.json";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    showStatus(
+      "JSON file downloaded."
     );
-
-  const url =
-    URL.createObjectURL(blob);
-
-  const link =
-    document.createElement("a");
-
-  link.href = url;
-  link.download = "decoded.json";
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  document.body.removeChild(link);
-
-  URL.revokeObjectURL(url);
-
-  showStatus(
-    "JSON file downloaded."
-  );
-}
+  }
 
 
-function clearAll() {
+  function clearAll() {
 
-  document.getElementById("urlInput").value = "";
-  document.getElementById("jsonOutput").value = "";
+    document.getElementById("urlInput").value = "";
+    document.getElementById("jsonOutput").value = "";
 
-  const status =
-    document.getElementById("status");
+    const status =
+      document.getElementById("status");
 
-  status.style.display = "none";
-  status.textContent = "";
-}
+    status.style.display = "none";
+    status.textContent = "";
+    status.className = "status";
+  }
 
 </script>
 
