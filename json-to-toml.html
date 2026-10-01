@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CGGJEQ96S7');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
 
   <title>JSON to TOML Converter - Free Online Tool</title>
 
-  <meta name="description" content="Convert JSON data to readable TOML instantly in your browser. Free, fast and privacy-focused JSON to TOML converter.">
+  <meta name="description" content="Convert JSON data to readable TOML online for free. Convert supported strings, numbers, booleans, arrays and nested objects directly in your browser.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
 
   <meta property="og:title" content="JSON to TOML Converter - Free Online Tool">
-  <meta property="og:description" content="Convert JSON data to readable TOML instantly in your browser.">
+  <meta property="og:description" content="Convert supported JSON data to readable TOML instantly in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
 
@@ -32,9 +32,10 @@
     "@type": "WebApplication",
     "name": "JSON to TOML Converter",
     "url": "https://toolforge1.github.io/csv-json-tools/json-to-toml.html",
-    "description": "Convert JSON data to readable TOML directly in your browser.",
+    "description": "Free browser-based tool for converting supported JSON objects into TOML.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -43,296 +44,1195 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What JSON does this converter support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The converter accepts a JSON object and supports strings, numbers, booleans, arrays and nested objects within the converter's supported TOML format."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the converter support nested objects?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Nested JSON objects are converted into TOML sections using dotted section names."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool support null values?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TOML does not have a native null value, so JSON null values are rejected by this converter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my JSON uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion is performed directly in the browser and the JSON data is not uploaded to the server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the TOML result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. After conversion, use the Download TOML button to save the result as a TOML file."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --panel: #0e1c2f;
+      --panel-2: #101f34;
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --cyan: #22d3ee;
+      --green: #22c55e;
+      --red: #ef4444;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(34, 211, 238, 0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+    a {
+      color: inherit;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 17, 31, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-weight: 900;
+      font-size: 18px;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+    }
+
+    .brand-text {
+      font-size: 15px;
+    }
+
+    .header-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .header-link:hover {
+      color: white;
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 70px 20px 40px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      background: rgba(34, 211, 238, 0.08);
+      color: #67e8f9;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .hero h1 {
+      margin: 18px auto 12px;
+      max-width: 850px;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .trust-pill {
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      background: rgba(15, 31, 52, 0.75);
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px 70px;
+    }
+
+    .tool-card,
+    .content-card {
+      background: linear-gradient(
+        145deg,
+        rgba(15, 31, 52, 0.96),
+        rgba(10, 24, 41, 0.96)
+      );
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card {
       padding: 24px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    .description {
-      text-align: center;
-      color: #6b7280;
       margin-bottom: 25px;
-      line-height: 1.6;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .tool-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .tool-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .tool-status {
+      color: #86efac;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.20);
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .editor-box {
+      min-width: 0;
+    }
+
+    .tool-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 800;
     }
 
     textarea {
       width: 100%;
-      min-height: 260px;
-      padding: 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-family: monospace;
-      font-size: 14px;
+      min-height: 340px;
+      padding: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 14px;
       resize: vertical;
       outline: none;
+      background: #06101d;
+      color: #e2e8f0;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    textarea::placeholder {
+      color: #64748b;
     }
 
     textarea:focus {
-      border-color: #2563eb;
+      border-color: rgba(59, 130, 246, 0.7);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.10);
+    }
+
+    #tomlOutput {
+      background: #081525;
     }
 
     .buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 15px 0;
+      margin-top: 13px;
     }
 
     button {
-      border: none;
-      padding: 11px 16px;
-      border-radius: 8px;
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 10px;
       cursor: pointer;
       font-size: 14px;
-      font-weight: bold;
-      background: #2563eb;
+      font-weight: 800;
       color: white;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+      transition: transform 0.18s, opacity 0.18s;
     }
 
     button:hover {
-      opacity: 0.9;
+      transform: translateY(-1px);
+      opacity: 0.94;
     }
 
-    .success {
-      background: #16a34a;
+    button.success {
+      background: linear-gradient(135deg, #15803d, #22c55e);
     }
 
-    .danger {
-      background: #dc2626;
+    button.danger {
+      background: linear-gradient(135deg, #b91c1c, #ef4444);
     }
 
     .status {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
+      margin-top: 15px;
+      padding: 12px 14px;
+      border-radius: 11px;
       display: none;
       font-size: 14px;
-    }
-
-    .info-section {
-      margin-top: 30px;
-      padding: 20px;
-      background: #f8fafc;
-      border-radius: 10px;
-    }
-
-    .info-section h2 {
-      margin-top: 0;
-      font-size: 21px;
-    }
-
-    .info-section h3 {
-      font-size: 17px;
-      margin-bottom: 6px;
-    }
-
-    .info-section p,
-    .info-section li {
-      line-height: 1.6;
-      color: #4b5563;
-    }
-
-    .privacy {
-      margin-top: 20px;
-      padding: 12px;
-      background: #eef6ff;
-      border-radius: 8px;
-      color: #374151;
-      font-size: 14px;
       line-height: 1.5;
+      border: 1px solid transparent;
     }
 
-    .related-tools {
-      margin-top: 25px;
-      padding: 20px;
-      background: #eef6ff;
-      border-radius: 10px;
-    }
-
-    .related-tools h2 {
-      margin-top: 0;
-      font-size: 21px;
-    }
-
-    .related-tools a {
-      display: inline-block;
-      margin: 5px 8px 5px 0;
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .related-tools a:hover {
-      text-decoration: underline;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 15px auto;
-        padding: 12px;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      button {
-        width: 100%;
-      }
+    .privacy-mini {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: rgba(34, 211, 238, 0.06);
+      border: 1px solid rgba(34, 211, 238, 0.14);
+      color: #a5f3fc;
+      font-size: 13px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
-  <div class="card">
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-icon">{ }</span>
+      <span class="brand-text">CSV &amp; JSON Developer Tools</span>
+    </a>
 
-    <h1>JSON to TOML Converter</h1>
+    <a href="index.html" class="header-link">All Tools →</a>
+  </div>
+</header>
 
-    <p class="description">
-      Convert JSON data to readable TOML instantly in your browser.
-      Your data stays on your device.
-    </p>
+<section class="hero">
+  <div class="hero-badge">Developer Data Utility</div>
 
-    <label for="jsonInput">JSON Input</label>
+  <h1>
+    JSON to <span>TOML Converter</span>
+  </h1>
 
-    <textarea
-      id="jsonInput"
-      placeholder='Paste JSON here, for example: {"name":"Ali","age":28}'
-    ></textarea>
+  <p>
+    Convert supported JSON objects into readable TOML directly
+    in your browser, with no server upload required.
+  </p>
 
-    <div class="buttons">
-      <button onclick="convertToTOML()">Convert to TOML</button>
-      <button class="success" onclick="copyTOML()">Copy TOML</button>
-      <button onclick="downloadTOML()">Download TOML</button>
-      <button class="danger" onclick="clearAll()">Clear</button>
+  <div class="trust-row">
+    <span class="trust-pill">✓ Free to use</span>
+    <span class="trust-pill">✓ Browser-based</span>
+    <span class="trust-pill">✓ No upload required</span>
+    <span class="trust-pill">✓ Nested objects</span>
+  </div>
+</section>
+
+<main>
+
+  <section class="tool-card">
+
+    <div class="tool-top">
+      <h2 class="tool-title">JSON → TOML</h2>
+      <span class="tool-status">● Ready</span>
+    </div>
+
+    <div class="editor-grid">
+
+      <div class="editor-box">
+
+        <div class="tool-label">
+          <span>JSON Input</span>
+          <span>INPUT</span>
+        </div>
+
+        <textarea
+          id="jsonInput"
+          placeholder='Paste JSON here, for example:
+
+{
+  "name": "Ali",
+  "age": 28,
+  "active": true
+}'
+        ></textarea>
+
+        <div class="buttons">
+          <button onclick="convertToTOML()">Convert to TOML</button>
+          <button class="danger" onclick="clearAll()">Clear</button>
+        </div>
+
+      </div>
+
+
+      <div class="editor-box">
+
+        <div class="tool-label">
+          <span>TOML Output</span>
+          <span>OUTPUT</span>
+        </div>
+
+        <textarea
+          id="tomlOutput"
+          readonly
+          placeholder="Converted TOML will appear here..."
+        ></textarea>
+
+        <div class="buttons">
+          <button class="success" onclick="copyTOML()">Copy TOML</button>
+          <button onclick="downloadTOML()">Download TOML</button>
+        </div>
+
+      </div>
+
     </div>
 
     <div id="status" class="status"></div>
 
-    <label for="tomlOutput">TOML Output</label>
-
-    <textarea
-      id="tomlOutput"
-      readonly
-      placeholder="Converted TOML will appear here..."
-    ></textarea>
-
-    <div class="privacy">
-      🔒 <strong>Privacy:</strong> Your data is processed entirely in your browser.
+    <div class="privacy-mini">
+      🔒 <strong>Privacy-first:</strong>
+      Your JSON is processed entirely in your browser.
       Nothing is uploaded to our server.
     </div>
 
-    <div class="info-section">
+  </section>
+    <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
 
-      <h2>How to Use</h2>
+    <div class="section-kicker">HOW IT WORKS</div>
 
-      <ol>
-        <li>Paste a valid JSON object into the input box.</li>
-        <li>Click <strong>Convert to TOML</strong>.</li>
-        <li>Review the generated TOML output.</li>
-        <li>Copy the TOML or download it as a .toml file.</li>
-      </ol>
+    <h2>How to Use the JSON to TOML Converter</h2>
 
-      <h2>FAQ</h2>
+    <p>
+      This free browser-based converter transforms supported JSON objects
+      into readable TOML. It is useful for developers working with
+      configuration files and applications that use TOML.
+    </p>
 
+    <ol>
+      <li>Paste a valid JSON object into the input editor.</li>
+      <li>Click <strong>Convert to TOML</strong>.</li>
+      <li>Review the generated TOML.</li>
+      <li>Copy the result or download it as a <code>.toml</code> file.</li>
+    </ol>
+
+    <div class="code-example">
+      <div class="code-title">JSON input</div>
+      <pre><code>{
+  "name": "Ali",
+  "age": 28,
+  "active": true
+}</code></pre>
+    </div>
+
+    <div class="code-example">
+      <div class="code-title">TOML output</div>
+      <pre><code>name = "Ali"
+age = 28
+active = true</code></pre>
+    </div>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">TOML EXPLAINED</div>
+
+    <h2>What is TOML?</h2>
+
+    <p>
+      TOML stands for Tom's Obvious, Minimal Language. It is a
+      configuration file format designed to be easy for humans to read
+      and easy for software to parse.
+    </p>
+
+    <p>
+      TOML is commonly found in developer projects and configuration
+      files. For example, the Rust ecosystem uses <code>Cargo.toml</code>
+      for package configuration, while Python projects may use
+      <code>pyproject.toml</code>.
+    </p>
+
+    <h2>JSON vs TOML</h2>
+
+    <div class="comparison-grid">
+
+      <div class="mini-card">
+        <h3>JSON</h3>
+        <p>
+          A widely used structured data format commonly used by APIs,
+          applications and data exchange systems.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>TOML</h3>
+        <p>
+          A human-friendly configuration format with sections,
+          key-value pairs and a simpler configuration-oriented syntax.
+        </p>
+      </div>
+
+    </div>
+
+    <h2>Nested JSON Objects</h2>
+
+    <p>
+      Nested JSON objects are represented as TOML sections. For example,
+      the following JSON structure:
+    </p>
+
+    <div class="code-example">
+      <pre><code>{
+  "database": {
+    "host": "localhost",
+    "port": 5432
+  }
+}</code></pre>
+    </div>
+
+    <p>
+      becomes:
+    </p>
+
+    <div class="code-example">
+      <pre><code>[database]
+host = "localhost"
+port = 5432</code></pre>
+    </div>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">SUPPORTED DATA</div>
+
+    <h2>Supported JSON Values</h2>
+
+    <p>
+      The converter supports common JSON values that can be represented
+      by the converter's TOML output format.
+    </p>
+
+    <div class="tips-grid">
+
+      <div class="mini-card">
+        <h3>✓ Strings</h3>
+        <p>
+          JSON strings are converted into quoted TOML strings with
+          required characters escaped.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>✓ Numbers</h3>
+        <p>
+          Finite JSON numbers are written as TOML numeric values.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>✓ Booleans</h3>
+        <p>
+          JSON true and false values are converted to TOML booleans.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>✓ Arrays</h3>
+        <p>
+          Supported primitive arrays are converted into TOML arrays.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>✓ Nested Objects</h3>
+        <p>
+          Nested JSON objects are represented using TOML sections.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h3>⚠ Null Values</h3>
+        <p>
+          JSON null values are rejected because TOML has no native
+          null value.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">EXAMPLE</div>
+
+    <h2>JSON to TOML Conversion Example</h2>
+
+    <p>
+      Here is a simple configuration-style JSON object:
+    </p>
+
+    <div class="code-example">
+      <pre><code>{
+  "app": {
+    "name": "My App",
+    "version": "1.0",
+    "debug": true
+  },
+  "port": 8080
+}</code></pre>
+    </div>
+
+    <p>
+      The converter represents the nested object as a TOML section:
+    </p>
+
+    <div class="code-example">
+      <pre><code>[app]
+name = "My App"
+version = "1.0"
+debug = true
+
+port = 8080</code></pre>
+    </div>
+
+  </section>
+    <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">DEVELOPER NOTES</div>
+
+    <h2>Important Conversion Notes</h2>
+
+    <ul>
+      <li>The JSON root must be an object.</li>
+      <li>Strings are escaped before being written to TOML.</li>
+      <li>Finite numbers are supported.</li>
+      <li>Boolean values are converted to TOML booleans.</li>
+      <li>Nested objects are converted into TOML sections.</li>
+      <li>JSON null values are not supported.</li>
+      <li>Arrays containing objects are not supported by this simple converter.</li>
+      <li>Infinity and NaN are rejected because they are not valid JSON values.</li>
+    </ul>
+
+    <p>
+      This is a lightweight browser-based JSON-to-TOML converter rather
+      than a complete implementation of every TOML feature. Unsupported
+      structures are rejected with an explanatory error message.
+    </p>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">FAQ</div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
       <h3>What JSON does this converter support?</h3>
       <p>
-        The converter accepts a JSON object as the root value and converts
-        supported strings, numbers, booleans, arrays and nested objects into TOML.
+        The converter accepts a JSON object and supports strings, numbers,
+        booleans, arrays and nested objects within its supported TOML format.
       </p>
+    </div>
 
+    <div class="faq-item">
       <h3>Does the converter support nested objects?</h3>
       <p>
         Yes. Nested JSON objects are converted into TOML sections using
-        dotted section names where appropriate.
+        dotted section names.
       </p>
+    </div>
 
+    <div class="faq-item">
       <h3>Does this tool support null values?</h3>
       <p>
-        TOML does not have a native null value, so JSON null values are rejected
-        by this converter with an explanatory error message.
+        No. TOML does not have a native null value, so JSON null values
+        are rejected by this converter.
       </p>
+    </div>
 
+    <div class="faq-item">
+      <h3>Can I convert JSON arrays?</h3>
+      <p>
+        Supported primitive arrays can be converted into TOML arrays.
+        Arrays containing objects are not supported by this converter.
+      </p>
+    </div>
+
+    <div class="faq-item">
       <h3>Is my JSON uploaded to a server?</h3>
       <p>
-        No. The conversion is performed directly in your browser and your JSON
-        data is not uploaded to our server.
+        No. The conversion is performed directly in your browser and
+        your JSON data is not uploaded to our server.
       </p>
+    </div>
 
+    <div class="faq-item">
       <h3>Can I download the TOML result?</h3>
       <p>
-        Yes. Use the <strong>Download TOML</strong> button to save the converted
-        output as a TOML file.
+        Yes. Use the <strong>Download TOML</strong> button to save the
+        converted output as a TOML file.
       </p>
-
     </div>
+
+  </section>
+
+
+  <section class="content-card" style="padding: 30px; margin-bottom: 25px;">
+
+    <div class="section-kicker">MORE DEVELOPER TOOLS</div>
+
+    <h2>Related Tools</h2>
 
     <div class="related-tools">
 
-      <h2>Related Tools</h2>
+      <a href="toml-to-json.html">
+        <strong>TOML to JSON</strong>
+        <span>Convert supported TOML into JSON.</span>
+      </a>
 
-      <a href="toml-to-json.html">TOML to JSON</a>
-      <a href="json-to-yaml.html">JSON to YAML</a>
-      <a href="json-to-xml.html">JSON to XML</a>
-      <a href="json-to-csv.html">JSON to CSV</a>
-      <a href="json-to-tsv.html">JSON to TSV</a>
-      <a href="json-to-markdown.html">JSON to Markdown</a>
-      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="json-to-yaml.html">
+        <strong>JSON to YAML</strong>
+        <span>Convert JSON data into YAML.</span>
+      </a>
+
+      <a href="json-to-xml.html">
+        <strong>JSON to XML</strong>
+        <span>Convert JSON data into XML.</span>
+      </a>
+
+      <a href="json-to-csv.html">
+        <strong>JSON to CSV</strong>
+        <span>Convert JSON data into CSV.</span>
+      </a>
+
+      <a href="json-to-tsv.html">
+        <strong>JSON to TSV</strong>
+        <span>Convert JSON data into TSV.</span>
+      </a>
+
+      <a href="json-to-markdown.html">
+        <strong>JSON to Markdown</strong>
+        <span>Convert JSON data into Markdown.</span>
+      </a>
 
     </div>
 
-    <a class="back" href="index.html">← Back to All Tools</a>
+  </section>
 
+
+  <section class="bottom-cta">
+
+    <div>
+      <div class="cta-kicker">PRIVATE BY DESIGN</div>
+
+      <h2>Convert JSON to TOML without uploading your data.</h2>
+
+      <p>
+        Process supported JSON directly in your browser.
+      </p>
+    </div>
+
+    <a href="index.html">Explore All Tools →</a>
+
+  </section>
+
+
+  <div class="site-footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cookie-policy.html">Cookie Policy</a>
   </div>
-</div>
 
+
+  <div class="back">
+    <a href="index.html">← Back to All Tools</a>
+  </div>
+
+</main>
+
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="brand-icon">{ }</span>
+    <strong>CSV &amp; JSON Developer Tools</strong>
+  </div>
+
+  <p>
+    Free browser-based tools for converting, formatting and transforming
+    CSV and JSON data.
+  </p>
+
+  <div>
+    © 2026 CSV &amp; JSON Developer Tools
+  </div>
+</footer>
+
+
+<style>
+  .section-kicker {
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+    margin-bottom: 8px;
+  }
+
+  .content-card h2 {
+    margin: 0 0 14px;
+    font-size: 27px;
+    line-height: 1.25;
+    letter-spacing: -0.6px;
+  }
+
+  .content-card h3 {
+    color: #e2e8f0;
+    margin: 22px 0 7px;
+    font-size: 17px;
+  }
+
+  .content-card p,
+  .content-card li {
+    color: var(--muted);
+  }
+
+  .content-card p {
+    margin: 0 0 15px;
+  }
+
+  .content-card ol,
+  .content-card ul {
+    padding-left: 22px;
+  }
+
+  .content-card li {
+    margin-bottom: 8px;
+  }
+
+  .content-card code {
+    color: #a5f3fc;
+    background: rgba(34, 211, 238, 0.08);
+    padding: 2px 5px;
+    border-radius: 5px;
+  }
+
+  .code-example {
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: #050d18;
+  }
+
+  .code-title {
+    padding: 10px 14px;
+    color: #94a3b8;
+    background: #0b1626;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .code-example pre {
+    margin: 0;
+    padding: 17px;
+    overflow-x: auto;
+    color: #c4f1ff;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .comparison-grid,
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mini-card {
+    padding: 19px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: rgba(6, 16, 29, 0.58);
+  }
+
+  .mini-card h3 {
+    margin: 0 0 7px;
+    color: #f8fafc;
+  }
+
+  .mini-card p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .faq-item {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: 0;
+  }
+
+  .faq-item h3 {
+    margin: 0 0 7px;
+    color: #f8fafc;
+  }
+
+  .faq-item p {
+    margin: 0;
+  }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-top: 18px;
+  }
+
+  .related-tools a {
+    display: block;
+    padding: 17px;
+    border-radius: 14px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: rgba(6, 16, 29, 0.60);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .related-tools a:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.55);
+  }
+
+  .related-tools strong {
+    display: block;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+  }
+
+  .related-tools span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .bottom-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.22);
+    background:
+      radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.12), transparent 30%),
+      linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 31, 52, 0.95));
+  }
+
+  .bottom-cta h2 {
+    margin: 3px 0 6px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  .bottom-cta p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .cta-kicker {
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+  }
+
+  .bottom-cta > a {
+    flex-shrink: 0;
+    padding: 12px 17px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.22);
+  }
+
+  .site-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 17px;
+    margin: 25px 0;
+  }
+
+  .site-footer-links a {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .site-footer-links a:hover {
+    color: #cbd5e1;
+  }
+
+  .back {
+    text-align: center;
+    margin: 25px 0 0;
+  }
+
+  .back a {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .site-footer {
+    padding: 35px 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    background: #050d18;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #cbd5e1;
+  }
+
+  .footer-brand .brand-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 14px;
+  }
+
+  .site-footer p {
+    max-width: 620px;
+    margin: 12px auto;
+  }
+
+  @media (max-width: 900px) {
+    .editor-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .related-tools {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bottom-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header-inner {
+      padding: 13px 15px;
+    }
+
+    .brand-text {
+      font-size: 13px;
+    }
+
+    .header-link {
+      font-size: 12px;
+    }
+
+    .hero {
+      padding: 52px 15px 30px;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      letter-spacing: -1.7px;
+    }
+
+    .hero p {
+      font-size: 16px;
+    }
+
+    main {
+      padding: 0 15px 50px;
+    }
+
+    .tool-card {
+      padding: 17px;
+      border-radius: 16px;
+    }
+
+    textarea {
+      min-height: 260px;
+    }
+
+    .buttons {
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .content-card {
+      padding: 23px !important;
+      border-radius: 16px;
+    }
+
+    .comparison-grid,
+    .tips-grid,
+    .related-tools {
+      grid-template-columns: 1fr;
+    }
+
+    .bottom-cta {
+      padding: 23px;
+    }
+
+    .bottom-cta h2 {
+      font-size: 22px;
+    }
+
+    .bottom-cta > a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
 <script>
+
 function showStatus(message, type = "success") {
   const status = document.getElementById("status");
 
@@ -340,13 +1240,16 @@ function showStatus(message, type = "success") {
   status.style.display = "block";
 
   if (type === "error") {
-    status.style.background = "#fee2e2";
-    status.style.color = "#991b1b";
+    status.style.background = "rgba(239, 68, 68, 0.10)";
+    status.style.color = "#fca5a5";
+    status.style.borderColor = "rgba(239, 68, 68, 0.22)";
   } else {
-    status.style.background = "#dcfce7";
-    status.style.color = "#166534";
+    status.style.background = "rgba(34, 197, 94, 0.10)";
+    status.style.color = "#86efac";
+    status.style.borderColor = "rgba(34, 197, 94, 0.22)";
   }
 }
+
 
 function escapeTOMLString(value) {
   return '"' + String(value)
@@ -357,15 +1260,21 @@ function escapeTOMLString(value) {
     .replace(/\t/g, "\\t") + '"';
 }
 
+
 function formatTOMLValue(value) {
+
   if (typeof value === "string") {
     return escapeTOMLString(value);
   }
 
   if (typeof value === "number") {
+
     if (!Number.isFinite(value)) {
-      throw new Error("TOML does not support Infinity or NaN.");
+      throw new Error(
+        "TOML does not support Infinity or NaN."
+      );
     }
+
     return String(value);
   }
 
@@ -374,37 +1283,52 @@ function formatTOMLValue(value) {
   }
 
   if (value === null) {
-    throw new Error("TOML does not support null values.");
+    throw new Error(
+      "TOML does not support null values."
+    );
   }
 
   if (Array.isArray(value)) {
+
     if (value.length === 0) {
       return "[]";
     }
 
-    if (value.some(item => item !== null &&
+    if (value.some(item =>
+      item !== null &&
       typeof item === "object" &&
-      !Array.isArray(item))) {
+      !Array.isArray(item)
+    )) {
+
       throw new Error(
         "Arrays of objects are not supported by this simple converter."
       );
     }
 
     return "[" + value.map(item => {
+
       if (item === null) {
-        throw new Error("TOML does not support null values.");
+        throw new Error(
+          "TOML does not support null values."
+        );
       }
 
       if (Array.isArray(item)) {
-        return "[" + item.map(formatTOMLValue).join(", ") + "]";
+        return "[" +
+          item.map(formatTOMLValue).join(", ") +
+          "]";
       }
 
       return formatTOMLValue(item);
+
     }).join(", ") + "]";
   }
 
-  throw new Error("Unsupported JSON value.");
+  throw new Error(
+    "Unsupported JSON value."
+  );
 }
+
 
 function isPlainObject(value) {
   return value !== null &&
@@ -412,16 +1336,22 @@ function isPlainObject(value) {
     !Array.isArray(value);
 }
 
+
 function convertObject(object, section = "") {
+
   let lines = [];
   let nestedObjects = [];
 
   for (const key of Object.keys(object)) {
+
     const value = object[key];
 
     if (isPlainObject(value)) {
+
       nestedObjects.push([key, value]);
+
     } else {
+
       lines.push(
         key + " = " + formatTOMLValue(value)
       );
@@ -433,6 +1363,7 @@ function convertObject(object, section = "") {
   }
 
   for (const [key, value] of nestedObjects) {
+
     const newSection = section
       ? section + "." + key
       : key;
@@ -449,52 +1380,84 @@ function convertObject(object, section = "") {
   return lines;
 }
 
+
 function convertToTOML() {
-  const input = document.getElementById("jsonInput").value.trim();
-  const output = document.getElementById("tomlOutput");
+
+  const input =
+    document.getElementById("jsonInput").value.trim();
+
+  const output =
+    document.getElementById("tomlOutput");
 
   if (!input) {
-    showStatus("Please enter JSON data.", "error");
+
+    showStatus(
+      "Please enter JSON data.",
+      "error"
+    );
+
     return;
   }
 
   try {
-    const json = JSON.parse(input);
+
+    const json =
+      JSON.parse(input);
 
     if (!isPlainObject(json)) {
+
       throw new Error(
         "The JSON root must be an object."
       );
     }
 
-    const toml = convertObject(json).join("\n");
+    const toml =
+      convertObject(json).join("\n");
 
     output.value = toml;
 
-    showStatus("JSON converted to TOML successfully.");
+    showStatus(
+      "JSON converted to TOML successfully."
+    );
 
   } catch (error) {
+
     output.value = "";
 
     showStatus(
-      "Unable to convert JSON to TOML: " + error.message,
+      "Unable to convert JSON to TOML: " +
+      error.message,
       "error"
     );
   }
 }
 
+
 async function copyTOML() {
-  const output = document.getElementById("tomlOutput").value;
+
+  const output =
+    document.getElementById("tomlOutput").value;
 
   if (!output) {
-    showStatus("Please convert JSON first.", "error");
+
+    showStatus(
+      "Please convert JSON first.",
+      "error"
+    );
+
     return;
   }
 
   try {
+
     await navigator.clipboard.writeText(output);
-    showStatus("TOML copied to clipboard.");
+
+    showStatus(
+      "TOML copied to clipboard."
+    );
+
   } catch (error) {
+
     showStatus(
       "Unable to copy. Please copy it manually.",
       "error"
@@ -502,38 +1465,65 @@ async function copyTOML() {
   }
 }
 
+
 function downloadTOML() {
-  const output = document.getElementById("tomlOutput").value;
+
+  const output =
+    document.getElementById("tomlOutput").value;
 
   if (!output) {
-    showStatus("Please convert JSON first.", "error");
+
+    showStatus(
+      "Please convert JSON first.",
+      "error"
+    );
+
     return;
   }
 
-  const blob = new Blob([output], {
-    type: "text/plain;charset=utf-8"
-  });
+  const blob =
+    new Blob(
+      [output],
+      {
+        type: "text/plain;charset=utf-8"
+      }
+    );
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
 
   link.href = url;
   link.download = "converted.toml";
 
   document.body.appendChild(link);
+
   link.click();
+
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
 
-  showStatus("TOML file downloaded.");
+  showStatus(
+    "TOML file downloaded."
+  );
 }
 
+
 function clearAll() {
+
   document.getElementById("jsonInput").value = "";
   document.getElementById("tomlOutput").value = "";
-  document.getElementById("status").style.display = "none";
+
+  const status =
+    document.getElementById("status");
+
+  status.style.display = "none";
+  status.textContent = "";
 }
+
 </script>
 
 </body>
