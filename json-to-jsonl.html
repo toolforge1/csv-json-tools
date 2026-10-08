@@ -1424,7 +1424,7 @@ button.danger {
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-jsonl">
-  <h2 id="seo-help-json-to-jsonl">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-jsonl">JSON to JSONL: input rules, output behavior, and troubleshooting</h2>
   <p>Input must be a non-empty top-level JSON array, and every item must be an object. Each object becomes one compact JSON line; nested values stay nested and are not flattened.</p>
   <h3>What the converter produces</h3>
   <p>Output lines are joined with LF and the current implementation does not append a final newline. This creates plain JSONL/NDJSON records, not Elasticsearch bulk NDJSON with action metadata.</p>
