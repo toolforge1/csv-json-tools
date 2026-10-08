@@ -13,35 +13,35 @@
     gtag('config', 'G-CGGJEQ96S7');
   </script>
 
-  <title>JSON URL Decoder - Decode URL Encoded JSON</title>
+  <title>JSON URL Decoder – Decode URL-Encoded JSON Online</title>
 
-  <meta name="description" content="Decode a percent-encoded JSON value, validate it, and view formatted JSON. Paste the parameter value; this tool does not fetch URLs.">
+  <meta name="description" content="Decode a percent-encoded JSON value and view formatted JSON in your browser. Paste the parameter value; this tool does not fetch URLs.">
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-url-decoder.html">
 
-  <meta property="og:title" content="JSON URL Decoder - Free Online Tool">
-  <meta property="og:description" content="Decode URL encoded JSON back into readable JSON instantly in your browser.">
+  <meta property="og:title" content="JSON URL Decoder – Decode URL-Encoded JSON Online">
+  <meta property="og:description" content="Decode a percent-encoded JSON value and view formatted JSON in your browser. Paste the parameter value; this tool does not fetch URLs.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-url-decoder.html">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON URL Decoder",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-url-decoder.html",
-    "description": "Free online tool to decode URL encoded JSON into readable JSON.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "browserRequirements": "Requires JavaScript",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON URL Decoder",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-url-decoder.html",
+  "description": "Decode a percent-encoded JSON value and view formatted JSON in your browser. Paste the parameter value; this tool does not fetch URLs.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -472,6 +472,18 @@
       color: #86efac;
     }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -933,7 +945,19 @@
 
   </section>
 
+
+<section class="seo-help" aria-labelledby="seo-help-json-url-decoder">
+  <h2 id="seo-help-json-url-decoder">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste the encoded JSON value, not the full URL. The browser decodes with decodeURIComponent, parses the result as JSON, and formats it with two-space indentation; it is not a generic query-string decoder.</p>
+  <h3>What the converter produces</h3>
+  <p>%20 becomes a space, but a literal plus sign remains a plus with decodeURIComponent. URL decoding and JSON parsing are separate steps and can fail independently.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: copy only the value after payload= from a URL such as https://example.test/search?payload=… and paste it here. Do not include the whole URL.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>For malformed percent sequences, check the encoded characters. If decoding succeeds but JSON parsing fails, repair JSON syntax such as missing double quotes around keys. A literal + may require handling according to the source’s form-encoding rules.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-to-url-encoder.html">Encode JSON for a URL</a>, <a href="json-formatter.html">Format already-readable JSON</a>, <a href="base64-to-json.html">Decode Base64 only when the data is Base64</a>.</p>
+</section>
 </main>
+
 
 <footer class="site-footer">
 

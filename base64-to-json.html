@@ -9,14 +9,9 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    Base64 to JSON Decoder - Free Online Base64 JSON Tool
-  </title>
+  <title>Base64 to JSON Decoder Online | Free Browser Tool</title>
 
-  <meta
-    name="description"
-    content="Decode standard Base64 containing UTF-8 JSON into readable, formatted JSON in your browser. Copy or download the result; no upload to this tool."
-  >
+  <meta name="description" content="Decode standard Base64 containing UTF-8 JSON in your browser. Validate and format the result, then copy or download it—no server upload.">
 
   <meta
     name="robots"
@@ -28,15 +23,9 @@
     href="https://toolforge1.github.io/csv-json-tools/base64-to-json.html"
   >
 
-  <meta
-    property="og:title"
-    content="Base64 to JSON Decoder - Free Online Tool"
-  >
+  <meta property="og:title" content="Base64 to JSON Decoder Online | Free Browser Tool">
 
-  <meta
-    property="og:description"
-    content="Decode Base64 encoded JSON into readable JSON directly in your browser."
-  >
+  <meta property="og:description" content="Decode standard Base64 containing UTF-8 JSON in your browser. Validate and format the result, then copy or download it—no server upload.">
 
   <meta
     property="og:type"
@@ -81,23 +70,21 @@
   <!-- WebApplication Structured Data -->
 
   <script type="application/ld+json">
-
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Base64 to JSON Decoder",
-    "url": "https://toolforge1.github.io/csv-json-tools/base64-to-json.html",
-    "description": "Free online tool to decode Base64 encoded JSON into readable JSON directly in the browser.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 to JSON Decoder",
+  "url": "https://toolforge1.github.io/csv-json-tools/base64-to-json.html",
+  "description": "Decode standard Base64 containing UTF-8 JSON in your browser. Validate and format the result, then copy or download it—no server upload.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-
-  </script>
+}
+</script>
 
 
   <!-- FAQ Structured Data -->
@@ -1175,6 +1162,18 @@
 
   </style>
 
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 
@@ -1813,10 +1812,22 @@ eyJuYW1lIjoiQWxpIiwiYWdlIjoyNX0="
     </section>
 
 
-  </main>
+
+<section class="seo-help" aria-labelledby="seo-help-base64-to-json">
+  <h2 id="seo-help-base64-to-json">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste standard Base64 text that decodes to UTF-8 JSON. Whitespace in the encoded text is tolerated; Base64URL characters and data-URI prefixes are outside this decoder’s documented input.</p>
+  <h3>What the converter produces</h3>
+  <p>The workflow is Base64 decoding, UTF-8 text decoding, JSON parsing, then two-space JSON formatting. Valid Base64 can still fail if its bytes are not UTF-8 or the decoded text is not valid JSON.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: a Base64 value representing {"name":"Ali"} decodes to a formatted JSON object. Nested values and Unicode are supported when the payload is valid UTF-8 JSON.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>If decoding fails, check for URL-safe “-” or “_” characters, a data: prefix, missing/invalid Base64 characters, invalid UTF-8, or malformed JSON. Correct the source encoding and try again.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-to-base64.html">Encode JSON to Base64</a>, <a href="json-formatter.html">Format or validate decoded JSON</a>, <a href="json-url-decoder.html">Decode URL-encoded JSON instead</a>.</p>
+</section>
+</main>
 
 
-  <footer>
+
+<footer>
 
     <div class="container">
 

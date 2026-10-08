@@ -15,16 +15,16 @@
   gtag('config', 'G-CGGJEQ96S7');
 </script>
 
-<title>JSON to JSONL Converter - Free Online JSONL Tool</title>
+<title>JSON to JSONL Converter (NDJSON) | Free, Private</title>
 
-<meta name="description" content="Convert a JSON array of objects to JSONL or NDJSON, one record per line. Copy or download the output; no server upload.">
+<meta name="description" content="Convert a non-empty JSON array of objects into one JSON object per line. Copy or download converted.jsonl in your browser—no upload.">
 
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html">
 
-<meta property="og:title" content="JSON to JSONL Converter - Free Online Tool">
-<meta property="og:description" content="Convert JSON arrays to JSONL or NDJSON instantly in your browser. Free, fast and privacy-focused.">
+<meta property="og:title" content="JSON to JSONL Converter (NDJSON) | Free, Private">
+<meta property="og:description" content="Convert a non-empty JSON array of objects into one JSON object per line. Copy or download converted.jsonl in your browser—no upload.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html">
 
@@ -34,7 +34,7 @@
   "@type": "WebApplication",
   "name": "JSON to JSONL Converter",
   "url": "https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html",
-  "description": "Free online tool to convert JSON arrays containing objects into JSONL or NDJSON directly in the browser.",
+  "description": "Convert a non-empty JSON array of objects into one JSON object per line. Copy or download converted.jsonl in your browser—no upload.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Any"
 }
@@ -619,6 +619,18 @@ button.danger {
     color: white;
 }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -1410,6 +1422,17 @@ button.danger {
 </section>
 
 
+
+<section class="seo-help" aria-labelledby="seo-help-json-to-jsonl">
+  <h2 id="seo-help-json-to-jsonl">Input rules, output behavior, and troubleshooting</h2>
+  <p>Input must be a non-empty top-level JSON array, and every item must be an object. Each object becomes one compact JSON line; nested values stay nested and are not flattened.</p>
+  <h3>What the converter produces</h3>
+  <p>Output lines are joined with LF and the current implementation does not append a final newline. This creates plain JSONL/NDJSON records, not Elasticsearch bulk NDJSON with action metadata.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: [{"id":1},{"id":2}] becomes two separate object lines without square brackets. Download JSONL saves converted.jsonl.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>If conversion fails, check for invalid JSON, an empty array, a non-array root, or primitive/null/array entries. Use JSON Formatter to correct syntax before converting.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="jsonl-to-json.html">Convert JSONL back to a JSON array</a>, <a href="json-formatter.html">Validate the JSON array first</a>, <a href="json-to-csv.html">Convert records to spreadsheet CSV</a>.</p>
+</section>
 <footer class="site-footer">
 
     <div class="container">

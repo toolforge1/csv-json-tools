@@ -14,9 +14,9 @@
     gtag('config', 'G-CGGJEQ96S7');
   </script>
 
-  <title>TSV to JSON Converter - Free Online TSV to JSON Tool</title>
+  <title>TSV to JSON Converter | Paste, Copy &amp; Download JSON</title>
 
-  <meta name="description" content="Convert tab-separated text with a header row into JSON objects. Copy or download the result; input is processed in your browser.">
+  <meta name="description" content="Convert tab-separated text with a unique header row into JSON objects. Copy or download the result; processing happens in your browser.">
 
   <meta name="robots" content="index, follow">
 
@@ -24,27 +24,27 @@
 
   <meta name="theme-color" content="#050b14">
 
-  <meta property="og:title" content="TSV to JSON Converter - Free Online TSV to JSON Tool">
-  <meta property="og:description" content="Convert tab-separated data to structured JSON instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:title" content="TSV to JSON Converter | Paste, Copy &amp; Download JSON">
+  <meta property="og:description" content="Convert tab-separated text with a unique header row into JSON objects. Copy or download the result; processing happens in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/tsv-to-json.html">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "TSV to JSON Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/tsv-to-json.html",
-    "description": "Convert TSV or tab-separated data to JSON instantly in your browser.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TSV to JSON Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/tsv-to-json.html",
+  "description": "Convert tab-separated text with a unique header row into JSON objects. Copy or download the result; processing happens in your browser.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -530,6 +530,18 @@
       white-space: pre-wrap;
     }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -1015,10 +1027,22 @@ Emma	34	London</pre>
 
     </section>
 
-  </main>
+
+<section class="seo-help" aria-labelledby="seo-help-tsv-to-json">
+  <h2 id="seo-help-tsv-to-json">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste TSV with a non-empty, unique header row and at least one data row. Literal tabs separate fields; rows must have equal column counts. This page has no file picker or no-header array mode.</p>
+  <h3>What the converter produces</h3>
+  <p>The output uses fixed two-space JSON formatting. Recognized true, false, null, and strict numeric strings become JSON types; other values are strings. Do not assume CSV-style quote parsing.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: headers name and age with a row Ali and 28 become an object with a string name and numeric age, subject to the parser’s exact conversion rules.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>If conversion fails, check empty input, header-only input, blank or duplicate headers, and the reported line’s tab/column count. Remove accidental blank header cells and retry.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="tsv-to-csv.html">Convert TSV to CSV</a>, <a href="csv-to-json.html">Convert CSV rows to JSON objects</a>, <a href="json-to-tsv.html">Convert JSON arrays to TSV</a>.</p>
+</section>
+</main>
 
 
-  <footer class="site-footer">
+
+<footer class="site-footer">
 
     <div class="footer-inner">
 

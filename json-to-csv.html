@@ -22,12 +22,9 @@
   </script>
 
 
-  <title>JSON to CSV Converter - Free Online JSON to CSV Tool</title>
+  <title>JSON to CSV Converter Online | Free Browser Tool</title>
 
-  <meta
-    name="description"
-    content="Convert a JSON array of objects to CSV in your browser. Copy or download the spreadsheet-ready output without uploading your data."
-  >
+  <meta name="description" content="Convert a non-empty JSON array of objects to CSV in your browser. Copy or download spreadsheet-ready output; JSON is not uploaded.">
 
   <meta
     name="robots"
@@ -40,15 +37,9 @@
   >
 
 
-  <meta
-    property="og:title"
-    content="JSON to CSV Converter - Free Online JSON to CSV Tool"
-  >
+  <meta property="og:title" content="JSON to CSV Converter Online | Free Browser Tool">
 
-  <meta
-    property="og:description"
-    content="Convert JSON data or JSON files to CSV directly in your browser. Free, fast and privacy-focused."
-  >
+  <meta property="og:description" content="Convert a non-empty JSON array of objects to CSV in your browser. Copy or download spreadsheet-ready output; JSON is not uploaded.">
 
   <meta
     property="og:type"
@@ -62,22 +53,22 @@
 
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to CSV Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-to-csv.html",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "browserRequirements": "Requires a modern web browser",
-    "description": "Free browser-based tool for converting JSON arrays of objects into CSV format.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to CSV Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-csv.html",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires a modern web browser",
+  "description": "Convert a non-empty JSON array of objects to CSV in your browser. Copy or download spreadsheet-ready output; JSON is not uploaded.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
 
   <script type="application/ld+json">
@@ -947,6 +938,18 @@
 
   </style>
 
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 
@@ -2250,10 +2253,22 @@ Sarah,30,New York</pre>
     </section>
 
 
-  </main>
+
+<section class="seo-help" aria-labelledby="seo-help-json-to-csv">
+  <h2 id="seo-help-json-to-csv">Input rules, output behavior, and troubleshooting</h2>
+  <p>Input must be a non-empty top-level array of objects. The output includes a header row; headers are the union of object keys, missing properties become blank cells, and nested values remain JSON text in a cell.</p>
+  <h3>What the converter produces</h3>
+  <p>The converter emits comma-delimited CSV with line-separated rows and downloads converted.csv. It does not accept a bare object or JSONL and has no delimiter, header, encoding, or BOM controls.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: records with different keys share a combined header row; a missing property is represented by an empty cell. Nested objects are serialized in the cell rather than flattened into columns.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>Check for valid JSON, a non-empty array, and object entries. Wrap a single record in an array; use JSON Formatter to inspect syntax. For tab-separated output, choose JSON to TSV.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-formatter.html">Validate or format JSON before converting</a>, <a href="json-to-tsv.html">Convert JSON to tab-separated values</a>, <a href="csv-to-json.html">Convert CSV back to JSON</a>.</p>
+</section>
+</main>
 
 
-  <footer class="site-footer">
+
+<footer class="site-footer">
 
     <div class="container">
 

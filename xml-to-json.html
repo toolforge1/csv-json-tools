@@ -14,9 +14,9 @@
     gtag('config', 'G-CGGJEQ96S7');
   </script>
 
-  <title>XML to JSON Converter - Free Online XML to JSON Tool</title>
+  <title>XML to JSON Converter Online | Free, Private Browser Tool</title>
 
-  <meta name="description" content="Convert XML elements into JSON in your browser, with repeated elements represented as arrays. Copy or download the result; attributes are not mapped.">
+  <meta name="description" content="Convert XML elements into JSON in your browser. Repeated elements become arrays; copy or download the result. XML attributes are not mapped.">
 
   <meta name="robots" content="index, follow">
 
@@ -24,22 +24,22 @@
 
   <meta name="theme-color" content="#07111f">
 
-  <meta property="og:title" content="XML to JSON Converter - Free Online XML to JSON Tool">
-  <meta property="og:description" content="Convert XML data to clean JSON instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:title" content="XML to JSON Converter Online | Free, Private Browser Tool">
+  <meta property="og:description" content="Convert XML elements into JSON in your browser. Repeated elements become arrays; copy or download the result. XML attributes are not mapped.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/xml-to-json.html">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "XML to JSON Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/xml-to-json.html",
-    "description": "Free online tool to convert XML data into JSON directly in the browser.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any"
-  }
-  </script>
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "XML to JSON Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/xml-to-json.html",
+  "description": "Convert XML elements into JSON in your browser. Repeated elements become arrays; copy or download the result. XML attributes are not mapped.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any"
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -500,6 +500,18 @@
       margin-bottom: 7px;
     }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -827,9 +839,21 @@
 
     </section>
 
-  </main>
 
-  <footer class="site-footer">
+<section class="seo-help" aria-labelledby="seo-help-xml-to-json">
+  <h2 id="seo-help-xml-to-json">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste well-formed XML text. The root tag becomes the outer JSON key, child tags become keys, repeated sibling tags become arrays, and leaf text is trimmed; leaf values remain strings.</p>
+  <h3>What the converter produces</h3>
+  <p>Attributes are ignored by the current mapping, and namespaces, mixed content, comments, and CDATA are not promised to round-trip losslessly. The page has no file picker or URL fetch.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: two sibling &lt;user&gt; elements under &lt;users&gt; are represented as repeated values in a JSON array. Review attribute-bearing or namespace-prefixed XML carefully.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>Check matching opening/closing tags, one root element, and escape ampersands in text. If an XML parser error appears, correct the source markup and paste it again.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-to-xml.html">Convert JSON back to XML</a>, <a href="json-formatter.html">Inspect the generated JSON</a>, <a href="json-to-yaml.html">Convert the resulting JSON to YAML</a>.</p>
+</section>
+</main>
+
+
+<footer class="site-footer">
 
     <div class="footer-inner">
 

@@ -21,35 +21,35 @@
     })(window, document, "clarity", "script", "ys5nww2ow3");  
   </script>
 
-  <title>CSV to JSONL Converter - Free Online CSV to JSONL Tool</title>
+  <title>CSV to JSONL Converter (NDJSON) | Free Online</title>
 
-  <meta name="description" content="Convert CSV rows to JSONL or NDJSON in your browser. Copy or download one JSON record per line; your pasted data is not uploaded.">
+  <meta name="description" content="Convert CSV rows to JSONL or NDJSON in your browser. Copy or download one JSON record per line; your data is not uploaded.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-jsonl.html">
 
-  <meta property="og:title" content="CSV to JSONL Converter - Free Online CSV to JSONL Tool">
-  <meta property="og:description" content="Convert CSV data or files to JSONL or NDJSON directly in your browser. Free and privacy-focused.">
+  <meta property="og:title" content="CSV to JSONL Converter (NDJSON) | Free Online">
+  <meta property="og:description" content="Convert CSV rows to JSONL or NDJSON in your browser. Copy or download one JSON record per line; your data is not uploaded.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-jsonl.html">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "CSV to JSONL Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/csv-to-jsonl.html",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "description": "Convert CSV data or CSV files to JSONL and NDJSON directly in the browser.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CSV to JSONL Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/csv-to-jsonl.html",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "description": "Convert CSV rows to JSONL or NDJSON in your browser. Copy or download one JSON record per line; your data is not uploaded.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -611,6 +611,18 @@
       }
     }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -1100,7 +1112,19 @@ John,31,New York</code>
 
   </div>
 
+
+<section class="seo-help" aria-labelledby="seo-help-csv-to-jsonl">
+  <h2 id="seo-help-csv-to-jsonl">Input rules, output behavior, and troubleshooting</h2>
+  <p>Provide CSV with a header row; each data row becomes one JSON object on its own line. Confirm the available paste/file controls on this page; this is not an Elasticsearch bulk-JSONL generator.</p>
+  <h3>What the converter produces</h3>
+  <p>JSONL/NDJSON has one complete JSON value per line and no enclosing array brackets. This tool maps CSV rows to records; it does not add Elasticsearch action metadata lines.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: a CSV header name,city and row Ali,Karachi become one JSON object on a line: {"name":"Ali","city":"Karachi"}.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>Check CSV quoting, header names, and consistent row lengths if conversion fails. If the downstream system expects Elasticsearch bulk NDJSON, add the required action metadata separately.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="csv-to-json.html">Convert CSV to a JSON array</a>, <a href="jsonl-to-json.html">Wrap JSONL records in a JSON array</a>, <a href="json-to-jsonl.html">Convert a JSON array to JSONL</a>.</p>
+</section>
 </main>
+
 
 
 <footer>

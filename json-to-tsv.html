@@ -14,38 +14,38 @@
     gtag('config', 'G-CGGJEQ96S7');
   </script>
 
-  <title>JSON to TSV Converter - Free Online Tool</title>
+  <title>JSON to TSV Converter | Free Browser Tool</title>
 
-  <meta name="description" content="Convert a JSON array of objects to tab-separated values. Copy or download TSV with columns derived from object keys, in your browser.">
+  <meta name="description" content="Convert a non-empty JSON array of objects to tab-separated values in your browser. Copy TSV or download converted.tsv—no upload required.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-tsv.html">
 
-  <meta property="og:title" content="JSON to TSV Converter - Free Online Tool">
-  <meta property="og:description" content="Convert JSON arrays to TSV or tab-separated values instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:title" content="JSON to TSV Converter | Free Browser Tool">
+  <meta property="og:description" content="Convert a non-empty JSON array of objects to tab-separated values in your browser. Copy TSV or download converted.tsv—no upload required.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-tsv.html">
 
   <meta name="theme-color" content="#07111f">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to TSV Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-to-tsv.html",
-    "description": "Free browser-based tool for converting JSON arrays of objects into TSV data.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "browserRequirements": "Requires JavaScript",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to TSV Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-tsv.html",
+  "description": "Convert a non-empty JSON array of objects to tab-separated values in your browser. Copy TSV or download converted.tsv—no upload required.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <style>
     :root {
@@ -595,6 +595,18 @@
       }
     }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -953,7 +965,19 @@ Emma	34	London</pre>
 
   </section>
 
+
+<section class="seo-help" aria-labelledby="seo-help-json-to-tsv">
+  <h2 id="seo-help-json-to-tsv">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste a non-empty JSON array; every item must be an object. Keys form a first-seen union of columns, missing or null values become empty cells, and nested values become JSON text in a cell.</p>
+  <h3>What the converter produces</h3>
+  <p>Tabs and CR/LF characters inside values are replaced with spaces. The output always has a header row and literal tabs; this page does not accept top-level objects, scalar arrays, URL input, or file upload.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: objects {"name":"Ali","city":"Karachi"} and {"name":"Sam","age":30} produce a union header with city and age columns; each absent value is an empty cell.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>Check valid JSON, a non-empty array of objects, and inspect the header and row count before copying or downloading. Use JSON to CSV for comma-delimited output or JSON to JSONL for one record per line.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-to-csv.html">Convert JSON to comma-separated CSV</a>, <a href="json-to-jsonl.html">Export one JSON record per line</a>, <a href="json-to-markdown.html">Create a Markdown table</a>.</p>
+</section>
 </main>
+
 
 
 <footer class="site-footer">

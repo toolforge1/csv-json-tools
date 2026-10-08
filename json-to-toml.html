@@ -13,36 +13,36 @@
     gtag('config', 'G-CGGJEQ96S7');
   </script>
 
-  <title>JSON to TOML Converter - Free Online Tool</title>
+  <title>JSON to TOML Converter | Free, Private Browser Tool</title>
 
-  <meta name="description" content="Convert supported JSON objects to TOML in your browser. Copy or download the configuration text; check the documented value limits.">
+  <meta name="description" content="Convert supported JSON objects to TOML in your browser. Copy or download converted.toml; review the result against your project configuration schema.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
 
-  <meta property="og:title" content="JSON to TOML Converter - Free Online Tool">
-  <meta property="og:description" content="Convert supported JSON data to readable TOML instantly in your browser.">
+  <meta property="og:title" content="JSON to TOML Converter | Free, Private Browser Tool">
+  <meta property="og:description" content="Convert supported JSON objects to TOML in your browser. Copy or download converted.toml; review the result against your project configuration schema.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to TOML Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-to-toml.html",
-    "description": "Free browser-based tool for converting supported JSON objects into TOML.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "browserRequirements": "Requires JavaScript",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to TOML Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-toml.html",
+  "description": "Convert supported JSON objects to TOML in your browser. Copy or download converted.toml; review the result against your project configuration schema.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -400,6 +400,18 @@
       text-align: center;
     }
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -864,7 +876,19 @@ port = 8080</code></pre>
     <a href="index.html">← Back to All Tools</a>
   </div>
 
+
+<section class="seo-help" aria-labelledby="seo-help-json-to-toml">
+  <h2 id="seo-help-json-to-toml">Input rules, output behavior, and troubleshooting</h2>
+  <p>The supported input is a JSON object with common strings, finite numbers, booleans, primitive arrays, and nested objects. Null values and arrays containing objects are outside the documented supported set.</p>
+  <h3>What the converter produces</h3>
+  <p>Nested objects become TOML sections. This is not a project-schema validator and does not promise full TOML mapping, array-of-tables output, file import, or URL fetching.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: a JSON object with nested server and database objects can produce corresponding TOML sections. Treat the output as a configuration fragment and review it before using it.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>Check valid JSON, an object at the root, no null values, and no arrays of objects. If the target is Cargo.toml or pyproject.toml, verify required project-specific fields separately.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="toml-to-json.html">Convert TOML back to JSON</a>, <a href="json-to-yaml.html">Convert JSON to YAML</a>, <a href="json-formatter.html">Validate JSON before converting</a>.</p>
+</section>
 </main>
+
 
 
 <footer class="site-footer">

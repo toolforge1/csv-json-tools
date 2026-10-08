@@ -13,35 +13,35 @@
     gtag('config', 'G-CGGJEQ96S7');
   </script>
 
-  <title>JSON to SQL Converter - Free Online JSON to SQL Tool</title>
+  <title>JSON to SQL INSERT Converter | Free Browser Tool</title>
 
-  <meta name="description" content="Turn a JSON array of objects into SQL INSERT statements. Set a table name, then copy or download SQL generated in your browser.">
+  <meta name="description" content="Convert a JSON array of objects into SQL INSERT statements. Set a table name, then copy or download browser-generated SQL for review.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
 
-  <meta property="og:title" content="JSON to SQL Converter - Free Online JSON to SQL Tool">
-  <meta property="og:description" content="Convert JSON data into SQL INSERT statements instantly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:title" content="JSON to SQL INSERT Converter | Free Browser Tool">
+  <meta property="og:description" content="Convert a JSON array of objects into SQL INSERT statements. Set a table name, then copy or download browser-generated SQL for review.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to SQL Converter",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-to-sql.html",
-    "description": "Free online tool to convert JSON arrays into SQL INSERT statements directly in the browser.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to SQL Converter",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-sql.html",
+  "description": "Convert a JSON array of objects into SQL INSERT statements. Set a table name, then copy or download browser-generated SQL for review.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -443,6 +443,18 @@
       color: white;
     }
       </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -971,7 +983,18 @@
     </section>
 
 
-    <footer class="site-footer">
+
+<section class="seo-help" aria-labelledby="seo-help-json-to-sql">
+  <h2 id="seo-help-json-to-sql">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste a non-empty array of objects and provide a valid table name. The converter emits one INSERT per object and uses backtick-quoted identifiers; it has no database dialect selector or CREATE TABLE mode.</p>
+  <h3>What the converter produces</h3>
+  <p>Keys are combined across records; missing properties map to NULL in the generated statements. Review SQL syntax and escaping for your destination database, and use parameterized queries in application code.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: an array with name and age properties generates INSERT statements using those columns. The download is converted.sql; inspect it before execution.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>Check that the input is valid JSON, the top-level value is a non-empty array of objects, objects contain properties, and the table name follows the accepted pattern. One statement per object is not batch mode.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-formatter.html">Validate JSON before conversion</a>, <a href="csv-to-sql.html">Generate INSERT statements from CSV</a>, <a href="json-to-csv.html">Export JSON as spreadsheet CSV</a>.</p>
+</section>
+<footer class="site-footer">
 
       <div class="container">
 

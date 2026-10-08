@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>JSON to Base64 Encoder - Free Online JSON Base64 Tool</title>
+  <title>JSON to Base64 Encoder (UTF-8) | Free Browser Tool</title>
 
-  <meta name="description" content="Validate JSON, encode its UTF-8 text as standard Base64, then copy or download the result. Conversion runs locally in your browser.">
+  <meta name="description" content="Encode valid JSON as standard UTF-8 Base64 in your browser. Validate input, copy the result, or download it—your JSON is not uploaded.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-base64.html">
 
-  <meta property="og:title" content="JSON to Base64 Encoder - Free Online Tool">
-  <meta property="og:description" content="Encode JSON data to Base64 directly in your browser. Free, fast and privacy-focused.">
+  <meta property="og:title" content="JSON to Base64 Encoder (UTF-8) | Free Browser Tool">
+  <meta property="og:description" content="Encode valid JSON as standard UTF-8 Base64 in your browser. Validate input, copy the result, or download it—your JSON is not uploaded.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-base64.html">
 
@@ -28,21 +28,21 @@
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JSON to Base64 Encoder",
-    "url": "https://toolforge1.github.io/csv-json-tools/json-to-base64.html",
-    "description": "Free browser-based tool for encoding valid JSON data into Base64.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to Base64 Encoder",
+  "url": "https://toolforge1.github.io/csv-json-tools/json-to-base64.html",
+  "description": "Encode valid JSON as standard UTF-8 Base64 in your browser. Validate input, copy the result, or download it—your JSON is not uploaded.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-  </script>
+}
+</script>
 
   <script type="application/ld+json">
   {
@@ -511,6 +511,18 @@
     }
 
   </style>
+<style>
+.seo-help{max-width:1120px;margin:36px auto 30px;padding:clamp(20px,3.4vw,32px);border:1px solid rgba(148,163,184,.22);border-radius:20px;background:rgba(15,23,42,.72);color:inherit;line-height:1.7}
+.seo-help h2{font-size:clamp(1.35rem,2.7vw,1.8rem);line-height:1.25;margin:0 0 12px;color:inherit}
+.seo-help h3{font-size:1.08rem;line-height:1.35;margin:22px 0 8px;color:inherit}
+.seo-help p{margin:8px 0;color:inherit}
+.seo-help ul{padding-left:1.25rem;margin:8px 0}
+.seo-help li{margin:5px 0}
+.seo-help a{color:#7dd3fc;text-decoration:underline;text-underline-offset:3px}
+.seo-help .seo-example{padding:12px 14px;margin:12px 0;border-radius:12px;background:rgba(2,6,23,.48);border:1px solid rgba(148,163,184,.18)}
+.seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
+@media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
+</style>
 </head>
 
 <body>
@@ -1295,7 +1307,18 @@
     </section>
 
 
-    <footer class="site-footer">
+
+<section class="seo-help" aria-labelledby="seo-help-json-to-base64">
+  <h2 id="seo-help-json-to-base64">Input rules, output behavior, and troubleshooting</h2>
+  <p>Paste valid JSON text. The tool trims outer whitespace, validates JSON, then encodes the remaining original text as UTF-8 bytes into standard padded Base64; it does not minify or reorder keys.</p>
+  <h3>What the converter produces</h3>
+  <p>Base64 encodes bytes, not an abstract JSON object, so pretty and compact versions of the same data can produce different strings. This page does not output Base64URL and is not encryption.</p>
+  <div class="seo-example"><strong>Example / practical check:</strong> Example: a JSON object containing “café” is encoded as UTF-8 before Base64. Internal spaces, line breaks, and key order remain part of the encoded source text.</div>
+  <h3>Common problems and how to fix them</h3>
+  <p>If validation fails, check JSON quotes, commas, and brackets. If your destination needs URL-safe Base64, use the Base64URL format it specifies; if it needs percent encoding, use the JSON URL Encoder.</p>
+  <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="base64-to-json.html">Decode Base64 back to JSON</a>, <a href="json-formatter.html">Format JSON before encoding if desired</a>, <a href="json-to-url-encoder.html">Percent-encode JSON for a URL instead</a>.</p>
+</section>
+<footer class="site-footer">
 
       <div class="container">
 
