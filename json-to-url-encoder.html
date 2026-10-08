@@ -670,7 +670,7 @@
   "city": "Karachi",
   "message": "السلام علیکم"
 }'
-        ></textarea>
+         aria-label="JSON input to encode"></textarea>
 
         <div class="buttons">
 
@@ -721,7 +721,7 @@
           class="output"
           readonly
           placeholder="Encoded JSON will appear here..."
-        ></textarea>
+         aria-label="Percent-encoded JSON output"></textarea>
 
       </div>
 
@@ -999,7 +999,7 @@
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-url-encoder">
-  <h2 id="seo-help-json-to-url-encoder">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-url-encoder">JSON to URL Encoder: input rules, output behavior, and troubleshooting</h2>
   <p>Paste valid JSON. The tool parses and serializes it before percent-encoding, so original indentation and formatting whitespace are not preserved. It returns a URI-component value, not a complete URL.</p>
   <h3>What the converter produces</h3>
   <p>Use the encoded output only in the parameter expected by your receiving service. This is percent encoding, not Base64; form encoders may serialize spaces differently.</p>

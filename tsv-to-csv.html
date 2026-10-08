@@ -592,13 +592,13 @@ button:hover {
 Example:
 name	age	city
 Ali	28	Karachi
-Emma	34	London"></textarea>
+Emma	34	London" aria-label="TSV input"></textarea>
             </div>
 
             <div class="editor-box">
                 <div class="tool-label">CSV Output</div>
 
-                <textarea id="output" placeholder="CSV output will appear here..." readonly></textarea>
+                <textarea id="output" placeholder="CSV output will appear here..." readonly aria-label="Converted CSV output"></textarea>
             </div>
 
         </div>
@@ -883,7 +883,7 @@ John,31,"New York"</div>
 
 
 <section class="seo-help" aria-labelledby="seo-help-tsv-to-csv">
-  <h2 id="seo-help-tsv-to-csv">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-tsv-to-csv">TSV to CSV: input rules, output behavior, and troubleshooting</h2>
   <p>Paste text whose columns are separated by literal tab characters. Each row must contain the same number of fields; this page is a paste-text converter, not a file or batch service.</p>
   <h3>What the converter produces</h3>
   <p>CSV output escapes values according to the converter’s rules; TSV field parsing is not a general quoted-multiline file parser. The downloaded filename is converted.csv.</p>

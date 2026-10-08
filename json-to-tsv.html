@@ -673,7 +673,7 @@ Example:
   {"name":"Ali","age":28,"city":"Karachi"},
   {"name":"Emma","age":34,"city":"London"}
 ]'
-        ></textarea>
+         aria-label="JSON array input"></textarea>
 
         <div class="buttons">
           <button onclick="convertJson()">Convert to TSV</button>
@@ -695,7 +695,7 @@ Example:
           id="tsvOutput"
           readonly
           placeholder="Converted TSV data will appear here..."
-        ></textarea>
+         aria-label="Converted TSV output"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyTsv()">Copy TSV</button>
@@ -967,7 +967,7 @@ Emma	34	London</pre>
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-tsv">
-  <h2 id="seo-help-json-to-tsv">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-tsv">JSON to TSV: input rules, output behavior, and troubleshooting</h2>
   <p>Paste a non-empty JSON array; every item must be an object. Keys form a first-seen union of columns, missing or null values become empty cells, and nested values become JSON text in a cell.</p>
   <h3>What the converter produces</h3>
   <p>Tabs and CR/LF characters inside values are replaced with spaces. The output always has a header row and literal tabs; this page does not accept top-level objects, scalar arrays, URL input, or file upload.</p>

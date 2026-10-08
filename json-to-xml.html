@@ -699,7 +699,7 @@
           id="rootName"
           value="root"
           placeholder="Enter root name, e.g. users"
-        >
+         aria-label="XML root element name">
 
       </div>
 
@@ -714,7 +714,7 @@
           <span>Valid JSON required</span>
         </div>
 
-        <textarea id="jsonInput">[
+        <textarea id="jsonInput" aria-label="JSON input">[
   {
     "name": "Ali",
     "age": 28,
@@ -761,7 +761,7 @@
           id="xmlOutput"
           readonly
           placeholder="XML output will appear here..."
-        ></textarea>
+         aria-label="Converted XML output"></textarea>
 
         <div class="buttons">
 
@@ -1081,7 +1081,7 @@
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-xml">
-  <h2 id="seo-help-json-to-xml">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-xml">JSON to XML: input rules, output behavior, and troubleshooting</h2>
   <p>Paste valid JSON and choose a root element. Objects map to child elements, arrays use repeated item elements, and the page produces element-based XML; it is not a schema or namespace mapper.</p>
   <h3>What the converter produces</h3>
   <p>This converter does not claim attribute/namespace creation, JSONL input, URL fetching, or file upload. Review generated XML for the requirements of the receiving system.</p>

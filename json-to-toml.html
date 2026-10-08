@@ -474,7 +474,7 @@
   "age": 28,
   "active": true
 }'
-        ></textarea>
+         aria-label="JSON input"></textarea>
 
         <div class="buttons">
           <button onclick="convertToTOML()">Convert to TOML</button>
@@ -495,7 +495,7 @@
           id="tomlOutput"
           readonly
           placeholder="Converted TOML will appear here..."
-        ></textarea>
+         aria-label="Converted TOML output"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyTOML()">Copy TOML</button>
@@ -878,7 +878,7 @@ port = 8080</code></pre>
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-toml">
-  <h2 id="seo-help-json-to-toml">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-toml">JSON to TOML: input rules, output behavior, and troubleshooting</h2>
   <p>The supported input is a JSON object with common strings, finite numbers, booleans, primitive arrays, and nested objects. Null values and arrays containing objects are outside the documented supported set.</p>
   <h3>What the converter produces</h3>
   <p>Nested objects become TOML sections. This is not a project-schema validator and does not promise full TOML mapping, array-of-tables output, file import, or URL fetching.</p>

@@ -476,7 +476,7 @@
 Example:
 {"name":"Ali","age":28}
 {"name":"Emma","age":34}'
-        ></textarea>
+         aria-label="JSONL or NDJSON input"></textarea>
 
         <div class="buttons">
           <button onclick="convertJsonl()">Convert to JSON</button>
@@ -494,7 +494,7 @@ Example:
           id="jsonOutput"
           readonly
           placeholder="Converted JSON will appear here..."
-        ></textarea>
+         aria-label="Converted JSON array output"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyJson()">Copy JSON</button>
@@ -856,7 +856,7 @@ Example:
 
 
 <section class="seo-help" aria-labelledby="seo-help-jsonl-to-json">
-  <h2 id="seo-help-jsonl-to-json">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-jsonl-to-json">JSONL to JSON: input rules, output behavior, and troubleshooting</h2>
   <p>Paste one complete JSON value per line. Empty lines are ignored, and the converter stops at the first invalid non-empty line; the result is a top-level JSON array.</p>
   <h3>What the converter produces</h3>
   <p>JSONL records are separate JSON values, not a pretty-printed multi-line object. Object-per-line is common, but parsed values remain JSON values and are not flattened.</p>

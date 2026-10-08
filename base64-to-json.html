@@ -1299,7 +1299,7 @@
 
 Example:
 eyJuYW1lIjoiQWxpIiwiYWdlIjoyNX0="
-          ></textarea>
+           aria-label="Base64 input"></textarea>
 
 
           <div class="tool-actions">
@@ -1361,7 +1361,7 @@ eyJuYW1lIjoiQWxpIiwiYWdlIjoyNX0="
             id="jsonOutput"
             readonly
             placeholder="Decoded JSON will appear here..."
-          ></textarea>
+           aria-label="Decoded JSON output"></textarea>
 
         </div>
 
@@ -1814,7 +1814,7 @@ eyJuYW1lIjoiQWxpIiwiYWdlIjoyNX0="
 
 
 <section class="seo-help" aria-labelledby="seo-help-base64-to-json">
-  <h2 id="seo-help-base64-to-json">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-base64-to-json">Base64 to JSON: input rules, output behavior, and troubleshooting</h2>
   <p>Paste standard Base64 text that decodes to UTF-8 JSON. Whitespace in the encoded text is tolerated; Base64URL characters and data-URI prefixes are outside this decoder’s documented input.</p>
   <h3>What the converter produces</h3>
   <p>The workflow is Base64 decoding, UTF-8 text decoding, JSON parsing, then two-space JSON formatting. Valid Base64 can still fail if its bytes are not UTF-8 or the decoded text is not valid JSON.</p>

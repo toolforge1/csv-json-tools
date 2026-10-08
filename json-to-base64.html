@@ -1309,7 +1309,7 @@
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-base64">
-  <h2 id="seo-help-json-to-base64">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-base64">JSON to Base64: input rules, output behavior, and troubleshooting</h2>
   <p>Paste valid JSON text. The tool trims outer whitespace, validates JSON, then encodes the remaining original text as UTF-8 bytes into standard padded Base64; it does not minify or reorder keys.</p>
   <h3>What the converter produces</h3>
   <p>Base64 encodes bytes, not an abstract JSON object, so pretty and compact versions of the same data can produce different strings. This page does not output Base64URL and is not encryption.</p>
@@ -1944,7 +1944,7 @@
       @media (max-width: 950px) {
 
         .content-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: minmax(0, 1fr);
         }
 
         .side-card {

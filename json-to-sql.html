@@ -542,7 +542,7 @@
                 id="tableName"
                 value="users"
                 placeholder="Enter table name, e.g. users"
-              >
+               aria-label="SQL table name">
 
             </div>
 
@@ -569,7 +569,7 @@
     "age": 34,
     "city": "London"
   }
-]'>[
+]' aria-label="JSON array input">[
   {
     "name": "Ali",
     "age": 28,
@@ -619,7 +619,7 @@
                 id="sqlOutput"
                 readonly
                 placeholder="SQL INSERT statements will appear here..."
-              ></textarea>
+               aria-label="Generated SQL INSERT statements"></textarea>
 
               <div class="buttons">
 
@@ -985,7 +985,7 @@
 
 
 <section class="seo-help" aria-labelledby="seo-help-json-to-sql">
-  <h2 id="seo-help-json-to-sql">Input rules, output behavior, and troubleshooting</h2>
+  <h2 id="seo-help-json-to-sql">JSON to SQL: input rules, output behavior, and troubleshooting</h2>
   <p>Paste a non-empty array of objects and provide a valid table name. The converter emits one INSERT per object and uses backtick-quoted identifiers; it has no database dialect selector or CREATE TABLE mode.</p>
   <h3>What the converter produces</h3>
   <p>Keys are combined across records; missing properties map to NULL in the generated statements. Review SQL syntax and escaping for your destination database, and use parameterized queries in application code.</p>
