@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel to JSON Converter Online | XLSX and XLS</title>
+  <meta name="description" content="Convert Excel .xlsx or .xls worksheets to JSON online. Select a sheet and create an array of records in your browser; the workbook is not uploaded.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/excel-to-json.html">
+  <meta property="og:title" content="Excel to JSON Converter Online | XLSX and XLS">
+  <meta property="og:description" content="Convert an Excel worksheet to JSON in your browser. Choose a .xlsx or .xls file, select a worksheet, and keep workbook contents on your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/excel-to-json.html">
+  <meta property="og:site_name" content="CSV &amp; JSON Developer Tools">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Excel to JSON Converter Online | XLSX and XLS">
+  <meta name="twitter:description" content="Convert an Excel worksheet to JSON in your browser. Choose a .xlsx or .xls file, select a worksheet, and keep workbook contents on your device.">
+  <meta name="theme-color" content="#06111f">
+  <link rel="stylesheet" href="assets/tool-pages.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','ys5nww2ow3');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Excel to JSON Converter",
+    "url":"https://toolforge1.github.io/csv-json-tools/excel-to-json.html",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any",
+    "inLanguage":"en",
+    "browserRequirements":"Requires JavaScript in a modern web browser",
+    "description":"Convert Excel .xlsx or .xls worksheets to JSON online. Select a sheet and create an array of records in your browser; the workbook is not uploaded.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Which Excel file types are supported?","acceptedAnswer":{"@type":"Answer","text":"This page accepts .xlsx and .xls workbooks. Macro-enabled .xlsm and binary .xlsb files are not listed as supported input formats."}},
+      {"@type":"Question","name":"Can I choose a worksheet from a workbook?","acceptedAnswer":{"@type":"Answer","text":"Yes. After the workbook is read locally, choose one of its worksheet names from the selector. The first worksheet is selected initially."}},
+      {"@type":"Question","name":"How are spreadsheet values represented in JSON?","acceptedAnswer":{"@type":"Answer","text":"The first non-empty worksheet row supplies object keys. Numeric and Boolean cells remain typed values, blank cells become empty strings, and recognized date cells are serialized as ISO date strings."}},
+      {"@type":"Question","name":"Does this converter recalculate spreadsheet formulas?","acceptedAnswer":{"@type":"Answer","text":"No. It reads formula results stored in the workbook when available; it does not run Excel's calculation engine or refresh external data connections."}},
+      {"@type":"Question","name":"Are my Excel files uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The workbook is read and parsed by JavaScript in this browser using a locally hosted library. The conversion page does not send workbook contents to a conversion server. The website separately loads analytics scripts; see the Privacy Policy for site-wide practices."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav container" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-icon">{ }</span><span>CSV &amp; JSON Developer Tools</span></a>
+    <a class="nav-link" href="index.html#tools">All tools</a>
+  </nav>
+</header>
+<section class="hero container">
+  <span class="eyebrow">Spreadsheet conversion tool</span>
+  <h1>Excel to JSON Converter</h1>
+  <p>Convert an Excel worksheet from an <code>.xlsx</code> or <code>.xls</code> workbook into a JSON array of records. Choose a sheet and process the workbook locally in your browser.</p>
+  <div class="trust-row" aria-label="Tool features"><span class="trust">XLSX and XLS input</span><span class="trust">Select a worksheet</span><span class="trust">Workbook stays on your device</span></div>
+</section>
+<main class="container">
+  <section class="panel" aria-labelledby="converter-heading">
+    <h2 id="converter-heading">Convert an Excel worksheet to JSON</h2>
+    <div class="field">
+      <label for="workbookFile">Choose an Excel workbook (.xlsx or .xls)</label>
+      <input id="workbookFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" aria-describedby="fileHelp">
+      <p class="field-help" id="fileHelp">The spreadsheet parser is loaded from this site only after you choose a file. Workbook bytes are read in this browser and are not uploaded for conversion.</p>
+    </div>
+    <div class="field">
+      <label for="sheetSelect">Worksheet</label>
+      <select id="sheetSelect" disabled aria-describedby="sheetHelp"><option value="">Choose a workbook first</option></select>
+      <p class="field-help" id="sheetHelp">The first worksheet is selected when a workbook is loaded. You can choose another sheet before converting.</p>
+    </div>
+    <div class="actions">
+      <button class="button primary" id="convertButton" type="button" disabled>Convert worksheet to JSON</button>
+      <button class="button" id="clearButton" type="button">Clear</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <div class="field">
+      <label for="jsonOutput">JSON output</label>
+      <textarea id="jsonOutput" readonly spellcheck="false" aria-describedby="outputHelp" placeholder="The worksheet's JSON array will appear here."></textarea>
+      <p class="field-help" id="outputHelp">The first non-empty worksheet row is used for property names. Blank cells become empty strings.</p>
+    </div>
+    <div class="actions">
+      <button class="button" id="copyButton" type="button" disabled>Copy JSON</button>
+      <button class="button" id="downloadButton" type="button" disabled>Download JSON</button>
+    </div>
+  </section>
+
+  <section class="content-card" aria-labelledby="about-heading">
+    <h2 id="about-heading">What this Excel to JSON converter does</h2>
+    <p>This browser-based tool reads a selected worksheet and turns its header row and records into a JSON array of objects. It supports common Excel workbook files ending in <code>.xlsx</code> and <code>.xls</code>. Workbooks with multiple sheets can be converted one worksheet at a time.</p>
+    <h3>How to convert Excel to JSON</h3>
+    <ol>
+      <li>Choose an <code>.xlsx</code> or <code>.xls</code> workbook from your device.</li>
+      <li>After the workbook loads, select the worksheet you want to convert.</li>
+      <li>Select <strong>Convert worksheet to JSON</strong> to create an array of records.</li>
+      <li>Review the result, then copy it or download <code>converted-data.json</code>.</li>
+    </ol>
+    <h3>Example structure</h3>
+    <p>If the worksheet starts with the headings <code>name</code>, <code>department</code>, and <code>active</code>, each subsequent row becomes an object:</p>
+    <pre><code>[
+  {
+    "name": "Ada Lovelace",
+    "department": "Research",
+    "active": true
+  },
+  {
+    "name": "Grace Hopper",
+    "department": "Engineering",
+    "active": false
+  }
+]</code></pre>
+    <h3>Headers, values, and limitations</h3>
+    <ul>
+      <li>The first non-empty row supplies object keys. Use clear, unique headings for predictable JSON properties.</li>
+      <li>Numbers and Boolean values remain numbers and Booleans; recognized date cells are written as ISO date strings. Empty worksheet cells become empty strings.</li>
+      <li>Formula cells are not recalculated. If the workbook contains a cached formula result, that stored result is read.</li>
+      <li>This tool does not refresh external workbook connections, execute macros, preserve cell formatting, or convert multiple worksheets into one combined array.</li>
+      <li>Only <code>.xlsx</code> and <code>.xls</code> are offered as supported inputs here. Password-protected files that the parser cannot decrypt will fail to open.</li>
+    </ul>
+    <h3>Common troubleshooting</h3>
+    <ul>
+      <li><strong>No worksheet appears:</strong> confirm the file opens in a spreadsheet application and contains at least one visible sheet.</li>
+      <li><strong>Properties are unexpected:</strong> make sure the first non-empty row contains the intended unique column names.</li>
+      <li><strong>Formula output is blank or old:</strong> the workbook may not contain a saved formula result; recalculate and save it in a spreadsheet application, then select the file again.</li>
+      <li><strong>The page feels slow:</strong> larger workbooks need more browser memory and processing time. Try a smaller workbook or one worksheet at a time.</li>
+    </ul>
+  </section>
+
+  <section class="content-card" aria-labelledby="privacy-heading">
+    <h2 id="privacy-heading">Workbook processing stays in your browser</h2>
+    <p>The selected file is read locally and parsed with a SheetJS library file hosted in this repository. The conversion code does not send workbook bytes to a conversion server or a third-party parser CDN. The website separately loads analytics scripts that may collect site-usage information; see the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+    <p>Library attribution: <strong>SheetJS Community Edition 0.20.3</strong>, licensed under Apache License 2.0. Read the <a href="vendor/sheetjs/NOTICE.txt">third-party notice</a> and <a href="vendor/sheetjs/LICENSE-2.0.txt">license text</a>.</p>
+  </section>
+
+  <section class="content-card" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Excel to JSON FAQs</h2>
+    <div class="faq-list">
+      <details><summary>Which Excel file types are supported?</summary><p>This page accepts <code>.xlsx</code> and <code>.xls</code> workbooks. Macro-enabled <code>.xlsm</code> and binary <code>.xlsb</code> files are not listed as supported input formats.</p></details>
+      <details><summary>Can I choose a worksheet from a workbook?</summary><p>Yes. After the workbook is read locally, choose one of its worksheet names from the selector. The first worksheet is selected initially.</p></details>
+      <details><summary>How are spreadsheet values represented in JSON?</summary><p>The first non-empty worksheet row supplies object keys. Numeric and Boolean cells remain typed values, blank cells become empty strings, and recognized date cells are serialized as ISO date strings.</p></details>
+      <details><summary>Does this converter recalculate spreadsheet formulas?</summary><p>No. It reads formula results stored in the workbook when available; it does not run Excel's calculation engine or refresh external data connections.</p></details>
+      <details><summary>Are my Excel files uploaded?</summary><p>No. The workbook is read and parsed by JavaScript in this browser using a locally hosted library. The conversion page does not send workbook contents to a conversion server. The website separately loads analytics scripts; see the <a href="privacy-policy.html">Privacy Policy</a> for site-wide practices.</p></details>
+    </div>
+  </section>
+
+  <section class="content-card" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related data conversion tools</h2>
+    <div class="related-grid">
+      <a class="related-link" href="csv-to-json.html">CSV to JSON</a>
+      <a class="related-link" href="json-to-csv.html">JSON to CSV</a>
+      <a class="related-link" href="csv-viewer.html">CSV Viewer</a>
+      <a class="related-link" href="csv-to-xml.html">CSV to XML</a>
+      <a class="related-link" href="json-to-xml.html">JSON to XML</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner"><div>CSV &amp; JSON Developer Tools</div><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></nav></div>
+</footer>
+<script>
+(function () {
+  'use strict';
+  var fileInput = document.getElementById('workbookFile');
+  var sheetSelect = document.getElementById('sheetSelect');
+  var convertButton = document.getElementById('convertButton');
+  var output = document.getElementById('jsonOutput');
+  var status = document.getElementById('status');
+  var copyButton = document.getElementById('copyButton');
+  var downloadButton = document.getElementById('downloadButton');
+  var workbook = null;
+  var xlsxLoadPromise = null;
+  var loadToken = 0;
+
+  function setStatus(message, isError) {
+    status.textContent = message;
+    status.classList.toggle('error', Boolean(isError));
+  }
+
+  function loadSpreadsheetLibrary() {
+    if (window.XLSX && typeof window.XLSX.read === 'function') return Promise.resolve();
+    if (xlsxLoadPromise) return xlsxLoadPromise;
+    xlsxLoadPromise = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = new URL('vendor/sheetjs/xlsx.full.min.js', document.baseURI).href;
+      script.async = true;
+      script.onload = function () {
+        if (window.XLSX && typeof window.XLSX.read === 'function') resolve();
+        else reject(new Error('The local spreadsheet parser did not initialize.'));
+      };
+      script.onerror = function () { xlsxLoadPromise = null; reject(new Error('Could not load the local spreadsheet parser. Reload the page and try again.')); };
+      document.head.appendChild(script);
+    });
+    return xlsxLoadPromise;
+  }
+
+  function readAsArrayBuffer(file) {
+    if (typeof file.arrayBuffer === 'function') return file.arrayBuffer();
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function (event) { resolve(event.target.result); };
+      reader.onerror = function () { reject(new Error('The selected file could not be read in this browser.')); };
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  async function handleFileChange() {
+    var token = ++loadToken;
+    workbook = null;
+    sheetSelect.disabled = true;
+    convertButton.disabled = true;
+    copyButton.disabled = true;
+    downloadButton.disabled = true;
+    output.value = '';
+    sheetSelect.replaceChildren(new Option('Choose a workbook first', ''));
+    var file = fileInput.files && fileInput.files[0];
+    if (!file) { setStatus(''); return; }
+    if (!/\.(xlsx|xls)$/i.test(file.name)) { setStatus('Choose an .xlsx or .xls workbook.', true); return; }
+    setStatus('Loading the local spreadsheet parser and reading the workbook…');
+    try {
+      await loadSpreadsheetLibrary();
+      if (token !== loadToken) return;
+      var data = await readAsArrayBuffer(file);
+      if (token !== loadToken) return;
+      var loadedWorkbook = window.XLSX.read(data, {cellDates: true});
+      if (!loadedWorkbook.SheetNames || !loadedWorkbook.SheetNames.length) throw new Error('No worksheets were found in this workbook.');
+      workbook = loadedWorkbook;
+      sheetSelect.replaceChildren();
+      workbook.SheetNames.forEach(function (name, index) {
+        var option = new Option(name, name);
+        sheetSelect.appendChild(option);
+        if (index === 0) option.selected = true;
+      });
+      sheetSelect.disabled = false;
+      convertButton.disabled = false;
+      setStatus('Loaded ' + workbook.SheetNames.length + ' worksheet' + (workbook.SheetNames.length === 1 ? '' : 's') + ' from ' + file.name + ' in this browser.');
+    } catch (error) {
+      if (token !== loadToken) return;
+      workbook = null;
+      setStatus(error.message || 'Could not read this workbook. Check that it is a valid, supported Excel file.', true);
+    }
+  }
+
+  function convertWorksheet() {
+    output.value = '';
+    copyButton.disabled = true;
+    downloadButton.disabled = true;
+    if (!workbook || !sheetSelect.value) { setStatus('Choose a workbook and worksheet first.', true); return; }
+    try {
+      var worksheet = workbook.Sheets[sheetSelect.value];
+      if (!worksheet) throw new Error('The selected worksheet could not be found.');
+      var records = window.XLSX.utils.sheet_to_json(worksheet, {defval: '', raw: true, blankrows: false});
+      if (!records.length) throw new Error('No header-and-data rows were found in this worksheet.');
+      var json = JSON.stringify(records, null, 2);
+      output.value = json;
+      copyButton.disabled = false;
+      downloadButton.disabled = false;
+      setStatus('Converted ' + records.length + ' row' + (records.length === 1 ? '' : 's') + ' from worksheet “' + sheetSelect.value + '”.');
+    } catch (error) {
+      setStatus(error.message || 'Could not convert this worksheet to JSON.', true);
+    }
+  }
+
+  function downloadJson() {
+    if (!output.value) return;
+    var blob = new Blob([output.value], {type: 'application/json;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'converted-data.json';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  fileInput.addEventListener('change', handleFileChange);
+  convertButton.addEventListener('click', convertWorksheet);
+  document.getElementById('clearButton').addEventListener('click', function () {
+    loadToken += 1;
+    workbook = null;
+    fileInput.value = '';
+    sheetSelect.replaceChildren(new Option('Choose a workbook first', ''));
+    sheetSelect.disabled = true;
+    convertButton.disabled = true;
+    output.value = '';
+    copyButton.disabled = true;
+    downloadButton.disabled = true;
+    setStatus('');
+  });
+  copyButton.addEventListener('click', function () {
+    if (!output.value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(output.value).then(function () { setStatus('JSON copied to the clipboard.'); }).catch(function () { output.select(); document.execCommand('copy'); setStatus('JSON selected for copying.'); });
+    else { output.select(); document.execCommand('copy'); setStatus('JSON selected for copying.'); }
+  });
+  downloadButton.addEventListener('click', downloadJson);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Viewer Online | View CSV as a Table</title>
+  <meta name="description" content="View CSV files online as a table. Paste CSV text or choose a .csv file; inspect headers and rows locally in your browser without uploading its contents.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-viewer.html">
+  <meta property="og:title" content="CSV Viewer Online | View CSV as a Table">
+  <meta property="og:description" content="Preview CSV headers and rows in a readable table. Paste or choose a CSV file; viewing happens in your browser without a conversion-server upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-viewer.html">
+  <meta property="og:site_name" content="CSV &amp; JSON Developer Tools">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CSV Viewer Online | View CSV as a Table">
+  <meta name="twitter:description" content="Preview CSV headers and rows in a readable table. Paste or choose a CSV file; viewing happens in your browser without a conversion-server upload.">
+  <meta name="theme-color" content="#06111f">
+  <link rel="stylesheet" href="assets/tool-pages.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','ys5nww2ow3');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"CSV Viewer",
+    "url":"https://toolforge1.github.io/csv-json-tools/csv-viewer.html",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any",
+    "inLanguage":"en",
+    "browserRequirements":"Requires JavaScript in a modern web browser",
+    "description":"View CSV files online as a table. Paste CSV text or choose a .csv file; inspect headers and rows locally in your browser without uploading its contents.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Can I preview a CSV file as a table?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste CSV text or choose a .csv file to display its header row and records in a scrollable table."}},
+      {"@type":"Question","name":"Does the CSV Viewer support quoted commas and line breaks?","acceptedAnswer":{"@type":"Answer","text":"Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value."}},
+      {"@type":"Question","name":"Are my CSV contents uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the Privacy Policy for site-wide practices."}},
+      {"@type":"Question","name":"Can I search the CSV rows?","acceptedAnswer":{"@type":"Answer","text":"Yes. The row filter searches the parsed cell values without changing the input file. Up to 500 matching rows are displayed at a time to keep the page responsive."}},
+      {"@type":"Question","name":"Does the CSV Viewer edit or save my original file?","acceptedAnswer":{"@type":"Answer","text":"No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav container" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-icon">{ }</span><span>CSV &amp; JSON Developer Tools</span></a>
+    <a class="nav-link" href="index.html#tools">All tools</a>
+  </nav>
+</header>
+<section class="hero container">
+  <span class="eyebrow">CSV preview tool</span>
+  <h1>CSV Viewer</h1>
+  <p>Preview comma-separated files as a readable table. Paste CSV text or choose a file; the browser displays its rows locally and does not send CSV contents to a conversion server.</p>
+  <div class="trust-row" aria-label="Tool features"><span class="trust">Table preview</span><span class="trust">Browser-based</span><span class="trust">CSV stays on your device</span></div>
+</section>
+<main class="container">
+  <section class="panel" aria-labelledby="viewer-heading">
+    <h2 id="viewer-heading">View CSV data</h2>
+    <div class="field">
+      <label for="csvInput">Paste CSV data</label>
+      <textarea id="csvInput" spellcheck="false" aria-describedby="csvHelp" placeholder="name,city&#10;Ada Lovelace,London&#10;Grace Hopper,New York"></textarea>
+      <p class="field-help" id="csvHelp">The first row is treated as the column header. Commas, quoted values, and line breaks inside quoted fields are supported.</p>
+    </div>
+    <div class="field">
+      <label for="csvFile">Or choose a CSV file</label>
+      <input id="csvFile" type="file" accept=".csv,text/csv">
+    </div>
+    <div class="actions">
+      <button class="button primary" id="viewButton" type="button">View CSV</button>
+      <button class="button" id="exampleButton" type="button">Load example</button>
+      <button class="button" id="clearButton" type="button">Clear</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel" id="viewerResults" aria-labelledby="results-heading" hidden>
+    <h2 id="results-heading">CSV table preview</h2>
+    <div class="field" id="filterField" hidden>
+      <label for="rowFilter">Filter displayed rows</label>
+      <input type="search" id="rowFilter" placeholder="Search values in any column" autocomplete="off">
+    </div>
+    <p class="status" id="rowCount" role="status" aria-live="polite"></p>
+    <div class="table-wrap" id="tableWrap"></div>
+  </section>
+
+  <section class="content-card" aria-labelledby="about-heading">
+    <h2 id="about-heading">What the CSV Viewer shows</h2>
+    <p>The first row becomes the table header, and each following CSV record appears as a row. The viewer reads comma-delimited text decoded as UTF-8. It is useful for checking a spreadsheet export, inspecting column names, or finding a value before converting the data.</p>
+    <h3>How to view a CSV file</h3>
+    <ol>
+      <li>Paste comma-separated text or choose a <code>.csv</code> file.</li>
+      <li>Select <strong>View CSV</strong> to parse the header and display the table.</li>
+      <li>Use the row filter to find matching values. It searches across all parsed records.</li>
+      <li>Scroll within the table to inspect wide columns or additional rows.</li>
+    </ol>
+    <h3>CSV example</h3>
+    <pre><code>name,city,note
+Ada Lovelace,London,"Research &amp; analysis"
+Grace Hopper,"New York","Said ""debug the system"""</code></pre>
+    <p>The viewer displays text as text, so values that resemble HTML are not executed as page markup. If a file has more than 500 matching records, the first 500 matches are shown; refine the filter to narrow the preview.</p>
+    <h3>Common troubleshooting</h3>
+    <ul>
+      <li><strong>Columns do not line up:</strong> fields containing commas must be enclosed in double quotes.</li>
+      <li><strong>Quotation marks appear in a value:</strong> represent a quotation mark inside a quoted CSV field as two double quotes.</li>
+      <li><strong>The input is tab-separated:</strong> use <a href="tsv-to-json.html">TSV to JSON</a> or <a href="csv-to-tsv.html">CSV to TSV</a> for tab-separated data.</li>
+      <li><strong>Semicolons are used as separators:</strong> the viewer expects commas and does not infer locale-specific delimiters; normalize the file to comma-separated UTF-8 text first.</li>
+      <li><strong>No rows appear:</strong> the first row is reserved for headings; add a header row and at least one non-empty record.</li>
+    </ul>
+  </section>
+
+  <section class="content-card" aria-labelledby="privacy-heading">
+    <h2 id="privacy-heading">CSV stays in your browser</h2>
+    <p>When you select a file, this page reads it with the browser File API and creates the preview in JavaScript. CSV contents are not sent to a conversion server. The website separately loads analytics scripts that may collect site-usage information; see the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+  </section>
+
+  <section class="content-card" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">CSV Viewer FAQs</h2>
+    <div class="faq-list">
+      <details><summary>Can I preview a CSV file as a table?</summary><p>Yes. Paste CSV text or choose a <code>.csv</code> file to display its header row and records in a scrollable table.</p></details>
+      <details><summary>Does the CSV Viewer support quoted commas and line breaks?</summary><p>Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value.</p></details>
+      <details><summary>Are my CSV contents uploaded to a server?</summary><p>No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the <a href="privacy-policy.html">Privacy Policy</a> for site-wide practices.</p></details>
+      <details><summary>Can I search the CSV rows?</summary><p>Yes. The row filter searches the parsed cell values without changing the input file. Up to 500 matching rows are displayed at a time to keep the page responsive.</p></details>
+      <details><summary>Does the CSV Viewer edit or save my original file?</summary><p>No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file.</p></details>
+    </div>
+  </section>
+
+  <section class="content-card" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related data tools</h2>
+    <div class="related-grid">
+      <a class="related-link" href="csv-to-json.html">CSV to JSON</a>
+      <a class="related-link" href="csv-to-xml.html">CSV to XML</a>
+      <a class="related-link" href="csv-to-html.html">CSV to HTML</a>
+      <a class="related-link" href="csv-to-tsv.html">CSV to TSV</a>
+      <a class="related-link" href="excel-to-json.html">Excel to JSON</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner"><div>CSV &amp; JSON Developer Tools</div><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></nav></div>
+</footer>
+<script src="assets/csv-utils.js"></script>
+<script>
+(function () {
+  'use strict';
+  var input = document.getElementById('csvInput');
+  var fileInput = document.getElementById('csvFile');
+  var status = document.getElementById('status');
+  var results = document.getElementById('viewerResults');
+  var filterField = document.getElementById('filterField');
+  var filterInput = document.getElementById('rowFilter');
+  var rowCount = document.getElementById('rowCount');
+  var tableWrap = document.getElementById('tableWrap');
+  var maxDisplayRows = 500;
+  var currentHeaders = [];
+  var currentRows = [];
+  var example = 'name,city,note\nAda Lovelace,London,"Research & analysis"\nGrace Hopper,"New York","Said ""debug the system"""\nWeb input,local,"<tag>shown as text</tag>"';
+
+  function setStatus(message, isError) {
+    status.textContent = message;
+    status.classList.toggle('error', Boolean(isError));
+  }
+
+  function renderTable() {
+    tableWrap.replaceChildren();
+    var query = filterInput.value.trim().toLocaleLowerCase();
+    var matches = currentRows.filter(function (row) {
+      if (!query) return true;
+      return row.some(function (cell) { return String(cell).toLocaleLowerCase().includes(query); });
+    });
+    var visible = matches.slice(0, maxDisplayRows);
+    var table = document.createElement('table');
+    var caption = document.createElement('caption');
+    caption.textContent = 'CSV preview: ' + visible.length + ' of ' + matches.length + ' matching data rows';
+    table.appendChild(caption);
+    var thead = document.createElement('thead');
+    var headRow = document.createElement('tr');
+    currentHeaders.forEach(function (header) {
+      var th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = header;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+    var tbody = document.createElement('tbody');
+    visible.forEach(function (row) {
+      var tr = document.createElement('tr');
+      currentHeaders.forEach(function (_, index) {
+        var td = document.createElement('td');
+        td.textContent = row[index] == null ? '' : String(row[index]);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    tableWrap.appendChild(table);
+    rowCount.textContent = matches.length > maxDisplayRows
+      ? 'Showing the first ' + maxDisplayRows + ' of ' + matches.length + ' matching rows. Filter values to narrow the preview.'
+      : matches.length + ' matching data row' + (matches.length === 1 ? '' : 's') + ' across ' + currentHeaders.length + ' column' + (currentHeaders.length === 1 ? '' : 's') + '.';
+  }
+
+  function viewCsv() {
+    try {
+      var rows = window.CSVToolUtils.parseCsv(input.value);
+      rows = rows.filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
+      if (!rows.length) throw new Error('Paste CSV data with a header row before viewing it.');
+      var width = rows.reduce(function (max, row) { return Math.max(max, row.length); }, 0);
+      if (!width) throw new Error('No CSV columns were found.');
+      currentHeaders = [];
+      for (var i = 0; i < width; i += 1) {
+        var label = rows[0][i] == null ? '' : String(rows[0][i]).trim();
+        currentHeaders.push(label || ('Column ' + (i + 1)));
+      }
+      currentRows = rows.slice(1).map(function (row) {
+        var padded = row.slice();
+        while (padded.length < width) padded.push('');
+        return padded;
+      }).filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
+      filterInput.value = '';
+      filterField.hidden = false;
+      results.hidden = false;
+      renderTable();
+      setStatus('CSV parsed locally. The original text and file are unchanged.');
+    } catch (error) {
+      results.hidden = true;
+      setStatus(error.message || 'Could not parse this CSV input.', true);
+    }
+  }
+
+  document.getElementById('viewButton').addEventListener('click', viewCsv);
+  document.getElementById('exampleButton').addEventListener('click', function () { input.value = example; setStatus('Example loaded. Select View CSV to preview it.'); });
+  document.getElementById('clearButton').addEventListener('click', function () {
+    input.value = ''; fileInput.value = ''; filterInput.value = ''; currentHeaders = []; currentRows = []; tableWrap.replaceChildren(); results.hidden = true; filterField.hidden = true; rowCount.textContent = ''; setStatus('');
+  });
+  fileInput.addEventListener('change', function () {
+    var file = fileInput.files && fileInput.files[0];
+    if (!file) return;
+    file.text().then(function (text) { input.value = text; setStatus('CSV file read locally. Select View CSV to display it.'); }).catch(function () { setStatus('The selected file could not be read in this browser.', true); });
+  });
+  filterInput.addEventListener('input', renderTable);
+})();
+</script>
+</body>
+</html>

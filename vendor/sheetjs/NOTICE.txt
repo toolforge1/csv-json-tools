@@ -1,0 +1,10 @@
+SheetJS Community Edition 0.20.3
+https://sheetjs.com/
+
+Copyright (C) 2012-present SheetJS LLC.
+Licensed under the Apache License, Version 2.0. The complete license text is included in LICENSE-2.0.txt.
+
+The unmodified standalone browser build is xlsx.full.min.js and is distributed from the official SheetJS CDN release:
+https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js
+
+The bundled library is used locally by excel-to-json.html to read user-selected spreadsheet files in the browser. Workbook contents are not sent to the CDN or a conversion server.

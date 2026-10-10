@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV to XML Converter Online | Free Browser Tool</title>
+  <meta name="description" content="Convert CSV rows to XML online. Paste text or choose a .csv file to create XML locally in your browser; CSV contents are not uploaded to a conversion server.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-xml.html">
+  <meta property="og:title" content="CSV to XML Converter Online | Free Browser Tool">
+  <meta property="og:description" content="Convert CSV rows to XML in your browser. Paste or select a CSV file; its contents are not uploaded to a conversion server.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-to-xml.html">
+  <meta property="og:site_name" content="CSV &amp; JSON Developer Tools">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CSV to XML Converter Online | Free Browser Tool">
+  <meta name="twitter:description" content="Convert CSV rows to XML in your browser. Paste or select a CSV file; its contents are not uploaded to a conversion server.">
+  <meta name="theme-color" content="#06111f">
+  <link rel="stylesheet" href="assets/tool-pages.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','ys5nww2ow3');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"CSV to XML Converter",
+    "url":"https://toolforge1.github.io/csv-json-tools/csv-to-xml.html",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any",
+    "inLanguage":"en",
+    "browserRequirements":"Requires JavaScript in a modern web browser",
+    "description":"Convert CSV rows to XML online. Paste text or choose a .csv file to create XML locally in your browser; CSV contents are not uploaded to a conversion server.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What XML structure does this converter create?","acceptedAnswer":{"@type":"Answer","text":"The first CSV row supplies field names. Each later row becomes a row element inside a rows root element, with one child element for each column."}},
+      {"@type":"Question","name":"How are CSV headers used as XML element names?","acceptedAnswer":{"@type":"Answer","text":"Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix."}},
+      {"@type":"Question","name":"Are special characters escaped in the XML output?","acceptedAnswer":{"@type":"Answer","text":"Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed."}},
+      {"@type":"Question","name":"Does the converter create nested XML?","acceptedAnswer":{"@type":"Answer","text":"No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema."}},
+      {"@type":"Question","name":"Are my CSV contents uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the Privacy Policy for site-wide practices."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav container" aria-label="Main navigation">
+    <a class="brand" href="index.html"><span class="brand-icon">{ }</span><span>CSV &amp; JSON Developer Tools</span></a>
+    <a class="nav-link" href="index.html#tools">All tools</a>
+  </nav>
+</header>
+<section class="hero container">
+  <span class="eyebrow">CSV conversion tool</span>
+  <h1>CSV to XML Converter</h1>
+  <p>Turn a flat CSV table into well-formed XML rows. Paste text or choose a CSV file; conversion runs in this browser and your CSV contents are not sent to a conversion server.</p>
+  <div class="trust-row" aria-label="Tool features"><span class="trust">Browser-based conversion</span><span class="trust">CSV stays on your device</span><span class="trust">No account required</span></div>
+</section>
+<main class="container">
+  <section class="panel" aria-labelledby="converter-heading">
+    <h2 id="converter-heading">Convert CSV rows to XML</h2>
+    <div class="field">
+      <label for="csvInput">CSV input</label>
+      <textarea id="csvInput" spellcheck="false" aria-describedby="csvHelp" placeholder="name,city&#10;Ada Lovelace,London&#10;Grace Hopper,New York"></textarea>
+      <p class="field-help" id="csvHelp">The first row is used for column names. Commas, quoted fields, and doubled quotes are supported.</p>
+    </div>
+    <div class="field">
+      <label for="csvFile">Or choose a CSV file</label>
+      <input id="csvFile" type="file" accept=".csv,text/csv">
+    </div>
+    <div class="actions">
+      <button class="button primary" id="convertButton" type="button">Convert to XML</button>
+      <button class="button" id="exampleButton" type="button">Load example</button>
+      <button class="button" id="clearButton" type="button">Clear</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <div class="field">
+      <label for="xmlOutput">XML output</label>
+      <textarea id="xmlOutput" readonly spellcheck="false" aria-describedby="xmlHelp" placeholder="Your XML output will appear here."></textarea>
+      <p class="field-help" id="xmlHelp">Each CSV data row becomes a &lt;row&gt; element under &lt;rows&gt;. Values are escaped as XML text.</p>
+    </div>
+    <div class="actions">
+      <button class="button" id="copyButton" type="button" disabled>Copy XML</button>
+      <button class="button" id="downloadButton" type="button" disabled>Download XML</button>
+    </div>
+  </section>
+
+  <section class="content-card" aria-labelledby="about-heading">
+    <h2 id="about-heading">What this CSV to XML converter does</h2>
+    <p>The converter maps a simple table into an XML document: the header row identifies each field, and every following row becomes a record. It is useful when a data import, test fixture, or legacy workflow needs flat XML instead of comma-separated text.</p>
+    <h3>How to convert CSV to XML</h3>
+    <ol>
+      <li>Make sure the first CSV row contains column headings and at least one data row follows it.</li>
+      <li>Paste comma-separated data, or choose a <code>.csv</code> file. The browser reads that file locally.</li>
+      <li>Select <strong>Convert to XML</strong>, then review the generated document.</li>
+      <li>Copy the XML or download it as <code>converted-data.xml</code>.</li>
+    </ol>
+    <h3>Example</h3>
+    <p>For CSV headers <code>id</code> and <code>product</code>, the output uses those headings as XML child elements. Special characters in cell values are escaped.</p>
+    <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rows&gt;
+  &lt;row&gt;
+    &lt;id&gt;1&lt;/id&gt;
+    &lt;product&gt;Tea &amp;amp; Coffee&lt;/product&gt;
+  &lt;/row&gt;
+&lt;/rows&gt;</code></pre>
+    <h3>Headers and XML names</h3>
+    <p>Generated XML names use basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; names that start with an invalid character or the reserved <code>xml</code> prefix receive a <code>column_</code> prefix. Blank headings become names such as <code>column_1</code>, and repeated names get a suffix such as <code>_2</code>. The original cell values are preserved, including commas inside properly quoted fields.</p>
+    <h3>Common troubleshooting</h3>
+    <ul>
+      <li><strong>Nothing converts:</strong> include a header row and at least one non-empty data row.</li>
+      <li><strong>Quotes look wrong:</strong> enclose a CSV field containing commas in double quotes and write an embedded quote as <code>""</code>.</li>
+      <li><strong>Some columns are blank:</strong> short rows produce empty XML elements for missing cells; extra cells beyond the header columns are ignored.</li>
+      <li><strong>Separator or encoding mismatch:</strong> this parser expects comma-separated UTF-8 text; it does not auto-detect semicolons or tabs. Normalize other delimiters to comma-separated data first.</li>
+      <li><strong>Need nested XML?</strong> This tool maps flat tables only; it does not infer parent-child relationships or validate against an XSD.</li>
+    </ul>
+  </section>
+
+  <section class="content-card" aria-labelledby="privacy-heading">
+    <h2 id="privacy-heading">Browser-based CSV processing</h2>
+    <p>The file input is read by this page with the browser File API, and conversion is performed in JavaScript on your device. The converter does not upload CSV contents to a conversion server. The website separately loads analytics scripts that may collect site-usage information; review the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+  </section>
+
+  <section class="content-card" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">CSV to XML FAQs</h2>
+    <div class="faq-list">
+      <details><summary>What XML structure does this converter create?</summary><p>The first CSV row supplies field names. Each later row becomes a <code>row</code> element inside a <code>rows</code> root element, with one child element for each column.</p></details>
+      <details><summary>How are CSV headers used as XML element names?</summary><p>Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix.</p></details>
+      <details><summary>Are special characters escaped in the XML output?</summary><p>Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed.</p></details>
+      <details><summary>Does the converter create nested XML?</summary><p>No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema.</p></details>
+      <details><summary>Are my CSV contents uploaded?</summary><p>No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the <a href="privacy-policy.html">Privacy Policy</a> for site-wide practices.</p></details>
+    </div>
+  </section>
+
+  <section class="content-card" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related data tools</h2>
+    <div class="related-grid">
+      <a class="related-link" href="xml-to-json.html">XML to JSON</a>
+      <a class="related-link" href="json-to-xml.html">JSON to XML</a>
+      <a class="related-link" href="csv-to-json.html">CSV to JSON</a>
+      <a class="related-link" href="csv-viewer.html">CSV Viewer</a>
+      <a class="related-link" href="csv-to-html.html">CSV to HTML</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner"><div>CSV &amp; JSON Developer Tools</div><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></nav></div>
+</footer>
+<script src="assets/csv-utils.js"></script>
+<script>
+(function () {
+  'use strict';
+  var input = document.getElementById('csvInput');
+  var fileInput = document.getElementById('csvFile');
+  var output = document.getElementById('xmlOutput');
+  var status = document.getElementById('status');
+  var copyButton = document.getElementById('copyButton');
+  var downloadButton = document.getElementById('downloadButton');
+  var example = 'id,product,notes\n1,"Tea & Coffee","Contains <strong>quotes</strong>"\n2,Notebook,"A5 size"';
+
+  function setStatus(message, isError) {
+    status.textContent = message;
+    status.classList.toggle('error', Boolean(isError));
+  }
+
+  function xmlName(header, index, used) {
+    var name = String(header == null ? '' : header).trim().replace(/[^A-Za-z0-9_.-]+/g, '_');
+    if (!name || !/^[A-Za-z_]/.test(name) || /^xml/i.test(name)) name = 'column_' + (name || (index + 1));
+    var base = name;
+    var suffix = 2;
+    while (used[name.toLowerCase()]) {
+      name = base + '_' + suffix;
+      suffix += 1;
+    }
+    used[name.toLowerCase()] = true;
+    return name;
+  }
+
+  function escapeXml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+  }
+
+  function convertCsvToXml() {
+    output.value = '';
+    copyButton.disabled = true;
+    downloadButton.disabled = true;
+    try {
+      var rows = window.CSVToolUtils.parseCsv(input.value);
+      rows = rows.filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
+      if (rows.length < 2) throw new Error('Add a header row and at least one non-empty data row.');
+      var headers = rows[0];
+      if (!headers.length || headers.every(function (cell) { return String(cell).trim() === ''; })) throw new Error('Add a name for at least one column in the first row.');
+      var used = Object.create(null);
+      var names = headers.map(function (header, index) { return xmlName(header, index, used); });
+      var lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<rows>'];
+      rows.slice(1).forEach(function (row) {
+        if (!row.some(function (cell) { return String(cell).trim() !== ''; })) return;
+        lines.push('  <row>');
+        names.forEach(function (name, index) {
+          lines.push('    <' + name + '>' + escapeXml(row[index] == null ? '' : row[index]) + '</' + name + '>');
+        });
+        lines.push('  </row>');
+      });
+      lines.push('</rows>');
+      var xml = lines.join('\n');
+      var parsed = new DOMParser().parseFromString(xml, 'application/xml');
+      if (parsed.getElementsByTagName('parsererror').length) throw new Error('The generated XML did not pass the browser parser check.');
+      output.value = xml;
+      copyButton.disabled = false;
+      downloadButton.disabled = false;
+      setStatus('Converted ' + (lines.filter(function (line) { return line === '  <row>'; }).length) + ' CSV rows to well-formed XML.');
+    } catch (error) {
+      setStatus(error.message || 'Could not parse the CSV input.', true);
+    }
+  }
+
+  function downloadText(filename, text, type) {
+    var blob = new Blob([text], {type: type});
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  document.getElementById('convertButton').addEventListener('click', convertCsvToXml);
+  document.getElementById('exampleButton').addEventListener('click', function () { input.value = example; setStatus('Example loaded. Select Convert to XML when ready.'); });
+  document.getElementById('clearButton').addEventListener('click', function () {
+    input.value = ''; fileInput.value = ''; output.value = ''; copyButton.disabled = true; downloadButton.disabled = true; setStatus('');
+  });
+  fileInput.addEventListener('change', function () {
+    var file = fileInput.files && fileInput.files[0];
+    if (!file) return;
+    file.text().then(function (text) { input.value = text; setStatus('CSV file read locally. Select Convert to XML to create the output.'); }).catch(function () { setStatus('The selected file could not be read in this browser.', true); });
+  });
+  copyButton.addEventListener('click', function () {
+    if (!output.value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(output.value).then(function () { setStatus('XML copied to the clipboard.'); }).catch(function () { output.select(); document.execCommand('copy'); setStatus('XML selected for copying.'); });
+    else { output.select(); document.execCommand('copy'); setStatus('XML selected for copying.'); }
+  });
+  downloadButton.addEventListener('click', function () { if (output.value) downloadText('converted-data.xml', output.value, 'application/xml;charset=utf-8'); });
+})();
+</script>
+</body>
+</html>
