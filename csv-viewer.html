@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSV Viewer Online | View CSV as a Table</title>
-  <meta name="description" content="View CSV files online as a table. Paste CSV text or choose a .csv file; inspect headers and rows locally in your browser without uploading its contents.">
+  <title>Free CSV Viewer Online | View CSV as a Table</title>
+  <meta name="description" content="Use this free online CSV viewer to open and search a CSV file in your browser. Paste text or select .csv; contents are not sent to a conversion server.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-viewer.html">
-  <meta property="og:title" content="CSV Viewer Online | View CSV as a Table">
-  <meta property="og:description" content="Preview CSV headers and rows in a readable table. Paste or choose a CSV file; viewing happens in your browser without a conversion-server upload.">
+  <meta property="og:title" content="Free CSV Viewer Online | View CSV as a Table">
+  <meta property="og:description" content="Open and search CSV files in a browser table. Paste text or select .csv; contents stay in your browser and are not sent to a conversion server.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/csv-viewer.html">
   <meta property="og:site_name" content="CSV &amp; JSON Developer Tools">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="CSV Viewer Online | View CSV as a Table">
-  <meta name="twitter:description" content="Preview CSV headers and rows in a readable table. Paste or choose a CSV file; viewing happens in your browser without a conversion-server upload.">
+  <meta name="twitter:title" content="Free CSV Viewer Online | View CSV as a Table">
+  <meta name="twitter:description" content="Open and search CSV files in a browser table. Paste text or select .csv; contents stay in your browser and are not sent to a conversion server.">
   <meta name="theme-color" content="#06111f">
   <link rel="stylesheet" href="assets/tool-pages.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
@@ -47,10 +47,10 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"Can I preview a CSV file as a table?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste CSV text or choose a .csv file to display its header row and records in a scrollable table."}},
+      {"@type":"Question","name":"How do I open a CSV file online?","acceptedAnswer":{"@type":"Answer","text":"Paste CSV text or select a .csv file, then choose View CSV. The page uses the first non-empty row as column headings and displays the parsed records in a searchable table in your browser."}},
       {"@type":"Question","name":"Does the CSV Viewer support quoted commas and line breaks?","acceptedAnswer":{"@type":"Answer","text":"Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value."}},
-      {"@type":"Question","name":"Are my CSV contents uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the Privacy Policy for site-wide practices."}},
-      {"@type":"Question","name":"Can I search the CSV rows?","acceptedAnswer":{"@type":"Answer","text":"Yes. The row filter searches the parsed cell values without changing the input file. Up to 500 matching rows are displayed at a time to keep the page responsive."}},
+      {"@type":"Question","name":"Are my CSV contents uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. Its preview is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the Privacy Policy for details."}},
+      {"@type":"Question","name":"Can I search the CSV rows?","acceptedAnswer":{"@type":"Answer","text":"Yes. The row filter searches all parsed cell values without changing the input file. The preview shows up to 500 matches in pages of 50 rows; refine the filter to find matching rows beyond that preview limit."}},
       {"@type":"Question","name":"Does the CSV Viewer edit or save my original file?","acceptedAnswer":{"@type":"Answer","text":"No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file."}}
     ]
   }
@@ -65,12 +65,12 @@
 </header>
 <section class="hero container">
   <span class="eyebrow">CSV preview tool</span>
-  <h1>CSV Viewer</h1>
-  <p>Preview comma-separated files as a readable table. Paste CSV text or choose a file; the browser displays its rows locally and does not send CSV contents to a conversion server.</p>
+  <h1>Online CSV Viewer</h1>
+  <p>Open a CSV file online and view its rows in a searchable table. Paste CSV text or choose a file; the browser displays it locally without sending CSV contents to a conversion server.</p>
   <div class="trust-row" aria-label="Tool features"><span class="trust">Table preview</span><span class="trust">Browser-based</span><span class="trust">CSV stays on your device</span></div>
 </section>
 <main class="container">
-  <section class="panel" aria-labelledby="viewer-heading">
+  <section class="panel" aria-labelledby="viewer-heading" data-clarity-mask="True">
     <h2 id="viewer-heading">View CSV data</h2>
     <div class="field">
       <label for="csvInput">Paste CSV data</label>
@@ -89,7 +89,7 @@
     <p class="status" id="status" role="status" aria-live="polite"></p>
   </section>
 
-  <section class="panel" id="viewerResults" aria-labelledby="results-heading" hidden>
+  <section class="panel" id="viewerResults" aria-labelledby="results-heading" data-clarity-mask="True" hidden>
     <h2 id="results-heading">CSV table preview</h2>
     <div class="field" id="filterField" hidden>
       <label for="rowFilter">Filter displayed rows</label>
@@ -97,17 +97,22 @@
     </div>
     <p class="status" id="rowCount" role="status" aria-live="polite"></p>
     <div class="table-wrap" id="tableWrap"></div>
+    <nav class="table-pagination" id="tablePagination" aria-label="CSV preview pages" hidden>
+      <button class="button" id="previousPageButton" type="button" disabled>Previous page</button>
+      <span id="pageIndicator" aria-live="polite" aria-atomic="true"></span>
+      <button class="button" id="nextPageButton" type="button" disabled>Next page</button>
+    </nav>
   </section>
 
   <section class="content-card" aria-labelledby="about-heading">
     <h2 id="about-heading">What the CSV Viewer shows</h2>
     <p>The first row becomes the table header, and each following CSV record appears as a row. The viewer reads comma-delimited text decoded as UTF-8. It is useful for checking a spreadsheet export, inspecting column names, or finding a value before converting the data.</p>
-    <h3>How to view a CSV file</h3>
+    <h3>How to open a CSV file online</h3>
     <ol>
       <li>Paste comma-separated text or choose a <code>.csv</code> file.</li>
       <li>Select <strong>View CSV</strong> to parse the header and display the table.</li>
       <li>Use the row filter to find matching values. It searches across all parsed records.</li>
-      <li>Scroll within the table to inspect wide columns or additional rows.</li>
+      <li>Use Previous page and Next page to move through the preview, then scroll horizontally for wide columns.</li>
     </ol>
     <h3>CSV example</h3>
     <pre><code>name,city,note
@@ -124,18 +129,25 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
     </ul>
   </section>
 
+  <section class="content-card" aria-labelledby="viewer-article-heading">
+    <h2 id="viewer-article-heading">Open a CSV file online to inspect its rows</h2>
+    <p>An online CSV table viewer is useful when you want to check a spreadsheet export before importing or converting it. Instead of reading a wall of commas, view CSV files in a browser as labeled columns and records. This is handy for checking headings, locating a value, or confirming that quoted commas stayed inside the right cell.</p>
+    <p>The first non-empty record supplies the column headings, and cell values remain text rather than being converted into dates or numbers. Search across the parsed rows, then navigate the preview in pages of 50. To keep the page responsive, at most 500 matching rows are displayed at a time; refine the search to inspect a later match. This viewer expects comma-separated UTF-8 input and does not sort, edit, or save the original file.</p>
+    <p>After reviewing a CSV file, continue with <a href="csv-to-json.html">CSV to JSON</a> for an array of records or <a href="csv-to-xml.html">CSV to XML</a> for flat XML rows. If your source is an Excel workbook, use <a href="excel-to-json.html">Excel to JSON</a>.</p>
+  </section>
+
   <section class="content-card" aria-labelledby="privacy-heading">
     <h2 id="privacy-heading">CSV stays in your browser</h2>
-    <p>When you select a file, this page reads it with the browser File API and creates the preview in JavaScript. CSV contents are not sent to a conversion server. The website separately loads analytics scripts that may collect site-usage information; see the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+    <p>When you select a file, this page reads it with the browser File API and creates the preview in JavaScript. CSV contents are not sent to a conversion server. The table results are explicitly marked for Microsoft Clarity masking; analytics scripts are separate from conversion and may collect site-usage information. See the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
   </section>
 
   <section class="content-card" aria-labelledby="faq-heading">
     <h2 id="faq-heading">CSV Viewer FAQs</h2>
     <div class="faq-list">
-      <details><summary>Can I preview a CSV file as a table?</summary><p>Yes. Paste CSV text or choose a <code>.csv</code> file to display its header row and records in a scrollable table.</p></details>
+      <details><summary>How do I open a CSV file online?</summary><p>Paste CSV text or select a <code>.csv</code> file, then choose <strong>View CSV</strong>. The page uses the first non-empty row as column headings and displays the parsed records in a searchable table in your browser.</p></details>
       <details><summary>Does the CSV Viewer support quoted commas and line breaks?</summary><p>Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value.</p></details>
-      <details><summary>Are my CSV contents uploaded to a server?</summary><p>No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the <a href="privacy-policy.html">Privacy Policy</a> for site-wide practices.</p></details>
-      <details><summary>Can I search the CSV rows?</summary><p>Yes. The row filter searches the parsed cell values without changing the input file. Up to 500 matching rows are displayed at a time to keep the page responsive.</p></details>
+      <details><summary>Are my CSV contents uploaded to a server?</summary><p>No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. Its preview is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the <a href="privacy-policy.html">Privacy Policy</a> for details.</p></details>
+      <details><summary>Can I search the CSV rows?</summary><p>Yes. The row filter searches all parsed cell values without changing the input file. The preview shows up to 500 matches in pages of 50 rows; refine the filter to find matching rows beyond that preview limit.</p></details>
       <details><summary>Does the CSV Viewer edit or save my original file?</summary><p>No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file.</p></details>
     </div>
   </section>
@@ -166,7 +178,13 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
   var filterInput = document.getElementById('rowFilter');
   var rowCount = document.getElementById('rowCount');
   var tableWrap = document.getElementById('tableWrap');
+  var tablePagination = document.getElementById('tablePagination');
+  var previousPageButton = document.getElementById('previousPageButton');
+  var nextPageButton = document.getElementById('nextPageButton');
+  var pageIndicator = document.getElementById('pageIndicator');
   var maxDisplayRows = 500;
+  var pageSize = 50;
+  var currentPage = 0;
   var currentHeaders = [];
   var currentRows = [];
   var example = 'name,city,note\nAda Lovelace,London,"Research & analysis"\nGrace Hopper,"New York","Said ""debug the system"""\nWeb input,local,"<tag>shown as text</tag>"';
@@ -183,10 +201,16 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
       if (!query) return true;
       return row.some(function (cell) { return String(cell).toLocaleLowerCase().includes(query); });
     });
-    var visible = matches.slice(0, maxDisplayRows);
+    var displayedMatches = matches.slice(0, maxDisplayRows);
+    var pageCount = Math.max(1, Math.ceil(displayedMatches.length / pageSize));
+    currentPage = Math.min(currentPage, pageCount - 1);
+    var firstIndex = currentPage * pageSize;
+    var visible = displayedMatches.slice(firstIndex, firstIndex + pageSize);
     var table = document.createElement('table');
     var caption = document.createElement('caption');
-    caption.textContent = 'CSV preview: ' + visible.length + ' of ' + matches.length + ' matching data rows';
+    caption.textContent = visible.length
+      ? 'CSV preview rows ' + (firstIndex + 1) + '-' + (firstIndex + visible.length) + ' of ' + displayedMatches.length + ' displayed rows'
+      : 'CSV preview: no matching data rows';
     table.appendChild(caption);
     var thead = document.createElement('thead');
     var headRow = document.createElement('tr');
@@ -210,9 +234,17 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
     });
     table.appendChild(tbody);
     tableWrap.appendChild(table);
-    rowCount.textContent = matches.length > maxDisplayRows
-      ? 'Showing the first ' + maxDisplayRows + ' of ' + matches.length + ' matching rows. Filter values to narrow the preview.'
-      : matches.length + ' matching data row' + (matches.length === 1 ? '' : 's') + ' across ' + currentHeaders.length + ' column' + (currentHeaders.length === 1 ? '' : 's') + '.';
+    if (matches.length > maxDisplayRows) {
+      rowCount.textContent = 'Showing rows ' + (visible.length ? firstIndex + 1 : 0) + '-' + (firstIndex + visible.length) + ' of the first ' + maxDisplayRows + ' of ' + matches.length + ' matching rows. Refine the filter to search beyond the preview limit.';
+    } else if (!matches.length) {
+      rowCount.textContent = 'No data rows match this filter.';
+    } else {
+      rowCount.textContent = 'Showing rows ' + (firstIndex + 1) + '-' + (firstIndex + visible.length) + ' of ' + matches.length + ' matching data rows across ' + currentHeaders.length + ' columns.';
+    }
+    tablePagination.hidden = displayedMatches.length <= pageSize;
+    previousPageButton.disabled = currentPage === 0;
+    nextPageButton.disabled = currentPage >= pageCount - 1;
+    pageIndicator.textContent = 'Page ' + (currentPage + 1) + ' of ' + pageCount;
   }
 
   function viewCsv() {
@@ -232,6 +264,7 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
         while (padded.length < width) padded.push('');
         return padded;
       }).filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
+      currentPage = 0;
       filterInput.value = '';
       filterField.hidden = false;
       results.hidden = false;
@@ -246,14 +279,16 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
   document.getElementById('viewButton').addEventListener('click', viewCsv);
   document.getElementById('exampleButton').addEventListener('click', function () { input.value = example; setStatus('Example loaded. Select View CSV to preview it.'); });
   document.getElementById('clearButton').addEventListener('click', function () {
-    input.value = ''; fileInput.value = ''; filterInput.value = ''; currentHeaders = []; currentRows = []; tableWrap.replaceChildren(); results.hidden = true; filterField.hidden = true; rowCount.textContent = ''; setStatus('');
+    input.value = ''; fileInput.value = ''; filterInput.value = ''; currentHeaders = []; currentRows = []; currentPage = 0; tableWrap.replaceChildren(); results.hidden = true; filterField.hidden = true; tablePagination.hidden = true; pageIndicator.textContent = ''; rowCount.textContent = ''; setStatus('');
   });
   fileInput.addEventListener('change', function () {
     var file = fileInput.files && fileInput.files[0];
     if (!file) return;
     file.text().then(function (text) { input.value = text; setStatus('CSV file read locally. Select View CSV to display it.'); }).catch(function () { setStatus('The selected file could not be read in this browser.', true); });
   });
-  filterInput.addEventListener('input', renderTable);
+  filterInput.addEventListener('input', function () { currentPage = 0; renderTable(); });
+  previousPageButton.addEventListener('click', function () { if (currentPage > 0) { currentPage -= 1; renderTable(); } });
+  nextPageButton.addEventListener('click', function () { currentPage += 1; renderTable(); });
 })();
 </script>
 </body>

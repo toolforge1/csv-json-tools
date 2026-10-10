@@ -51,7 +51,7 @@
       {"@type":"Question","name":"How are CSV headers used as XML element names?","acceptedAnswer":{"@type":"Answer","text":"Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix."}},
       {"@type":"Question","name":"Are special characters escaped in the XML output?","acceptedAnswer":{"@type":"Answer","text":"Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed."}},
       {"@type":"Question","name":"Does the converter create nested XML?","acceptedAnswer":{"@type":"Answer","text":"No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema."}},
-      {"@type":"Question","name":"Are my CSV contents uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the Privacy Policy for site-wide practices."}}
+      {"@type":"Question","name":"Are my CSV contents uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. Its panel is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the Privacy Policy for details."}}
     ]
   }
   </script>
@@ -70,7 +70,7 @@
   <div class="trust-row" aria-label="Tool features"><span class="trust">Browser-based conversion</span><span class="trust">CSV stays on your device</span><span class="trust">No account required</span></div>
 </section>
 <main class="container">
-  <section class="panel" aria-labelledby="converter-heading">
+  <section class="panel" aria-labelledby="converter-heading" data-clarity-mask="True">
     <h2 id="converter-heading">Convert CSV rows to XML</h2>
     <div class="field">
       <label for="csvInput">CSV input</label>
@@ -129,9 +129,16 @@
     </ul>
   </section>
 
+  <section class="content-card" aria-labelledby="xml-article-heading">
+    <h2 id="xml-article-heading">When a CSV file needs XML</h2>
+    <p>CSV is a practical format for spreadsheet exports and reports, while some import jobs and XML-based services expect named elements. This CSV file to XML converter maps a flat table into a document with one record element per data row. For example, a header row containing <code>id</code>, <code>name</code>, and <code>city</code> becomes three child elements inside each <code>row</code>.</p>
+    <p>To convert CSV to XML with headers, include column names in the first row. Quoted commas remain part of their cell, and XML special characters are escaped in the output. You can convert CSV to XML online by pasting text or selecting a <code>.csv</code> file; the file is read in your browser and is not uploaded to a conversion server. The output is intentionally flat: it does not infer nested relationships, custom root names, or validate an XSD schema.</p>
+    <p>If the next step needs structured JSON instead, use <a href="csv-to-json.html">CSV to JSON</a>; to inspect the source before converting, open it in the <a href="csv-viewer.html">online CSV Viewer</a>.</p>
+  </section>
+
   <section class="content-card" aria-labelledby="privacy-heading">
     <h2 id="privacy-heading">Browser-based CSV processing</h2>
-    <p>The file input is read by this page with the browser File API, and conversion is performed in JavaScript on your device. The converter does not upload CSV contents to a conversion server. The website separately loads analytics scripts that may collect site-usage information; review the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+    <p>The file input is read by this page with the browser File API, and conversion is performed in JavaScript on your device. The converter does not upload CSV contents to a conversion server. Its converter panel is marked so Microsoft Clarity masks the panel contents; other page-level analytics may still collect usage events. Review the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
   </section>
 
   <section class="content-card" aria-labelledby="faq-heading">
@@ -141,7 +148,7 @@
       <details><summary>How are CSV headers used as XML element names?</summary><p>Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix.</p></details>
       <details><summary>Are special characters escaped in the XML output?</summary><p>Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed.</p></details>
       <details><summary>Does the converter create nested XML?</summary><p>No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema.</p></details>
-      <details><summary>Are my CSV contents uploaded?</summary><p>No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. The website separately loads analytics scripts; see the <a href="privacy-policy.html">Privacy Policy</a> for site-wide practices.</p></details>
+      <details><summary>Are my CSV contents uploaded?</summary><p>No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. Its panel is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the <a href="privacy-policy.html">Privacy Policy</a> for details.</p></details>
     </div>
   </section>
 
