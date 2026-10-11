@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
 
   <title>Privacy Policy | CSV & JSON Developer Tools</title>
 
@@ -146,6 +147,7 @@
       }
     }
   </style>
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -313,5 +315,13 @@
 
 </footer>
 
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
+</script>
 </body>
 </html>
