@@ -1604,6 +1604,28 @@
     </div>
 
   </section>
+  <!-- SEO ARTICLE: CSV, JSON, OFFLINE AND DEVELOPER TOOLS -->
+  <section id="online-csv-json-tools-guide">
+    <div class="content-card">
+      <div class="section-kicker">Complete Guide</div>
+      <h2>Free Online CSV and JSON Tools for Developers</h2>
+      <p>CSV &amp; JSON Developer Tools is a free collection of browser-based utilities for people who work with structured data. Whether you need a <strong>CSV to JSON converter</strong>, a <strong>JSON to CSV converter</strong>, a JSON formatter, a CSV viewer, or a tool to transform XML, YAML, TOML, TSV and JSONL, you can open a focused tool and process your data without installing desktop software.</p>
+      <h3>Convert CSV to JSON and JSON to CSV</h3>
+      <p>CSV files are widely used for spreadsheets, reports, exports and data analysis, while JSON is common in APIs and web applications. The <a href="csv-to-json.html">CSV to JSON converter</a> turns a comma-separated table into JSON objects, and the <a href="json-to-csv.html">JSON to CSV converter</a> helps transform supported JSON records into a tabular format. Other CSV utilities can convert data to HTML tables, JSON Lines, Markdown, SQL, TSV and XML. If you need to inspect rows before processing them, use the <a href="csv-viewer.html">online CSV viewer</a>.</p>
+      <h3>Format, validate and compare JSON</h3>
+      <p>Hard-to-read JSON can slow down debugging. Use the <a href="json-formatter.html">JSON formatter and validator</a> to format JSON into a readable structure and check whether the input is valid. When comparing two versions of an API response or configuration file, the <a href="json-diff-compare.html">JSON diff and compare tool</a> helps identify differences. You can also convert JSON to XML, YAML, TOML, TSV, Markdown, SQL, HTML, JSONL or readable text, depending on your task.</p>
+      <h3>More data converters in one place</h3>
+      <p>The toolkit includes utilities for JSON Lines (JSONL), tab-separated values (TSV), XML, YAML, TOML, Base64 and URL-encoded JSON. These tools can help with everyday developer workflows such as preparing test data, inspecting exported records, changing data formats, encoding values and moving structured data between applications. Choose the relevant converter from the tool directory and follow the instructions shown on its page.</p>
+      <h3>Browser-based processing and privacy</h3>
+      <p>The converters are designed to process input directly in your browser rather than upload it to a conversion server. This can be useful when working with private test data or internal examples. Avoid entering passwords, access tokens or other highly sensitive information into any website, and review the privacy details for the specific tool you use. Analytics and site diagnostics may still collect general website usage information; they should not be treated as part of the conversion process.</p>
+      <h3>Offline access with Progressive Web App support</h3>
+      <p>This website also includes Progressive Web App (PWA) support. On compatible browsers, you may be able to install the toolkit from the browser menu and open it in a standalone window. After the site and its pages have been cached during an online visit, the service worker can make cached pages and shared resources available when your connection is interrupted. Offline availability depends on the browser, what has been cached, and whether a page needs an uncached resource; reconnect to the internet for the most reliable experience and latest updates.</p>
+      <h3>Designed for desktop and mobile</h3>
+      <p>You can use these free online developer tools on a modern desktop or mobile browser. The site includes a searchable directory, copy and download controls where provided, and a persistent light/dark theme switch. Pick the tool that matches your data format, paste or select your input, run the operation and review the output before using it in another application.</p>
+      <p><strong>Start here:</strong> <a href="csv-to-json.html">CSV to JSON</a>, <a href="json-to-csv.html">JSON to CSV</a>, <a href="json-formatter.html">JSON Formatter</a>, <a href="csv-viewer.html">CSV Viewer</a>, <a href="json-diff-compare.html">JSON Compare</a>, or browse all 32 free CSV and JSON tools above.</p>
+    </div>
+  </section>
+
     <!-- FAQ -->
 
   <section id="faq">
@@ -1859,6 +1881,10 @@
       navigator.serviceWorker.register("./sw.js").catch(function () {});
     });
   }
+</script>
+<script src="assets/theme.js" defer></script>
+<script>
+  if ("serviceWorker" in navigator) { window.addEventListener("load", function () { navigator.serviceWorker.register("./sw.js").catch(function () {}); }); }
 </script>
 </body>
 </html>
