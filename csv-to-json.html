@@ -1438,19 +1438,21 @@ Ahmed,28,Islamabad"
     }
 
 
-    function copyJSON() {
-
-      const output =
-        document.getElementById("output");
-
-
-      if (!output.value) return;
-
-
-      navigator.clipboard.writeText(
-        output.value
-      );
-
+    async function copyJSON() {
+      const output = document.getElementById("output");
+      if (!output.value) {
+        alert("Nothing to copy. Convert CSV to JSON first.");
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(output.value);
+        alert("JSON copied to clipboard.");
+      } catch (error) {
+        output.focus();
+        output.select();
+        const copied = document.execCommand("copy");
+        alert(copied ? "JSON copied to clipboard." : "Copy failed. Please select and copy the output manually.");
+      }
     }
 
 
