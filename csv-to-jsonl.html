@@ -704,7 +704,7 @@
         id="csvFile"
         accept=".csv,text/csv"
         onchange="loadFile(event)"
-      >
+       data-clarity-mask="True">
 
 
       <label for="csvInput">
@@ -718,7 +718,7 @@
 Example:
 name,age,city
 Ali,28,Karachi
-Emma,34,London"></textarea>
+Emma,34,London" data-clarity-mask="True"></textarea>
 
 
       <div class="buttons">
@@ -744,7 +744,7 @@ Emma,34,London"></textarea>
       <textarea
         id="jsonlOutput"
         readonly
-        placeholder="JSONL output will appear here..."></textarea>
+        placeholder="JSONL output will appear here..." data-clarity-mask="True"></textarea>
 
 
       <div class="buttons">
