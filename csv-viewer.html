@@ -74,12 +74,12 @@
     <h2 id="viewer-heading">View CSV data</h2>
     <div class="field">
       <label for="csvInput">Paste CSV data</label>
-      <textarea id="csvInput" spellcheck="false" aria-describedby="csvHelp" placeholder="name,city&#10;Ada Lovelace,London&#10;Grace Hopper,New York"></textarea>
+      <textarea id="csvInput" spellcheck="false" aria-describedby="csvHelp" placeholder="name,city&#10;Ada Lovelace,London&#10;Grace Hopper,New York" data-clarity-mask="True"></textarea>
       <p class="field-help" id="csvHelp">The first row is treated as the column header. Commas, quoted values, and line breaks inside quoted fields are supported.</p>
     </div>
     <div class="field">
       <label for="csvFile">Or choose a CSV file</label>
-      <input id="csvFile" type="file" accept=".csv,text/csv">
+      <input id="csvFile" type="file" accept=".csv,text/csv" data-clarity-mask="True">
     </div>
     <div class="actions">
       <button class="button primary" id="viewButton" type="button">View CSV</button>
@@ -93,7 +93,7 @@
     <h2 id="results-heading">CSV table preview</h2>
     <div class="field" id="filterField" hidden>
       <label for="rowFilter">Filter displayed rows</label>
-      <input type="search" id="rowFilter" placeholder="Search values in any column" autocomplete="off">
+      <input type="search" id="rowFilter" placeholder="Search values in any column" autocomplete="off" data-clarity-mask="True">
     </div>
     <p class="status" id="rowCount" role="status" aria-live="polite"></p>
     <div class="table-wrap" id="tableWrap"></div>
