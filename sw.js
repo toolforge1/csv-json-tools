@@ -44,7 +44,8 @@ const SHELL = [
   "./manifest.json",
   "./icon.svg",
   "./assets/tool-pages.css",
-  "./assets/csv-utils.js"
+  "./assets/csv-utils.js",
+  "./assets/theme.js"
 ];
 
 self.addEventListener("install", event => {
