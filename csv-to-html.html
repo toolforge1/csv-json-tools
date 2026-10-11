@@ -1480,13 +1480,7 @@ th, td {
 <body>
 ${output}
 
-<script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js").catch(function () {});
-    });
-  }
-</script>
+
 
 </body>
 </html>`;
@@ -1541,5 +1535,12 @@ function clearAll() {
 </script>
 
 <script src="assets/theme.js" defer></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
+</script>
 </body>
 </html>
