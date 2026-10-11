@@ -2017,58 +2017,28 @@ function convertText() {
 }
 
 
-function copyJSON() {
-
-    const output =
-        document.getElementById("output");
-
-
-    const status =
-        document.getElementById("status");
-
-
+async function copyJSON() {
+    const output = document.getElementById("output");
+    const status = document.getElementById("status");
     if (!output.value) {
-
-        status.textContent =
-            "Please convert text first.";
-
-        status.className =
-            "status error-message";
-
-        status.style.display =
-            "block";
-
+        status.textContent = "Please convert text first.";
+        status.className = "status error-message";
+        status.style.display = "block";
         return;
     }
-
-
-    navigator.clipboard
-        .writeText(output.value)
-        .then(() => {
-
-            status.textContent =
-                "JSON copied to clipboard.";
-
-            status.className =
-                "status success-message";
-
-            status.style.display =
-                "block";
-
-        })
-        .catch(() => {
-
-            status.textContent =
-                "Unable to copy JSON.";
-
-            status.className =
-                "status error-message";
-
-            status.style.display =
-                "block";
-
-        });
-
+    try {
+        await navigator.clipboard.writeText(output.value);
+        status.textContent = "JSON copied to clipboard.";
+        status.className = "status success-message";
+        status.style.display = "block";
+    } catch (error) {
+        output.focus();
+        output.select();
+        const copied = document.execCommand("copy");
+        status.textContent = copied ? "JSON copied to clipboard." : "Unable to copy JSON. Please select and copy the output manually.";
+        status.className = copied ? "status success-message" : "status error-message";
+        status.style.display = "block";
+    }
 }
 
 
