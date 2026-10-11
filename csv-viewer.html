@@ -55,6 +55,7 @@
     ]
   }
   </script>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <header class="site-header">
@@ -290,6 +291,14 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
   previousPageButton.addEventListener('click', function () { if (currentPage > 0) { currentPage -= 1; renderTable(); } });
   nextPageButton.addEventListener('click', function () { currentPage += 1; renderTable(); });
 })();
+</script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
 </script>
 </body>
 </html>
