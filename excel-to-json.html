@@ -55,6 +55,7 @@
     ]
   }
   </script>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <header class="site-header">
@@ -314,6 +315,14 @@
   });
   downloadButton.addEventListener('click', downloadJson);
 })();
+</script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
 </script>
 </body>
 </html>
