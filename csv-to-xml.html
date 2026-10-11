@@ -74,12 +74,12 @@
     <h2 id="converter-heading">Convert CSV rows to XML</h2>
     <div class="field">
       <label for="csvInput">CSV input</label>
-      <textarea id="csvInput" spellcheck="false" aria-describedby="csvHelp" placeholder="name,city&#10;Ada Lovelace,London&#10;Grace Hopper,New York"></textarea>
+      <textarea id="csvInput" spellcheck="false" aria-describedby="csvHelp" placeholder="name,city&#10;Ada Lovelace,London&#10;Grace Hopper,New York" data-clarity-mask="True"></textarea>
       <p class="field-help" id="csvHelp">The first row is used for column names. Commas, quoted fields, and doubled quotes are supported.</p>
     </div>
     <div class="field">
       <label for="csvFile">Or choose a CSV file</label>
-      <input id="csvFile" type="file" accept=".csv,text/csv">
+      <input id="csvFile" type="file" accept=".csv,text/csv" data-clarity-mask="True">
     </div>
     <div class="actions">
       <button class="button primary" id="convertButton" type="button">Convert to XML</button>
@@ -89,7 +89,7 @@
     <p class="status" id="status" role="status" aria-live="polite"></p>
     <div class="field">
       <label for="xmlOutput">XML output</label>
-      <textarea id="xmlOutput" readonly spellcheck="false" aria-describedby="xmlHelp" placeholder="Your XML output will appear here."></textarea>
+      <textarea id="xmlOutput" readonly spellcheck="false" aria-describedby="xmlHelp" placeholder="Your XML output will appear here." data-clarity-mask="True"></textarea>
       <p class="field-help" id="xmlHelp">Each CSV data row becomes a &lt;row&gt; element under &lt;rows&gt;. Values are escaped as XML text.</p>
     </div>
     <div class="actions">
