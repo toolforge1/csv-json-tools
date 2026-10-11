@@ -2098,13 +2098,7 @@ function downloadHTML() {
         output.value,
 
         "
-<script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js").catch(function () {});
-    });
-  }
-</script>
+
 
 </body>",
 
@@ -2178,5 +2172,12 @@ function clearAll() {
 </script>
 
 <script src="assets/theme.js" defer></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
+</script>
 </body>
 </html>
