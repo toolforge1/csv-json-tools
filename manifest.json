@@ -1,0 +1,20 @@
+{
+  "name": "CSV & JSON Developer Tools",
+  "short_name": "CSV JSON Tools",
+  "description": "Free browser-based tools to convert, format, validate, view and compare CSV, JSON and other data formats.",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "categories": ["developer", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
