@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
@@ -530,6 +531,7 @@ button:hover {
 .seo-help .seo-disclosure{color:#cbd5e1;font-size:.96em}
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -1245,5 +1247,13 @@ function clearAll() {
 }
 </script>
 
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
+</script>
 </body>
 </html>
