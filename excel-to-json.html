@@ -74,12 +74,12 @@
     <h2 id="converter-heading">Convert an Excel worksheet to JSON</h2>
     <div class="field">
       <label for="workbookFile">Choose an Excel workbook (.xlsx or .xls)</label>
-      <input id="workbookFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" aria-describedby="fileHelp">
+      <input id="workbookFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" aria-describedby="fileHelp" data-clarity-mask="True">
       <p class="field-help" id="fileHelp">The spreadsheet parser is loaded from this site only after you choose a file. Workbook bytes are read in this browser and are not uploaded for conversion.</p>
     </div>
     <div class="field">
       <label for="sheetSelect">Worksheet</label>
-      <select id="sheetSelect" disabled aria-describedby="sheetHelp"><option value="">Choose a workbook first</option></select>
+      <select id="sheetSelect" disabled aria-describedby="sheetHelp" data-clarity-mask="True"><option value="">Choose a workbook first</option></select>
       <p class="field-help" id="sheetHelp">The first worksheet is selected when a workbook is loaded. You can choose another sheet before converting.</p>
     </div>
     <div class="actions">
@@ -89,7 +89,7 @@
     <p class="status" id="status" role="status" aria-live="polite"></p>
     <div class="field">
       <label for="jsonOutput">JSON output</label>
-      <textarea id="jsonOutput" readonly spellcheck="false" aria-describedby="outputHelp" placeholder="The worksheet's JSON array will appear here."></textarea>
+      <textarea id="jsonOutput" readonly spellcheck="false" aria-describedby="outputHelp" placeholder="The worksheet's JSON array will appear here." data-clarity-mask="True"></textarea>
       <p class="field-help" id="outputHelp">The first non-empty worksheet row is used for property names. Blank cells become empty strings.</p>
     </div>
     <div class="actions">
