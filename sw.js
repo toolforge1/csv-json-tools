@@ -87,7 +87,7 @@ self.addEventListener("fetch", event => {
         return response;
       } catch (_) {
         const cache = await caches.open(CACHE_NAME);
-        return (await cache.match(request)) || (await cache.match(new URL("./offline.html", BASE));
+        return (await cache.match(request)) || (await cache.match(new URL("./offline.html", BASE)));
       }
     })());
     return;
