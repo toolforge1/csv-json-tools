@@ -1,0 +1,35 @@
+name: AI Auto SEO & New Tools Generator
+
+on:
+  schedule:
+    # یہ ہر اتوار کو خود بخود چلے گا
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install google-generativeai
+
+      - name: Run Python Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python update_tools.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'AI-SEO-Bot'
+          git config --global user.email 'bot@github.com'
+          git add .
+          git diff-index --quiet HEAD || (git commit -m 'Auto-optimized SEO and added new AI tool' && git push)
+          
