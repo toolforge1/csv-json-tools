@@ -21,6 +21,9 @@
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-tsv.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to TSV Converter | Free Browser Tool">
+  <meta name="twitter:description" content="Convert a non-empty JSON array of objects to tab-separated values in your browser. Copy TSV or download converted.tsv—no upload required.">
 
   <meta property="og:title" content="JSON to TSV Converter | Free Browser Tool">
   <meta property="og:description" content="Convert a non-empty JSON array of objects to tab-separated values in your browser. Copy TSV or download converted.tsv—no upload required.">
@@ -608,6 +611,13 @@
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -674,7 +684,7 @@ Example:
   {"name":"Ali","age":28,"city":"Karachi"},
   {"name":"Emma","age":34,"city":"London"}
 ]'
-         aria-label="JSON array input"></textarea>
+         aria-label="JSON array input" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button onclick="convertJson()">Convert to TSV</button>
@@ -696,7 +706,7 @@ Example:
           id="tsvOutput"
           readonly
           placeholder="Converted TSV data will appear here..."
-         aria-label="Converted TSV output"></textarea>
+         aria-label="Converted TSV output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyTsv()">Copy TSV</button>
