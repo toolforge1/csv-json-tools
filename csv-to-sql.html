@@ -49,46 +49,7 @@
 }
 </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What does this CSV to SQL converter generate?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It generates SQL INSERT INTO statements using the first CSV row as column names."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I choose the SQL table name?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Enter your desired table name before converting the CSV data."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are my CSV data uploaded to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion is performed directly in your browser."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens to empty CSV values?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Empty CSV values are converted to SQL NULL."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does a CSV to SQL converter do?","acceptedAnswer":{"@type":"Answer","text":"It converts CSV rows and columns into SQL INSERT statements that can be used in compatible database workflows."}},{"@type":"Question","name":"How do I convert CSV to SQL?","acceptedAnswer":{"@type":"Answer","text":"Enter your table name, paste the CSV data, and click Convert to SQL . The generated INSERT statements will appear in the SQL output box."}},{"@type":"Question","name":"Can I choose my SQL table name?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter your desired table name in the SQL Table Name field before converting your CSV data."}},{"@type":"Question","name":"Does this tool upload my CSV data?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser and does not require uploading the pasted CSV data to a server."}},{"@type":"Question","name":"What happens to empty CSV values?","acceptedAnswer":{"@type":"Answer","text":"Empty values are converted to SQL NULL in the generated statements."}},{"@type":"Question","name":"Can I copy the generated SQL?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click the Copy SQL button to copy the generated statements to your clipboard."}},{"@type":"Question","name":"Can I download the SQL output?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Download SQL to save the generated statements as a .sql file."}},{"@type":"Question","name":"Is the generated SQL compatible with every database?","acceptedAnswer":{"@type":"Answer","text":"SQL syntax can differ between database systems. Review the generated statements and make any database-specific adjustments required by your SQL environment."}}]}</script>
 
   <style>
     :root {
