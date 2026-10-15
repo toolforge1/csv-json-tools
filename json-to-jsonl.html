@@ -23,6 +23,9 @@
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-jsonl.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to JSONL Converter (NDJSON) | Free, Private">
+  <meta name="twitter:description" content="Convert a non-empty JSON array of objects into one JSON object per line. Copy or download converted.jsonl in your browser—no upload.">
 
 <meta property="og:title" content="JSON to JSONL Converter (NDJSON) | Free, Private">
 <meta property="og:description" content="Convert a non-empty JSON array of objects into one JSON object per line. Copy or download converted.jsonl in your browser—no upload.">
@@ -41,46 +44,7 @@
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is JSONL?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "JSONL, also called JSON Lines, stores JSON records one per line."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is NDJSON?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "NDJSON means Newline Delimited JSON. Each line contains a separate JSON value, commonly an object."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What JSON format does this converter accept?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This converter expects a JSON array containing JSON objects."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my JSON data uploaded?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The conversion is performed locally in your browser."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a JSON to JSONL converter?","acceptedAnswer":{"@type":"Answer","text":"It converts a JSON array of objects into JSONL format, placing each object on a separate line."}},{"@type":"Question","name":"What is JSONL?","acceptedAnswer":{"@type":"Answer","text":"JSONL, or JSON Lines, is a line-delimited format where each line contains a valid JSON value, commonly an object."}},{"@type":"Question","name":"Is JSONL the same as NDJSON?","acceptedAnswer":{"@type":"Answer","text":"JSONL and NDJSON are commonly used to describe newline-delimited JSON data. The exact expected format can depend on the software using it."}},{"@type":"Question","name":"Can I convert JSON to JSONL without uploading a file?","acceptedAnswer":{"@type":"Answer","text":"Yes. This browser-based tool accepts JSON directly in the input box and processes it on your device."}},{"@type":"Question","name":"What type of JSON can this tool convert?","acceptedAnswer":{"@type":"Answer","text":"The converter expects a JSON array containing JSON objects, such as an array of records."}},{"@type":"Question","name":"Can I download the converted JSONL?","acceptedAnswer":{"@type":"Answer","text":"Yes. After conversion, use the Download JSONL button to save the generated data as a .jsonl file."}}]}</script>
 
 
 <style>
@@ -633,6 +597,13 @@ button.danger {
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -722,7 +693,7 @@ button.danger {
                         id="jsonInput"
                         placeholder='Paste a JSON array here...'
                         spellcheck="false"
-                    >[
+                     data-clarity-mask="True">[
   {"name":"Ali","age":28},
   {"name":"Emma","age":34}
 ]</textarea>
@@ -748,7 +719,7 @@ button.danger {
                         placeholder="Converted JSONL will appear here..."
                         readonly
                         spellcheck="false"
-                    ></textarea>
+                     data-clarity-mask="True"></textarea>
 
                 </div>
 

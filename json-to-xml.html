@@ -21,6 +21,9 @@
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-xml.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to XML Converter – Free, Private, Custom Root">
+  <meta name="twitter:description" content="Convert JSON objects and arrays to readable XML in your browser. Choose a root element, then copy or download the XML—no server upload.">
 
   <meta property="og:title" content="JSON to XML Converter – Free, Private, Custom Root">
   <meta property="og:description" content="Convert JSON objects and arrays to readable XML in your browser. Choose a root element, then copy or download the XML—no server upload.">
@@ -633,6 +636,13 @@
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -700,7 +710,7 @@
           id="rootName"
           value="root"
           placeholder="Enter root name, e.g. users"
-         aria-label="XML root element name">
+         aria-label="XML root element name" data-clarity-mask="True">
 
       </div>
 
@@ -715,7 +725,7 @@
           <span>Valid JSON required</span>
         </div>
 
-        <textarea id="jsonInput" aria-label="JSON input">[
+        <textarea id="jsonInput" aria-label="JSON input" data-clarity-mask="True">[
   {
     "name": "Ali",
     "age": 28,
@@ -762,7 +772,7 @@
           id="xmlOutput"
           readonly
           placeholder="XML output will appear here..."
-         aria-label="Converted XML output"></textarea>
+         aria-label="Converted XML output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
 
@@ -1117,54 +1127,7 @@
 </footer>
 
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this JSON to XML converter free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The JSON to XML converter is free to use in your browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does the tool upload my JSON data?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. JSON processing and XML generation take place directly in the browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I choose the XML root element?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Users can enter a valid XML root element name before converting JSON."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How are JSON arrays converted?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "JSON arrays are represented using a parent XML element containing repeated item elements."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are nested JSON objects supported?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Nested JSON objects are recursively converted into nested XML elements."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this JSON to XML converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool is free to use in your browser."}},{"@type":"Question","name":"Does the tool upload my JSON data?","acceptedAnswer":{"@type":"Answer","text":"No. JSON processing and XML generation take place directly in your browser. Your input is not uploaded to our server by this tool."}},{"@type":"Question","name":"Can I choose the XML root element?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter a valid XML root name before converting the JSON."}},{"@type":"Question","name":"How are JSON arrays converted?","acceptedAnswer":{"@type":"Answer","text":"Arrays are represented using a parent element containing repeated item elements."}},{"@type":"Question","name":"Are nested JSON objects supported?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nested objects are recursively converted into nested XML elements."}},{"@type":"Question","name":"What happens to special characters?","acceptedAnswer":{"@type":"Answer","text":"Characters that have special meaning in XML are escaped before being placed into the generated XML."}},{"@type":"Question","name":"Can I download the generated XML?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Download XML to save the generated document as converted.xml ."}},{"@type":"Question","name":"Does this converter support XML attributes?","acceptedAnswer":{"@type":"Answer","text":"No. The converter represents JSON properties as XML elements. It does not create XML attributes or namespaces from JSON properties."}}]}</script>
 <script>
 
 function showStatus(message, type) {

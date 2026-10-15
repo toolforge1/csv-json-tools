@@ -22,6 +22,9 @@
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-tsv.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSV to TSV Converter Online | Free Browser Tool">
+  <meta name="twitter:description" content="Convert pasted comma-separated CSV text to tab-separated values in your browser. Copy the result or download converted.tsv—no upload required.">
 
 <meta property="og:title" content="CSV to TSV Converter Online | Free Browser Tool">
 <meta property="og:description" content="Convert pasted comma-separated CSV text to tab-separated values in your browser. Copy the result or download converted.tsv—no upload required.">
@@ -45,46 +48,7 @@
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is TSV?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "TSV stands for Tab-Separated Values. It is a text format where columns are separated by tab characters instead of commas."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does this tool upload my CSV data?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The conversion is performed locally in your browser, so the CSV data is not sent to a server by this tool."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I download the converted TSV file?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. After converting the CSV data, you can download the result as a TSV file."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can CSV values contain commas?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Properly quoted CSV fields containing commas are supported."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a CSV to TSV converter?","acceptedAnswer":{"@type":"Answer","text":"A CSV to TSV converter changes comma-separated data into tab-separated values while keeping the original rows and columns."}},{"@type":"Question","name":"How do I convert CSV to TSV?","acceptedAnswer":{"@type":"Answer","text":"Paste your CSV data into the input box and click Convert to TSV . The converted TSV data will appear in the output box."}},{"@type":"Question","name":"Does this CSV to TSV converter upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed locally in your browser, so this tool does not upload your CSV data to a server."}},{"@type":"Question","name":"Can I download the TSV result?","acceptedAnswer":{"@type":"Answer","text":"Yes. After conversion, click Download TSV to save the result as a .tsv file."}},{"@type":"Question","name":"Can CSV fields contain commas?","acceptedAnswer":{"@type":"Answer","text":"Yes. Properly quoted CSV fields containing commas are supported by the converter."}},{"@type":"Question","name":"What is the difference between CSV and TSV?","acceptedAnswer":{"@type":"Answer","text":"CSV normally uses commas to separate fields, while TSV uses tab characters. Both formats can represent structured rows and columns."}}]}</script>
 
 <style>
 * {
@@ -593,6 +557,13 @@ button:first-child {
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -655,7 +626,7 @@ Example:
 name,age,city
 Ali,28,Karachi
 Emma,34,London"
-        ></textarea>
+         data-clarity-mask="True"></textarea>
 
         <div class="buttons">
             <button onclick="convertCSV()">Convert to TSV</button>
@@ -666,19 +637,19 @@ Emma,34,London"
 
         <div id="status" class="status"></div>
 
-        <div class="output-label">
+        <div class="output-label" data-clarity-mask="True">
             <label class="field-label" for="output">
                 TSV Output
             </label>
 
-            <span class="output-badge">TAB-SEPARATED</span>
+            <span class="output-badge" data-clarity-mask="True">TAB-SEPARATED</span>
         </div>
 
         <textarea
             id="output"
             placeholder="TSV output will appear here..."
             readonly
-        ></textarea>
+         data-clarity-mask="True"></textarea>
 
         <div class="privacy">
             🔒 <strong>Privacy-friendly:</strong>

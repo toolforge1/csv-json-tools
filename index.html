@@ -23,18 +23,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CSV & JSON Developer Tools - Free Online Data Tools</title>
+  <title>CSV to JSON, JSON Formatter & 30+ Free Data Tools</title>
 
-  <meta name="description" content="Free online CSV and JSON tools: convert CSV to JSON, format and compare JSON, view CSV, and transform XML, YAML, TOML, TSV and Base64 in your browser. Installable PWA with cached offline access and a persistent dark/light theme.">
+  <meta name="description" content="CSV to JSON, JSON formatter, JSON to CSV, CSV viewer and JSON diff. Free browser-based data converter with 30+ tools for JSON validation and XML, YAML, TOML.">
 
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/">
 
-  <meta property="og:title" content="CSV & JSON Developer Tools - Free Online Data Tools">
-  <meta property="og:description" content="Free online CSV to JSON converter, JSON formatter, CSV viewer and data converters. Browser-based processing, installable PWA, cached offline access and persistent dark/light theme.">
+  <meta property="og:title" content="CSV to JSON, JSON Formatter & 30+ Free Data Tools">
+  <meta property="og:description" content="CSV to JSON, JSON formatter, JSON to CSV, CSV viewer and JSON diff. Free browser-based data converter with 30+ tools for JSON validation and XML, YAML, TOML.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSV to JSON, JSON Formatter & 30+ Free Data Tools">
+  <meta name="twitter:description" content="CSV to JSON, JSON formatter, JSON to CSV, CSV viewer and JSON diff. Free browser-based data converter with 30+ tools for JSON validation and XML, YAML, TOML.">
 
   <meta name="theme-color" content="#07111f">
 
@@ -113,45 +116,61 @@
 
   <!-- FAQ Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Are these developer tools free to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. The tools are available to use online without creating an account."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I need to install software?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The tools run directly in a modern web browser."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are my files uploaded to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tools are designed to process data in your browser. Individual tool pages explain their browser-based processing behavior."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What types of data can I work with?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The collection includes tools for CSV, Excel workbooks, JSON, JSONL, TSV, XML, YAML, TOML, Base64, URLs, Markdown, SQL and text data."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are these developer tools free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tools are available online without requiring an account for normal use."
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to install any software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tools are designed to work directly in a modern web browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do the tools upload my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tools are designed for browser-based processing. Check the privacy information on the individual tool page for details about how that specific utility processes data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use these tools on a phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The website is responsive and the tool pages are designed to work on modern mobile browsers as well as desktop browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The collection includes CSV, JSON, JSONL, TSV, XML, YAML, TOML, Base64, URL-encoded JSON, Markdown, SQL and text-related tools."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I find a specific tool quickly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the search box near the top of the tools section and type a format, tool name or related keyword."
+      }
+    }
+  ]
+}
+</script>
 
   <style>
     :root {
@@ -1161,9 +1180,9 @@
 
     <div class="hero-stats">
       <div class="stat"><strong>32</strong> Tools</div>
-      <div class="stat"><strong>0</strong> Installation</div>
+      <div class="stat"><strong>No</strong> Install</div>
       <div class="stat"><strong>100%</strong> Browser-Based</div>
-      <div class="stat"><strong>0</strong> Account Required</div>
+      <div class="stat"><strong>No</strong> Signup</div>
     </div>
 
   </div>
@@ -1206,7 +1225,7 @@
          data-clarity-mask="True">
       </div>
 
-      <div class="search-result" id="searchResult"></div>
+      <div class="search-result" id="searchResult" data-clarity-mask="True"></div>
 
     </div>
 

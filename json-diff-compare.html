@@ -22,6 +22,9 @@
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-diff-compare.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON Diff &amp; Compare Online | Compare Two JSON Objects">
+  <meta name="twitter:description" content="Compare two JSON objects in your browser. Find added, removed, and changed values by property path, then copy the result—free and no upload.">
 
 <meta property="og:title" content="JSON Diff &amp; Compare Online | Compare Two JSON Objects">
 <meta property="og:description" content="Compare two JSON objects in your browser. Find added, removed, and changed values by property path, then copy the result—free and no upload.">
@@ -45,46 +48,7 @@
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What does this JSON comparison tool do?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It compares two JSON objects and identifies values that were added, removed, or changed between them."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does this tool upload my JSON data?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The comparison is performed locally in your browser and the JSON data is not uploaded to a server by this tool."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I compare nested JSON objects?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The tool can compare nested JSON objects and reports differences using their property paths."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can this tool compare JSON arrays?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The current version is designed to compare JSON objects rather than top-level JSON arrays."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does this JSON comparison tool do?","acceptedAnswer":{"@type":"Answer","text":"It compares two JSON objects and identifies properties that were added, removed, or changed."}},{"@type":"Question","name":"How do I compare two JSON files or objects?","acceptedAnswer":{"@type":"Answer","text":"Paste the first JSON object into JSON A, paste the second JSON object into JSON B, and click Compare JSON ."}},{"@type":"Question","name":"Does this JSON diff tool upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. The comparison is performed locally in your browser, and this tool does not upload your JSON data to a server."}},{"@type":"Question","name":"Can I compare nested JSON objects?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nested JSON objects are compared recursively, and differences are reported using property paths."}},{"@type":"Question","name":"Can I compare JSON arrays?","acceptedAnswer":{"@type":"Answer","text":"The current version is designed for top-level JSON objects and does not accept top-level JSON arrays."}},{"@type":"Question","name":"What do added, removed and changed mean?","acceptedAnswer":{"@type":"Answer","text":"Added means a property exists only in the second JSON, removed means it exists only in the first JSON, and changed means the property exists in both but has a different value."}},{"@type":"Question","name":"Can I copy the comparison result?","acceptedAnswer":{"@type":"Answer","text":"Yes. After comparing the JSON objects, click Copy Result to copy the comparison output."}}]}</script>
 
 <style>
 * {
@@ -675,6 +639,13 @@ button.danger {
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -758,7 +729,7 @@ Example:
   "age": 28,
   "city": "Karachi"
 }'
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
             </div>
 
@@ -782,7 +753,7 @@ Example:
   "age": 29,
   "city": "Lahore"
 }'
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
             </div>
 
@@ -806,21 +777,21 @@ Example:
 
         <div id="status" class="status"></div>
 
-        <div class="result-panel">
+        <div class="result-panel" data-clarity-mask="True">
 
-            <div class="result-header">
+            <div class="result-header" data-clarity-mask="True">
 
                 <label>
                     Comparison Result
                 </label>
 
-                <span class="result-badge">
+                <span class="result-badge" data-clarity-mask="True">
                     JSON DIFF
                 </span>
 
             </div>
 
-            <div id="result" class="result-box">
+            <div id="result" class="result-box" data-clarity-mask="True">
                 Comparison result will appear here...
             </div>
 

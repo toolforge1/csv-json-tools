@@ -19,6 +19,9 @@
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/jsonl-to-json.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSONL to JSON Converter (NDJSON to JSON Array)">
+  <meta name="twitter:description" content="Convert JSONL or NDJSON into a formatted JSON array in your browser. Blank lines are ignored; copy or download the result without uploading.">
 
   <meta property="og:title" content="JSONL to JSON Converter (NDJSON to JSON Array)">
   <meta property="og:description" content="Convert JSONL or NDJSON into a formatted JSON array in your browser. Blank lines are ignored; copy or download the result without uploading.">
@@ -43,46 +46,7 @@
 }
 </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What input format does this tool accept?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tool accepts JSONL or NDJSON data with one valid JSON record per line. Empty lines are ignored."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens if one line contains invalid JSON?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The conversion stops and the tool identifies the line containing the invalid JSON so you can correct it."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the tool upload my JSONL data?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion is performed entirely in your browser and the JSONL data is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I download the converted JSON?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. After conversion, click Download JSON to save the formatted result as a JSON file."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What input format does this tool accept?","acceptedAnswer":{"@type":"Answer","text":"The tool accepts JSONL or NDJSON data with one valid JSON record per line. Empty lines are ignored."}},{"@type":"Question","name":"What happens if one line contains invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"The conversion stops and the tool reports the line containing the invalid JSON so you can correct it."}},{"@type":"Question","name":"Does this JSONL converter upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion takes place directly in your browser. Your JSONL content is not uploaded to our server."}},{"@type":"Question","name":"Are empty lines allowed?","acceptedAnswer":{"@type":"Answer","text":"Yes. Empty lines are ignored during conversion."}},{"@type":"Question","name":"Can I convert NDJSON with this tool?","acceptedAnswer":{"@type":"Answer","text":"Yes. NDJSON uses newline-delimited JSON records, which this converter can process."}},{"@type":"Question","name":"Can I download the converted JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes. After a successful conversion, click Download JSON to save the result as a JSON file."}}]}</script>
 
   <style>
     :root {
@@ -419,6 +383,13 @@
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -478,7 +449,7 @@
 Example:
 {"name":"Ali","age":28}
 {"name":"Emma","age":34}'
-         aria-label="JSONL or NDJSON input"></textarea>
+         aria-label="JSONL or NDJSON input" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button onclick="convertJsonl()">Convert to JSON</button>
@@ -496,7 +467,7 @@ Example:
           id="jsonOutput"
           readonly
           placeholder="Converted JSON will appear here..."
-         aria-label="Converted JSON array output"></textarea>
+         aria-label="Converted JSON array output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyJson()">Copy JSON</button>

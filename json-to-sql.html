@@ -21,6 +21,9 @@
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-sql.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to SQL INSERT Converter | Free Browser Tool">
+  <meta name="twitter:description" content="Convert a JSON array of objects into SQL INSERT statements. Set a table name, then copy or download browser-generated SQL for review.">
 
   <meta property="og:title" content="JSON to SQL INSERT Converter | Free Browser Tool">
   <meta property="og:description" content="Convert a JSON array of objects into SQL INSERT statements. Set a table name, then copy or download browser-generated SQL for review.">
@@ -44,46 +47,7 @@
 }
 </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What JSON format does this tool support?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The converter accepts a JSON array containing objects. Each object represents one row of data."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this JSON to SQL converter upload my data?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion runs directly in your browser and the JSON input is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What SQL does this tool generate?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tool generates SQL INSERT statements using the table name and columns found in the JSON objects."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I download the generated SQL?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. You can download the generated SQL statements as a .sql file."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON format does this tool support?","acceptedAnswer":{"@type":"Answer","text":"The converter accepts a JSON array containing objects. Each object represents one row of data."}},{"@type":"Question","name":"Does the tool upload my JSON?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser. Your JSON input is not uploaded to our server."}},{"@type":"Question","name":"What SQL does the converter generate?","acceptedAnswer":{"@type":"Answer","text":"It generates SQL INSERT statements using the table name and columns found in the JSON objects."}},{"@type":"Question","name":"How are numbers handled?","acceptedAnswer":{"@type":"Answer","text":"Numeric JSON values are written as SQL numeric values rather than being unnecessarily wrapped in quotes."}},{"@type":"Question","name":"How are null values handled?","acceptedAnswer":{"@type":"Answer","text":"JSON null values are converted to SQL NULL."}},{"@type":"Question","name":"Can I download the generated SQL?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Download SQL button to save the generated statements as a .sql file."}}]}</script>
 
   <style>
     * {
@@ -457,6 +421,13 @@
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -544,7 +515,7 @@
                 id="tableName"
                 value="users"
                 placeholder="Enter table name, e.g. users"
-               aria-label="SQL table name">
+               aria-label="SQL table name" data-clarity-mask="True">
 
             </div>
 
@@ -571,7 +542,7 @@
     "age": 34,
     "city": "London"
   }
-]' aria-label="JSON array input">[
+]' aria-label="JSON array input" data-clarity-mask="True">[
   {
     "name": "Ali",
     "age": 28,
@@ -621,7 +592,7 @@
                 id="sqlOutput"
                 readonly
                 placeholder="SQL INSERT statements will appear here..."
-               aria-label="Generated SQL INSERT statements"></textarea>
+               aria-label="Generated SQL INSERT statements" data-clarity-mask="True"></textarea>
 
               <div class="buttons">
 

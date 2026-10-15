@@ -36,6 +36,9 @@
     rel="canonical"
     href="https://toolforge1.github.io/csv-json-tools/json-to-csv.html"
   >
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to CSV Converter Online | Free Browser Tool">
+  <meta name="twitter:description" content="Convert a non-empty JSON array of objects to CSV in your browser. Copy or download spreadsheet-ready output; JSON is not uploaded.">
 
 
   <meta property="og:title" content="JSON to CSV Converter Online | Free Browser Tool">
@@ -72,46 +75,7 @@
 </script>
 
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What JSON format does this tool support?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tool expects a JSON array containing objects. Each object is converted into a row in the resulting CSV file."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I upload a JSON file?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. You can upload a JSON file and its contents will be loaded directly into the browser."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this tool upload my JSON data?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion is performed directly in your browser and the JSON data is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens to nested JSON values?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Objects and arrays inside a JSON field are converted into JSON text within the corresponding CSV cell."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON format does this tool support?","acceptedAnswer":{"@type":"Answer","text":"The converter expects a JSON array containing objects. Each object is treated as a row and its properties are used as CSV columns."}},{"@type":"Question","name":"Can I upload a JSON file?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the JSON file selector to load a JSON file directly into the browser."}},{"@type":"Question","name":"Does this JSON to CSV converter upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser. Your JSON data is not uploaded to our server."}},{"@type":"Question","name":"What happens to nested JSON objects?","acceptedAnswer":{"@type":"Answer","text":"Nested objects and arrays are converted into JSON text inside the corresponding CSV cell."}},{"@type":"Question","name":"Can I download the converted CSV?","acceptedAnswer":{"@type":"Answer","text":"Yes. After conversion, click Download CSV to save the generated data as a CSV file."}},{"@type":"Question","name":"Is this JSON to CSV converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool is free to use directly in your web browser and does not require an account."}}]}</script>
 
 
   <style>
@@ -952,6 +916,13 @@
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 
@@ -1091,7 +1062,7 @@
                 </div>
 
 
-                <textarea id="jsonInput">[
+                <textarea id="jsonInput" data-clarity-mask="True">[
   {
     "name": "John",
     "age": "25",
@@ -1115,7 +1086,7 @@
                     type="file"
                     id="jsonFile"
                     accept=".json,application/json"
-                  >
+                   data-clarity-mask="True">
 
                 </div>
 
@@ -1141,7 +1112,7 @@
                   id="csvOutput"
                   readonly
                   placeholder="Your converted CSV will appear here."
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
               </div>
 

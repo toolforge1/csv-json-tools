@@ -21,6 +21,9 @@
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-toml.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to TOML Converter | Free, Private Browser Tool">
+  <meta name="twitter:description" content="Convert supported JSON objects to TOML in your browser. Copy or download converted.toml; review the result against your project configuration schema.">
 
   <meta property="og:title" content="JSON to TOML Converter | Free, Private Browser Tool">
   <meta property="og:description" content="Convert supported JSON objects to TOML in your browser. Copy or download converted.toml; review the result against your project configuration schema.">
@@ -45,54 +48,7 @@
 }
 </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What JSON does this converter support?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The converter accepts a JSON object and supports strings, numbers, booleans, arrays and nested objects within the converter's supported TOML format."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the converter support nested objects?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Nested JSON objects are converted into TOML sections using dotted section names."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this tool support null values?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. TOML does not have a native null value, so JSON null values are rejected by this converter."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is my JSON uploaded to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion is performed directly in the browser and the JSON data is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I download the TOML result?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. After conversion, use the Download TOML button to save the result as a TOML file."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON does this converter support?","acceptedAnswer":{"@type":"Answer","text":"The converter accepts a JSON object and supports strings, numbers, booleans, arrays and nested objects within its supported TOML format."}},{"@type":"Question","name":"Does the converter support nested objects?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nested JSON objects are converted into TOML sections using dotted section names."}},{"@type":"Question","name":"Does this tool support null values?","acceptedAnswer":{"@type":"Answer","text":"No. TOML does not have a native null value, so JSON null values are rejected by this converter."}},{"@type":"Question","name":"Can I convert JSON arrays?","acceptedAnswer":{"@type":"Answer","text":"Supported primitive arrays can be converted into TOML arrays. Arrays containing objects are not supported by this converter."}},{"@type":"Question","name":"Is my JSON uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser and your JSON data is not uploaded to our server."}},{"@type":"Question","name":"Can I download the TOML result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Download TOML button to save the converted output as a TOML file."}}]}</script>
 
   <style>
     :root {
@@ -414,6 +370,13 @@
 @media(max-width:640px){.seo-help{margin:24px 16px;padding:18px;border-radius:16px}.seo-help h2{letter-spacing:-.02em}}
 </style>
   <link rel="manifest" href="manifest.json">
+<script type="text/javascript">  
+    (function(c,l,a,r,i,t,y){  
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};  
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;  
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);  
+    })(window, document, "clarity", "script", "ys5nww2ow3");  
+  </script>
 </head>
 
 <body>
@@ -476,7 +439,7 @@
   "age": 28,
   "active": true
 }'
-         aria-label="JSON input"></textarea>
+         aria-label="JSON input" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button onclick="convertToTOML()">Convert to TOML</button>
@@ -497,7 +460,7 @@
           id="tomlOutput"
           readonly
           placeholder="Converted TOML will appear here..."
-         aria-label="Converted TOML output"></textarea>
+         aria-label="Converted TOML output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyTOML()">Copy TOML</button>
