@@ -20,7 +20,18 @@
     'html[data-theme="light"] .nav-link, html[data-theme="light"] .button, html[data-theme="light"] button:not(#themeToggle), html[data-theme="light"] .secondary-btn { color: #172033; }',
     '#themeToggle { position: fixed; right: 16px; bottom: 16px; z-index: 99999; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 14px; border: 1px solid rgba(148,163,184,.45); border-radius: 999px; background: #0d1b2d; color: #fff; box-shadow: 0 8px 28px rgba(0,0,0,.22); font: 700 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif; cursor: pointer; }',
     'html[data-theme="light"] #themeToggle { background: #fff; color: #172033; border-color: #c6d2e1; box-shadow: 0 8px 24px rgba(15,35,60,.16); }',
-    '@media(max-width:480px){#themeToggle{right:10px;bottom:10px;min-height:42px;padding:9px 12px}}'
+    '@media(max-width:480px){#themeToggle{right:10px;bottom:10px;min-height:42px;padding:9px 12px}}',
+
+    '#shareTools { margin: 28px auto 18px; width: min(100% - 32px, 980px); padding: 18px; border: 1px solid rgba(148,163,184,.28); border-radius: 16px; background: rgba(15,29,48,.92); color: #f8fafc; font: 14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }',
+    '#shareTools h2 { margin: 0 0 6px; font-size: 18px; color: inherit; }',
+    '#shareTools p { margin: 0 0 12px; color: #cbd5e1; }',
+    '#shareTools .share-actions { display: flex; flex-wrap: wrap; gap: 8px; }',
+    '#shareTools button { min-height: 40px; padding: 9px 12px; border: 1px solid rgba(148,163,184,.45); border-radius: 9px; background: #1d3552; color: #fff; font: 600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif; cursor: pointer; }',
+    '#shareTools button:focus-visible { outline: 3px solid #60a5fa; outline-offset: 2px; }',
+    'html[data-theme="light"] #shareTools { background: #fff; color: #172033; border-color: #d7e0ec; }',
+    'html[data-theme="light"] #shareTools p { color: #475569; }',
+    'html[data-theme="light"] #shareTools button { background: #edf4fc; color: #172033; border-color: #c6d2e1; }',
+    '@media(max-width:480px){#shareTools{width:calc(100% - 24px);padding:14px}#shareTools .share-actions{gap:6px}#shareTools button{flex:1 1 auto}}'
   ].join("\n");
   function init() {
     var theme = "dark";
@@ -48,6 +59,55 @@
     }
     renderLabel();
     document.body.appendChild(button);
+
+    if (!document.getElementById("shareTools") && document.title && !/offline/i.test(document.title)) {
+      var share = document.createElement("section");
+      share.id = "shareTools";
+      share.setAttribute("aria-labelledby", "shareToolsTitle");
+      share.innerHTML = '<h2 id="shareToolsTitle">Share this tool</h2><p>Help someone discover this free browser-based tool.</p><div class="share-actions"><button type="button" data-share="native">↗ Share</button><button type="button" data-share="whatsapp">WhatsApp</button><button type="button" data-share="telegram">Telegram</button><button type="button" data-share="facebook">Facebook</button><button type="button" data-share="x">X</button><button type="button" data-share="instagram">Instagram link</button><button type="button" data-share="copy">Copy link</button></div>';
+      var footer = document.querySelector("footer");
+      if (footer && footer.parentNode) footer.parentNode.insertBefore(share, footer);
+      else document.body.appendChild(share);
+      share.addEventListener("click", async function (event) {
+        var target = event.target.closest("button[data-share]");
+        if (!target) return;
+        var pageUrl = window.location.href.split("#")[0];
+        var pageTitle = document.title || "Free online developer tool";
+        var text = pageTitle + " — " + pageUrl;
+        var action = target.getAttribute("data-share");
+        var urls = {
+          whatsapp: "https://wa.me/?text=" + encodeURIComponent(text),
+          telegram: "https://t.me/share/url?url=" + encodeURIComponent(pageUrl) + "&text=" + encodeURIComponent(pageTitle),
+          facebook: "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl),
+          x: "https://twitter.com/intent/tweet?url=" + encodeURIComponent(pageUrl) + "&text=" + encodeURIComponent(pageTitle)
+        };
+        if (action === "native" && navigator.share) {
+          try { await navigator.share({ title: pageTitle, text: "Try this free browser-based tool", url: pageUrl }); } catch (_) {}
+          return;
+        }
+        if (action === "native") action = "copy";
+        if (action === "instagram" || action === "copy") {
+          try {
+            if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(pageUrl);
+            else {
+              var input = document.createElement("textarea");
+              input.value = pageUrl;
+              input.setAttribute("readonly", "");
+              input.style.position = "absolute";
+              input.style.left = "-9999px";
+              document.body.appendChild(input);
+              input.select();
+              document.execCommand("copy");
+              input.remove();
+            }
+            target.textContent = action === "instagram" ? "Link copied — paste in Instagram" : "Link copied!";
+            window.setTimeout(function () { target.textContent = action === "instagram" ? "Instagram link" : "Copy link"; }, 2600);
+          } catch (_) { window.prompt("Copy this page link:", pageUrl); }
+          return;
+        }
+        if (urls[action]) window.open(urls[action], "_blank", "noopener,noreferrer");
+      });
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
