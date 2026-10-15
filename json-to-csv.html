@@ -75,46 +75,7 @@
 </script>
 
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What JSON format does this tool support?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tool expects a JSON array containing objects. Each object is converted into a row in the resulting CSV file."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I upload a JSON file?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. You can upload a JSON file and its contents will be loaded directly into the browser."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this tool upload my JSON data?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion is performed directly in your browser and the JSON data is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens to nested JSON values?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Objects and arrays inside a JSON field are converted into JSON text within the corresponding CSV cell."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON format does this tool support?","acceptedAnswer":{"@type":"Answer","text":"The converter expects a JSON array containing objects. Each object is treated as a row and its properties are used as CSV columns."}},{"@type":"Question","name":"Can I upload a JSON file?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the JSON file selector to load a JSON file directly into the browser."}},{"@type":"Question","name":"Does this JSON to CSV converter upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser. Your JSON data is not uploaded to our server."}},{"@type":"Question","name":"What happens to nested JSON objects?","acceptedAnswer":{"@type":"Answer","text":"Nested objects and arrays are converted into JSON text inside the corresponding CSV cell."}},{"@type":"Question","name":"Can I download the converted CSV?","acceptedAnswer":{"@type":"Answer","text":"Yes. After conversion, click Download CSV to save the generated data as a CSV file."}},{"@type":"Question","name":"Is this JSON to CSV converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool is free to use directly in your web browser and does not require an account."}}]}</script>
 
 
   <style>

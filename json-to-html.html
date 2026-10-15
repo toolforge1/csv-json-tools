@@ -43,46 +43,7 @@
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What JSON format does this tool support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The tool supports a JSON object or an array of JSON objects. Object properties are used as table columns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I convert an array of JSON objects?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Each JSON object becomes a row and its properties become table columns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are nested JSON values supported?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Nested objects and arrays are displayed as readable JSON text inside the corresponding table cell."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my JSON uploaded to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The conversion is performed locally in your browser."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON format does this tool support?","acceptedAnswer":{"@type":"Answer","text":"The tool supports a JSON object or an array of JSON objects. When multiple objects are provided, each object is converted into a separate table row and the object properties are used as column headings."}},{"@type":"Question","name":"Can I convert an array of JSON objects?","acceptedAnswer":{"@type":"Answer","text":"Yes. An array of JSON objects is supported. The tool collects the property names from the objects and creates the appropriate HTML table columns automatically."}},{"@type":"Question","name":"What happens when a value is missing?","acceptedAnswer":{"@type":"Answer","text":"If an object does not contain a particular property, the corresponding HTML table cell remains empty."}},{"@type":"Question","name":"How are nested objects and arrays handled?","acceptedAnswer":{"@type":"Answer","text":"Nested objects and arrays are converted into readable JSON text and placed inside the corresponding table cell."}},{"@type":"Question","name":"Can I copy the generated HTML?","acceptedAnswer":{"@type":"Answer","text":"Yes. After conversion, click Copy HTML to copy the generated HTML table markup to your clipboard."}},{"@type":"Question","name":"Can I download the generated HTML table?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Download HTML to save the generated table as a complete HTML file that can be opened directly in a web browser."}},{"@type":"Question","name":"Is my JSON data uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. JSON processing takes place directly in your browser. Your JSON data is not uploaded to or stored on our server."}}]}</script>
 
 <style>
 :root {

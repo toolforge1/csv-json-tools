@@ -48,46 +48,7 @@
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What does this JSON comparison tool do?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It compares two JSON objects and identifies values that were added, removed, or changed between them."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does this tool upload my JSON data?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The comparison is performed locally in your browser and the JSON data is not uploaded to a server by this tool."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I compare nested JSON objects?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The tool can compare nested JSON objects and reports differences using their property paths."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can this tool compare JSON arrays?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The current version is designed to compare JSON objects rather than top-level JSON arrays."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does this JSON comparison tool do?","acceptedAnswer":{"@type":"Answer","text":"It compares two JSON objects and identifies properties that were added, removed, or changed."}},{"@type":"Question","name":"How do I compare two JSON files or objects?","acceptedAnswer":{"@type":"Answer","text":"Paste the first JSON object into JSON A, paste the second JSON object into JSON B, and click Compare JSON ."}},{"@type":"Question","name":"Does this JSON diff tool upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. The comparison is performed locally in your browser, and this tool does not upload your JSON data to a server."}},{"@type":"Question","name":"Can I compare nested JSON objects?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nested JSON objects are compared recursively, and differences are reported using property paths."}},{"@type":"Question","name":"Can I compare JSON arrays?","acceptedAnswer":{"@type":"Answer","text":"The current version is designed for top-level JSON objects and does not accept top-level JSON arrays."}},{"@type":"Question","name":"What do added, removed and changed mean?","acceptedAnswer":{"@type":"Answer","text":"Added means a property exists only in the second JSON, removed means it exists only in the first JSON, and changed means the property exists in both but has a different value."}},{"@type":"Question","name":"Can I copy the comparison result?","acceptedAnswer":{"@type":"Answer","text":"Yes. After comparing the JSON objects, click Copy Result to copy the comparison output."}}]}</script>
 
 <style>
 * {
