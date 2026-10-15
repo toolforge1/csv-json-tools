@@ -1009,54 +1009,7 @@ Emma	34	London</pre>
 </footer>
 
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What JSON format does this tool support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The tool expects a JSON array containing objects and converts their properties into TSV columns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens if objects have different properties?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The converter combines property names from all objects into the TSV header and leaves missing values empty."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are nested JSON objects supported?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nested objects and arrays are converted into JSON text inside the corresponding TSV cell."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my JSON uploaded to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The conversion is performed directly in the browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I download the TSV file?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The converted data can be downloaded as a converted.tsv file."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON format does this tool support?","acceptedAnswer":{"@type":"Answer","text":"The input should be a JSON array containing objects. The properties of those objects are converted into TSV columns."}},{"@type":"Question","name":"What happens if objects have different properties?","acceptedAnswer":{"@type":"Answer","text":"The converter combines the property names from all objects into the TSV header. A missing property results in an empty cell for that object."}},{"@type":"Question","name":"Are nested JSON objects supported?","acceptedAnswer":{"@type":"Answer","text":"Nested objects and arrays can be included as values. They are converted into JSON text inside the corresponding TSV cell."}},{"@type":"Question","name":"Is my JSON uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs directly in your browser. The JSON input is not sent to our server by this tool."}},{"@type":"Question","name":"Can I download the TSV file?","acceptedAnswer":{"@type":"Answer","text":"Yes. After conversion, use the Download TSV button to save the generated data as converted.tsv ."}},{"@type":"Question","name":"Can I copy the TSV result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Copy TSV to copy the generated tab-separated data to your clipboard."}}]}</script>
 <script>
 
 function convertJson() {

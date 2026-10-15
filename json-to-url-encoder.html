@@ -1041,54 +1041,7 @@
 </footer>
 
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Does this tool validate JSON?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The input is parsed with JSON.parse() before it is encoded. Invalid JSON produces an error message."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does the converter change my JSON formatting?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The JSON is parsed and then normalized with JSON.stringify() before URL encoding."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it support Urdu and other Unicode characters?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Unicode characters are handled by the browser's URL encoding functionality."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my JSON uploaded to a server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. JSON processing and URL encoding take place directly in the browser."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I download the encoded result?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The encoded result can be downloaded as a TXT file."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this tool validate JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes. The input is parsed with JSON.parse() before it is encoded. Invalid JSON produces an error message."}},{"@type":"Question","name":"Does the converter change my JSON formatting?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool parses the JSON and then uses JSON.stringify() to create a normalized representation before URL encoding it. Original formatting whitespace is not preserved."}},{"@type":"Question","name":"Does it support Urdu and other Unicode characters?","acceptedAnswer":{"@type":"Answer","text":"Yes. Unicode characters are handled by the browser's URL encoding functionality, so JSON containing Urdu and other non-Latin text can be encoded."}},{"@type":"Question","name":"Is my JSON uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The processing takes place directly in your browser. The tool does not send your JSON input to our server."}},{"@type":"Question","name":"Can I copy the encoded JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Copy Encoded URL after generating the encoded result."}},{"@type":"Question","name":"Can I download the encoded result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Download TXT to save the encoded text as encoded-json.txt ."}},{"@type":"Question","name":"Does URL encoding create a complete URL?","acceptedAnswer":{"@type":"Answer","text":"No. The tool creates URL-encoded JSON text. You can then use that value in the appropriate URL component or query parameter for your application."}}]}</script>
 <script>
 
 function showMessage(text, type) {

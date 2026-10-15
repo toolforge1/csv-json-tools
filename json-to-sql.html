@@ -47,46 +47,7 @@
 }
 </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What JSON format does this tool support?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The converter accepts a JSON array containing objects. Each object represents one row of data."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this JSON to SQL converter upload my data?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion runs directly in your browser and the JSON input is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What SQL does this tool generate?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The tool generates SQL INSERT statements using the table name and columns found in the JSON objects."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I download the generated SQL?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. You can download the generated SQL statements as a .sql file."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON format does this tool support?","acceptedAnswer":{"@type":"Answer","text":"The converter accepts a JSON array containing objects. Each object represents one row of data."}},{"@type":"Question","name":"Does the tool upload my JSON?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser. Your JSON input is not uploaded to our server."}},{"@type":"Question","name":"What SQL does the converter generate?","acceptedAnswer":{"@type":"Answer","text":"It generates SQL INSERT statements using the table name and columns found in the JSON objects."}},{"@type":"Question","name":"How are numbers handled?","acceptedAnswer":{"@type":"Answer","text":"Numeric JSON values are written as SQL numeric values rather than being unnecessarily wrapped in quotes."}},{"@type":"Question","name":"How are null values handled?","acceptedAnswer":{"@type":"Answer","text":"JSON null values are converted to SQL NULL."}},{"@type":"Question","name":"Can I download the generated SQL?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Download SQL button to save the generated statements as a .sql file."}}]}</script>
 
   <style>
     * {

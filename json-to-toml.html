@@ -48,54 +48,7 @@
 }
 </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What JSON does this converter support?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The converter accepts a JSON object and supports strings, numbers, booleans, arrays and nested objects within the converter's supported TOML format."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the converter support nested objects?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Nested JSON objects are converted into TOML sections using dotted section names."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this tool support null values?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. TOML does not have a native null value, so JSON null values are rejected by this converter."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is my JSON uploaded to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The conversion is performed directly in the browser and the JSON data is not uploaded to the server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I download the TOML result?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. After conversion, use the Download TOML button to save the result as a TOML file."
-        }
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What JSON does this converter support?","acceptedAnswer":{"@type":"Answer","text":"The converter accepts a JSON object and supports strings, numbers, booleans, arrays and nested objects within its supported TOML format."}},{"@type":"Question","name":"Does the converter support nested objects?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nested JSON objects are converted into TOML sections using dotted section names."}},{"@type":"Question","name":"Does this tool support null values?","acceptedAnswer":{"@type":"Answer","text":"No. TOML does not have a native null value, so JSON null values are rejected by this converter."}},{"@type":"Question","name":"Can I convert JSON arrays?","acceptedAnswer":{"@type":"Answer","text":"Supported primitive arrays can be converted into TOML arrays. Arrays containing objects are not supported by this converter."}},{"@type":"Question","name":"Is my JSON uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion is performed directly in your browser and your JSON data is not uploaded to our server."}},{"@type":"Question","name":"Can I download the TOML result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Download TOML button to save the converted output as a TOML file."}}]}</script>
 
   <style>
     :root {
