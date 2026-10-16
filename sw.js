@@ -1,4 +1,4 @@
-const CACHE_NAME = "csv-json-tools-v1";
+const CACHE_NAME = "csv-json-tools-v2";
 const BASE = new URL("./", self.location.href);
 const SHELL = [
   "./",
