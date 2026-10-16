@@ -122,6 +122,38 @@
         if (urls[action]) window.open(urls[action], "_blank", "noopener,noreferrer");
       });
     }
+
+    // Add page-specific feedback contact to tool pages using this shared script.
+    if (!document.getElementById("feedback") &&
+        (document.body.innerText || "").indexOf("Report a Problem or Share Feedback") === -1 &&
+        !/offline/i.test(document.title)) {
+      var feedback = document.createElement("section");
+      feedback.id = "feedbackSupport";
+      feedback.style.cssText = "margin:28px auto;padding:22px;width:min(calc(100% - 32px),1180px);border:1px solid rgba(96,165,250,.35);border-radius:18px;background:rgba(37,99,235,.09);color:inherit;box-sizing:border-box";
+      var heading = document.createElement("h2");
+      heading.textContent = "Report a Problem or Share Feedback";
+      heading.style.cssText = "margin:0 0 8px;font-size:clamp(20px,3vw,26px)";
+      var description = document.createElement("p");
+      description.textContent = "If you encounter any issue while using this tool, please report it so we can investigate and fix it. Suggestions and ideas to improve this tool are welcome too.";
+      description.style.cssText = "margin:0 0 14px;line-height:1.65";
+      var link = document.createElement("a");
+      link.textContent = "Report a problem or send a suggestion";
+      link.style.cssText = "display:inline-block;padding:11px 16px;border-radius:10px;background:#2563eb;color:#fff;text-decoration:none;font-weight:750";
+      var pageTitle = document.title || "Developer tool";
+      var pageUrl = window.location.href.split("#")[0];
+      var body = "Hello CSV & JSON Developer Tools team,\\n\\nFeedback type: [Bug report / Suggestion / Other]\\n\\nTool/page: " + pageTitle + "\\nPage URL: " + pageUrl + "\\n\\nDescribe the problem or suggestion:\\n[Write details here.]\\n\\nSteps to reproduce (if applicable):\\n1. \\n2. \\n\\nExpected result:\\nActual result:\\n";
+      link.href = "mailto:csvjsonsupport@gmail.com?subject=" + encodeURIComponent("Tool feedback: " + pageTitle) + "&body=" + encodeURIComponent(body);
+      var note = document.createElement("small");
+      note.textContent = "The email draft includes this tool's page title and URL. Please do not include passwords, API keys, private data, or sensitive files. Your email app must be configured to send email.";
+      note.style.cssText = "display:block;margin-top:12px;opacity:.75;line-height:1.5";
+      feedback.appendChild(heading);
+      feedback.appendChild(description);
+      feedback.appendChild(link);
+      feedback.appendChild(note);
+      var feedbackFooter = document.querySelector("footer");
+      if (feedbackFooter && feedbackFooter.parentNode) feedbackFooter.parentNode.insertBefore(feedback, feedbackFooter);
+      else document.body.appendChild(feedback);
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
