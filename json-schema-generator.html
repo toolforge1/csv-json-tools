@@ -302,7 +302,13 @@
         showStatus("Schema file download started.", false);
       });
       document.getElementById("clearBtn").addEventListener("click", function () {
-        input.value = ""; output.value = ""; showStatus("Input and output cleared.", false);
+        input.value = "";
+        output.value = "";
+        titleInput.value = "Root";
+        requiredToggle.checked = true;
+        strictToggle.checked = false;
+        showStatus("Input and generated schema cleared. Load an example or enter JSON, then generate again.", false);
+        input.focus();
       });
       generate();
     })();
