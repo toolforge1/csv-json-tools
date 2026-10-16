@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>JSON to TypeScript Converter – Generate Interfaces Online</title>
+  <meta name="description" content="Convert JSON to TypeScript interfaces and types online. Infer nested objects, arrays, unions and nullable values, then copy or download the generated code.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-to-typescript.html">
+  <meta property="og:title" content="JSON to TypeScript Converter – Generate Interfaces Online">
+  <meta property="og:description" content="Generate TypeScript interfaces and types from JSON examples in your browser. Free, responsive and designed for local processing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-to-typescript.html">
+  <meta property="og:site_name" content="CSV &amp; JSON Developer Tools">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGGJEQ96S7');
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ys5nww2ow3");
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"JSON to TypeScript Converter",
+    "url":"https://toolforge1.github.io/csv-json-tools/json-to-typescript.html",
+    "description":"Generate TypeScript interfaces and type aliases from JSON examples in the browser.",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any",
+    "browserRequirements":"Requires JavaScript",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I convert JSON to TypeScript?","acceptedAnswer":{"@type":"Answer","text":"Paste a valid JSON example, choose a root type name and select Generate TypeScript. The converter infers TypeScript interfaces or type aliases from the example."}},
+      {"@type":"Question","name":"Does this JSON to TypeScript converter upload my data?","acceptedAnswer":{"@type":"Answer","text":"The conversion runs locally in your browser. General website analytics and diagnostics may still collect usage information."}},
+      {"@type":"Question","name":"Can it generate types for nested objects and arrays?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nested objects receive named interfaces, arrays receive element types, and mixed sample values can produce union types."}},
+      {"@type":"Question","name":"Can generated TypeScript types replace runtime validation?","acceptedAnswer":{"@type":"Answer","text":"No. TypeScript types are primarily checked at compile time and do not validate untrusted JSON at runtime. Validate external data separately when needed."}},
+      {"@type":"Question","name":"Can I copy or download the generated code?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the copy button or download the generated output as a TypeScript file."}}
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="assets/tool-pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="./" aria-label="CSV and JSON Developer Tools home">
+        <span class="brand-icon" aria-hidden="true">{ }</span>
+        <span>CSV &amp; JSON Developer Tools</span>
+      </a>
+      <a class="nav-link" href="./#tools">All tools</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <span class="eyebrow">Free TypeScript Utility</span>
+      <h1>JSON to <span>TypeScript</span> Converter</h1>
+      <p>Generate TypeScript interfaces and type aliases from a JSON example. Inspect inferred fields, nested objects, arrays and union types, then copy or download the code.</p>
+      <div class="trust-row">
+        <span class="trust">Free to use</span>
+        <span class="trust">Runs in your browser</span>
+        <span class="trust">No account required</span>
+        <span class="trust">Mobile friendly</span>
+      </div>
+    </section>
+
+    <main>
+      <section class="panel" aria-labelledby="tool-heading">
+        <h2 id="tool-heading">Convert JSON to TypeScript</h2>
+        <p class="field-help">Paste a representative JSON response or load the example. The generated types describe the sample you provide, so include realistic examples for the most useful inference.</p>
+        <div class="field">
+          <label for="jsonInput">JSON input</label>
+          <textarea id="jsonInput" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="inputHelp">{
+  "id": 101,
+  "name": "Ayesha",
+  "active": true,
+  "profile": {
+    "city": "Karachi",
+    "skills": ["TypeScript", "JSON"]
+  },
+  "projects": [
+    {
+      "name": "Dashboard",
+      "stars": 12
+    },
+    {
+      "name": "API Client",
+      "stars": 8,
+      "private": false
+    }
+  ],
+  "tags": null
+}</textarea>
+          <p class="field-help" id="inputHelp">Input is parsed locally in this page. Avoid pasting passwords, access tokens or confidential production data into websites.</p>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="rootName">Root type or interface name</label>
+            <input id="rootName" type="text" value="Root" maxlength="80" autocomplete="off">
+            <p class="field-help">Example: ApiResponse, UserProfile or Product.</p>
+          </div>
+          <div class="field">
+            <span class="field-label">Generation option</span>
+            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600">
+              <input id="optionalAll" type="checkbox" style="width:auto;min-height:0;margin-top:5px">
+              <span>Make every property optional</span>
+            </label>
+            <p class="field-help">Useful when building a partial-update type. Fields missing from some objects in an array are inferred as optional automatically.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="button primary" id="generateBtn" type="button">Generate TypeScript</button>
+          <button class="button" id="exampleBtn" type="button">Load example</button>
+          <button class="button" id="copyBtn" type="button">Copy code</button>
+          <button class="button" id="downloadBtn" type="button">Download .ts</button>
+          <button class="button" id="clearBtn" type="button">Clear</button>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+        <div class="field">
+          <label for="tsOutput">Generated TypeScript</label>
+          <textarea id="tsOutput" readonly spellcheck="false" aria-label="Generated TypeScript output" placeholder="Your TypeScript interfaces and types will appear here."></textarea>
+        </div>
+        <div class="note"><strong>Important:</strong> inferred types describe the JSON sample, not every possible API response. TypeScript types do not perform runtime validation by themselves.</div>
+      </section>
+
+      <section class="content-card" aria-labelledby="example-heading">
+        <h2 id="example-heading">Example: JSON input and TypeScript output</h2>
+        <p>This sample contains primitive values, a nested object, an array of objects and a nullable field. The tool creates separate interfaces for nested structures and marks array fields optional when a key is absent from some sample objects.</p>
+        <h3>Example JSON</h3>
+        <pre><code>{
+  "id": 101,
+  "name": "Ayesha",
+  "profile": { "city": "Karachi" },
+  "projects": [
+    { "name": "Dashboard", "stars": 12 },
+    { "name": "API Client", "stars": 8, "private": false }
+  ]
+}</code></pre>
+        <h3>Representative TypeScript output</h3>
+        <pre><code>export interface Profile {
+  city: string;
+}
+
+export interface Project {
+  name: string;
+  stars: number;
+  private?: boolean;
+}
+
+export interface Root {
+  id: number;
+  name: string;
+  profile: Profile;
+  projects: Project[];
+}</code></pre>
+        <p>The exact output depends on your JSON input and the root name you choose. Use the live converter above to generate types from your own example.</p>
+      </section>
+
+      <article class="content-card" id="json-to-typescript-guide">
+        <div class="eyebrow">Practical Guide</div>
+        <h2>How to Convert JSON to TypeScript Interfaces</h2>
+        <p>JSON is a common format for API responses, configuration files and data exchanged between applications. TypeScript adds static type information to JavaScript projects. A <strong>JSON to TypeScript converter</strong> helps turn a representative JSON object into interfaces or type aliases, making it easier to describe the shape of data in an editor and catch certain mistakes while coding.</p>
+        <h3>Why generate TypeScript types from JSON?</h3>
+        <p>When an API returns nested objects, arrays, strings, numbers and boolean values, manually writing every interface can take time. Generating a first draft from a sample response gives you a starting point. You can then review names, optional fields, unions and application-specific rules before using the types in a project.</p>
+        <h3>How to use this online JSON to TypeScript tool</h3>
+        <ol>
+          <li>Copy a representative JSON object or array from a safe test response.</li>
+          <li>Paste it into the JSON input field. The input must be valid JSON with double-quoted property names.</li>
+          <li>Set a useful root name, such as <code>ApiResponse</code> or <code>UserProfile</code>.</li>
+          <li>Select <strong>Generate TypeScript</strong> and review the generated interfaces and type aliases.</li>
+          <li>Copy the code or download it as a <code>.ts</code> file, then adjust it to match your application requirements.</li>
+        </ol>
+        <h3>How nested objects, arrays and optional fields are inferred</h3>
+        <p>Nested JSON objects can become separate named interfaces, while arrays receive a type based on their elements. If objects in the same array have different keys, keys missing from some sample objects are marked optional. Mixed values can produce union types such as <code>string | number</code>. An empty array has no element information to infer, so its element type is shown as <code>unknown</code>.</p>
+        <p>A single sample cannot reveal every possible value or tell whether every field will always be present. Provide several representative array items where possible, and review the generated code instead of treating inference as a complete API specification.</p>
+        <h3>TypeScript types are not runtime validation</h3>
+        <p>TypeScript checks types during development and compilation, but the type declarations are not automatically enforced on JSON received from an external API at runtime. If data is untrusted, validate it at the application boundary using appropriate runtime validation logic or a schema-based validator.</p>
+        <h3>Related CSV and JSON developer tools</h3>
+        <p>Before generating types, you may want to inspect or clean up your sample with the <a href="json-formatter.html">JSON Formatter and Validator</a>. If your data is in a spreadsheet export, use <a href="csv-to-json.html">CSV to JSON</a> or the <a href="csv-viewer.html">CSV Viewer</a>. You can compare API samples with <a href="json-diff-compare.html">JSON Diff &amp; Compare</a>, or transform data with <a href="json-to-yaml.html">JSON to YAML</a>, <a href="json-to-xml.html">JSON to XML</a>, <a href="json-to-toml.html">JSON to TOML</a>, <a href="json-to-csv.html">JSON to CSV</a> and <a href="json-to-tsv.html">JSON to TSV</a>.</p>
+      </article>
+
+      <section class="content-card" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Is this JSON to TypeScript converter free?</summary>
+            <p>Yes. You can generate, copy and download TypeScript code for free in your browser.</p>
+          </details>
+          <details>
+            <summary>Does the converter send my JSON to a server?</summary>
+            <p>The conversion itself runs locally in your browser. The website uses analytics and diagnostics for general usage information, so do not submit passwords, tokens or confidential production data.</p>
+          </details>
+          <details>
+            <summary>Can it convert JSON arrays and nested objects?</summary>
+            <p>Yes. The generator infers array element types, nested interfaces and union types from the provided sample.</p>
+          </details>
+          <details>
+            <summary>Why are some generated properties optional?</summary>
+            <p>When objects in an array do not all contain the same key, the generator marks that property optional. You can also choose to make every property optional.</p>
+          </details>
+          <details>
+            <summary>Does generated TypeScript validate API responses at runtime?</summary>
+            <p>No. Type declarations help with compile-time checks but do not automatically validate incoming JSON at runtime.</p>
+          </details>
+          <details>
+            <summary>What if my JSON is invalid?</summary>
+            <p>The tool shows a parsing error. You can check and format the input with the <a href="json-formatter.html">JSON Formatter</a>, then try again.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="content-card" aria-labelledby="related-heading">
+        <h2 id="related-heading">Explore Related Tools</h2>
+        <p>Continue working with your data using these existing tools in the same toolkit.</p>
+        <div class="related-grid">
+          <a class="related-link" href="json-formatter.html">JSON Formatter &amp; Validator</a>
+          <a class="related-link" href="json-diff-compare.html">JSON Diff &amp; Compare</a>
+          <a class="related-link" href="csv-to-json.html">CSV to JSON</a>
+          <a class="related-link" href="json-to-csv.html">JSON to CSV</a>
+          <a class="related-link" href="json-to-yaml.html">JSON to YAML</a>
+          <a class="related-link" href="json-to-xml.html">JSON to XML</a>
+          <a class="related-link" href="json-to-toml.html">JSON to TOML</a>
+          <a class="related-link" href="json-to-tsv.html">JSON to TSV</a>
+          <a class="related-link" href="csv-viewer.html">CSV Viewer</a>
+        </div>
+        <p><a href="./#tools">Browse all CSV &amp; JSON developer tools →</a></p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>CSV &amp; JSON Developer Tools</strong>
+        <p>Free browser-based utilities for structured data and developer workflows.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="./">Home</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const example = document.getElementById("jsonInput").value;
+      const input = document.getElementById("jsonInput");
+      const output = document.getElementById("tsOutput");
+      const rootName = document.getElementById("rootName");
+      const optionalAll = document.getElementById("optionalAll");
+      const status = document.getElementById("status");
+
+      function showStatus(message, isError) {
+        status.textContent = message;
+        status.className = isError ? "status error" : "status";
+      }
+
+      function pascalCase(value) {
+        const parts = String(value || "Root").match(/[A-Za-z0-9_$]+/g) || [];
+        let result = parts.map(function (part) {
+          return part.charAt(0).toUpperCase() + part.slice(1);
+        }).join("");
+        if (!result) result = "Root";
+        if (/^[0-9]/.test(result)) result = "Type" + result;
+        return result;
+      }
+
+      function singularize(value) {
+        if (/ies$/i.test(value)) return value.slice(0, -3) + "y";
+        if (/s$/i.test(value) && !/ss$/i.test(value)) return value.slice(0, -1);
+        return value;
+      }
+
+      function quoteProperty(key) {
+        return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(key) ? key : JSON.stringify(key);
+      }
+
+      function generateTypes(value, root, makeOptional) {
+        const definitions = [];
+        const usedNames = new Set();
+
+        function allocateName(hint) {
+          const baseName = pascalCase(hint);
+          let name = baseName;
+          let suffix = 2;
+          while (usedNames.has(name)) {
+            name = baseName + suffix;
+            suffix += 1;
+          }
+          usedNames.add(name);
+          return name;
+        }
+
+        function kind(item) {
+          if (item === null) return "null";
+          if (Array.isArray(item)) return "array";
+          if (typeof item === "object") return "object";
+          if (typeof item === "string") return "string";
+          if (typeof item === "number") return "number";
+          if (typeof item === "boolean") return "boolean";
+          return "unknown";
+        }
+
+        function buildType(values, hint, isRoot) {
+          const items = values || [];
+          const kinds = new Set(items.map(kind));
+          const parts = [];
+
+          ["string", "number", "boolean", "null"].forEach(function (primitive) {
+            if (kinds.has(primitive)) parts.push(primitive);
+          });
+
+          const objects = items.filter(function (item) {
+            return item !== null && typeof item === "object" && !Array.isArray(item);
+          });
+
+          if (objects.length) {
+            const interfaceName = allocateName(hint);
+            const keys = [];
+            objects.forEach(function (object) {
+              Object.keys(object).forEach(function (key) {
+                if (!keys.includes(key)) keys.push(key);
+              });
+            });
+
+            const properties = keys.map(function (key) {
+              const presentValues = objects.filter(function (object) {
+                return Object.prototype.hasOwnProperty.call(object, key);
+              }).map(function (object) {
+                return object[key];
+              });
+              const isOptional = makeOptional || presentValues.length < objects.length;
+              const childHint = pascalCase(key);
+              const childType = buildType(presentValues, childHint, false);
+              return "  " + quoteProperty(key) + (isOptional ? "?" : "") + ": " + childType + ";";
+            });
+
+            definitions.push("export interface " + interfaceName + " {\n" + properties.join("\n") + (properties.length ? "\n" : "") + "}");
+            parts.push(interfaceName);
+          }
+
+          const arrays = items.filter(Array.isArray);
+          if (arrays.length) {
+            const elements = [];
+            arrays.forEach(function (array) {
+              array.forEach(function (element) { elements.push(element); });
+            });
+            let elementType = "unknown";
+            if (elements.length) {
+              const itemHint = isRoot ? pascalCase(hint) + "Item" : singularize(pascalCase(hint));
+              elementType = buildType(elements, itemHint, false);
+            }
+            parts.push((elementType.includes(" | ") ? "(" + elementType + ")" : elementType) + "[]");
+          }
+
+          if (kinds.has("unknown")) parts.push("unknown");
+          return Array.from(new Set(parts)).join(" | ") || "unknown";
+        }
+
+        const rootType = buildType([value], root, true);
+        if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+          return definitions.join("\n\n");
+        }
+        return definitions.concat("export type " + pascalCase(root) + " = " + rootType + ";").join("\n\n");
+      }
+
+      function convert() {
+        const source = input.value.trim();
+        if (!source) {
+          output.value = "";
+          showStatus("Paste a JSON object or array first.", true);
+          return;
+        }
+        try {
+          const parsed = JSON.parse(source);
+          const name = rootName.value.trim() || "Root";
+          output.value = generateTypes(parsed, name, optionalAll.checked);
+          showStatus("TypeScript generated. Review inferred fields and types before using the code.", false);
+        } catch (error) {
+          output.value = "";
+          showStatus("Invalid JSON: " + error.message, true);
+        }
+      }
+
+      document.getElementById("generateBtn").addEventListener("click", convert);
+      document.getElementById("exampleBtn").addEventListener("click", function () {
+        input.value = example;
+        rootName.value = "Root";
+        optionalAll.checked = false;
+        convert();
+      });
+      document.getElementById("copyBtn").addEventListener("click", async function () {
+        if (!output.value) {
+          showStatus("Generate TypeScript before copying.", true);
+          return;
+        }
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(output.value);
+          } else {
+            output.focus();
+            output.select();
+            if (!document.execCommand("copy")) throw new Error("Copy command unavailable");
+          }
+          showStatus("TypeScript code copied.", false);
+        } catch (_) {
+          showStatus("Copy was blocked by the browser. Select the output and copy it manually.", true);
+        }
+      });
+      document.getElementById("downloadBtn").addEventListener("click", function () {
+        if (!output.value) {
+          showStatus("Generate TypeScript before downloading.", true);
+          return;
+        }
+        const blob = new Blob([output.value + "\n"], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = (pascalCase(rootName.value || "Root") || "Root") + ".ts";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showStatus("TypeScript file download started.", false);
+      });
+      document.getElementById("clearBtn").addEventListener("click", function () {
+        input.value = "";
+        output.value = "";
+        showStatus("Input and output cleared.", false);
+      });
+      convert();
+    })();
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function () {});
+      });
+    }
+  </script>
+  <script src="assets/theme.js" defer></script>
+</body>
+</html>
