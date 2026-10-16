@@ -349,7 +349,7 @@ export interface Root {
                 return object[key];
               });
               const isOptional = makeOptional || presentValues.length < objects.length;
-              const childHint = interfaceName + pascalCase(key);
+              const childHint = pascalCase(key);
               const childType = buildType(presentValues, childHint, false);
               return "  " + quoteProperty(key) + (isOptional ? "?" : "") + ": " + childType + ";";
             });
