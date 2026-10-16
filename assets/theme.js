@@ -141,7 +141,7 @@
       link.style.cssText = "display:inline-block;padding:11px 16px;border-radius:10px;background:#2563eb;color:#fff;text-decoration:none;font-weight:750";
       var pageTitle = document.title || "Developer tool";
       var pageUrl = window.location.href.split("#")[0];
-      var body = "Hello CSV & JSON Developer Tools team,\\n\\nFeedback type: [Bug report / Suggestion / Other]\\n\\nTool/page: " + pageTitle + "\\nPage URL: " + pageUrl + "\\n\\nDescribe the problem or suggestion:\\n[Write details here.]\\n\\nSteps to reproduce (if applicable):\\n1. \\n2. \\n\\nExpected result:\\nActual result:\\n";
+      var body = "Hello CSV & JSON Developer Tools team,\n\nFeedback type: [Bug report / Suggestion / Other]\n\nTool/page: " + pageTitle + "\nPage URL: " + pageUrl + "\n\nDescribe the problem or suggestion:\n[Write details here.]\n\nSteps to reproduce (if applicable):\n1. \n2. \n\nExpected result:\nActual result:\n";
       link.href = "mailto:csvjsonsupport@gmail.com?subject=" + encodeURIComponent("Tool feedback: " + pageTitle) + "&body=" + encodeURIComponent(body);
       var note = document.createElement("small");
       note.textContent = "The email draft includes this tool's page title and URL. Please do not include passwords, API keys, private data, or sensitive files. Your email app must be configured to send email.";
