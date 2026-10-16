@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>JSON Schema Generator – Create JSON Schema Online</title>
+  <meta name="description" content="Generate a JSON Schema from a sample JSON object or array. Infer nested properties, arrays, required fields and mixed types, then copy or download the schema.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/json-schema-generator.html">
+  <meta property="og:title" content="JSON Schema Generator – Create JSON Schema Online">
+  <meta property="og:description" content="Create a JSON Schema from sample JSON in your browser. Review required fields and additional-property settings, then copy or download the result.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolforge1.github.io/csv-json-tools/json-schema-generator.html">
+  <meta property="og:site_name" content="CSV &amp; JSON Developer Tools">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGGJEQ96S7"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){gtag('js',new Date());gtag('config','G-CGGJEQ96S7');}</script>
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","ys5nww2ow3");</script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"JSON Schema Generator",
+    "url":"https://toolforge1.github.io/csv-json-tools/json-schema-generator.html",
+    "description":"Generate JSON Schema from sample JSON in the browser.",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any",
+    "browserRequirements":"Requires JavaScript",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I generate JSON Schema from JSON?","acceptedAnswer":{"@type":"Answer","text":"Paste a valid JSON object or array, choose the schema title and options, then select Generate Schema. The tool infers a schema from the sample."}},
+      {"@type":"Question","name":"Does this JSON Schema Generator upload my data?","acceptedAnswer":{"@type":"Answer","text":"Schema generation runs locally in your browser. General website analytics and diagnostics may collect usage information."}},
+      {"@type":"Question","name":"Does the generated schema describe every possible API response?","acceptedAnswer":{"@type":"Answer","text":"No. It is inferred from the sample you provide. Review required fields, value ranges, formats and business rules before relying on it."}},
+      {"@type":"Question","name":"What does the required list mean in JSON Schema?","acceptedAnswer":{"@type":"Answer","text":"The required array lists property names that must be present in an object for it to satisfy the schema. This tool can infer required properties from the provided sample or omit the required list."}},
+      {"@type":"Question","name":"Can I copy or download the generated schema?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy the generated JSON Schema or download it as a .json file."}}
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="assets/tool-pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="./" aria-label="CSV and JSON Developer Tools home"><span class="brand-icon" aria-hidden="true">{ }</span><span>CSV &amp; JSON Developer Tools</span></a>
+      <a class="nav-link" href="./#tools">All tools</a>
+    </div>
+  </header>
+  <div class="container">
+    <section class="hero">
+      <span class="eyebrow">Free JSON Utility</span>
+      <h1>JSON Schema <span>Generator</span></h1>
+      <p>Generate a JSON Schema from a sample object or array. Infer nested properties, array items, required fields and mixed value types, then copy or download the schema.</p>
+      <div class="trust-row"><span class="trust">Free to use</span><span class="trust">Runs in your browser</span><span class="trust">No account required</span><span class="trust">Mobile friendly</span></div>
+    </section>
+    <main>
+      <section class="panel" aria-labelledby="tool-heading">
+        <h2 id="tool-heading">Generate JSON Schema</h2>
+        <p class="field-help">Paste a representative JSON example or load the sample. The schema describes the structure and values visible in your sample; review it before using it to validate production data.</p>
+        <div class="field">
+          <label for="jsonInput">JSON input</label>
+          <textarea id="jsonInput" spellcheck="false" autocapitalize="off" autocomplete="off">{
+  "id": 101,
+  "name": "Ayesha",
+  "active": true,
+  "profile": {
+    "city": "Karachi",
+    "skills": ["TypeScript", "JSON"]
+  },
+  "projects": [
+    { "name": "Dashboard", "stars": 12 },
+    { "name": "API Client", "stars": 8, "private": false }
+  ],
+  "tags": null
+}</textarea>
+          <p class="field-help">The JSON is parsed locally in this page. Do not paste passwords, access tokens or confidential production data into websites.</p>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="schemaTitle">Schema title</label>
+            <input id="schemaTitle" type="text" value="Root" maxlength="120" autocomplete="off">
+            <p class="field-help">Optional descriptive name, such as UserProfile or ApiResponse.</p>
+          </div>
+          <div class="field">
+            <span class="field-label">Schema options</span>
+            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600"><input id="includeRequired" type="checkbox" checked style="width:auto;min-height:0;margin-top:5px"><span>Infer required properties from the sample</span></label>
+            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600;margin-top:8px"><input id="disallowAdditional" type="checkbox" style="width:auto;min-height:0;margin-top:5px"><span>Disallow additional object properties</span></label>
+            <p class="field-help">Required properties are inferred from keys present in all sampled objects. Disallowing extra properties can make validation stricter.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="button primary" id="generateBtn" type="button">Generate Schema</button>
+          <button class="button" id="exampleBtn" type="button">Load example</button>
+          <button class="button" id="copyBtn" type="button">Copy schema</button>
+          <button class="button" id="downloadBtn" type="button">Download .json</button>
+          <button class="button" id="clearBtn" type="button">Clear</button>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+        <div class="field">
+          <label for="schemaOutput">Generated JSON Schema</label>
+          <textarea id="schemaOutput" readonly spellcheck="false" placeholder="Your generated JSON Schema will appear here."></textarea>
+        </div>
+        <div class="note"><strong>Important:</strong> this generator infers structure from a sample; it does not automatically invent business rules, formats, minimums, maximums or every possible value.</div>
+      </section>
+
+      <section class="content-card" aria-labelledby="example-heading">
+        <h2 id="example-heading">Example: JSON input and generated schema</h2>
+        <p>For an object containing an ID, a name and an active flag, a generated schema can describe each property type and identify which fields are required.</p>
+        <h3>Example JSON</h3>
+        <pre><code>{
+  "id": 101,
+  "name": "Ayesha",
+  "active": true
+}</code></pre>
+        <h3>Representative JSON Schema</h3>
+        <pre><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Root",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "name": { "type": "string" },
+    "active": { "type": "boolean" }
+  },
+  "required": ["id", "name", "active"]
+}</code></pre>
+        <p>Your output may include nested schemas, array item definitions, union types or a different required list depending on the sample and selected options.</p>
+      </section>
+
+      <article class="content-card" id="json-schema-guide">
+        <div class="eyebrow">Practical Guide</div>
+        <h2>How to Generate a JSON Schema Online</h2>
+        <p>JSON Schema is a vocabulary for describing the expected structure of JSON data. Teams use schemas to document API payloads, validate configuration files, check incoming data and communicate the shape of objects between services. A <strong>JSON Schema Generator</strong> creates a useful first draft from an example JSON object or array.</p>
+        <h3>How to use this JSON Schema Generator</h3>
+        <ol>
+          <li>Prepare a valid JSON example that represents the data you expect to receive.</li>
+          <li>Paste it into the input box or select <strong>Load example</strong>.</li>
+          <li>Set a schema title, such as <code>UserProfile</code> or <code>ApiResponse</code>.</li>
+          <li>Choose whether to infer required properties and whether to disallow additional properties.</li>
+          <li>Select <strong>Generate Schema</strong>, review the result, and copy or download the JSON file.</li>
+        </ol>
+        <h3>How required properties are inferred</h3>
+        <p>When required-property inference is enabled, a property is marked required if it appears in every sampled object at that level. For objects inside an array, the generator compares the keys in the sampled objects. A small sample can miss fields or variations that appear in real data, so use representative examples and review the required list carefully.</p>
+        <h3>Nested objects, arrays, nulls and mixed values</h3>
+        <p>Nested objects are described through nested <code>properties</code>. Arrays receive an <code>items</code> schema inferred from their elements. If a value appears as more than one type in the sample, the schema uses <code>anyOf</code> to represent those alternatives. Null is represented as a type alternative. Empty arrays do not reveal the intended item structure, so their item schema remains broad.</p>
+        <h3>Additional properties and strict validation</h3>
+        <p>By default, JSON objects may contain keys beyond those listed in the schema. The optional strict setting adds <code>"additionalProperties": false</code> to generated object schemas. Enable it only when extra keys should genuinely be rejected; otherwise it may reject valid data added by another API version.</p>
+        <h3>A generated schema is a starting point</h3>
+        <p>Examples reveal structure, not every business rule. Review date and time formats, numeric ranges, string patterns, unique identifiers, conditional requirements and versioning needs. The generated schema does not automatically prove that a payload is valid; run a compatible JSON Schema validator against the actual data.</p>
+        <h3>Related CSV and JSON developer tools</h3>
+        <p>Inspect and correct your input with the <a href="json-formatter.html">JSON Formatter and Validator</a>, compare sample payloads using <a href="json-diff-compare.html">JSON Diff &amp; Compare</a>, or generate static types with <a href="json-to-typescript.html">JSON to TypeScript</a>. You can also convert data using <a href="csv-to-json.html">CSV to JSON</a>, <a href="json-to-csv.html">JSON to CSV</a>, <a href="json-to-yaml.html">JSON to YAML</a>, <a href="json-to-xml.html">JSON to XML</a> and <a href="json-to-toml.html">JSON to TOML</a>.</p>
+      </article>
+
+      <section class="content-card" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details><summary>Is this JSON Schema Generator free?</summary><p>Yes. Generate, copy and download schemas for free in your browser.</p></details>
+          <details><summary>Does the generator upload my JSON?</summary><p>Schema generation runs locally in your browser. General analytics and diagnostics may still collect usage information, so do not use passwords, tokens or confidential production data.</p></details>
+          <details><summary>Can it generate schemas for nested objects and arrays?</summary><p>Yes. It infers nested properties and array item schemas from the provided example.</p></details>
+          <details><summary>Does the schema guarantee every API response will be valid?</summary><p>No. It is inferred from your sample and must be reviewed and used with a compatible validator to validate actual data.</p></details>
+          <details><summary>What does “required” mean?</summary><p>A required property must be present in an object. It does not mean that a property value must be non-null unless the schema also excludes null.</p></details>
+          <details><summary>What does “disallow additional properties” do?</summary><p>It adds additionalProperties false to object schemas, which rejects keys not explicitly described in that object schema.</p></details>
+        </div>
+      </section>
+
+      <section class="content-card" aria-labelledby="related-heading">
+        <h2 id="related-heading">Explore Related Tools</h2>
+        <p>Continue working with structured data using these tools.</p>
+        <div class="related-grid">
+          <a class="related-link" href="json-formatter.html">JSON Formatter &amp; Validator</a>
+          <a class="related-link" href="json-to-typescript.html">JSON to TypeScript</a>
+          <a class="related-link" href="json-diff-compare.html">JSON Diff &amp; Compare</a>
+          <a class="related-link" href="csv-to-json.html">CSV to JSON</a>
+          <a class="related-link" href="json-to-csv.html">JSON to CSV</a>
+          <a class="related-link" href="json-to-yaml.html">JSON to YAML</a>
+          <a class="related-link" href="json-to-xml.html">JSON to XML</a>
+          <a class="related-link" href="json-to-toml.html">JSON to TOML</a>
+        </div>
+        <p><a href="./#tools">Browse all CSV &amp; JSON developer tools →</a></p>
+      </section>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div><strong>CSV &amp; JSON Developer Tools</strong><p>Free browser-based utilities for structured data and developer workflows.</p></div>
+      <nav class="footer-links" aria-label="Footer navigation"><a href="./">Home</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="cookie-policy.html">Cookie Policy</a><a href="contact.html">Contact</a></nav>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const example = document.getElementById("jsonInput").value;
+      const input = document.getElementById("jsonInput");
+      const output = document.getElementById("schemaOutput");
+      const titleInput = document.getElementById("schemaTitle");
+      const requiredToggle = document.getElementById("includeRequired");
+      const strictToggle = document.getElementById("disallowAdditional");
+      const status = document.getElementById("status");
+
+      function showStatus(message, isError) {
+        status.textContent = message;
+        status.className = isError ? "status error" : "status";
+      }
+
+      function schemaForValues(values, options) {
+        const actual = values || [];
+        const schemas = [];
+        const seen = new Set();
+        function add(schema) {
+          const key = JSON.stringify(schema);
+          if (!seen.has(key)) { seen.add(key); schemas.push(schema); }
+        }
+        const nullSeen = actual.some(v => v === null);
+        const objects = actual.filter(v => v !== null && typeof v === "object" && !Array.isArray(v));
+        const arrays = actual.filter(Array.isArray);
+        const primitiveTypes = new Set();
+        actual.forEach(function (v) {
+          if (v === null) return;
+          if (Array.isArray(v) || (typeof v === "object")) return;
+          if (typeof v === "number") primitiveTypes.add(Number.isInteger(v) ? "integer" : "number");
+          else if (typeof v === "string") primitiveTypes.add("string");
+          else if (typeof v === "boolean") primitiveTypes.add("boolean");
+        });
+
+        primitiveTypes.forEach(type => add({type}));
+        if (objects.length) {
+          const keys = [];
+          objects.forEach(obj => Object.keys(obj).forEach(key => { if (!keys.includes(key)) keys.push(key); }));
+          const properties = {};
+          keys.forEach(function (key) {
+            const present = objects.filter(obj => Object.prototype.hasOwnProperty.call(obj, key)).map(obj => obj[key]);
+            properties[key] = schemaForValues(present, options);
+          });
+          const schema = {type:"object", properties};
+          if (options.required) {
+            const req = keys.filter(key => objects.every(obj => Object.prototype.hasOwnProperty.call(obj, key)));
+            if (req.length) schema.required = req;
+          }
+          if (options.strict) schema.additionalProperties = false;
+          add(schema);
+        }
+        if (arrays.length) {
+          const items = [];
+          arrays.forEach(arr => arr.forEach(item => items.push(item)));
+          add({type:"array", items: items.length ? schemaForValues(items, options) : {}});
+        }
+        if (nullSeen) add({type:"null"});
+        if (!schemas.length) return {};
+        if (schemas.length === 1) return schemas[0];
+        return {anyOf:schemas};
+      }
+
+      function generate() {
+        if (!input.value.trim()) {
+          output.value = "";
+          showStatus("Paste a JSON object or array first.", true);
+          return;
+        }
+        try {
+          const parsed = JSON.parse(input.value);
+          const options = {required:requiredToggle.checked, strict:strictToggle.checked};
+          const schema = {
+            "$schema":"https://json-schema.org/draft/2020-12/schema",
+            ...schemaForValues([parsed], options)
+          };
+          const title = titleInput.value.trim();
+          if (title) schema.title = title;
+          output.value = JSON.stringify(schema, null, 2);
+          showStatus("Schema generated. Review inferred fields and rules before using it to validate real data.", false);
+        } catch (error) {
+          output.value = "";
+          showStatus("Invalid JSON: " + error.message, true);
+        }
+      }
+
+      document.getElementById("generateBtn").addEventListener("click", generate);
+      document.getElementById("exampleBtn").addEventListener("click", function () {
+        input.value = example; titleInput.value = "Root"; requiredToggle.checked = true; strictToggle.checked = false; generate();
+      });
+      document.getElementById("copyBtn").addEventListener("click", async function () {
+        if (!output.value) { showStatus("Generate a schema before copying.", true); return; }
+        try {
+          if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(output.value);
+          else {
+            output.focus(); output.select();
+            if (!document.execCommand("copy")) throw new Error("Copy command unavailable");
+          }
+          showStatus("JSON Schema copied.", false);
+        } catch (_) { showStatus("Copy was blocked by the browser. Select the output and copy it manually.", true); }
+      });
+      document.getElementById("downloadBtn").addEventListener("click", function () {
+        if (!output.value) { showStatus("Generate a schema before downloading.", true); return; }
+        const blob = new Blob([output.value + "\n"], {type:"application/schema+json;charset=utf-8"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url; link.download = "schema.json";
+        document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+        showStatus("Schema file download started.", false);
+      });
+      document.getElementById("clearBtn").addEventListener("click", function () {
+        input.value = ""; output.value = ""; showStatus("Input and output cleared.", false);
+      });
+      generate();
+    })();
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () { navigator.serviceWorker.register("./sw.js").catch(function () {}); });
+    }
+  </script>
+  <script src="assets/theme.js" defer></script>
+</body>
+</html>
