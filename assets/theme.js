@@ -31,6 +31,20 @@
     'html[data-theme="light"] #shareTools { background: #fff; color: #172033; border-color: #d7e0ec; }',
     'html[data-theme="light"] #shareTools p { color: #475569; }',
     'html[data-theme="light"] #shareTools button { background: #edf4fc; color: #172033; border-color: #c6d2e1; }',
+    '#shareTools button[data-share="whatsapp"] { background: #25D366; border-color: #25D366; color: #062b14; }',
+    '#shareTools button[data-share="telegram"] { background: #229ED9; border-color: #229ED9; color: #fff; }',
+    '#shareTools button[data-share="facebook"] { background: #1877F2; border-color: #1877F2; color: #fff; }',
+    '#shareTools button[data-share="x"] { background: #000; border-color: #555; color: #fff; }',
+    '#shareTools button[data-share="instagram"] { background: linear-gradient(115deg,#833AB4,#E1306C 55%,#FCAF45); border-color: #d9468f; color: #fff; }',
+    '#shareTools button[data-share="copy"] { background: #D9F7BE; border: 1px solid #9BD87A; color: #205C2D; font-weight: 800; box-shadow: 0 2px 10px rgba(90,170,55,.18); }',
+    '#shareTools button[data-share="copy"]:hover { background: #C4F0A0; }',
+    '#shareTools button[data-share="whatsapp"]:hover { background: #1fbd59; }',
+    '#shareTools button[data-share="telegram"]:hover { background: #168bc3; }',
+    '#shareTools button[data-share="facebook"]:hover { background: #0f66d4; }',
+    '#shareTools button[data-share="x"]:hover { background: #222; }',
+    '#shareTools button[data-share="instagram"]:hover { filter: brightness(1.08); }',
+    '#shareTools button[data-share] { transition: transform .15s ease, filter .15s ease, background-color .15s ease; }',
+    '#shareTools button[data-share]:hover { transform: translateY(-1px); }',
     '@media(max-width:480px){#shareTools{width:calc(100% - 24px);padding:14px}#shareTools .share-actions{gap:6px}#shareTools button{flex:1 1 auto}}'
   ].join("\n");
   function init() {
@@ -64,7 +78,7 @@
       var share = document.createElement("section");
       share.id = "shareTools";
       share.setAttribute("aria-labelledby", "shareToolsTitle");
-      share.innerHTML = '<h2 id="shareToolsTitle">Share this tool</h2><p>Help someone discover this free browser-based tool.</p><div class="share-actions"><button type="button" data-share="native">↗ Share</button><button type="button" data-share="whatsapp">WhatsApp</button><button type="button" data-share="telegram">Telegram</button><button type="button" data-share="facebook">Facebook</button><button type="button" data-share="x">X</button><button type="button" data-share="instagram">Instagram link</button><button type="button" data-share="copy">Copy link</button></div>';
+      share.innerHTML = '<h2 id="shareToolsTitle">Share this tool</h2><p>Help someone discover this free browser-based tool.</p><div class="share-actions"><button type="button" data-share="native">↗ Share</button><button type="button" data-share="whatsapp"><span aria-hidden="true">◉</span> WhatsApp</button><button type="button" data-share="telegram"><span aria-hidden="true">➤</span> Telegram</button><button type="button" data-share="facebook"><span aria-hidden="true" style="font-weight:900;font-size:16px">f</span> Facebook</button><button type="button" data-share="x"><span aria-hidden="true" style="font-weight:900">𝕏</span> X</button><button type="button" data-share="instagram"><span aria-hidden="true">◎</span> Instagram link</button><button type="button" data-share="copy"><span aria-hidden="true">🔗</span> Copy link</button></div>';
       var footer = document.querySelector("footer");
       if (footer && footer.parentNode) footer.parentNode.insertBefore(share, footer);
       else document.body.appendChild(share);
