@@ -445,9 +445,12 @@ export interface Root {
       document.getElementById("clearBtn").addEventListener("click", function () {
         input.value = "";
         output.value = "";
-        showStatus("Input and output cleared.", false);
+        rootName.value = "Root";
+        optionalAll.checked = false;
+        showStatus("Input and generated TypeScript cleared. Press Generate TypeScript after entering new JSON.", false);
+        input.focus();
       });
-      convert();
+      // Keep output empty on page load; generate only when the user presses Generate TypeScript.
     })();
   </script>
   <script>
