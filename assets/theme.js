@@ -124,8 +124,7 @@
     }
 
     // Add page-specific feedback contact to tool pages using this shared script.
-    if (!document.getElementById("feedback") &&
-        (document.body.innerText || "").indexOf("Report a Problem or Share Feedback") === -1 &&
+    if (!document.getElementById("feedbackSupport") &&
         !/offline/i.test(document.title)) {
       var feedback = document.createElement("section");
       feedback.id = "feedbackSupport";
