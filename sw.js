@@ -1,4 +1,4 @@
-const CACHE_NAME = "csv-json-tools-v3";
+const CACHE_NAME = "csv-json-tools-v4";
 const BASE = new URL("./", self.location.href);
 const SHELL = [
   "./",
@@ -20,6 +20,7 @@ const SHELL = [
   "./excel-to-json.html",
   "./json-diff-compare.html",
   "./json-formatter.html",
+  "./json-to-typescript.html",
   "./json-to-base64.html",
   "./json-to-csv.html",
   "./json-to-html.html",
