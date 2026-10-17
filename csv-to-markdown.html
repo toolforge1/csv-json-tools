@@ -1210,10 +1210,10 @@ function escapeMarkdown(value) {
 }
 
 function convertToMarkdown() {
-  const input = document.getElementById("csvInput").value.trim();
+  const input = document.getElementById("csvInput").value;
   const output = document.getElementById("markdownOutput");
 
-  if (!input) {
+  if (!input.trim()) {
     showStatus("Please enter CSV data.", "error");
     return;
   }
