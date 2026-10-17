@@ -1053,12 +1053,12 @@ function tsvEscape(value) {
 }
 
 function convertCSV() {
-    const input = document.getElementById("input").value.trim();
+    const input = document.getElementById("input").value;
     const output = document.getElementById("output");
     const status = document.getElementById("status");
 
     try {
-        if (!input) {
+        if (!input.trim()) {
             throw new Error("Please enter CSV data.");
         }
 
