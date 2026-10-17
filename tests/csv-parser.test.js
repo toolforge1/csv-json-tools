@@ -40,7 +40,9 @@ for (const spec of parserSpecs) {
       ["blank physical lines", "a,b\n\n1,2\n", [["a", "b"], ["1", "2"]]],
       ["UTF-8 BOM", "\uFEFFa,b\n1,2", [["a", "b"], ["1", "2"]]],
       ["trailing empty field", "a,b\n1,", [["a", "b"], ["1", ""]]],
+    ["all-empty multi-column record", "a,b,c\n,,", [["a", "b", "c"], ["", "", ""]]],
       ["empty cells in a row", "a,b,c\n1,,3", [["a", "b", "c"], ["1", "", "3"]]],
+      ["all-empty multi-column record", "a,b,c\n,,", [["a", "b", "c"], ["", "", ""]]],
     ];
     for (const [label, input, expected] of cases) {
       assert.equal(JSON.stringify(parse(input)), JSON.stringify(expected), label);
@@ -89,4 +91,12 @@ test("Shared CSV parser used by CSV Viewer and CSV to XML", () => {
   assert.throws(() => parse('a,b\n1,"unfinished'), /not closed/i);
   assert.throws(() => parse('a,b\n1,ab"cd'), /unexpected quote/i);
   assert.throws(() => parse('a,b\n1,"closed"x'), /after a closing quote/i);
+});
+
+test("CSV Viewer and CSV to XML reject inconsistent row widths", () => {
+  const viewer = fs.readFileSync(path.join(root, "csv-viewer.html"), "utf8");
+  const xml = fs.readFileSync(path.join(root, "csv-to-xml.html"), "utf8");
+  assert.match(viewer, /rows\[rowIndex\]\.length !== width/);
+  assert.match(xml, /rows\[rowIndex\]\.length !== headers\.length/);
+  assert.doesNotMatch(viewer, /while \(padded\.length < width\)/);
 });
