@@ -973,54 +973,75 @@ Ali,"Karachi, Pakistan","Developer, Designer"</pre>
 let tsvResult = "";
 
 function parseCSV(text) {
-    const rows = [];
-    let row = [];
-    let value = "";
-    let inQuotes = false;
+  text = String(text).replace(/^\uFEFF/, "");
+  const rows = [];
+  let row = [];
+  let value = "";
+  let inQuotes = false;
+  let afterQuote = false;
+  let fieldStarted = false;
 
-    for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        const next = text[i + 1];
+  function finishField() {
+    row.push(value);
+    value = "";
+    afterQuote = false;
+    fieldStarted = false;
+  }
 
-        if (char === '"') {
-            if (inQuotes && next === '"') {
-                value += '"';
-                i++;
-            } else {
-                inQuotes = !inQuotes;
-            }
+  function finishRow() {
+    finishField();
+    if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
+    row = [];
+  }
 
-        } else if (char === "," && !inQuotes) {
-            row.push(value);
-            value = "";
-
-        } else if ((char === "\n" || char === "\r") && !inQuotes) {
-
-            if (char === "\r" && next === "\n") {
-                i++;
-            }
-
-            row.push(value);
-            rows.push(row);
-
-            row = [];
-            value = "";
-
-        } else {
-            value += char;
-        }
-    }
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    const next = text[i + 1];
 
     if (inQuotes) {
-        throw new Error("Invalid CSV: unmatched quotation mark.");
+      if (ch === '"' && next === '"') {
+        value += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+        afterQuote = true;
+      } else {
+        value += ch;
+      }
+      continue;
     }
 
-    if (value !== "" || row.length > 0) {
-        row.push(value);
-        rows.push(row);
+    if (afterQuote) {
+      if (ch === ",") {
+        finishField();
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && next === "\n") i++;
+        finishRow();
+      } else {
+        throw new Error("Unexpected character after a closing quote in CSV.");
+      }
+      continue;
     }
 
-    return rows;
+    if (ch === '"' && !fieldStarted && value === "") {
+      inQuotes = true;
+      fieldStarted = true;
+    } else if (ch === '"') {
+      throw new Error("Unexpected quote in an unquoted CSV field.");
+    } else if (ch === ",") {
+      finishField();
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && next === "\n") i++;
+      finishRow();
+    } else {
+      value += ch;
+      fieldStarted = true;
+    }
+  }
+
+  if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) finishRow();
+  return rows;
 }
 
 function tsvEscape(value) {
