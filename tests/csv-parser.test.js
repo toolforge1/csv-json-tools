@@ -100,3 +100,26 @@ test("CSV Viewer and CSV to XML reject inconsistent row widths", () => {
   assert.match(xml, /rows\[rowIndex\]\.length !== headers\.length/);
   assert.doesNotMatch(viewer, /while \(padded\.length < width\)/);
 });
+
+test("CSV and JSON to HTML escape user-controlled markup", () => {
+  for (const [file, nextMarker] of [
+    ["csv-to-html.html", "function parseCSV(text) {"],
+    ["json-to-html.html", "function displayValue(value) {"],
+  ]) {
+    const html = fs.readFileSync(path.join(root, file), "utf8");
+    const start = html.indexOf("function escapeHTML(value) {");
+    const end = html.indexOf(nextMarker, start);
+    assert.notEqual(start, -1, `Could not find HTML escape helper in ${file}`);
+    assert.notEqual(end, -1, `Could not find HTML escape helper end in ${file}`);
+    const sandbox = {};
+    vm.runInNewContext(`${html.slice(start, end)}\nglobalThis.__escapeHTML = escapeHTML;`, sandbox, {
+      filename: file,
+      timeout: 1000,
+    });
+    assert.equal(
+      sandbox.__escapeHTML('<img src=x onerror="alert(1)">'),
+      "&lt;img src=x onerror=&quot;alert(1)&quot;&gt;"
+    );
+    assert.equal(sandbox.__escapeHTML("O'Reilly & Sons"), "O&#39;Reilly &amp; Sons");
+  }
+});
