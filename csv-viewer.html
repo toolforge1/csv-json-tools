@@ -257,7 +257,6 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
   function viewCsv() {
     try {
       var rows = window.CSVToolUtils.parseCsv(input.value);
-      rows = rows.filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
       if (!rows.length) throw new Error('Paste CSV data with a header row before viewing it.');
       var width = rows.reduce(function (max, row) { return Math.max(max, row.length); }, 0);
       if (!width) throw new Error('No CSV columns were found.');
@@ -270,7 +269,7 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
         var padded = row.slice();
         while (padded.length < width) padded.push('');
         return padded;
-      }).filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
+      });
       currentPage = 0;
       filterInput.value = '';
       filterField.hidden = false;
