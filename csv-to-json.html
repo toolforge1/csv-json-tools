@@ -1315,15 +1315,14 @@ function convertCSV() {
       const input =
         document
           .getElementById("csvInput")
-          .value
-          .trim();
+          .value;
 
 
       const output =
         document.getElementById("output");
 
 
-      if (!input) {
+      if (!input.trim()) {
 
         output.value =
           "Please enter CSV data first.";
