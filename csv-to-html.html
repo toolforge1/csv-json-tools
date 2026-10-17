@@ -1251,7 +1251,7 @@ function parseCSV(text) {
 function convertToHTML() {
 
   const input =
-    document.getElementById("csvInput").value.trim();
+    document.getElementById("csvInput").value;
 
   const output =
     document.getElementById("htmlOutput");
@@ -1259,7 +1259,7 @@ function convertToHTML() {
   const preview =
     document.getElementById("preview");
 
-  if (!input) {
+  if (!input.trim()) {
 
     showStatus(
       "Please enter CSV data.",
