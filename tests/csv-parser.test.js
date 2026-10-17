@@ -51,3 +51,20 @@ for (const spec of parserSpecs) {
     assert.throws(() => parse('a,b\n1,"closed"x'), /after a closing quote/i);
   });
 }
+
+test("CSV to SQL: string and identifier escaping", () => {
+  const html = fs.readFileSync(path.join(root, "csv-to-sql.html"), "utf8");
+  const start = html.indexOf("function escapeSQL(value) {");
+  const end = html.indexOf("function parseCSV(text) {", start);
+  assert.notEqual(start, -1, "Could not find SQL escaping helpers");
+  assert.notEqual(end, -1, "Could not find end of SQL escaping helpers");
+  const helpers = html.slice(start, end);
+  const sandbox = {};
+  vm.runInNewContext(`${helpers}\nglobalThis.__escapeSQL = escapeSQL;\nglobalThis.__quoteIdentifier = quoteIdentifier;`, sandbox, {
+    filename: "csv-to-sql.html",
+    timeout: 1000,
+  });
+  assert.equal(sandbox.__escapeSQL("O'Reilly\\\`s"), "'O''Reilly\\\\\\`s'");
+  assert.equal(sandbox.__escapeSQL(""), "''");
+  assert.equal(sandbox.__quoteIdentifier("user`name"), "`user``name`");
+});
