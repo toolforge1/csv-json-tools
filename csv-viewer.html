@@ -258,18 +258,19 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
     try {
       var rows = window.CSVToolUtils.parseCsv(input.value);
       if (!rows.length) throw new Error('Paste CSV data with a header row before viewing it.');
-      var width = rows.reduce(function (max, row) { return Math.max(max, row.length); }, 0);
+      var width = rows[0].length;
       if (!width) throw new Error('No CSV columns were found.');
+      for (var rowIndex = 1; rowIndex < rows.length; rowIndex += 1) {
+        if (rows[rowIndex].length !== width) {
+          throw new Error('Row ' + (rowIndex + 1) + ' has ' + rows[rowIndex].length + ' columns, but the header has ' + width + '.');
+        }
+      }
       currentHeaders = [];
       for (var i = 0; i < width; i += 1) {
         var label = rows[0][i] == null ? '' : String(rows[0][i]).trim();
         currentHeaders.push(label || ('Column ' + (i + 1)));
       }
-      currentRows = rows.slice(1).map(function (row) {
-        var padded = row.slice();
-        while (padded.length < width) padded.push('');
-        return padded;
-      });
+      currentRows = rows.slice(1).map(function (row) { return row.slice(); });
       currentPage = 0;
       filterInput.value = '';
       filterField.hidden = false;
