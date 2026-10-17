@@ -1236,10 +1236,9 @@ Ahmed,28,Islamabad"
 
   <script>
 
-function parseCSV(text) { {
-  // Strict CSV parser: quoted fields must start at the beginning of a field,
-  // and no unexpected characters may follow a closing quote.
-  text = String(text).replace(/^\\uFEFF/, "");
+function parseCSV(text) {
+  // Strict CSV parsing prevents malformed quotes from silently shifting cells.
+  text = String(text).replace(/^\uFEFF/, "");
   const rows = [];
   let row = [];
   let value = "";
@@ -1256,7 +1255,7 @@ function parseCSV(text) { {
 
   function finishRow() {
     finishField();
-    // Ignore genuinely blank physical lines, but preserve rows such as ",,".
+    // Ignore blank physical lines but preserve rows such as ",,".
     if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
     row = [];
   }
@@ -1281,8 +1280,8 @@ function parseCSV(text) { {
     if (afterQuote) {
       if (ch === ",") {
         finishField();
-      } else if (ch === "\\n" || ch === "\\r") {
-        if (ch === "\\r" && next === "\\n") i++;
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && next === "\n") i++;
         finishRow();
       } else {
         throw new Error("Unexpected character after a closing quote in CSV.");
@@ -1297,8 +1296,8 @@ function parseCSV(text) { {
       throw new Error("Unexpected quote in an unquoted CSV field.");
     } else if (ch === ",") {
       finishField();
-    } else if (ch === "\\n" || ch === "\\r") {
-      if (ch === "\\r" && next === "\\n") i++;
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && next === "\n") i++;
       finishRow();
     } else {
       value += ch;
@@ -1307,13 +1306,11 @@ function parseCSV(text) { {
   }
 
   if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
-  if (afterQuote || fieldStarted || value !== "" || row.length > 0) {
-    finishRow();
-  }
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) finishRow();
   return rows;
 }
 
-    function convertCSV() {
+function convertCSV() {
 
       const input =
         document
