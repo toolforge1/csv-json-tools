@@ -123,3 +123,30 @@ test("CSV and JSON to HTML escape user-controlled markup", () => {
     assert.equal(sandbox.__escapeHTML("O'Reilly & Sons"), "O&#39;Reilly &amp; Sons");
   }
 });
+
+test("Homepage tool count, categories, sitemap, and manifest stay aligned", () => {
+  const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const links = [...home.matchAll(/<a class="tool"[^>]*href="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(links.length, 34);
+  assert.equal(new Set(links).size, 34);
+  assert.deepEqual([...home.matchAll(/class="count">(\d+) Tools/g)].map(match => Number(match[1])), [9, 2, 23]);
+  assert.equal([...home.matchAll(/"@type":"ListItem"/g)].length, 34);
+
+  const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+  const urls = [...sitemap.matchAll(/<loc>https:\/\/toolforge1\.github\.io\/csv-json-tools\/([^<]*)<\/loc>/g)].map(match => match[1]);
+  assert.equal(urls.length, 40);
+  assert.ok(links.every(link => urls.includes(link)), "Every homepage tool must be listed in the sitemap");
+
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, "manifest.json"), "utf8"));
+  assert.equal(manifest.id, "./");
+  assert.equal(manifest.start_url, "./");
+});
+
+test("Key structured-data blocks remain valid JSON", () => {
+  for (const file of ["index.html", "csv-to-json.html", "csv-to-jsonl.html", "csv-to-html.html", "csv-to-sql.html", "json-to-csv.html"]) {
+    const html = fs.readFileSync(path.join(root, file), "utf8");
+    const blocks = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)].map(match => match[1]);
+    assert.ok(blocks.length > 0, `Expected structured data in ${file}`);
+    for (const block of blocks) assert.doesNotThrow(() => JSON.parse(block), `Invalid JSON-LD in ${file}`);
+  }
+});
