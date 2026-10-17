@@ -1,0 +1,26 @@
+name: CSV parser regression tests
+
+on:
+  push:
+    branches:
+      - main
+      - "audit/**"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  csv-parser-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run CSV parser regression tests
+        run: node --test tests/csv-parser.test.js
