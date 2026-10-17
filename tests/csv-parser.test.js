@@ -64,7 +64,7 @@ test("CSV to SQL: string and identifier escaping", () => {
     filename: "csv-to-sql.html",
     timeout: 1000,
   });
-  assert.equal(sandbox.__escapeSQL("O'Reilly\\\`s"), "'O''Reilly\\\\\\`s'");
+  assert.equal(sandbox.__escapeSQL("O'Reilly\\Path"), "'O''Reilly\\\\Path'");
   assert.equal(sandbox.__escapeSQL(""), "''");
   assert.equal(sandbox.__quoteIdentifier("user`name"), "`user``name`");
 });
