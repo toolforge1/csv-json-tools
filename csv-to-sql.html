@@ -1350,47 +1350,82 @@ function quoteIdentifier(identifier) {
 }
 
 
-function parseCSV(text) {
+function parseCSV(text) { {
+  // Strict CSV parser: quoted fields must start at the beginning of a field,
+  // and no unexpected characters may follow a closing quote.
+  text = String(text).replace(/^\\uFEFF/, "");
   const rows = [];
   let row = [];
   let value = "";
-  let insideQuotes = false;
+  let inQuotes = false;
+  let afterQuote = false;
+  let fieldStarted = false;
+
+  function finishField() {
+    row.push(value);
+    value = "";
+    afterQuote = false;
+    fieldStarted = false;
+  }
+
+  function finishRow() {
+    finishField();
+    // Ignore genuinely blank physical lines, but preserve rows such as ",,".
+    if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
+    row = [];
+  }
 
   for (let i = 0; i < text.length; i++) {
-    const char = text[i];
+    const ch = text[i];
     const next = text[i + 1];
 
-    if (char === '"' && insideQuotes && next === '"') {
-      value += '"';
-      i++;
-    } else if (char === '"') {
-      insideQuotes = !insideQuotes;
-    } else if (char === "," && !insideQuotes) {
-      row.push(value);
-      value = "";
-    } else if ((char === "\n" || char === "\r") && !insideQuotes) {
-      if (char === "\r" && next === "\n") i++;
-      row.push(value);
-      if (row.some(cell => cell.trim() !== "")) rows.push(row);
-      row = [];
-      value = "";
+    if (inQuotes) {
+      if (ch === '"' && next === '"') {
+        value += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+        afterQuote = true;
+      } else {
+        value += ch;
+      }
+      continue;
+    }
+
+    if (afterQuote) {
+      if (ch === ",") {
+        finishField();
+      } else if (ch === "\\n" || ch === "\\r") {
+        if (ch === "\\r" && next === "\\n") i++;
+        finishRow();
+      } else {
+        throw new Error("Unexpected character after a closing quote in CSV.");
+      }
+      continue;
+    }
+
+    if (ch === '"' && !fieldStarted && value === "") {
+      inQuotes = true;
+      fieldStarted = true;
+    } else if (ch === '"') {
+      throw new Error("Unexpected quote in an unquoted CSV field.");
+    } else if (ch === ",") {
+      finishField();
+    } else if (ch === "\\n" || ch === "\\r") {
+      if (ch === "\\r" && next === "\\n") i++;
+      finishRow();
     } else {
-      value += char;
+      value += ch;
+      fieldStarted = true;
     }
   }
 
-  if (insideQuotes) {
-    throw new Error("CSV contains an unclosed quoted field.");
+  if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) {
+    finishRow();
   }
-
-  if (value !== "" || row.length > 0) {
-    row.push(value);
-    if (row.some(cell => cell.trim() !== "")) rows.push(row);
-  }
-
   return rows;
 }
-
 
 function convertToSQL() {
 
