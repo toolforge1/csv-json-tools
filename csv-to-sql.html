@@ -80,7 +80,7 @@
         "name": "What happens to empty CSV values?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Empty CSV values are converted to SQL NULL."
+          "text": "Empty CSV fields are emitted as empty SQL string literals, not SQL NULL."
         }
       }
     ]
@@ -766,14 +766,14 @@
 <header class="site-header">
   <div class="header-inner">
 
-    <a class="brand" href="index.html">
+    <a class="brand" href="./">
       <span class="brand-icon">&lt;/&gt;</span>
       <span class="brand-text">
         CSV &amp; JSON Developer Tools
       </span>
     </a>
 
-    <a class="header-link" href="index.html">
+    <a class="header-link" href="./">
       All Developer Tools →
     </a>
 
@@ -813,7 +813,7 @@
   <section class="tool-card">
 
     <div class="tool-heading">
-      <h2>CSV to SQL Converter</h2>
+      <h2>CSV to SQL Converter (MySQL-Compatible)</h2>
 
       <p>
         Enter a SQL table name and paste your CSV data to generate
@@ -862,7 +862,7 @@ Emma,34,London</textarea>
     </div>
 
 
-    <div id="status" class="status"></div>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
 
 
     <label class="field-label" for="sqlOutput">
@@ -898,13 +898,20 @@ Emma,34,London</textarea>
     <div class="privacy">
       🔒 <strong>Privacy-focused:</strong>
       This CSV to SQL converter processes your data directly in your browser.
-      Your CSV data is not uploaded to our server.
+      Your CSV data is not uploaded to our conversion server. The website
+      separately loads analytics scripts that may collect site-usage information;
+      see the <a href="privacy-policy.html">Privacy Policy</a> and
+      <a href="cookie-policy.html">Cookie Policy</a>.
     </div>
+
+    <p class="field-help">
+      Output uses MySQL-style backtick identifiers. CSV cells are emitted as quoted string literals to preserve values such as 00123, whitespace, and empty strings. Your target database may still cast values according to its column types; review the SQL dialect before running it.
+    </p>
 
 
     <a
       class="back-link"
-      href="index.html"
+      href="./"
     >
       ← Back to All Tools
     </a>
@@ -913,7 +920,7 @@ Emma,34,London</textarea>
 
     <div class="content-card full">
 
-      <h2>CSV to SQL Converter: Convert CSV Data into SQL INSERT Statements</h2>
+      <h2>MySQL-Compatible CSV to SQL INSERT Statements</h2>
 
       <p>
         A CSV to SQL converter helps you transform structured CSV data into
@@ -935,7 +942,7 @@ Emma,34,London</textarea>
         <li>Convert CSV rows into SQL INSERT statements.</li>
         <li>Use the first CSV row as database column names.</li>
         <li>Choose your own SQL table name.</li>
-        <li>Handle text, numeric, boolean and empty values.</li>
+        <li>Preserve CSV cell text, including empty strings, spaces, and leading zeros.</li>
         <li>Copy the generated SQL with one click.</li>
         <li>Download the generated statements as a SQL file.</li>
         <li>Process the conversion directly in your browser.</li>
@@ -991,8 +998,8 @@ Emma,34,London</pre>
           SQL Output
         </div>
 
-        <pre>INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Ali', 28, 'Karachi');
-INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Emma', 34, 'London');</pre>
+        <pre>INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Ali', '28', 'Karachi');
+INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Emma', '34', 'London');</pre>
 
       </div>
 
@@ -1148,8 +1155,7 @@ INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Emma', 34, 'London');</pre>
         </div>
 
         <p>
-          Empty values are converted to SQL <code>NULL</code> in the
-          generated statements.
+          Empty CSV fields are emitted as empty SQL string literals (<code>''</code>), not SQL <code>NULL</code>.
         </p>
 
       </div>
@@ -1248,7 +1254,7 @@ INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Emma', 34, 'London');</pre>
   <h2 id="seo-help-csv-to-sql">CSV to SQL: input rules, output behavior, and troubleshooting</h2>
   <p>Paste comma-separated CSV with a header row and enter a valid table name. This tool generates INSERT statements; it does not create a table schema, infer a database dialect, or provide batch multi-row inserts.</p>
   <h3>What the converter produces</h3>
-  <p>The displayed output uses backtick-quoted identifiers, quotes text, keeps numeric values unquoted, and maps empty cells to NULL according to the page’s implementation. Review syntax for your database before execution.</p>
+  <p>The output uses MySQL-style backtick identifiers and quotes each CSV cell as a string literal, preserving values such as 00123, whitespace, and empty strings. It does not infer SQL column types or map empty cells to NULL. Review the output for your target database before execution.</p>
   <div class="seo-example"><strong>Example / practical check:</strong> Example input: name,age followed by Ali,28. The generated INSERT uses those headers as columns and emits a row statement for the record.</div>
   <h3>Common problems and how to fix them</h3>
   <p>Check the table name, first-row headers, and equal field counts. Because SQL dialects differ, inspect identifier quoting, escaping, and NULL handling before running generated statements on real data.</p>
@@ -1262,7 +1268,7 @@ INSERT INTO `users` (`name`, `age`, `city`) VALUES ('Emma', 34, 'London');</pre>
 
   <div class="footer-links">
 
-    <a href="index.html">Home</a>
+    <a href="./">Home</a>
 
     <a href="about.html">About</a>
 
@@ -1328,25 +1334,10 @@ function showStatus(message, type = "success") {
 
 
 function escapeSQL(value) {
-
-  const trimmed = value.trim();
-
-  if (trimmed === "") {
-    return "NULL";
-  }
-
-  if (/^-?\d+(\.\d+)?$/.test(trimmed)) {
-    return trimmed;
-  }
-
-  if (/^(true|false)$/i.test(trimmed)) {
-    return trimmed.toUpperCase();
-  }
-
-  return "'" +
-    trimmed.replace(/'/g, "''") +
-    "'";
-
+  // MySQL-compatible string escaping; keep blank cells and leading zeros as text.
+  return "'" + String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "''") + "'";
 }
 
 
@@ -1359,58 +1350,79 @@ function quoteIdentifier(identifier) {
 }
 
 
-function parseCSVLine(line) {
+function parseCSV(text) {
+  // Strict CSV parsing prevents malformed quotes from silently shifting cells.
+  text = String(text).replace(/^\uFEFF/, "");
+  const rows = [];
+  let row = [];
+  let value = "";
+  let inQuotes = false;
+  let afterQuote = false;
+  let fieldStarted = false;
 
-  const result = [];
-
-  let current = "";
-
-  let insideQuotes = false;
-
-  for (let i = 0; i < line.length; i++) {
-
-    const char = line[i];
-
-    if (char === '"') {
-
-      if (
-        insideQuotes &&
-        line[i + 1] === '"'
-      ) {
-
-        current += '"';
-
-        i++;
-
-      } else {
-
-        insideQuotes = !insideQuotes;
-
-      }
-
-    } else if (
-      char === "," &&
-      !insideQuotes
-    ) {
-
-      result.push(current.trim());
-
-      current = "";
-
-    } else {
-
-      current += char;
-
-    }
-
+  function finishField() {
+    row.push(value);
+    value = "";
+    afterQuote = false;
+    fieldStarted = false;
   }
 
-  result.push(current.trim());
+  function finishRow() {
+    finishField();
+    // Ignore blank physical lines but preserve rows such as ",,".
+    if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
+    row = [];
+  }
 
-  return result;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    const next = text[i + 1];
 
+    if (inQuotes) {
+      if (ch === '"' && next === '"') {
+        value += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+        afterQuote = true;
+      } else {
+        value += ch;
+      }
+      continue;
+    }
+
+    if (afterQuote) {
+      if (ch === ",") {
+        finishField();
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && next === "\n") i++;
+        finishRow();
+      } else {
+        throw new Error("Unexpected character after a closing quote in CSV.");
+      }
+      continue;
+    }
+
+    if (ch === '"' && !fieldStarted && value === "") {
+      inQuotes = true;
+      fieldStarted = true;
+    } else if (ch === '"') {
+      throw new Error("Unexpected quote in an unquoted CSV field.");
+    } else if (ch === ",") {
+      finishField();
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && next === "\n") i++;
+      finishRow();
+    } else {
+      value += ch;
+      fieldStarted = true;
+    }
+  }
+
+  if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) finishRow();
+  return rows;
 }
-
 
 function convertToSQL() {
 
@@ -1422,9 +1434,8 @@ function convertToSQL() {
 
   const csv =
     document
-      .getElementById("csvInput")
-      .value
-      .trim();
+       .getElementById("csvInput")
+      .value;
 
   const output =
     document.getElementById("sqlOutput");
@@ -1455,7 +1466,7 @@ function convertToSQL() {
   }
 
 
-  if (!csv) {
+  if (!csv.trim()) {
 
     showStatus(
       "Please enter CSV data.",
@@ -1466,26 +1477,23 @@ function convertToSQL() {
   }
 
 
-  const lines =
-    csv
-      .split(/\r?\n/)
-      .map(line => line.trim())
-      .filter(Boolean);
+  let rows;
+  try {
+    rows = parseCSV(csv);
+  } catch (error) {
+    showStatus(error.message, "error");
+    return;
+  }
 
-
-  if (lines.length < 2) {
-
+  if (rows.length < 2) {
     showStatus(
       "Please provide a header row and at least one data row.",
       "error"
     );
-
     return;
   }
 
-
-  const headers =
-    parseCSVLine(lines[0]);
+  const headers = rows[0].map(header => header.trim());
 
 
   if (
@@ -1546,12 +1554,12 @@ function convertToSQL() {
 
   for (
     let i = 1;
-    i < lines.length;
+    i < rows.length;
     i++
   ) {
 
     const values =
-      parseCSVLine(lines[i]);
+      rows[i];
 
 
     if (
@@ -1560,8 +1568,8 @@ function convertToSQL() {
     ) {
 
       showStatus(
-        "Row " +
-        (i + 1) +
+        "Data row " +
+        i +
         " has a different number of columns.",
         "error"
       );

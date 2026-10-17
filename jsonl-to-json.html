@@ -425,12 +425,12 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand">
+    <a href="./" class="brand">
       <span class="brand-icon">{ }</span>
       <span class="brand-text">CSV &amp; JSON Developer Tools</span>
     </a>
 
-    <a href="index.html" class="header-link">All Tools →</a>
+    <a href="./" class="header-link">All Tools →</a>
   </div>
 </header>
 
@@ -478,7 +478,7 @@
 Example:
 {"name":"Ali","age":28}
 {"name":"Emma","age":34}'
-         aria-label="JSONL or NDJSON input"></textarea>
+         aria-label="JSONL or NDJSON input" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button onclick="convertJsonl()">Convert to JSON</button>
@@ -496,7 +496,7 @@ Example:
           id="jsonOutput"
           readonly
           placeholder="Converted JSON will appear here..."
-         aria-label="Converted JSON array output"></textarea>
+         aria-label="Converted JSON array output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyJson()">Copy JSON</button>
@@ -506,7 +506,7 @@ Example:
 
     </div>
 
-    <div id="message" class="message"></div>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
 
     <div class="privacy-mini">
       🔒 <strong>Privacy-first:</strong>
@@ -838,7 +838,7 @@ Example:
       </p>
     </div>
 
-    <a href="index.html">Explore All Tools →</a>
+    <a href="./">Explore All Tools →</a>
 
   </section>
 
@@ -853,7 +853,7 @@ Example:
 
 
   <div class="back">
-    <a href="index.html">← Back to All Tools</a>
+    <a href="./">← Back to All Tools</a>
   </div>
 
 

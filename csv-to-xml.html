@@ -60,8 +60,8 @@
 <body>
 <header class="site-header">
   <nav class="nav container" aria-label="Main navigation">
-    <a class="brand" href="index.html"><span class="brand-icon">{ }</span><span>CSV &amp; JSON Developer Tools</span></a>
-    <a class="nav-link" href="index.html#tools">All tools</a>
+    <a class="brand" href="./"><span class="brand-icon">{ }</span><span>CSV &amp; JSON Developer Tools</span></a>
+    <a class="nav-link" href="./#tools">All tools</a>
   </nav>
 </header>
 <section class="hero container">
@@ -165,7 +165,7 @@
   </section>
 </main>
 <footer class="site-footer">
-  <div class="container footer-inner"><div>CSV &amp; JSON Developer Tools</div><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></nav></div>
+  <div class="container footer-inner"><div>CSV &amp; JSON Developer Tools</div><nav class="footer-links" aria-label="Footer navigation"><a href="./">Home</a><a href="about.html">About</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></nav></div>
 </footer>
 <script src="assets/csv-utils.js"></script>
 <script>
@@ -212,15 +212,18 @@
     downloadButton.disabled = true;
     try {
       var rows = window.CSVToolUtils.parseCsv(input.value);
-      rows = rows.filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
       if (rows.length < 2) throw new Error('Add a header row and at least one non-empty data row.');
       var headers = rows[0];
       if (!headers.length || headers.every(function (cell) { return String(cell).trim() === ''; })) throw new Error('Add a name for at least one column in the first row.');
+      for (var rowIndex = 1; rowIndex < rows.length; rowIndex += 1) {
+        if (rows[rowIndex].length !== headers.length) {
+          throw new Error('Row ' + (rowIndex + 1) + ' has ' + rows[rowIndex].length + ' columns, but the header has ' + headers.length + '.');
+        }
+      }
       var used = Object.create(null);
       var names = headers.map(function (header, index) { return xmlName(header, index, used); });
       var lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<rows>'];
       rows.slice(1).forEach(function (row) {
-        if (!row.some(function (cell) { return String(cell).trim() !== ''; })) return;
         lines.push('  <row>');
         names.forEach(function (name, index) {
           lines.push('    <' + name + '>' + escapeXml(row[index] == null ? '' : row[index]) + '</' + name + '>');

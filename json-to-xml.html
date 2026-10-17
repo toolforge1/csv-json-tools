@@ -640,12 +640,12 @@
 <header class="site-header">
   <div class="header-inner">
 
-    <a class="brand" href="index.html">
+    <a class="brand" href="./">
       <span class="brand-icon">{ }</span>
       <span class="brand-text">CSV &amp; JSON Developer Tools</span>
     </a>
 
-    <a class="header-link" href="index.html">
+    <a class="header-link" href="./">
       All Tools →
     </a>
 
@@ -700,7 +700,7 @@
           id="rootName"
           value="root"
           placeholder="Enter root name, e.g. users"
-         aria-label="XML root element name">
+         aria-label="XML root element name" data-clarity-mask="True">
 
       </div>
 
@@ -715,7 +715,7 @@
           <span>Valid JSON required</span>
         </div>
 
-        <textarea id="jsonInput" aria-label="JSON input">[
+        <textarea id="jsonInput" aria-label="JSON input" data-clarity-mask="True">[
   {
     "name": "Ali",
     "age": 28,
@@ -746,7 +746,7 @@
 
         </div>
 
-        <div id="status" class="status"></div>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
 
       </div>
 
@@ -762,7 +762,7 @@
           id="xmlOutput"
           readonly
           placeholder="XML output will appear here..."
-         aria-label="Converted XML output"></textarea>
+         aria-label="Converted XML output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
 
@@ -1078,7 +1078,7 @@
       growing collection of browser-based developer utilities.
     </p>
 
-    <a class="home-link" href="index.html">
+    <a class="home-link" href="./">
       Explore All Tools →
     </a>
 
@@ -1099,10 +1099,16 @@
 
 
 
+<section aria-label="Related developer tools" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
+  <h2>Related Developer Tools</h2>
+  <p>Explore other ways to transform or document structured data.</p>
+  <div class="related-grid"><a href="json-to-yaml.html">JSON to YAML</a><a href="json-to-typescript.html">JSON to TypeScript</a><a href="json-schema-generator.html">JSON Schema Generator</a></div>
+</section>
+
 <footer class="site-footer">
 
   <div class="footer-links">
-    <a href="index.html">All Tools</a>
+    <a href="./">All Tools</a>
     <a href="about.html">About</a>
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms</a>
@@ -1415,11 +1421,6 @@ function clearAll() {
 </script>
 
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
-  <h2 style="margin-top:0;">Related Developer Tool</h2>
-  <p>For application development, you can also generate TypeScript interfaces from the same JSON sample. <a href="json-to-typescript.html">JSON to TypeScript Converter</a>.</p>
-</section>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -1429,6 +1430,5 @@ function clearAll() {
 </script>
 <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>Document the structure of your source JSON with a generated schema before transforming it to XML. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 </html>

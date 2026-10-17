@@ -420,12 +420,12 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand">
+    <a href="./" class="brand">
       <span class="brand-icon">{ }</span>
       <span class="brand-text">CSV &amp; JSON Developer Tools</span>
     </a>
 
-    <a href="index.html" class="header-link">All Tools →</a>
+    <a href="./" class="header-link">All Tools →</a>
   </div>
 </header>
 
@@ -476,7 +476,7 @@
   "age": 28,
   "active": true
 }'
-         aria-label="JSON input"></textarea>
+         aria-label="JSON input" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button onclick="convertToTOML()">Convert to TOML</button>
@@ -497,7 +497,7 @@
           id="tomlOutput"
           readonly
           placeholder="Converted TOML will appear here..."
-         aria-label="Converted TOML output"></textarea>
+         aria-label="Converted TOML output" data-clarity-mask="True"></textarea>
 
         <div class="buttons">
           <button class="success" onclick="copyTOML()">Copy TOML</button>
@@ -508,7 +508,7 @@
 
     </div>
 
-    <div id="status" class="status"></div>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
 
     <div class="privacy-mini">
       🔒 <strong>Privacy-first:</strong>
@@ -860,7 +860,7 @@ port = 8080</code></pre>
       </p>
     </div>
 
-    <a href="index.html">Explore All Tools →</a>
+    <a href="./">Explore All Tools →</a>
 
   </section>
 
@@ -875,7 +875,7 @@ port = 8080</code></pre>
 
 
   <div class="back">
-    <a href="index.html">← Back to All Tools</a>
+    <a href="./">← Back to All Tools</a>
   </div>
 
 

@@ -538,12 +538,12 @@ button:hover {
 
 <header class="site-header">
     <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
             <span class="brand-icon">{ }</span>
             <span>CSV &amp; JSON Developer Tools</span>
         </a>
 
-        <a class="header-link" href="index.html">
+        <a class="header-link" href="./">
             All Tools →
         </a>
     </div>
@@ -594,13 +594,13 @@ button:hover {
 Example:
 name	age	city
 Ali	28	Karachi
-Emma	34	London" aria-label="TSV input"></textarea>
+Emma	34	London" aria-label="TSV input" data-clarity-mask="True"></textarea>
             </div>
 
             <div class="editor-box">
                 <div class="tool-label">CSV Output</div>
 
-                <textarea id="output" placeholder="CSV output will appear here..." readonly aria-label="Converted CSV output"></textarea>
+                <textarea id="output" placeholder="CSV output will appear here..." readonly aria-label="Converted CSV output" data-clarity-mask="True"></textarea>
             </div>
 
         </div>
@@ -612,7 +612,7 @@ Emma	34	London" aria-label="TSV input"></textarea>
             <button class="clear-btn" onclick="clearAll()">Clear</button>
         </div>
 
-        <div id="status" class="status"></div>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
 
         <div class="privacy-mini">
             🔒 <strong>Privacy-friendly:</strong>
@@ -887,7 +887,7 @@ John,31,"New York"</div>
             <span>Explore the complete collection of free developer tools.</span>
         </div>
 
-        <a href="index.html">Explore All Tools →</a>
+        <a href="./">Explore All Tools →</a>
 
     </section>
 
@@ -918,7 +918,7 @@ John,31,"New York"</div>
         </div>
 
         <div class="footer-links">
-            <a href="index.html">All Tools</a>
+            <a href="./">All Tools</a>
             <a href="about.html">About</a>
             <a href="privacy-policy.html">Privacy</a>
             <a href="terms.html">Terms</a>

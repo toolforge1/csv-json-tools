@@ -709,12 +709,12 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html">
+    <a class="brand" href="./">
       <span class="brand-icon">&lt;/&gt;</span>
       <span class="brand-text">CSV &amp; JSON Developer Tools</span>
     </a>
 
-    <a class="header-link" href="index.html">
+    <a class="header-link" href="./">
       All Developer Tools →
     </a>
   </div>
@@ -792,7 +792,7 @@ John,31,New York" data-clarity-mask="True"></textarea>
       </button>
     </div>
 
-    <div id="status" class="status"></div>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
 
     <label class="field-label" for="markdownOutput">
       Markdown Output
@@ -810,7 +810,7 @@ John,31,New York" data-clarity-mask="True"></textarea>
       Nothing is uploaded to our server.
     </div>
 
-    <a class="back-link" href="index.html">
+    <a class="back-link" href="./">
       ← Back to All Tools
     </a>
   <section class="content-grid">
@@ -1098,7 +1098,7 @@ John,31,New York</pre>
 <footer class="site-footer">
 
   <div class="footer-links">
-    <a href="index.html">Home</a>
+    <a href="./">Home</a>
     <a href="about.html">About</a>
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms &amp; Conditions</a>
@@ -1132,56 +1132,74 @@ function showStatus(message, type = "success") {
 }
 
 function parseCSV(text) {
+  text = String(text).replace(/^\uFEFF/, "");
   const rows = [];
   let row = [];
   let value = "";
   let inQuotes = false;
+  let afterQuote = false;
+  let fieldStarted = false;
+
+  function finishField() {
+    row.push(value);
+    value = "";
+    afterQuote = false;
+    fieldStarted = false;
+  }
+
+  function finishRow() {
+    finishField();
+    if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
+    row = [];
+  }
 
   for (let i = 0; i < text.length; i++) {
-    const char = text[i];
+    const ch = text[i];
+    const next = text[i + 1];
 
-    if (char === '"') {
-      if (inQuotes && text[i + 1] === '"') {
+    if (inQuotes) {
+      if (ch === '"' && next === '"') {
         value += '"';
         i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+        afterQuote = true;
       } else {
-        inQuotes = !inQuotes;
+        value += ch;
       }
+      continue;
+    }
 
-    } else if (char === "," && !inQuotes) {
-      row.push(value);
-      value = "";
-
-    } else if ((char === "\n" || char === "\r") && !inQuotes) {
-
-      if (char === "\r" && text[i + 1] === "\n") {
-        i++;
+    if (afterQuote) {
+      if (ch === ",") {
+        finishField();
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && next === "\n") i++;
+        finishRow();
+      } else {
+        throw new Error("Unexpected character after a closing quote in CSV.");
       }
+      continue;
+    }
 
-      row.push(value);
-      value = "";
-
-      if (row.some(cell => cell.trim() !== "")) {
-        rows.push(row);
-      }
-
-      row = [];
-
+    if (ch === '"' && !fieldStarted && value === "") {
+      inQuotes = true;
+      fieldStarted = true;
+    } else if (ch === '"') {
+      throw new Error("Unexpected quote in an unquoted CSV field.");
+    } else if (ch === ",") {
+      finishField();
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && next === "\n") i++;
+      finishRow();
     } else {
-      value += char;
+      value += ch;
+      fieldStarted = true;
     }
   }
 
-  if (inQuotes) {
-    throw new Error("CSV contains an unclosed quoted field.");
-  }
-
-  row.push(value);
-
-  if (row.some(cell => cell.trim() !== "")) {
-    rows.push(row);
-  }
-
+  if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) finishRow();
   return rows;
 }
 
@@ -1192,10 +1210,10 @@ function escapeMarkdown(value) {
 }
 
 function convertToMarkdown() {
-  const input = document.getElementById("csvInput").value.trim();
+  const input = document.getElementById("csvInput").value;
   const output = document.getElementById("markdownOutput");
 
-  if (!input) {
+  if (!input.trim()) {
     showStatus("Please enter CSV data.", "error");
     return;
   }
@@ -1215,8 +1233,9 @@ function convertToMarkdown() {
       throw new Error("CSV contains an empty header.");
     }
 
+    const normalizedHeaders = headers.map(header => header.toLowerCase());
     const duplicateHeaders = headers.filter(
-      (header, index) => headers.indexOf(header) !== index
+      (header, index) => normalizedHeaders.indexOf(normalizedHeaders[index]) !== index
     );
 
     if (duplicateHeaders.length > 0) {

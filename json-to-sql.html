@@ -463,12 +463,12 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="./">
         <span class="brand-icon">{ }</span>
         <span>CSV &amp; JSON Developer Tools</span>
       </a>
 
-      <a class="header-link" href="index.html">
+      <a class="header-link" href="./">
         All Tools →
       </a>
     </div>
@@ -544,7 +544,7 @@
                 id="tableName"
                 value="users"
                 placeholder="Enter table name, e.g. users"
-               aria-label="SQL table name">
+               aria-label="SQL table name" data-clarity-mask="True">
 
             </div>
 
@@ -571,7 +571,7 @@
     "age": 34,
     "city": "London"
   }
-]' aria-label="JSON array input">[
+]' aria-label="JSON array input" data-clarity-mask="True">[
   {
     "name": "Ali",
     "age": 28,
@@ -605,7 +605,7 @@
             </div>
 
 
-            <div id="status" class="status"></div>
+            <div id="status" class="status" role="status" aria-live="polite"></div>
 
 
             <div class="field-block">
@@ -621,7 +621,7 @@
                 id="sqlOutput"
                 readonly
                 placeholder="SQL INSERT statements will appear here..."
-               aria-label="Generated SQL INSERT statements"></textarea>
+               aria-label="Generated SQL INSERT statements" data-clarity-mask="True"></textarea>
 
               <div class="buttons">
 
@@ -651,7 +651,7 @@
             </div>
 
 
-            <a class="back-link" href="index.html">
+            <a class="back-link" href="./">
               ← Back to All Developer Tools
             </a>
 
@@ -975,7 +975,7 @@
             </p>
           </div>
 
-          <a href="index.html">
+          <a href="./">
             Explore All Tools →
           </a>
 
@@ -1017,7 +1017,7 @@
 
           <div class="footer-links">
 
-            <a href="index.html">Home</a>
+            <a href="./">Home</a>
             <a href="about.html">About</a>
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms &amp; Conditions</a>

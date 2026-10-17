@@ -599,7 +599,7 @@ button:first-child {
 
 <header class="site-header">
     <div class="container header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
             <span class="brand-icon">⌘</span>
             <span class="brand-text">CSV &amp; JSON Developer Tools</span>
         </a>
@@ -655,7 +655,7 @@ Example:
 name,age,city
 Ali,28,Karachi
 Emma,34,London"
-        ></textarea>
+         data-clarity-mask="True"></textarea>
 
         <div class="buttons">
             <button onclick="convertCSV()">Convert to TSV</button>
@@ -664,7 +664,7 @@ Emma,34,London"
             <button onclick="clearAll()">Clear</button>
         </div>
 
-        <div id="status" class="status"></div>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
 
         <div class="output-label">
             <label class="field-label" for="output">
@@ -678,7 +678,7 @@ Emma,34,London"
             id="output"
             placeholder="TSV output will appear here..."
             readonly
-        ></textarea>
+         data-clarity-mask="True"></textarea>
 
         <div class="privacy">
             🔒 <strong>Privacy-friendly:</strong>
@@ -686,7 +686,7 @@ Emma,34,London"
             to a server by this tool.
         </div>
 
-        <a class="back" href="index.html">
+        <a class="back" href="./">
             ← Back to All Developer Tools
         </a>
 
@@ -955,7 +955,7 @@ Ali,"Karachi, Pakistan","Developer, Designer"</pre>
         </p>
 
         <p>
-            <a href="index.html">Home</a>
+            <a href="./">Home</a>
             <a href="about.html">About</a>
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms &amp; Conditions</a>
@@ -973,54 +973,75 @@ Ali,"Karachi, Pakistan","Developer, Designer"</pre>
 let tsvResult = "";
 
 function parseCSV(text) {
-    const rows = [];
-    let row = [];
-    let value = "";
-    let inQuotes = false;
+  text = String(text).replace(/^\uFEFF/, "");
+  const rows = [];
+  let row = [];
+  let value = "";
+  let inQuotes = false;
+  let afterQuote = false;
+  let fieldStarted = false;
 
-    for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        const next = text[i + 1];
+  function finishField() {
+    row.push(value);
+    value = "";
+    afterQuote = false;
+    fieldStarted = false;
+  }
 
-        if (char === '"') {
-            if (inQuotes && next === '"') {
-                value += '"';
-                i++;
-            } else {
-                inQuotes = !inQuotes;
-            }
+  function finishRow() {
+    finishField();
+    if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
+    row = [];
+  }
 
-        } else if (char === "," && !inQuotes) {
-            row.push(value);
-            value = "";
-
-        } else if ((char === "\n" || char === "\r") && !inQuotes) {
-
-            if (char === "\r" && next === "\n") {
-                i++;
-            }
-
-            row.push(value);
-            rows.push(row);
-
-            row = [];
-            value = "";
-
-        } else {
-            value += char;
-        }
-    }
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    const next = text[i + 1];
 
     if (inQuotes) {
-        throw new Error("Invalid CSV: unmatched quotation mark.");
+      if (ch === '"' && next === '"') {
+        value += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+        afterQuote = true;
+      } else {
+        value += ch;
+      }
+      continue;
     }
 
-    if (value !== "" || row.length > 0) {
-        row.push(value);
-        rows.push(row);
+    if (afterQuote) {
+      if (ch === ",") {
+        finishField();
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && next === "\n") i++;
+        finishRow();
+      } else {
+        throw new Error("Unexpected character after a closing quote in CSV.");
+      }
+      continue;
     }
 
-    return rows;
+    if (ch === '"' && !fieldStarted && value === "") {
+      inQuotes = true;
+      fieldStarted = true;
+    } else if (ch === '"') {
+      throw new Error("Unexpected quote in an unquoted CSV field.");
+    } else if (ch === ",") {
+      finishField();
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && next === "\n") i++;
+      finishRow();
+    } else {
+      value += ch;
+      fieldStarted = true;
+    }
+  }
+
+  if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) finishRow();
+  return rows;
 }
 
 function tsvEscape(value) {
@@ -1032,12 +1053,12 @@ function tsvEscape(value) {
 }
 
 function convertCSV() {
-    const input = document.getElementById("input").value.trim();
+    const input = document.getElementById("input").value;
     const output = document.getElementById("output");
     const status = document.getElementById("status");
 
     try {
-        if (!input) {
+        if (!input.trim()) {
             throw new Error("Please enter CSV data.");
         }
 

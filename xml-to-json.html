@@ -519,12 +519,12 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="./">
         <span class="brand-icon">{ }</span>
         <span class="brand-name">CSV &amp; JSON Developer Tools</span>
       </a>
 
-      <a class="header-link" href="index.html">All Tools →</a>
+      <a class="header-link" href="./">All Tools →</a>
     </div>
   </header>
 
@@ -561,7 +561,7 @@
         <div class="editor-box">
           <label class="tool-label" for="xmlInput">XML Input</label>
 
-          <textarea id="xmlInput"><?xml version="1.0" encoding="UTF-8"?>
+          <textarea id="xmlInput" data-clarity-mask="True"><?xml version="1.0" encoding="UTF-8"?>
 <root>
   <item>
     <name>Ali</name>
@@ -593,7 +593,7 @@
             id="jsonOutput"
             readonly
             placeholder="JSON output will appear here..."
-          ></textarea>
+           data-clarity-mask="True"></textarea>
 
           <div class="buttons">
             <button class="success" onclick="copyJSON()">
@@ -608,7 +608,7 @@
 
       </div>
 
-      <div id="status" class="status"></div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
 
       <div class="privacy-mini">
         <strong>🔒 Privacy First</strong><br>
@@ -833,7 +833,7 @@
           </p>
         </div>
 
-        <a href="index.html" class="cta-button">
+        <a href="./" class="cta-button">
           Explore All Tools →
         </a>
 
@@ -872,7 +872,7 @@
       </div>
 
       <div class="footer-links">
-        <a href="index.html">Home</a>
+        <a href="./">Home</a>
         <a href="about.html">About</a>
         <a href="privacy-policy.html">Privacy</a>
         <a href="terms.html">Terms</a>

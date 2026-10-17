@@ -632,12 +632,12 @@
 <header>
   <div class="container nav">
 
-    <a class="brand" href="index.html">
+    <a class="brand" href="./">
       <span class="brand-icon">&lt;/&gt;</span>
       <span>CSV &amp; JSON Developer Tools</span>
     </a>
 
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="./">
       All Tools
     </a>
 
@@ -736,7 +736,7 @@ Emma,34,London" data-clarity-mask="True"></textarea>
       </div>
 
 
-      <div id="message" class="message"></div>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
 
 
       <label for="jsonlOutput">
@@ -876,9 +876,9 @@ John,31,New York</code>
 
         <strong>JSONL Output</strong>
 
-        <code>{"name":"Ali","age":28,"city":"Karachi"}
-{"name":"Emma","age":34,"city":"London"}
-{"name":"John","age":31,"city":"New York"}</code>
+        <code>{"name":"Ali","age":"28","city":"Karachi"}
+{"name":"Emma","age":"34","city":"London"}
+{"name":"John","age":"31","city":"New York"}</code>
 
       </div>
 
@@ -974,6 +974,12 @@ John,31,New York</code>
         This makes the converter convenient when you want to transform
         CSV data into JSONL without uploading the data to an external
         conversion service.
+      </p>
+
+      <p class="privacy-note">
+        The website separately loads analytics scripts that may collect
+        site-usage information. See the <a href="privacy-policy.html">Privacy Policy</a>
+        and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.
       </p>
 
     </div>
@@ -1110,7 +1116,7 @@ John,31,New York</code>
 
   <div class="back-wrap container">
 
-    <a class="back" href="index.html">
+    <a class="back" href="./">
       ← Back to All Tools
     </a>
 
@@ -1136,7 +1142,7 @@ John,31,New York</code>
   <strong>CSV &amp; JSON Developer Tools</strong>
 
   <div>
-    <a href="index.html">Home</a>
+    <a href="./">Home</a>
     <a href="about.html">About</a>
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms &amp; Conditions</a>
@@ -1190,105 +1196,81 @@ function loadFile(event) {
 
 
 function parseCsv(text) {
-
+  // Strict CSV parsing prevents malformed quotes from silently shifting cells.
+  text = String(text).replace(/^\uFEFF/, "");
   const rows = [];
   let row = [];
   let value = "";
-  let insideQuotes = false;
+  let inQuotes = false;
+  let afterQuote = false;
+  let fieldStarted = false;
+
+  function finishField() {
+    row.push(value);
+    value = "";
+    afterQuote = false;
+    fieldStarted = false;
+  }
+
+  function finishRow() {
+    finishField();
+    // Ignore blank physical lines but preserve rows such as ",,".
+    if (!(row.length === 1 && row[0].trim() === "")) rows.push(row);
+    row = [];
+  }
 
   for (let i = 0; i < text.length; i++) {
-
-    const char = text[i];
+    const ch = text[i];
     const next = text[i + 1];
 
-    if (char === '"') {
-
-      if (insideQuotes && next === '"') {
-
+    if (inQuotes) {
+      if (ch === '"' && next === '"') {
         value += '"';
         i++;
-
+      } else if (ch === '"') {
+        inQuotes = false;
+        afterQuote = true;
       } else {
-
-        insideQuotes = !insideQuotes;
-
+        value += ch;
       }
-
-    } else if (char === "," && !insideQuotes) {
-
-      row.push(value);
-      value = "";
-
-    } else if (
-      (char === "\n" || char === "\r") &&
-      !insideQuotes
-    ) {
-
-      if (char === "\r" && next === "\n") {
-        i++;
-      }
-
-      row.push(value);
-
-      rows.push(row);
-
-      row = [];
-      value = "";
-
-    } else {
-
-      value += char;
-
+      continue;
     }
 
+    if (afterQuote) {
+      if (ch === ",") {
+        finishField();
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && next === "\n") i++;
+        finishRow();
+      } else {
+        throw new Error("Unexpected character after a closing quote in CSV.");
+      }
+      continue;
+    }
+
+    if (ch === '"' && !fieldStarted && value === "") {
+      inQuotes = true;
+      fieldStarted = true;
+    } else if (ch === '"') {
+      throw new Error("Unexpected quote in an unquoted CSV field.");
+    } else if (ch === ",") {
+      finishField();
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && next === "\n") i++;
+      finishRow();
+    } else {
+      value += ch;
+      fieldStarted = true;
+    }
   }
 
-  if (insideQuotes) {
-
-    throw new Error(
-      "Unclosed quoted field."
-    );
-
-  }
-
-  if (value !== "" || row.length > 0) {
-
-    row.push(value);
-    rows.push(row);
-
-  }
-
+  if (inQuotes) throw new Error("CSV contains an unclosed quoted field.");
+  if (afterQuote || fieldStarted || value !== "" || row.length > 0) finishRow();
   return rows;
-
 }
 
-
 function parseValue(value) {
-
-  value = value.trim();
-
-  if (value === "") {
-    return "";
-  }
-
-  if (value === "true") {
-    return true;
-  }
-
-  if (value === "false") {
-    return false;
-  }
-
-  if (value === "null") {
-    return null;
-  }
-
-  if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value)) {
-    return Number(value);
-  }
-
-  return value;
-
+  return String(value);
 }
 
 
@@ -1361,11 +1343,10 @@ function convertCsv() {
 
     }
 
-    const duplicateHeaders =
-      headers.filter(
-        (header, index) =>
-          headers.indexOf(header) !== index
-      );
+    const normalizedHeaders = headers.map(header => header.toLowerCase());
+    const duplicateHeaders = headers.filter(
+      (header, index) => normalizedHeaders.indexOf(normalizedHeaders[index]) !== index
+    );
 
     if (duplicateHeaders.length > 0) {
 
@@ -1411,7 +1392,7 @@ function convertCsv() {
 
       }
 
-      const object = {};
+      const object = Object.create(null);
 
       headers.forEach(
         (header, index) => {

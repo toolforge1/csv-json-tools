@@ -962,7 +962,7 @@
 
     <div class="container header-inner">
 
-      <a class="brand" href="index.html">
+      <a class="brand" href="./">
 
         <div class="brand-icon">{} </div>
 
@@ -977,7 +977,7 @@
       </a>
 
 
-      <a class="header-link" href="index.html">
+      <a class="header-link" href="./">
         All Tools
       </a>
 
@@ -1091,7 +1091,7 @@
                 </div>
 
 
-                <textarea id="jsonInput">[
+                <textarea id="jsonInput" data-clarity-mask="True">[
   {
     "name": "John",
     "age": "25",
@@ -1115,7 +1115,7 @@
                     type="file"
                     id="jsonFile"
                     accept=".json,application/json"
-                  >
+                   data-clarity-mask="True">
 
                 </div>
 
@@ -1141,7 +1141,7 @@
                   id="csvOutput"
                   readonly
                   placeholder="Your converted CSV will appear here."
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
               </div>
 
@@ -1187,7 +1187,7 @@
             <div
               id="status"
               class="status"
-            ></div>
+             role="status" aria-live="polite"></div>
 
 
             <div class="privacy-note">
@@ -1210,7 +1210,7 @@
 
             <a
               class="back-link"
-              href="index.html"
+              href="./"
             >
               ← Back to All Developer Tools
             </a>
@@ -1608,6 +1608,14 @@ Sarah,30,New York</pre>
 
             </div>
 
+            <div class="tip-box">
+              <div class="tip-icon">!</div>
+              <div>
+                <strong>Spreadsheet formula safety</strong>
+                <p>CSV quoting protects delimiters but does not neutralize spreadsheet formulas. Values beginning with =, +, -, or @ may be interpreted as formulas by spreadsheet software. Review or sanitize such values before opening the downloaded CSV in a spreadsheet. This converter preserves the original cell text and does not automatically prefix an apostrophe.</p>
+              </div>
+            </div>
+
 
             <h3>
               Browser-Based JSON to CSV Conversion
@@ -1624,6 +1632,11 @@ Sarah,30,New York</pre>
               This makes the tool convenient for quick conversions while
               keeping your data within your browser during the conversion
               process.
+            </p>
+            <p class="privacy-note">
+              The website separately loads analytics scripts that may collect
+              site-usage information. See the <a href="privacy-policy.html">Privacy Policy</a>
+              and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.
             </p>
 
           </article>
@@ -2224,7 +2237,7 @@ Sarah,30,New York</pre>
 
           <a
             class="cta-button"
-            href="index.html"
+            href="./"
           >
             Explore All Tools →
           </a>
@@ -2286,6 +2299,12 @@ Sarah,30,New York</pre>
 
 
 
+<section aria-label="Related developer tools" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
+  <h2>Related Developer Tools</h2>
+  <p>Use related tools to inspect or transform JSON and tabular data.</p>
+  <div class="related-grid"><a href="csv-to-json.html">CSV to JSON</a><a href="json-to-tsv.html">JSON to TSV</a><a href="json-formatter.html">JSON Formatter</a></div>
+</section>
+
 <footer class="site-footer">
 
     <div class="container">
@@ -2317,7 +2336,7 @@ Sarah,30,New York</pre>
 
         <nav class="footer-links">
 
-          <a href="index.html">
+          <a href="./">
             Home
           </a>
 
@@ -4048,11 +4067,6 @@ Sarah,30,New York</pre>
 
 
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
-  <h2 style="margin-top:0;">Related Developer Tool</h2>
-  <p>If your JSON is part of an API workflow, you can also generate TypeScript interfaces from a representative JSON sample. <a href="json-to-typescript.html">JSON to TypeScript Converter</a>.</p>
-</section>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -4062,6 +4076,5 @@ Sarah,30,New York</pre>
 </script>
 <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>Need a reusable description of your JSON data structure? Draft one with the JSON Schema Generator. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 </html>
