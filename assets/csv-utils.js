@@ -3,69 +3,73 @@
 
   function parseCsv(text) {
     var source = String(text == null ? '' : text).replace(/^\uFEFF/, '');
-    if (source.length === 0) return [];
-
     var rows = [];
     var row = [];
     var field = '';
     var inQuotes = false;
     var afterQuote = false;
+    var fieldStarted = false;
+
+    function finishField() {
+      row.push(field);
+      field = '';
+      afterQuote = false;
+      fieldStarted = false;
+    }
+
+    function finishRow() {
+      finishField();
+      if (!(row.length === 1 && row[0].trim() === '')) rows.push(row);
+      row = [];
+    }
 
     for (var i = 0; i < source.length; i += 1) {
       var ch = source[i];
+      var next = source[i + 1];
 
       if (inQuotes) {
-        if (ch === '"') {
-          if (source[i + 1] === '"') {
-            field += '"';
-            i += 1;
-          } else {
-            inQuotes = false;
-            afterQuote = true;
-          }
+        if (ch === '"' && next === '"') {
+          field += '"';
+          i += 1;
+        } else if (ch === '"') {
+          inQuotes = false;
+          afterQuote = true;
         } else {
           field += ch;
         }
         continue;
       }
 
-      if (ch === ',') {
-        row.push(field);
-        field = '';
-        afterQuote = false;
+      if (afterQuote) {
+        if (ch === ',') {
+          finishField();
+        } else if (ch === '\n' || ch === '\r') {
+          if (ch === '\r' && next === '\n') i += 1;
+          finishRow();
+        } else {
+          throw new Error('Unexpected character after a closing quote in CSV.');
+        }
         continue;
       }
 
-      if (ch === '\r' || ch === '\n') {
-        row.push(field);
-        rows.push(row);
-        row = [];
-        field = '';
-        afterQuote = false;
-        if (ch === '\r' && source[i + 1] === '\n') i += 1;
-        continue;
-      }
-
-      if (ch === '"' && field === '') {
+      if (ch === '"' && !fieldStarted && field === '') {
         inQuotes = true;
-        afterQuote = false;
-        continue;
+        fieldStarted = true;
+      } else if (ch === '"') {
+        throw new Error('Unexpected quote in an unquoted CSV field.');
+      } else if (ch === ',') {
+        finishField();
+      } else if (ch === '\n' || ch === '\r') {
+        if (ch === '\r' && next === '\n') i += 1;
+        finishRow();
+      } else {
+        field += ch;
+        fieldStarted = true;
       }
-
-      // Ignore harmless whitespace after a closing quote; retain other characters.
-      if (afterQuote && (ch === ' ' || ch === '\t')) continue;
-      field += ch;
-      afterQuote = false;
     }
 
-    if (inQuotes) {
-      throw new Error('A quoted field is not closed. Check for a missing double quote.');
-    }
-
-    if (field.length > 0 || row.length > 0) {
-      row.push(field);
-      rows.push(row);
-    }
+    if (inQuotes) throw new Error('A quoted field is not closed. Check for a missing double quote.');
+    if (afterQuote || fieldStarted || field.length > 0 || row.length > 0) finishRow();
     return rows;
   }
 
