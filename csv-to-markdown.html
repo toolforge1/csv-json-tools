@@ -1233,8 +1233,9 @@ function convertToMarkdown() {
       throw new Error("CSV contains an empty header.");
     }
 
+    const normalizedHeaders = headers.map(header => header.toLowerCase());
     const duplicateHeaders = headers.filter(
-      (header, index) => headers.indexOf(header) !== index
+      (header, index) => normalizedHeaders.indexOf(normalizedHeaders[index]) !== index
     );
 
     if (duplicateHeaders.length > 0) {
