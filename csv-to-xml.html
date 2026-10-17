@@ -212,7 +212,6 @@
     downloadButton.disabled = true;
     try {
       var rows = window.CSVToolUtils.parseCsv(input.value);
-      rows = rows.filter(function (row) { return row.some(function (cell) { return String(cell).trim() !== ''; }); });
       if (rows.length < 2) throw new Error('Add a header row and at least one non-empty data row.');
       var headers = rows[0];
       if (!headers.length || headers.every(function (cell) { return String(cell).trim() === ''; })) throw new Error('Add a name for at least one column in the first row.');
@@ -225,7 +224,6 @@
       var names = headers.map(function (header, index) { return xmlName(header, index, used); });
       var lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<rows>'];
       rows.slice(1).forEach(function (row) {
-        if (!row.some(function (cell) { return String(cell).trim() !== ''; })) return;
         lines.push('  <row>');
         names.forEach(function (name, index) {
           lines.push('    <' + name + '>' + escapeXml(row[index] == null ? '' : row[index]) + '</' + name + '>');
