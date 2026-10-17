@@ -1293,11 +1293,10 @@ function convertToHTML() {
 
     }
 
-    const duplicateHeaders =
-      headers.filter(
-        (header, index) =>
-          headers.indexOf(header) !== index
-      );
+    const normalizedHeaders = headers.map(header => header.toLowerCase());
+    const duplicateHeaders = headers.filter(
+      (header, index) => normalizedHeaders.indexOf(normalizedHeaders[index]) !== index
+    );
 
     if (duplicateHeaders.length > 0) {
 
