@@ -40,8 +40,10 @@ for (const spec of parserSpecs) {
       ["blank physical lines", "a,b\n\n1,2\n", [["a", "b"], ["1", "2"]]],
       ["UTF-8 BOM", "\uFEFFa,b\n1,2", [["a", "b"], ["1", "2"]]],
       ["trailing empty field", "a,b\n1,", [["a", "b"], ["1", ""]]],
+    ["outer cell whitespace", "a,b\n 1 , 2 ", [["a", "b"], [" 1 ", " 2 "]]],
     ["all-empty multi-column record", "a,b,c\n,,", [["a", "b", "c"], ["", "", ""]]],
       ["empty cells in a row", "a,b,c\n1,,3", [["a", "b", "c"], ["1", "", "3"]]],
+      ["outer cell whitespace", "a,b\n 1 , 2 ", [["a", "b"], [" 1 ", " 2 "]]],
       ["all-empty multi-column record", "a,b,c\n,,", [["a", "b", "c"], ["", "", ""]]],
     ];
     for (const [label, input, expected] of cases) {
@@ -149,4 +151,36 @@ test("Key structured-data blocks remain valid JSON", () => {
     assert.ok(blocks.length > 0, `Expected structured data in ${file}`);
     for (const block of blocks) assert.doesNotThrow(() => JSON.parse(block), `Invalid JSON-LD in ${file}`);
   }
+});
+
+test("CSV to JSON preserves cell whitespace and a __proto__ header", () => {
+  const html = fs.readFileSync(path.join(root, "csv-to-json.html"), "utf8");
+  const start = html.indexOf("function parseCSV(text) {");
+  const end = html.indexOf("function loadFile(event) {", start);
+  assert.notEqual(start, -1);
+  assert.notEqual(end, -1);
+  const elements = {
+    csvInput: { value: "__proto__,name\npayload,Ali " },
+    output: { value: "" },
+  };
+  const sandbox = {
+    document: { getElementById: id => elements[id] },
+  };
+  vm.runInNewContext(`${html.slice(start, end)}\nglobalThis.__convertCSV = convertCSV;`, sandbox, {
+    filename: "csv-to-json.html",
+    timeout: 1000,
+  });
+  sandbox.__convertCSV();
+  const result = JSON.parse(elements.output.value);
+  assert.equal(result[0].name, "Ali ");
+  assert.equal(Object.prototype.hasOwnProperty.call(result[0], "__proto__"), true);
+  assert.equal(result[0]["__proto__"], "payload");
+
+  elements.csvInput.value = "a,b\n1,2,3";
+  sandbox.__convertCSV();
+  assert.match(elements.output.value, /Row 2 has 3 columns/);
+
+  elements.csvInput.value = "Name,name\n1,2";
+  sandbox.__convertCSV();
+  assert.match(elements.output.value, /duplicate headers/i);
 });
