@@ -85,7 +85,7 @@
         <p class="field-help">Paste a representative JSON response or load the example. The generated types describe the sample you provide, so include realistic examples for the most useful inference.</p>
         <div class="field">
           <label for="jsonInput">JSON input</label>
-          <textarea id="jsonInput" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="inputHelp">{
+          <textarea id="jsonInput" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="inputHelp" data-clarity-mask="True">{
   "id": 101,
   "name": "Ayesha",
   "active": true,
@@ -111,13 +111,13 @@
         <div class="field-grid">
           <div class="field">
             <label for="rootName">Root type or interface name</label>
-            <input id="rootName" type="text" value="Root" maxlength="80" autocomplete="off">
+            <input id="rootName" type="text" value="Root" maxlength="80" autocomplete="off" data-clarity-mask="True">
             <p class="field-help">Example: ApiResponse, UserProfile or Product.</p>
           </div>
           <div class="field">
             <span class="field-label">Generation option</span>
             <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600">
-              <input id="optionalAll" type="checkbox" style="width:auto;min-height:0;margin-top:5px">
+              <input id="optionalAll" type="checkbox" style="width:auto;min-height:0;margin-top:5px" data-clarity-mask="True">
               <span>Make every property optional</span>
             </label>
             <p class="field-help">Useful when building a partial-update type. Fields missing from some objects in an array are inferred as optional automatically.</p>
@@ -133,7 +133,7 @@
         <p id="status" class="status" role="status" aria-live="polite"></p>
         <div class="field">
           <label for="tsOutput">Generated TypeScript</label>
-          <textarea id="tsOutput" readonly spellcheck="false" aria-label="Generated TypeScript output" placeholder="Your TypeScript interfaces and types will appear here."></textarea>
+          <textarea id="tsOutput" readonly spellcheck="false" aria-label="Generated TypeScript output" placeholder="Your TypeScript interfaces and types will appear here." data-clarity-mask="True"></textarea>
         </div>
         <div class="note"><strong>Important:</strong> inferred types describe the JSON sample, not every possible API response. TypeScript types do not perform runtime validation by themselves.</div>
       </section>
@@ -243,7 +243,13 @@ export interface Root {
     </main>
   </div>
 
-  <footer class="site-footer">
+  <section aria-label="Related developer tools" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
+  <h2>Related Developer Tools</h2>
+  <p>Document and inspect the structure of the JSON sample used to generate TypeScript types.</p>
+  <div class="related-grid"><a href="json-schema-generator.html">JSON Schema Generator</a><a href="json-formatter.html">JSON Formatter</a><a href="json-diff-compare.html">JSON Diff &amp; Compare</a></div>
+</section>
+
+<footer class="site-footer">
     <div class="container footer-inner">
       <div>
         <strong>CSV &amp; JSON Developer Tools</strong>
@@ -459,6 +465,5 @@ export interface Root {
   </script>
   <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>Need a schema as well as TypeScript types? Generate a JSON Schema from the same representative JSON sample. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 </html>

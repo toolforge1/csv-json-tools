@@ -632,12 +632,12 @@
 <header>
   <div class="container nav">
 
-    <a class="brand" href="index.html">
+    <a class="brand" href="./">
       <span class="brand-icon">&lt;/&gt;</span>
       <span>CSV &amp; JSON Developer Tools</span>
     </a>
 
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="./">
       All Tools
     </a>
 
@@ -736,7 +736,7 @@ Emma,34,London" data-clarity-mask="True"></textarea>
       </div>
 
 
-      <div id="message" class="message"></div>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
 
 
       <label for="jsonlOutput">
@@ -876,9 +876,9 @@ John,31,New York</code>
 
         <strong>JSONL Output</strong>
 
-        <code>{"name":"Ali","age":28,"city":"Karachi"}
-{"name":"Emma","age":34,"city":"London"}
-{"name":"John","age":31,"city":"New York"}</code>
+        <code>{"name":"Ali","age":"28","city":"Karachi"}
+{"name":"Emma","age":"34","city":"London"}
+{"name":"John","age":"31","city":"New York"}</code>
 
       </div>
 
@@ -974,6 +974,12 @@ John,31,New York</code>
         This makes the converter convenient when you want to transform
         CSV data into JSONL without uploading the data to an external
         conversion service.
+      </p>
+
+      <p class="privacy-note">
+        The website separately loads analytics scripts that may collect
+        site-usage information. See the <a href="privacy-policy.html">Privacy Policy</a>
+        and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.
       </p>
 
     </div>
@@ -1110,7 +1116,7 @@ John,31,New York</code>
 
   <div class="back-wrap container">
 
-    <a class="back" href="index.html">
+    <a class="back" href="./">
       ← Back to All Tools
     </a>
 
@@ -1136,7 +1142,7 @@ John,31,New York</code>
   <strong>CSV &amp; JSON Developer Tools</strong>
 
   <div>
-    <a href="index.html">Home</a>
+    <a href="./">Home</a>
     <a href="about.html">About</a>
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms &amp; Conditions</a>
@@ -1264,31 +1270,7 @@ function parseCsv(text) {
 
 
 function parseValue(value) {
-
-  value = value.trim();
-
-  if (value === "") {
-    return "";
-  }
-
-  if (value === "true") {
-    return true;
-  }
-
-  if (value === "false") {
-    return false;
-  }
-
-  if (value === "null") {
-    return null;
-  }
-
-  if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value)) {
-    return Number(value);
-  }
-
-  return value;
-
+  return String(value);
 }
 
 
@@ -1361,11 +1343,10 @@ function convertCsv() {
 
     }
 
-    const duplicateHeaders =
-      headers.filter(
-        (header, index) =>
-          headers.indexOf(header) !== index
-      );
+    const normalizedHeaders = headers.map(header => header.toLowerCase());
+    const duplicateHeaders = headers.filter(
+      (header, index) => normalizedHeaders.indexOf(normalizedHeaders[index]) !== index
+    );
 
     if (duplicateHeaders.length > 0) {
 
@@ -1411,7 +1392,7 @@ function convertCsv() {
 
       }
 
-      const object = {};
+      const object = Object.create(null);
 
       headers.forEach(
         (header, index) => {

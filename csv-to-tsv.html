@@ -599,7 +599,7 @@ button:first-child {
 
 <header class="site-header">
     <div class="container header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
             <span class="brand-icon">⌘</span>
             <span class="brand-text">CSV &amp; JSON Developer Tools</span>
         </a>
@@ -655,7 +655,7 @@ Example:
 name,age,city
 Ali,28,Karachi
 Emma,34,London"
-        ></textarea>
+         data-clarity-mask="True"></textarea>
 
         <div class="buttons">
             <button onclick="convertCSV()">Convert to TSV</button>
@@ -664,7 +664,7 @@ Emma,34,London"
             <button onclick="clearAll()">Clear</button>
         </div>
 
-        <div id="status" class="status"></div>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
 
         <div class="output-label">
             <label class="field-label" for="output">
@@ -678,7 +678,7 @@ Emma,34,London"
             id="output"
             placeholder="TSV output will appear here..."
             readonly
-        ></textarea>
+         data-clarity-mask="True"></textarea>
 
         <div class="privacy">
             🔒 <strong>Privacy-friendly:</strong>
@@ -686,7 +686,7 @@ Emma,34,London"
             to a server by this tool.
         </div>
 
-        <a class="back" href="index.html">
+        <a class="back" href="./">
             ← Back to All Developer Tools
         </a>
 
@@ -955,7 +955,7 @@ Ali,"Karachi, Pakistan","Developer, Designer"</pre>
         </p>
 
         <p>
-            <a href="index.html">Home</a>
+            <a href="./">Home</a>
             <a href="about.html">About</a>
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms &amp; Conditions</a>

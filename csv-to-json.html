@@ -862,7 +862,7 @@
     <div class="container nav">
 
       <a
-        href="index.html"
+        href="./"
         class="brand"
       >
         <span class="brand-icon">⌘</span>
@@ -874,7 +874,7 @@
 
 
       <a
-        href="index.html"
+        href="./"
         class="home-link"
       >
         ← All Tools
@@ -1059,7 +1059,7 @@ Ahmed,28,Islamabad"
         <p>Convert a comma-separated table into a JSON array of objects. The first row supplies the object property names, and each later row becomes one record. This structure is commonly used by JavaScript applications, API test fixtures, and data-import workflows.</p>
         <p>Cell values remain strings in the generated JSON. For example, the CSV value <code>25</code> becomes <code>"25"</code>, not a JSON number. Convert values to numbers or dates in your application if your workflow requires typed data.</p>
         <h3>Use clear, unique column names</h3>
-        <p>Choose a header for every column and avoid duplicate header names. If headers repeat, a later column can replace an earlier value with the same name in the resulting object.</p>
+        <p>Choose a header for every column and avoid duplicate header names. The converter now reports duplicate headers instead of silently replacing data.</p>
       </div>
 
       <div class="content-card">
@@ -1176,6 +1176,12 @@ Ahmed,28,Islamabad"
 
 
 
+<section aria-label="Related developer tools" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
+  <h2>Related Developer Tools</h2>
+  <p>Continue working with your converted data using related browser-based tools.</p>
+  <div class="related-grid"><a href="csv-to-jsonl.html">CSV to JSONL</a><a href="json-schema-generator.html">JSON Schema Generator</a><a href="json-to-typescript.html">JSON to TypeScript</a></div>
+</section>
+
 <footer>
 
     <div class="container">
@@ -1189,7 +1195,7 @@ Ahmed,28,Islamabad"
 
         <div class="footer-links">
 
-          <a href="index.html">
+          <a href="./">
             Home
           </a>
 
@@ -1231,103 +1237,34 @@ Ahmed,28,Islamabad"
   <script>
 
     function parseCSV(text) {
-
       const rows = [];
-
       let row = [];
-
       let value = "";
-
       let insideQuotes = false;
-
-
       for (let i = 0; i < text.length; i++) {
-
-        const char = text[i];
-
-        const next = text[i + 1];
-
-
-        if (
-          char === '"' &&
-          insideQuotes &&
-          next === '"'
-        ) {
-
-          value += '"';
-
-          i++;
-
-        }
-
-        else if (char === '"') {
-
+        const char = text[i], next = text[i + 1];
+        if (char === '"' && insideQuotes && next === '"') {
+          value += '"'; i++;
+        } else if (char === '"') {
           insideQuotes = !insideQuotes;
-
-        }
-
-        else if (
-          char === "," &&
-          !insideQuotes
-        ) {
-
+        } else if (char === "," && !insideQuotes) {
+          row.push(value); value = "";
+        } else if ((char === "\n" || char === "\r") && !insideQuotes) {
+          if (char === "\r" && next === "\n") i++;
           row.push(value);
-
-          value = "";
-
-        }
-
-        else if (
-          (char === "\n" || char === "\r") &&
-          !insideQuotes
-        ) {
-
-          if (
-            char === "\r" &&
-            next === "\n"
-          ) {
-
-            i++;
-
-          }
-
-          row.push(value);
-
-          rows.push(row);
-
-          row = [];
-
-          value = "";
-
-        }
-
-        else {
-
+          if (row.some(cell => cell.trim() !== "")) rows.push(row);
+          row = []; value = "";
+        } else {
           value += char;
-
         }
-
       }
-
-
-      if (
-        value !== "" ||
-        row.length > 0
-      ) {
-
+      if (insideQuotes) throw new Error("CSV contains an unclosed quoted field.");
+      if (value !== "" || row.length > 0) {
         row.push(value);
-
-        rows.push(row);
-
+        if (row.some(cell => cell.trim() !== "")) rows.push(row);
       }
-
-
       return rows;
-
-    }
-
-
-    function convertCSV() {
+    }    function convertCSV() {
 
       const input =
         document
@@ -1365,28 +1302,29 @@ Ahmed,28,Islamabad"
         }
 
 
-        const headers = rows[0];
-
-
-        const data =
-          rows.slice(1).map(row => {
-
-            const obj = {};
-
-
-            headers.forEach(
-              (header, index) => {
-
-                obj[header] =
-                  row[index] ?? "";
-
-              }
+        const headers = rows[0].map(header => header.trim());
+        if (headers.some(header => header === "")) {
+          throw new Error("CSV contains an empty header.");
+        }
+        const normalizedHeaders = headers.map(header => header.toLowerCase());
+        if (new Set(normalizedHeaders).size !== headers.length) {
+          throw new Error("CSV contains duplicate headers.");
+        }
+        for (let i = 1; i < rows.length; i++) {
+          if (rows[i].length !== headers.length) {
+            throw new Error(
+              "Row " + (i + 1) + " has " + rows[i].length +
+              " columns, but the header has " + headers.length + "."
             );
-
-
-            return obj;
-
+          }
+        }
+        const data = rows.slice(1).map(row => {
+          const obj = Object.create(null);
+          headers.forEach((header, index) => {
+            obj[header] = row[index] ?? "";
           });
+          return obj;
+        });
 
 
         output.value =
@@ -1524,11 +1462,6 @@ Ahmed,28,Islamabad"
 
 
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
-  <h2 style="margin-top:0;">Related Developer Tool</h2>
-  <p>After converting tabular data to JSON, generate TypeScript interfaces from the resulting JSON structure. <a href="json-to-typescript.html">JSON to TypeScript Converter</a>.</p>
-</section>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -1538,6 +1471,5 @@ Ahmed,28,Islamabad"
 </script>
 <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>After converting tabular data to JSON, use the JSON Schema Generator to document the resulting structure. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 </html>

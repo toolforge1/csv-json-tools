@@ -64,7 +64,7 @@
         <p class="field-help">Paste a representative JSON example or load the sample. The schema describes the structure and values visible in your sample; review it before using it to validate production data.</p>
         <div class="field">
           <label for="jsonInput">JSON input</label>
-          <textarea id="jsonInput" spellcheck="false" autocapitalize="off" autocomplete="off">{
+          <textarea id="jsonInput" spellcheck="false" autocapitalize="off" autocomplete="off" data-clarity-mask="True">{
   "id": 101,
   "name": "Ayesha",
   "active": true,
@@ -83,13 +83,13 @@
         <div class="field-grid">
           <div class="field">
             <label for="schemaTitle">Schema title</label>
-            <input id="schemaTitle" type="text" value="Root" maxlength="120" autocomplete="off">
+            <input id="schemaTitle" type="text" value="Root" maxlength="120" autocomplete="off" data-clarity-mask="True">
             <p class="field-help">Optional descriptive name, such as UserProfile or ApiResponse.</p>
           </div>
           <div class="field">
             <span class="field-label">Schema options</span>
-            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600"><input id="includeRequired" type="checkbox" checked style="width:auto;min-height:0;margin-top:5px"><span>Infer required properties from the sample</span></label>
-            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600;margin-top:8px"><input id="disallowAdditional" type="checkbox" style="width:auto;min-height:0;margin-top:5px"><span>Disallow additional object properties</span></label>
+            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600"><input id="includeRequired" type="checkbox" checked style="width:auto;min-height:0;margin-top:5px" data-clarity-mask="True"><span>Infer required properties from the sample</span></label>
+            <label style="display:flex;align-items:flex-start;gap:9px;font-weight:600;margin-top:8px"><input id="disallowAdditional" type="checkbox" style="width:auto;min-height:0;margin-top:5px" data-clarity-mask="True"><span>Disallow additional object properties</span></label>
             <p class="field-help">Required properties are inferred from keys present in all sampled objects. Disallowing extra properties can make validation stricter.</p>
           </div>
         </div>
@@ -103,7 +103,7 @@
         <p id="status" class="status" role="status" aria-live="polite"></p>
         <div class="field">
           <label for="schemaOutput">Generated JSON Schema</label>
-          <textarea id="schemaOutput" readonly spellcheck="false" placeholder="Your generated JSON Schema will appear here."></textarea>
+          <textarea id="schemaOutput" readonly spellcheck="false" placeholder="Your generated JSON Schema will appear here." data-clarity-mask="True"></textarea>
         </div>
         <div class="note"><strong>Important:</strong> this generator infers structure from a sample; it does not automatically invent business rules, formats, minimums, maximums or every possible value.</div>
       </section>

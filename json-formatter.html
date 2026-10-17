@@ -589,12 +589,12 @@
   <header class="site-header">
     <div class="container nav">
 
-      <a class="brand" href="index.html">
+      <a class="brand" href="./">
         <span class="brand-icon">{ }</span>
         <span class="brand-text">CSV &amp; JSON Developer Tools</span>
       </a>
 
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="./">
         All Developer Tools →
       </a>
 
@@ -657,7 +657,7 @@
                 <textarea
                   id="jsonInput"
                   placeholder='Paste your JSON here...'
-                >{
+                 data-clarity-mask="True">{
   "name": "John",
   "age": 30,
   "city": "London"
@@ -690,7 +690,7 @@
                   id="jsonOutput"
                   readonly
                   placeholder="Formatted JSON will appear here..."
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
                 <div class="buttons">
                   <button class="success" onclick="copyJSON()">
@@ -706,7 +706,7 @@
 
             </div>
 
-            <div id="status" class="status"></div>
+            <div id="status" class="status" role="status" aria-live="polite"></div>
 
             <div class="privacy">
               <strong>🔒 Privacy First</strong><br>
@@ -714,7 +714,7 @@
               This tool does not upload your JSON data to our server.
             </div>
 
-            <a class="back" href="index.html">
+            <a class="back" href="./">
               ← Back to All Developer Tools
             </a>
 
@@ -1157,7 +1157,7 @@
             </p>
           </div>
 
-          <a href="index.html" class="cta-button">
+          <a href="./" class="cta-button">
             Explore All Tools →
           </a>
 
@@ -1178,6 +1178,12 @@
   <p>Common causes include single quotes, unquoted keys, trailing commas, missing commas, and mismatched braces. Correct the reported syntax and retry; this validator does not auto-repair input.</p>
   <p class="seo-disclosure"><strong>Related next steps:</strong> <a href="json-diff-compare.html">Compare two JSON objects</a>, <a href="json-to-csv.html">Convert a JSON array to CSV</a>, <a href="json-to-yaml.html">Convert JSON to YAML</a>.</p>
 </section>
+<section aria-label="Related developer tools" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
+  <h2>Related Developer Tools</h2>
+  <p>Validate, compare, or document the structure of your JSON data.</p>
+  <div class="related-grid"><a href="json-diff-compare.html">JSON Diff &amp; Compare</a><a href="json-schema-generator.html">JSON Schema Generator</a><a href="json-to-csv.html">JSON to CSV</a></div>
+</section>
+
 <footer class="site-footer">
 
       <div class="container">
@@ -1202,7 +1208,7 @@
 
           <div class="footer-links">
 
-            <a href="index.html">Home</a>
+            <a href="./">Home</a>
 
             <a href="about.html">About</a>
 
@@ -1814,11 +1820,6 @@
     </script>
 
   
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
-  <h2 style="margin-top:0;">Related Developer Tool</h2>
-  <p>After formatting or validating JSON, generate TypeScript interfaces from the same sample with the JSON to TypeScript Converter. <a href="json-to-typescript.html">JSON to TypeScript Converter</a>.</p>
-</section>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -1828,7 +1829,6 @@
 </script>
 <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>Create a JSON Schema from your sample after formatting or checking its syntax. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 
 </html>

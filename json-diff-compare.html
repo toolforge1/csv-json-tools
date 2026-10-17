@@ -682,7 +682,7 @@ button.danger {
 <header class="site-header">
     <div class="container header-inner">
 
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
             <span class="brand-icon">⌘</span>
             <span class="brand-text">CSV &amp; JSON Developer Tools</span>
         </a>
@@ -758,7 +758,7 @@ Example:
   "age": 28,
   "city": "Karachi"
 }'
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
             </div>
 
@@ -782,7 +782,7 @@ Example:
   "age": 29,
   "city": "Lahore"
 }'
-                ></textarea>
+                 data-clarity-mask="True"></textarea>
 
             </div>
 
@@ -804,7 +804,7 @@ Example:
 
         </div>
 
-        <div id="status" class="status"></div>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
 
         <div class="result-panel">
 
@@ -832,7 +832,7 @@ Example:
             This tool does not upload your JSON data to a server.
         </div>
 
-        <a class="back" href="index.html">
+        <a class="back" href="./">
             ← Back to All Developer Tools
         </a>
 
@@ -1166,7 +1166,7 @@ Example:
         </p>
 
         <p>
-            <a href="index.html">Home</a>
+            <a href="./">Home</a>
             <a href="about.html">About</a>
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="terms.html">Terms &amp; Conditions</a>
@@ -1517,11 +1517,6 @@ function clearAll() {
 </script>
 
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
-  <h2 style="margin-top:0;">Related Developer Tool</h2>
-  <p>Once you have compared two JSON samples, use the JSON to TypeScript Converter to generate interfaces for the response structure you want to use in your application. <a href="json-to-typescript.html">JSON to TypeScript Converter</a>.</p>
-</section>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -1531,6 +1526,5 @@ function clearAll() {
 </script>
 <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>After comparing two JSON samples, generate a schema to document the expected data structure. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 </html>

@@ -541,12 +541,12 @@ button:hover {
 
 <header class="site-header">
     <div class="header-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="./">
             <span class="brand-icon">{ }</span>
             <span>CSV &amp; JSON Developer Tools</span>
         </a>
 
-        <a class="header-link" href="index.html">
+        <a class="header-link" href="./">
             All Tools →
         </a>
     </div>
@@ -604,7 +604,7 @@ active = true
 
 [user]
 city = "Karachi"'
-             aria-label="TOML input"></textarea>
+             aria-label="TOML input" data-clarity-mask="True"></textarea>
         </div>
 
         <div class="editor-box">
@@ -614,7 +614,7 @@ city = "Karachi"'
                 id="jsonOutput"
                 readonly
                 placeholder="Converted JSON will appear here..."
-             aria-label="Converted JSON output"></textarea>
+             aria-label="Converted JSON output" data-clarity-mask="True"></textarea>
         </div>
 
     </div>
@@ -626,7 +626,7 @@ city = "Karachi"'
         <button class="clear-btn" onclick="clearAll()">Clear</button>
     </div>
 
-    <div id="status" class="status" style="display:none;"></div>
+    <div id="status" class="status" style="display:none;" role="status" aria-live="polite"></div>
 
     <div class="privacy-mini">
         🔒 <strong>Privacy-friendly:</strong>
@@ -926,7 +926,7 @@ active = true</div>
         </span>
     </div>
 
-    <a href="index.html">Explore All Tools →</a>
+    <a href="./">Explore All Tools →</a>
 
 </section>
 
@@ -958,7 +958,7 @@ active = true</div>
         </div>
 
         <div class="footer-links">
-            <a href="index.html">All Tools</a>
+            <a href="./">All Tools</a>
             <a href="about.html">About</a>
             <a href="privacy-policy.html">Privacy</a>
             <a href="terms.html">Terms</a>

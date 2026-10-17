@@ -480,12 +480,12 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="./">
         <span class="brand-icon">{ }</span>
         <span>CSV &amp; JSON Developer Tools</span>
       </a>
 
-      <a class="header-link" href="index.html">
+      <a class="header-link" href="./">
         All Tools →
       </a>
     </div>
@@ -536,7 +536,7 @@
           <span>Paste valid JSON</span>
         </div>
 
-        <textarea id="jsonInput">{
+        <textarea id="jsonInput" data-clarity-mask="True">{
   "name": "Ali",
   "age": 28,
   "city": "Karachi",
@@ -559,7 +559,7 @@
         </button>
       </div>
 
-      <div id="status" class="status"></div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
 
       <div class="editor-box">
         <div class="tool-label">
@@ -571,7 +571,7 @@
           id="yamlOutput"
           readonly
           placeholder="YAML output will appear here..."
-        ></textarea>
+         data-clarity-mask="True"></textarea>
       </div>
 
       <div class="buttons">
@@ -889,7 +889,7 @@ skills:
         </p>
       </div>
 
-      <a href="index.html" class="cta-button">
+      <a href="./" class="cta-button">
         Explore All Tools →
       </a>
 
@@ -930,12 +930,18 @@ skills:
 </main>
 
 
+<section aria-label="Related developer tools" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
+  <h2>Related Developer Tools</h2>
+  <p>Convert JSON to other formats or document its expected structure.</p>
+  <div class="related-grid"><a href="json-to-xml.html">JSON to XML</a><a href="json-to-typescript.html">JSON to TypeScript</a><a href="json-schema-generator.html">JSON Schema Generator</a></div>
+</section>
+
 <footer class="site-footer">
 
     <div class="footer-inner">
 
       <div>
-        <a class="footer-brand" href="index.html">
+        <a class="footer-brand" href="./">
           <span class="brand-icon">{ }</span>
           <span>CSV &amp; JSON Developer Tools</span>
         </a>
@@ -948,7 +954,7 @@ skills:
 
       <div class="footer-links">
 
-        <a href="index.html">All Tools</a>
+        <a href="./">All Tools</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="privacy-policy.html">Privacy Policy</a>
@@ -1813,11 +1819,6 @@ skills:
   </script>
 
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;">
-  <h2 style="margin-top:0;">Related Developer Tool</h2>
-  <p>Working with JSON API responses? Generate TypeScript interfaces from a representative JSON sample before using the data in your application. <a href="json-to-typescript.html">JSON to TypeScript Converter</a>.</p>
-</section>
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -1827,6 +1828,5 @@ skills:
 </script>
 <script src="assets/theme.js" defer></script>
 
-<section aria-label="Related developer tool" style="max-width:1000px;margin:28px auto;padding:20px;border:1px solid rgba(148,163,184,.35);border-radius:12px;"><h2>Related Developer Tool</h2><p>You can also generate a JSON Schema from the same source data to document its expected structure. <a href="json-schema-generator.html">Open JSON Schema Generator</a>.</p></section>
 </body>
 </html>
