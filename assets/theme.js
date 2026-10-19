@@ -179,7 +179,7 @@
         privacyLink.textContent = "Read the Privacy Policy";
         note.appendChild(privacyLink);
 
-        var panel = toolInput.closest(".panel, .content-card, form");
+        var panel = toolInput.closest(".panel, .content-card, .tool-card, .tool-section, .tool-container, form, section");
         if (panel && panel.parentNode) panel.parentNode.insertBefore(note, panel);
         else toolMain.insertBefore(note, toolMain.firstChild);
       }
