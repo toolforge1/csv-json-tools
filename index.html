@@ -701,6 +701,79 @@
       transform: translateX(4px);
     }
 
+    .tool-filters {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 13px;
+    }
+
+    .filter-label {
+      color: var(--muted-light);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    #toolCategory, #favoritesOnly {
+      min-height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 8px 11px;
+      background: #071321;
+      color: #e2e8f0;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    #favoritesOnly { cursor: pointer; }
+    #favoritesOnly[aria-pressed="true"] {
+      border-color: rgba(96,165,250,.65);
+      background: rgba(37,99,235,.2);
+      color: #bfdbfe;
+    }
+
+    .filter-help {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tool-card-wrap { position: relative; min-width: 0; height: 100%; }
+    .tool-card-wrap.hidden { display: none; }
+    .tool-card-wrap > .tool { height: 100%; }
+    .tool-favorite {
+      position: absolute;
+      z-index: 3;
+      top: 10px;
+      right: 10px;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 1px solid var(--border-bright);
+      border-radius: 9px;
+      background: rgba(5,17,31,.92);
+      color: #cbd5e1;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .tool-favorite[aria-pressed="true"] { color: #fbbf24; border-color: rgba(251,191,36,.55); }
+    .tool-favorite:focus-visible { outline: 3px solid #60a5fa; outline-offset: 2px; }
+    .tool-arrow { top: 52px; }
+    html[data-theme="light"] #toolCategory,
+    html[data-theme="light"] #favoritesOnly { background: #fff; color: #172033; border-color: #c6d2e1; }
+    html[data-theme="light"] .tool-favorite { background: rgba(255,255,255,.96); color: #475569; }
+    html[data-theme="light"] .tool-favorite[aria-pressed="true"] { color: #a16207; }
+    @media(max-width:480px) {
+      .tool-filters { align-items: stretch; }
+      #toolCategory { flex: 1 1 100%; }
+      #favoritesOnly { flex: 1 1 auto; }
+    }
+
     /* NO RESULTS */
 
     #noResults {
@@ -1209,6 +1282,19 @@
       </div>
 
       <div class="search-result" id="searchResult" role="status" aria-live="polite"></div>
+
+      <div class="tool-filters" aria-label="Filter tools">
+        <label class="filter-label" for="toolCategory">Category</label>
+        <select id="toolCategory" aria-label="Filter tools by category">
+          <option value="all">All categories</option>
+          <option value="converters">Converters</option>
+          <option value="formatters">Formatters &amp; validators</option>
+          <option value="viewers">Viewers</option>
+          <option value="generators">Generators &amp; compare</option>
+        </select>
+        <button type="button" id="favoritesOnly" aria-pressed="false">☆ Favorites only</button>
+      </div>
+      <p class="filter-help" id="filterHelp">Use the star on a tool card to save it to your favorites on this device.</p>
 
     </div>
 
@@ -1797,125 +1883,139 @@
 
 
 <script>
-  /*
-   * Tool Search
-   * Filters the existing tool cards without changing
-   * the actual tool pages or their functionality.
-   */
+(function () {
+  "use strict";
+  var searchInput = document.getElementById("toolSearch");
+  var categoryInput = document.getElementById("toolCategory");
+  var favoritesButton = document.getElementById("favoritesOnly");
+  var toolCards = Array.from(document.querySelectorAll(".tool"));
+  var toolSections = Array.from(document.querySelectorAll(".tool-section"));
+  var toolCount = document.getElementById("toolCount");
+  var searchResult = document.getElementById("searchResult");
+  var favoritesKey = "csv-json-tools-favorites-v1";
+  var favorites = new Set();
+  var favoritesOnly = false;
 
-  const searchInput = document.getElementById("toolSearch");
-  const toolCards = Array.from(document.querySelectorAll(".tool"));
-  const toolSections = Array.from(document.querySelectorAll(".tool-section"));
-  const toolCount = document.getElementById("toolCount");
-  const searchResult = document.getElementById("searchResult");
+  try {
+    var saved = JSON.parse(localStorage.getItem(favoritesKey) || "[]");
+    if (Array.isArray(saved)) favorites = new Set(saved.filter(function (v) { return typeof v === "string"; }));
+  } catch (_) {}
 
-  function filterTools() {
-
-    const query = searchInput.value.trim().toLowerCase();
-
-    let visibleCount = 0;
-
-    toolCards.forEach(function(card) {
-
-      const searchableText = (
-        (card.innerText || "") +
-        " " +
-        (card.dataset.tool || "")
-      ).toLowerCase();
-
-      const matches = query === "" || searchableText.includes(query);
-
-      card.classList.toggle("hidden", !matches);
-
-      if (matches) {
-        visibleCount++;
-      }
-
-    });
-
-
-    toolSections.forEach(function(section) {
-
-      const visibleTools = section.querySelectorAll(
-        ".tool:not(.hidden)"
-      );
-
-      section.style.display =
-        visibleTools.length === 0 ? "none" : "";
-
-    });
-
-
-    if (query === "") {
-
-      toolCount.textContent = "34 Tools";
-      searchResult.style.display = "none";
-      searchResult.textContent = "";
-
-    } else {
-
-      toolCount.textContent =
-        visibleCount + (visibleCount === 1 ? " Tool" : " Tools");
-
-      searchResult.style.display = "block";
-
-      if (visibleCount === 0) {
-        searchResult.textContent =
-          "No matching tools found. Try another search term.";
-      } else {
-        searchResult.textContent =
-          visibleCount +
-          (visibleCount === 1
-            ? " tool found."
-            : " tools found.");
-      }
-
-    }
-
+  function categoryFor(card) {
+    var value = ((card.getAttribute("href") || "") + " " + (card.innerText || "") + " " + (card.dataset.tool || "")).toLowerCase();
+    if (/viewer|view csv/.test(value)) return "viewers";
+    if (/generator|typescript|type.?script/.test(value)) return "generators";
+    if (/formatter|validator|diff.?compare|compare/.test(value)) return "formatters";
+    return "converters";
   }
 
+  function saveFavorites() {
+    try { localStorage.setItem(favoritesKey, JSON.stringify(Array.from(favorites))); } catch (_) {}
+  }
 
-  searchInput.addEventListener("input", filterTools);
+  toolCards.forEach(function (card) {
+    var wrap = document.createElement("div");
+    wrap.className = "tool-card-wrap";
+    card.parentNode.insertBefore(wrap, card);
+    wrap.appendChild(card);
 
+    var favorite = document.createElement("button");
+    favorite.type = "button";
+    favorite.className = "tool-favorite";
+    favorite.setAttribute("aria-label", "Add " + (card.querySelector("strong") ? card.querySelector("strong").textContent.trim() : "tool") + " to favorites");
+    favorite.title = "Save this tool to favorites";
+    favorite.textContent = "☆";
+    favorite.setAttribute("aria-pressed", "false");
+    wrap.appendChild(favorite);
+    card.dataset.categoryFilter = categoryFor(card);
 
-  /*
-   * Allow pressing Escape to quickly clear the search.
-   */
-
-  searchInput.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-
-      searchInput.value = "";
-
-      filterTools();
-
-      searchInput.blur();
-
+    function renderFavorite() {
+      var isFavorite = favorites.has(card.getAttribute("href"));
+      favorite.textContent = isFavorite ? "★" : "☆";
+      favorite.setAttribute("aria-pressed", isFavorite ? "true" : "false");
+      favorite.setAttribute("aria-label", (isFavorite ? "Remove " : "Add ") + (card.querySelector("strong") ? card.querySelector("strong").textContent.trim() : "tool") + (isFavorite ? " from" : " to") + " favorites");
+      favorite.title = isFavorite ? "Remove from favorites" : "Save this tool to favorites";
     }
 
+    renderFavorite();
+    favorite.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      var href = card.getAttribute("href");
+      if (favorites.has(href)) favorites.delete(href);
+      else favorites.add(href);
+      saveFavorites();
+      renderFavorite();
+      filterTools();
+    });
   });
 
+  function filterTools() {
+    var query = searchInput.value.trim().toLowerCase();
+    var selectedCategory = categoryInput.value;
+    var visibleCount = 0;
 
-  /*
-   * Keep keyboard navigation friendly.
-   */
-
-  toolCards.forEach(function(card) {
-
-    card.addEventListener("keydown", function(event) {
-
-      if (event.key === "Enter" || event.key === " ") {
-
-        event.preventDefault();
-
-        card.click();
-
-      }
-
+    toolCards.forEach(function (card) {
+      var wrap = card.parentElement;
+      var searchableText = ((card.innerText || "") + " " + (card.dataset.tool || "")).toLowerCase();
+      var queryMatches = !query || searchableText.includes(query);
+      var categoryMatches = selectedCategory === "all" || card.dataset.categoryFilter === selectedCategory;
+      var favoriteMatches = !favoritesOnly || favorites.has(card.getAttribute("href"));
+      var matches = queryMatches && categoryMatches && favoriteMatches;
+      wrap.classList.toggle("hidden", !matches);
+      if (matches) visibleCount++;
     });
 
+    toolSections.forEach(function (section) {
+      var visibleTools = section.querySelectorAll(".tool-card-wrap:not(.hidden)");
+      section.style.display = visibleTools.length === 0 ? "none" : "";
+    });
+
+    var hasFilter = Boolean(query) || selectedCategory !== "all" || favoritesOnly;
+    toolCount.textContent = hasFilter ? visibleCount + " of " + toolCards.length + " Tools" : toolCards.length + " Tools";
+    searchResult.style.display = hasFilter ? "block" : "none";
+    if (hasFilter) {
+      if (!visibleCount) searchResult.textContent = favoritesOnly && favorites.size === 0
+        ? "No favorites saved yet. Select a star on any tool card to add one."
+        : "No matching tools found. Try another category or search term.";
+      else searchResult.textContent = visibleCount + (visibleCount === 1 ? " tool matches your filters." : " tools match your filters.");
+    } else {
+      searchResult.textContent = "";
+    }
+  }
+
+  searchInput.addEventListener("input", filterTools);
+  categoryInput.addEventListener("change", filterTools);
+  favoritesButton.addEventListener("click", function () {
+    favoritesOnly = !favoritesOnly;
+    favoritesButton.setAttribute("aria-pressed", favoritesOnly ? "true" : "false");
+    favoritesButton.textContent = favoritesOnly ? "★ Showing favorites" : "☆ Favorites only";
+    filterTools();
   });
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      searchInput.value = "";
+      categoryInput.value = "all";
+      favoritesOnly = false;
+      favoritesButton.setAttribute("aria-pressed", "false");
+      favoritesButton.textContent = "☆ Favorites only";
+      filterTools();
+      searchInput.blur();
+    }
+  });
+
+  toolCards.forEach(function (card) {
+    card.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  filterTools();
+})();
 </script>
 
 

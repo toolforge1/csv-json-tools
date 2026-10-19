@@ -21,6 +21,11 @@
     '#themeToggle { position: fixed; right: 16px; bottom: 16px; z-index: 99999; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 14px; border: 1px solid rgba(148,163,184,.45); border-radius: 999px; background: #0d1b2d; color: #fff; box-shadow: 0 8px 28px rgba(0,0,0,.22); font: 700 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif; cursor: pointer; }',
     'html[data-theme="light"] #themeToggle { background: #fff; color: #172033; border-color: #c6d2e1; box-shadow: 0 8px 24px rgba(15,35,60,.16); }',
     '@media(max-width:480px){#themeToggle{right:10px;bottom:10px;min-height:42px;padding:9px 12px}}',
+    '.privacy-trust-note { margin: 14px auto 18px; width: min(calc(100% - 32px), 1120px); padding: 13px 16px; border: 1px solid rgba(52,211,153,.35); border-left: 4px solid #34d399; border-radius: 10px; background: rgba(16,185,129,.08); color: #d1fae5; font: 13px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }',
+    '.privacy-trust-note strong { color: #a7f3d0; }',
+    '.privacy-trust-note a { color: #a7f3d0; text-decoration: underline; }',
+    'html[data-theme="light"] .privacy-trust-note { background: #ecfdf5; border-color: #86efac; border-left-color: #059669; color: #14532d; }',
+    'html[data-theme="light"] .privacy-trust-note strong, html[data-theme="light"] .privacy-trust-note a { color: #065f46; }',
 
     '#shareTools { margin: 28px auto 18px; width: min(100% - 32px, 980px); padding: 18px; border: 1px solid rgba(148,163,184,.28); border-radius: 16px; background: rgba(15,29,48,.92); color: #f8fafc; font: 14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }',
     '#shareTools h2 { margin: 0 0 6px; font-size: 18px; color: inherit; }',
@@ -152,6 +157,32 @@
       var feedbackFooter = document.querySelector("footer");
       if (feedbackFooter && feedbackFooter.parentNode) feedbackFooter.parentNode.insertBefore(feedback, feedbackFooter);
       else document.body.appendChild(feedback);
+    }
+
+    // Add a truthful privacy reminder to tool pages without duplicating the homepage search.
+    if (!document.getElementById("toolSearch") &&
+        !document.getElementById("privacyTrustNote") &&
+        !/offline|privacy policy|cookie policy|terms of service|about csv/i.test(document.title || "")) {
+      var toolInput = document.querySelector('main textarea, main input[type="file"], main input[type="text"], main input[type="search"], main input[type="url"], main select');
+      var toolMain = toolInput ? toolInput.closest("main") : document.querySelector("main");
+      if (toolMain && toolInput) {
+        var note = document.createElement("aside");
+        note.id = "privacyTrustNote";
+        note.className = "privacy-trust-note";
+        note.setAttribute("role", "note");
+        var strong = document.createElement("strong");
+        strong.textContent = "Privacy reminder: ";
+        note.appendChild(strong);
+        note.appendChild(document.createTextNode("This tool is designed to process your input locally in your browser; your data is not uploaded to a conversion server. Site analytics may separately collect usage information. "));
+        var privacyLink = document.createElement("a");
+        privacyLink.href = "privacy-policy.html";
+        privacyLink.textContent = "Read the Privacy Policy";
+        note.appendChild(privacyLink);
+
+        var panel = toolInput.closest(".panel, .content-card, .tool-card, .tool-section, .tool-container, form, section");
+        if (panel && panel.parentNode) panel.parentNode.insertBefore(note, panel);
+        else toolMain.insertBefore(note, toolMain.firstChild);
+      }
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
