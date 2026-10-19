@@ -1904,8 +1904,8 @@
   function categoryFor(card) {
     var value = ((card.getAttribute("href") || "") + " " + (card.innerText || "") + " " + (card.dataset.tool || "")).toLowerCase();
     if (/viewer|view csv/.test(value)) return "viewers";
-    if (/formatter|validator|schema generator|json schema|diff.?compare|compare/.test(value)) return "formatters";
     if (/generator|typescript|type.?script/.test(value)) return "generators";
+    if (/formatter|validator|diff.?compare|compare/.test(value)) return "formatters";
     return "converters";
   }
 
