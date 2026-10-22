@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excel to JSON - Free Online &amp; Privacy-First | ToolForge</title>
-  <meta name="description" content="Free Excel to JSON tool with 100% client-side processing, zero server uploads, fast browser results, and privacy-first offline-ready access.">
+  <title>Excel to JSON Converter | Free Online &amp; Private | ToolForge</title>
+  <meta name="description" content="Convert spreadsheet data to JSON in your browser. 100% client-side with zero backend server uploads; your selected data stays on your device.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/excel-to-json.html">
   <meta property="og:title" content="Excel to JSON - Free Online &amp; Privacy-First | ToolForge">
@@ -43,18 +43,53 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Which Excel file types are supported?","acceptedAnswer":{"@type":"Answer","text":"This page accepts .xlsx and .xls workbooks. Macro-enabled .xlsm and binary .xlsb files are not listed as supported input formats."}},
-      {"@type":"Question","name":"Can I choose a worksheet from a workbook?","acceptedAnswer":{"@type":"Answer","text":"Yes. After the workbook is read locally, choose one of its worksheet names from the selector. The first worksheet is selected initially."}},
-      {"@type":"Question","name":"How are spreadsheet values represented in JSON?","acceptedAnswer":{"@type":"Answer","text":"The first non-empty worksheet row supplies object keys. Numeric and Boolean cells remain typed values, blank cells become empty strings, and recognized date cells are serialized as ISO date strings."}},
-      {"@type":"Question","name":"Does this converter recalculate spreadsheet formulas?","acceptedAnswer":{"@type":"Answer","text":"No. It reads formula results stored in the workbook when available; it does not run Excel's calculation engine or refresh external data connections."}},
-      {"@type":"Question","name":"Are my Excel files uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The workbook is read and parsed by JavaScript in this browser using a locally hosted library. The conversion page does not send workbook contents to a conversion server. Its panel is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the Privacy Policy for details."}}
-    ]
-  }
-  </script>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which Excel file types are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page accepts .xlsx and .xls workbooks. Macro-enabled .xlsm and binary .xlsb files are not listed as supported input formats."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I choose a worksheet from a workbook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After the workbook is read locally, choose one of its worksheet names from the selector. The first worksheet is selected initially."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are spreadsheet values represented in JSON?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first non-empty worksheet row supplies object keys. Numeric and Boolean cells remain typed values, blank cells become empty strings, and recognized date cells are serialized as ISO date strings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this converter recalculate spreadsheet formulas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It reads formula results stored in the workbook when available; it does not run Excel's calculation engine or refresh external data connections."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my Excel files uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. Page-level analytics may still load; consult the Privacy Policy for site-wide data practices."
+      }
+    }
+  ]
+}
+</script>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -66,7 +101,7 @@
 </header>
 <section class="hero container">
   <span class="eyebrow">Spreadsheet conversion tool</span>
-  <h1>Free Online Excel to JSON Tool</h1>
+  <h1>Excel to JSON Converter – Free Online Tool</h1>
   <p>Convert an Excel worksheet from an <code>.xlsx</code> or <code>.xls</code> workbook into a JSON array of records. Choose a sheet and process the workbook locally in your browser.</p>
   <div class="trust-row" aria-label="Tool features"><span class="trust">XLSX and XLS input</span><span class="trust">Select a worksheet</span><span class="trust">Workbook stays on your device</span></div>
 </section>
@@ -76,7 +111,7 @@
     <div class="field">
       <label for="workbookFile">Choose an Excel workbook (.xlsx or .xls)</label>
       <input id="workbookFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" aria-describedby="fileHelp" data-clarity-mask="True">
-      <p class="field-help" id="fileHelp">The spreadsheet parser is loaded from this site only after you choose a file. Workbook bytes are read in this browser and are not uploaded for conversion.</p>
+      <p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p>
     </div>
     <div class="field">
       <label for="sheetSelect">Worksheet</label>
@@ -148,7 +183,7 @@
 
   <section class="content-card" aria-labelledby="privacy-heading">
     <h2 id="privacy-heading">Workbook processing stays in your browser</h2>
-    <p>The selected file is read locally and parsed with a SheetJS library file hosted in this repository. The conversion code does not send workbook bytes to a conversion server or a third-party parser CDN. The converter panel is marked so Microsoft Clarity masks its contents; other page-level analytics may still collect usage events. See the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+    <p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p>
     <p>Library attribution: <strong>SheetJS Community Edition 0.20.3</strong>, licensed under Apache License 2.0. Read the <a href="vendor/sheetjs/NOTICE.txt">third-party notice</a> and <a href="vendor/sheetjs/LICENSE-2.0.txt">license text</a>.</p>
   </section>
 
@@ -159,7 +194,7 @@
       <details><summary>Can I choose a worksheet from a workbook?</summary><p>Yes. After the workbook is read locally, choose one of its worksheet names from the selector. The first worksheet is selected initially.</p></details>
       <details><summary>How are spreadsheet values represented in JSON?</summary><p>The first non-empty worksheet row supplies object keys. Numeric and Boolean cells remain typed values, blank cells become empty strings, and recognized date cells are serialized as ISO date strings.</p></details>
       <details><summary>Does this converter recalculate spreadsheet formulas?</summary><p>No. It reads formula results stored in the workbook when available; it does not run Excel's calculation engine or refresh external data connections.</p></details>
-      <details><summary>Are my Excel files uploaded?</summary><p>No. The workbook is read and parsed by JavaScript in this browser using a locally hosted library. The conversion page does not send workbook contents to a conversion server. Its panel is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the <a href="privacy-policy.html">Privacy Policy</a> for details.</p></details>
+      <details><summary>Are my Excel files uploaded?</summary><p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p></details>
     </div>
   </section>
 
