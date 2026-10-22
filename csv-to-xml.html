@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSV to XML - Free Online &amp; Privacy-First | ToolForge</title>
-  <meta name="description" content="Free CSV to XML tool with 100% client-side processing, zero server uploads, fast browser results, and privacy-first offline-ready access for developers.">
+  <title>CSV to XML Converter | Free Online &amp; Private | ToolForge</title>
+  <meta name="description" content="Convert CSV rows into XML online in seconds. 100% client-side with zero backend server uploads; your CSV content stays in your browser.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-to-xml.html">
   <meta property="og:title" content="CSV to XML - Free Online &amp; Privacy-First | ToolForge">
@@ -43,18 +43,53 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"What XML structure does this converter create?","acceptedAnswer":{"@type":"Answer","text":"The first CSV row supplies field names. Each later row becomes a row element inside a rows root element, with one child element for each column."}},
-      {"@type":"Question","name":"How are CSV headers used as XML element names?","acceptedAnswer":{"@type":"Answer","text":"Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix."}},
-      {"@type":"Question","name":"Are special characters escaped in the XML output?","acceptedAnswer":{"@type":"Answer","text":"Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed."}},
-      {"@type":"Question","name":"Does the converter create nested XML?","acceptedAnswer":{"@type":"Answer","text":"No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema."}},
-      {"@type":"Question","name":"Are my CSV contents uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. Its panel is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the Privacy Policy for details."}}
-    ]
-  }
-  </script>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What XML structure does this converter create?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first CSV row supplies field names. Each later row becomes a row element inside a rows root element, with one child element for each column."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are CSV headers used as XML element names?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are special characters escaped in the XML output?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the converter create nested XML?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my CSV contents uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. Page-level analytics may still load; consult the Privacy Policy for site-wide data practices."
+      }
+    }
+  ]
+}
+</script>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -66,8 +101,8 @@
 </header>
 <section class="hero container">
   <span class="eyebrow">CSV conversion tool</span>
-  <h1>Free Online CSV to XML Tool</h1>
-  <p>Turn a flat CSV table into well-formed XML rows. Paste text or choose a CSV file; conversion runs in this browser and your CSV contents are not sent to a conversion server.</p>
+  <h1>CSV to XML Converter – Free Online Tool</h1>
+  <p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p>
   <div class="trust-row" aria-label="Tool features"><span class="trust">Browser-based conversion</span><span class="trust">CSV stays on your device</span><span class="trust">No account required</span></div>
 </section>
 <main class="container">
@@ -133,13 +168,13 @@
   <section class="content-card" aria-labelledby="xml-article-heading">
     <h2 id="xml-article-heading">When a CSV file needs XML</h2>
     <p>CSV is a practical format for spreadsheet exports and reports, while some import jobs and XML-based services expect named elements. This CSV file to XML converter maps a flat table into a document with one record element per data row. For example, a header row containing <code>id</code>, <code>name</code>, and <code>city</code> becomes three child elements inside each <code>row</code>.</p>
-    <p>To convert CSV to XML with headers, include column names in the first row. Quoted commas remain part of their cell, and XML special characters are escaped in the output. You can convert CSV to XML online by pasting text or selecting a <code>.csv</code> file; the file is read in your browser and is not uploaded to a conversion server. The output is intentionally flat: it does not infer nested relationships, custom root names, or validate an XSD schema.</p>
+    <p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p>
     <p>If the next step needs structured JSON instead, use <a href="csv-to-json.html">CSV to JSON</a>; to inspect the source before converting, open it in the <a href="csv-viewer.html">online CSV Viewer</a>.</p>
   </section>
 
   <section class="content-card" aria-labelledby="privacy-heading">
     <h2 id="privacy-heading">Browser-based CSV processing</h2>
-    <p>The file input is read by this page with the browser File API, and conversion is performed in JavaScript on your device. The converter does not upload CSV contents to a conversion server. Its converter panel is marked so Microsoft Clarity masks the panel contents; other page-level analytics may still collect usage events. Review the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+    <p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p>
   </section>
 
   <section class="content-card" aria-labelledby="faq-heading">
@@ -149,7 +184,7 @@
       <details><summary>How are CSV headers used as XML element names?</summary><p>Headers are converted to unique XML element names using basic ASCII letters, numbers, underscores, periods, and hyphens. Spaces and other unsupported characters become underscores; blank headers receive a column name, and duplicate names receive a numeric suffix.</p></details>
       <details><summary>Are special characters escaped in the XML output?</summary><p>Yes. The converter escapes ampersands, angle brackets, quotation marks, and apostrophes in cell values so the generated XML remains well formed.</p></details>
       <details><summary>Does the converter create nested XML?</summary><p>No. It converts flat, header-based CSV tables into row and field elements. It does not infer a nested structure or apply an XML schema.</p></details>
-      <details><summary>Are my CSV contents uploaded?</summary><p>No. The converter reads selected files in your browser and does not send CSV contents to a conversion server. Its panel is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the <a href="privacy-policy.html">Privacy Policy</a> for details.</p></details>
+      <details><summary>Are my CSV contents uploaded?</summary><p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p></details>
     </div>
   </section>
 
@@ -167,7 +202,7 @@
 
 <section class="seo-faq" aria-labelledby="seo-faq-title" style="max-width:900px;margin:2rem auto;padding:1.25rem;line-height:1.6">
 <h2 id="seo-faq-title">Frequently Asked Questions</h2>
-<details><summary>Is my data uploaded to a server?</summary><p>No. CSV to XML runs in your browser; this tool does not upload your input to our server.</p></details>
+<details><summary>Is my data uploaded to a server?</summary><p>This tool processes your selected or pasted data locally in your browser and does not upload its contents to a backend conversion server. The website may still load page-level analytics; see the Privacy Policy for site-wide data practices.</p></details>
 <details><summary>Can I use this csv to xml tool for free?</summary><p>Yes. It is free to use in a modern browser, with no account required.</p></details>
 <details><summary>Can I use the tool offline?</summary><p>After this page and its required assets have been cached, offline use may be available through the site's PWA support.</p></details>
 </section>
