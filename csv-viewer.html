@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free CSV Viewer Online | View CSV as a Table</title>
-  <meta name="description" content="Use this free online CSV viewer to open and search a CSV file in your browser. Paste text or select .csv; contents are not sent to a conversion server.">
+  <title>Online CSV Viewer | Free, Instant &amp; Privacy-First | ToolForge</title>
+  <meta name="description" content="View and search CSV files online instantly. 100% client-side with zero backend server uploads; your CSV contents stay in your browser.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://toolforge1.github.io/csv-json-tools/csv-viewer.html">
   <meta property="og:title" content="Free CSV Viewer Online | View CSV as a Table">
@@ -43,18 +43,53 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"How do I open a CSV file online?","acceptedAnswer":{"@type":"Answer","text":"Paste CSV text or select a .csv file, then choose View CSV. The page uses the first non-empty row as column headings and displays the parsed records in a searchable table in your browser."}},
-      {"@type":"Question","name":"Does the CSV Viewer support quoted commas and line breaks?","acceptedAnswer":{"@type":"Answer","text":"Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value."}},
-      {"@type":"Question","name":"Are my CSV contents uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. Its preview is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the Privacy Policy for details."}},
-      {"@type":"Question","name":"Can I search the CSV rows?","acceptedAnswer":{"@type":"Answer","text":"Yes. The row filter searches all parsed cell values without changing the input file. The preview shows up to 500 matches in pages of 50 rows; refine the filter to find matching rows beyond that preview limit."}},
-      {"@type":"Question","name":"Does the CSV Viewer edit or save my original file?","acceptedAnswer":{"@type":"Answer","text":"No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file."}}
-    ]
-  }
-  </script>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I open a CSV file online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste CSV text or select a .csv file, then choose View CSV. The page uses the first non-empty row as column headings and displays the parsed records in a searchable table in your browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the CSV Viewer support quoted commas and line breaks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my CSV contents uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The browser reads your CSV and builds the preview locally; CSV contents are not uploaded to a backend conversion server. Page-level analytics may still load; consult the Privacy Policy for site-wide details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I search the CSV rows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The row filter searches all parsed cell values without changing the input file. The preview shows up to 500 matches in pages of 50 rows; refine the filter to find matching rows beyond that preview limit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the CSV Viewer edit or save my original file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file."
+      }
+    }
+  ]
+}
+</script>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -66,7 +101,7 @@
 </header>
 <section class="hero container">
   <span class="eyebrow">CSV preview tool</span>
-  <h1>Online CSV Viewer</h1>
+  <h1>Online CSV Viewer – Free CSV File Preview</h1>
   <p>Open a CSV file online and view its rows in a searchable table. Paste CSV text or choose a file; the browser displays it locally without sending CSV contents to a conversion server.</p>
   <div class="trust-row" aria-label="Tool features"><span class="trust">Table preview</span><span class="trust">Browser-based</span><span class="trust">CSV stays on your device</span></div>
 </section>
@@ -139,7 +174,7 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
 
   <section class="content-card" aria-labelledby="privacy-heading">
     <h2 id="privacy-heading">CSV stays in your browser</h2>
-    <p>When you select a file, this page reads it with the browser File API and creates the preview in JavaScript. CSV contents are not sent to a conversion server. The table results are explicitly marked for Microsoft Clarity masking; analytics scripts are separate from conversion and may collect site-usage information. See the <a href="privacy-policy.html">Privacy Policy</a> and <a href="cookie-policy.html">Cookie Policy</a> for site-wide practices.</p>
+    <p>No. The browser reads your CSV and builds the preview locally; CSV contents are not uploaded to a backend conversion server. Page-level analytics may still load; see the Privacy Policy for site-wide details.</p>
   </section>
 
   <section class="content-card" aria-labelledby="faq-heading">
@@ -147,7 +182,7 @@ Grace Hopper,"New York","Said ""debug the system"""</code></pre>
     <div class="faq-list">
       <details><summary>How do I open a CSV file online?</summary><p>Paste CSV text or select a <code>.csv</code> file, then choose <strong>View CSV</strong>. The page uses the first non-empty row as column headings and displays the parsed records in a searchable table in your browser.</p></details>
       <details><summary>Does the CSV Viewer support quoted commas and line breaks?</summary><p>Yes. It handles commas and line breaks inside double-quoted fields, as well as doubled double quotes inside a quoted value.</p></details>
-      <details><summary>Are my CSV contents uploaded to a server?</summary><p>No. The browser reads the selected file and creates the table locally; the viewer does not send CSV contents to a conversion server. Its preview is marked for Microsoft Clarity masking, while other page-level analytics may still collect usage events; see the <a href="privacy-policy.html">Privacy Policy</a> for details.</p></details>
+      <details><summary>Are my CSV contents uploaded to a server?</summary><p>No. The browser reads your CSV and builds the preview locally; CSV contents are not uploaded to a backend conversion server. Page-level analytics may still load; see the Privacy Policy for site-wide details.</p></details>
       <details><summary>Can I search the CSV rows?</summary><p>Yes. The row filter searches all parsed cell values without changing the input file. The preview shows up to 500 matches in pages of 50 rows; refine the filter to find matching rows beyond that preview limit.</p></details>
       <details><summary>Does the CSV Viewer edit or save my original file?</summary><p>No. The viewer previews the CSV data and offers a filter; it does not modify or save over the original file.</p></details>
     </div>
